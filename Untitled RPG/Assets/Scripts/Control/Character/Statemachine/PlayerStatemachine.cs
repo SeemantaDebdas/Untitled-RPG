@@ -1,5 +1,5 @@
 using RPG.Data;
-using System.Collections;
+using RPG.Core;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +18,10 @@ namespace RPG.Control
                 playerContext = new PlayerContext
                 {
                     Transform = transform,
-                    Animator = GetComponent<Animator>()
+                    Animator = GetComponent<Animator>(),
+                    CharacterController = GetComponent<CharacterController>(),
+                    PlayerInput = GetComponent<PlayerInput>(),
+                    PhysicsHandler = GetComponent<CharacterPhysicsHandler>(),
                 };
 
                 return playerContext;
@@ -29,5 +32,6 @@ namespace RPG.Control
         {
             SwitchState(initialState);
         }
+
     }
 }

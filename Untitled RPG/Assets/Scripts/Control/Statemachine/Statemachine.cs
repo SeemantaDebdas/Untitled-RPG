@@ -41,13 +41,9 @@ namespace RPG.Control
             currentState?.Enter();
         }
 
-        public void HandleInput()
-        {
-            currentState?.HandleInput();
-        }
-
         public void Update()
         {
+            currentState?.HandleInput();
             currentState?.Tick();
         }
 

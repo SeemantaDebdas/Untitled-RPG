@@ -2,15 +2,33 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 
-namespace RPG.Control
+namespace RPG.Core
 {
-    public class PlayerInput : MonoBehaviour, Core.Control.IPlayerActions
+    public class PlayerInput : MonoBehaviour, Control.IPlayerActions
     {
         public event Action OnJumpEvent;
         public Vector2 MoveInput { get; private set; }
         public event Action OnMovePerformed, OnMoveCancelled;
 
         public event Action OnSprintAction;
+        Control control;
+
+        private void OnEnable()
+        {
+            control ??= new Control();
+            control.Enable();
+        }
+
+        private void OnDisable()
+        {
+            control.Disable();
+        }
+
+        private void Start()
+        {
+            control.Player.SetCallbacks(this);
+        }
+
         public void OnJump(InputAction.CallbackContext context)
         {
             if (!context.performed) return;

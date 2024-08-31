@@ -81,7 +81,7 @@ namespace RPG.Core
                 {
                     ""name"": ""up"",
                     ""id"": ""29f603b3-4a71-459b-94d9-0eedef242c01"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -92,7 +92,7 @@ namespace RPG.Core
                 {
                     ""name"": ""down"",
                     ""id"": ""ec28a3fd-8bb6-4e87-a007-c40961d9fade"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -103,7 +103,7 @@ namespace RPG.Core
                 {
                     ""name"": ""left"",
                     ""id"": ""f925b628-09b8-4a40-98b8-717714786295"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -114,7 +114,7 @@ namespace RPG.Core
                 {
                     ""name"": ""right"",
                     ""id"": ""6537e2c2-ffdb-4407-bbb2-e8febcdaedac"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
