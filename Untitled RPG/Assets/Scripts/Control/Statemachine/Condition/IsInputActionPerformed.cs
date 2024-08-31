@@ -8,21 +8,29 @@ namespace RPG.Control
     public class IsInputActionPerformed : ConditionSO
     {
         [SerializeField] InputActionReference actionReference;
+        private bool performed = false;
+
         public override void Initialize(Context context)
         {
+            actionReference.action.performed += (InputAction.CallbackContext _) => performed = true;
+            actionReference.action.canceled += (InputAction.CallbackContext _) => performed = false; 
+            
             actionReference.action.Enable();
         }
 
         public override void Reset()
         {
-            actionReference.action.Disable();
+            //Debug.Log("Reset Calledd");
+            
+            //actionReference.action.performed -= OnActionPerformed;
+            //actionReference.action.canceled -= OnActionCanceled;
+
+            //actionReference.action.Disable();
         }
 
         protected override bool ProcessCondition(Context context)
         {
-            //return (actionReference.action.ReadValue<Vector2>() != Vector2.zero); 
-            PlayerContext playerContext = context as PlayerContext;
-            return playerContext.PlayerInput.MoveInput != Vector2.zero;
+            return performed;
         }
     }
 }

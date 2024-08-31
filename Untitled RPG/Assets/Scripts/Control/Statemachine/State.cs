@@ -59,8 +59,6 @@ namespace RPG.Control
 
         protected void SwitchState(State toState)
         {
-            Debug.Log(toState.GetType());
-
             statemachine.SwitchState(toState);
         }
     }

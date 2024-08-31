@@ -34,7 +34,7 @@ namespace RPG.Core
                     ""type"": ""Value"",
                     ""id"": ""5576c462-da5e-44a7-8bc5-eb5416eab64a"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -64,6 +64,15 @@ namespace RPG.Core
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""WalkToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b76cb6a-4be0-49a6-9ce7-9cebb1d38e14"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -165,6 +174,17 @@ namespace RPG.Core
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""988076bf-1e5f-4645-8e46-fab6fa2a620c"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WalkToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -177,6 +197,7 @@ namespace RPG.Core
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+            m_Player_WalkToggle = m_Player.FindAction("WalkToggle", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -242,6 +263,7 @@ namespace RPG.Core
         private readonly InputAction m_Player_Look;
         private readonly InputAction m_Player_Sprint;
         private readonly InputAction m_Player_Jump;
+        private readonly InputAction m_Player_WalkToggle;
         public struct PlayerActions
         {
             private @Control m_Wrapper;
@@ -250,6 +272,7 @@ namespace RPG.Core
             public InputAction @Look => m_Wrapper.m_Player_Look;
             public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
+            public InputAction @WalkToggle => m_Wrapper.m_Player_WalkToggle;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -271,6 +294,9 @@ namespace RPG.Core
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @WalkToggle.started += instance.OnWalkToggle;
+                @WalkToggle.performed += instance.OnWalkToggle;
+                @WalkToggle.canceled += instance.OnWalkToggle;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -287,6 +313,9 @@ namespace RPG.Core
                 @Jump.started -= instance.OnJump;
                 @Jump.performed -= instance.OnJump;
                 @Jump.canceled -= instance.OnJump;
+                @WalkToggle.started -= instance.OnWalkToggle;
+                @WalkToggle.performed -= instance.OnWalkToggle;
+                @WalkToggle.canceled -= instance.OnWalkToggle;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -310,6 +339,7 @@ namespace RPG.Core
             void OnLook(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
+            void OnWalkToggle(InputAction.CallbackContext context);
         }
     }
 }

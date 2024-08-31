@@ -10,6 +10,9 @@ namespace RPG.Core
         public Vector2 MoveInput { get; private set; }
         public event Action OnMovePerformed, OnMoveCancelled;
 
+        public event Action OnWalkTogglePerformed;
+        public bool ShouldWalk { get; private set; }
+
         public event Action OnSprintAction;
         Control control;
 
@@ -55,6 +58,14 @@ namespace RPG.Core
             if(!context.performed) return;
 
             OnSprintAction?.Invoke();
+        }
+
+        public void OnWalkToggle(InputAction.CallbackContext context)
+        {
+            if (!context.performed) return; 
+            
+            ShouldWalk = !ShouldWalk;
+            OnWalkTogglePerformed?.Invoke();
         }
     }
 }

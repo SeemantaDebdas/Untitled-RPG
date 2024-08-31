@@ -2,17 +2,17 @@ using RPG.Data;
 using RPG.Core;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace RPG.Control
 {
     public abstract class PlayerBaseState : State
     {
-        [field: SerializeField] protected string animationName;
-
         protected PlayerContext context;
         protected Animator animator;
         protected PlayerInput input;
         protected CharacterController controller;
+        protected CharacterPhysicsHandler physicsHandler;
 
         protected Vector2 moveInput = Vector2.zero;
         protected float speedMultiplier = 1f;
@@ -26,6 +26,7 @@ namespace RPG.Control
             animator = context.Animator;
             input = context.PlayerInput;
             controller = context.CharacterController;
+            physicsHandler = context.PhysicsHandler;
         }
 
         public override void Enter()
@@ -33,6 +34,15 @@ namespace RPG.Control
             base.Enter();
 
             Debug.Log("Enter: " + GetType().Name);
+
+            AddInputActionsCallback();
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+
+            RemoveInputActionsCallback();
         }
 
         public override void HandleInput()
@@ -47,7 +57,7 @@ namespace RPG.Control
             animator.CrossFadeInFixedTime(animationName, transitionDuration, layer);
         }
 
-        protected void HandleMovement(float baseSpeed)
+        protected void HandleMovement(float baseSpeed = 1f)
         {
             if (moveInput == Vector2.zero || speedMultiplier == 0f)
             {
@@ -76,6 +86,17 @@ namespace RPG.Control
             return movementSpeed;
         }
 
+        protected virtual void AddInputActionsCallback()
+        {
+            input.OnWalkTogglePerformed += Input_OnWalkTogglePerformed;
+        }
+
+        protected virtual void RemoveInputActionsCallback()
+        {
+            input.OnWalkTogglePerformed -= Input_OnWalkTogglePerformed;
+        }
+
+        protected virtual void Input_OnWalkTogglePerformed(){}
 
         #region ROTATION
 

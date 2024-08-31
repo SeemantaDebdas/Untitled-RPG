@@ -6,6 +6,7 @@ namespace RPG.Control
 {
     public class PlayerIdleState : PlayerBaseState
     {
+        [SerializeField] string animationName = "Idle";
         public override void Initialize(IStatemachine statemachine)
         {
             base.Initialize(statemachine);
