@@ -16,12 +16,6 @@ namespace RPG.Control
         [SerializeField] float runBaseState = 1f;
         [SerializeField] float runRotationSpeed = 6f;
 
-        [Header("Sprint")]
-        [SerializeField] string sprintAnimationName = "Sprint";
-        [SerializeField] float sprintBaseState = 1f;
-        [SerializeField] float sprintRotationSpeed = 6f;
-
-
         float baseSpeed, rotationSpeed;
         string animationName = "Walk";
 

@@ -10,13 +10,18 @@ namespace RPG.Core
         [SerializeField] float defaultGravityMultiplier = 2f;
         float currentGravityMultiplier;
 
-        [SerializeField] float accelerationRate = 5f, decelerationRate = 4f;
         [SerializeField] float drag = 0.3f;
+
 
         [Range(-10f, -1f)]
         [SerializeField] float defaultYVelocityLimit = -10f;
         float yVelocityLimit;
         [SerializeField] string debugText = "Debug";
+        
+        [Header("Ground Detection")]
+        [SerializeField] float groundedYVelocityCap = 0.2f;
+        [SerializeField] float raycastDownDistance = 1.0f;
+        [SerializeField] LayerMask groundLayer;
 
         CharacterController controller;
         float velocityY = 0;
@@ -24,21 +29,6 @@ namespace RPG.Core
         Vector3 addedForce = default;
         Vector3 dampingVelocity = default;
         public Vector3 Movement => addedForce + Vector3.up * velocityY;
-
-        #region Calculate Velocity
-
-        Vector3 currentPosition = default, previousPosition = default;
-        public Vector3 TargetVelocity { get; private set; } = default;
-        public Vector3 DampedVelocity { get; private set; } = default;
-
-        #endregion Calculate Velocity
-
-        #region Calculate Delta Velocity
-
-        public Vector3 DeltaVelocity { get; private set; } = default;
-        Vector3 previousVelocity;
-
-        #endregion Calculate Delta Velocity
 
         NavMeshAgent agent = null;
 
@@ -63,9 +53,9 @@ namespace RPG.Core
                 agent.enabled = true;
             }
 
-            if (velocityY < 0f && controller.isGrounded)
-            {
-                velocityY = Physics.gravity.y * Time.deltaTime;
+            if (IsGrounded())
+            { 
+                velocityY = groundedYVelocityCap;
             }
             else
             {
@@ -75,19 +65,8 @@ namespace RPG.Core
                     velocityY = yVelocityLimit;
             }
 
-            CalculateVelocity();
         }
 
-        private void FixedUpdate()
-        {
-            CalculateDeltaVelocity();
-        }
-
-        void CalculateDeltaVelocity()
-        {
-            DeltaVelocity = controller.velocity - previousVelocity;
-            previousVelocity = controller.velocity;
-        }
 
         public void AddForce(Vector3 force)
         {
@@ -96,16 +75,6 @@ namespace RPG.Core
             {
                 agent.enabled = false;
             }
-        }
-
-        public void JumpByForce(float jumpForce)
-        {
-            velocityY += jumpForce;
-        }
-
-        public void JumpByHeight(float jumpHeight)
-        {
-            velocityY = Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y);
         }
 
         public void ResetVelocity()
@@ -125,19 +94,6 @@ namespace RPG.Core
             velocityY = 0;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="gravityMultiplier">0 <= gravityMultiplier <= 2</param>
-        public void SetGravityMultiplier(float gravityMultiplier)
-        {
-            currentGravityMultiplier = Mathf.Clamp(gravityMultiplier, 0f, 2f);
-        }
-
-        public void ResetGravityMultiplier()
-        {
-            currentGravityMultiplier = defaultGravityMultiplier;
-        }
 
         /// <summary>
         /// Set negative value
@@ -153,23 +109,16 @@ namespace RPG.Core
             yVelocityLimit = defaultYVelocityLimit;
         }
 
-        void CalculateVelocity()
+        public bool IsGrounded()
         {
-            currentPosition = transform.position;
-            TargetVelocity = (currentPosition - previousPosition) / Time.deltaTime;
+            //return controller.isGrounded;
 
-            if (TargetVelocity.magnitude > DampedVelocity.magnitude)
+            if (Physics.Raycast(transform.position + Vector3.up * 0.25f, Vector3.down, raycastDownDistance, groundLayer))
             {
-                //accelerate
-                DampedVelocity = Vector3.MoveTowards(DampedVelocity, TargetVelocity, accelerationRate * Time.deltaTime);
-            }
-            else
-            {
-                //decelerate
-                DampedVelocity = Vector3.MoveTowards(DampedVelocity, TargetVelocity, decelerationRate * Time.deltaTime);
+                return true;
             }
 
-            previousPosition = currentPosition;
+            return false;
         }
     }
 }

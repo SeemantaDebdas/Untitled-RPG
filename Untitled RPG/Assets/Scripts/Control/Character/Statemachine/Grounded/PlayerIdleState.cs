@@ -17,5 +17,12 @@ namespace RPG.Control
             base.Enter();
             PlayAnimation(animationName); 
         }
+
+        public override void Tick()
+        {
+            base.Tick();
+
+            HandleMovement();
+        }
     }
 }

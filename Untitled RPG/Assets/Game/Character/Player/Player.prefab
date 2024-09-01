@@ -90,9 +90,6 @@ MonoBehaviour:
   runAnimationName: Run
   runBaseState: 3.61
   runRotationSpeed: 6
-  sprintAnimationName: Sprint
-  sprintBaseState: 1
-  sprintRotationSpeed: 6
 --- !u!1 &4923091267420813489
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,8 +136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionList:
   - <ConditionList>k__BackingField:
-    - {fileID: 11400000, guid: d6bb5917fcd343341afe7ea61f3ebe6b, type: 2}
-    <ToState>k__BackingField: {fileID: 6305809296959556292}
+    - {fileID: 11400000, guid: 8924740813c89f24098c0ce1033b7734, type: 2}
+    <ToState>k__BackingField: {fileID: 9179791753564506218}
   animationName: Jump
   rotationSpeed: 20
   jumpForce: 10
@@ -174,6 +171,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2894552991546640523}
+  - {fileID: 1336481617896332136}
+  - {fileID: 550442979632619263}
   m_Father: {fileID: 5301069349421547800}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5721118380957856581
@@ -260,6 +259,9 @@ MonoBehaviour:
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 4ea139f879e49c04a9993252ec9ac1ae, type: 2}
     <ToState>k__BackingField: {fileID: 5368650604463102678}
+  - <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: bf5eb97060c932044b0bf28b7219282b, type: 2}
+    <ToState>k__BackingField: {fileID: 9179791753564506218}
   animationName: Idle
 --- !u!1 &6972971377313347014
 GameObject:
@@ -385,11 +387,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultGravityMultiplier: 2
-  accelerationRate: 5
-  decelerationRate: 4
-  drag: 60
+  drag: 40
   defaultYVelocityLimit: -10
   debugText: Debug
+  groundedYVelocityCap: -0.2
+  raycastDownDistance: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!1 &7254731427580685229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 550442979632619263}
+  - component: {fileID: 3883450141815737862}
+  m_Layer: 0
+  m_Name: Land State
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &550442979632619263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7254731427580685229}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8879841530981972026}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3883450141815737862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7254731427580685229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf05c8c401d56b45903422e3536792e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionList:
+  - <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 3927125837fb9be499377734871bd3f2, type: 2}
+    - {fileID: 11400000, guid: 8037c073e8b4572468a6d2f186ee6fdc, type: 2}
+    <ToState>k__BackingField: {fileID: 6305809296959556292}
+  - <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 3927125837fb9be499377734871bd3f2, type: 2}
+    - {fileID: 11400000, guid: d14dd41361990d54bba66630cc8b6973, type: 2}
+    <ToState>k__BackingField: {fileID: 6583075621183944049}
+  idleLand: LandIdle
+  moveLand: LandMove
+  baseSpeed: 4
 --- !u!1 &7896249695454128843
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +482,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2769771741359129722}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8159326053155374164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1336481617896332136}
+  - component: {fileID: 9179791753564506218}
+  m_Layer: 0
+  m_Name: Fall State
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1336481617896332136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8159326053155374164}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8879841530981972026}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9179791753564506218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8159326053155374164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0188abab4320aba479a33c0f7c1683b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionList:
+  - <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: d6bb5917fcd343341afe7ea61f3ebe6b, type: 2}
+    <ToState>k__BackingField: {fileID: 3883450141815737862}
+  animationName: Fall
 --- !u!1001 &1376709064710067324
 PrefabInstance:
   m_ObjectHideFlags: 0
