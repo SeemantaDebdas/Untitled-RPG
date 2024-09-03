@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 9052598648130038846}
   - component: {fileID: 3401221039345825821}
   m_Layer: 0
-  m_Name: Step Up State
+  m_Name: Simple Climb State
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,9 +82,10 @@ MonoBehaviour:
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 93f978110d36c7e4fbbd85fba0e9fb4c, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
-  animationName: StepUp
   rotationSpeed: 180
-  offsetFromCenter: 0.5
+  climbConditions:
+  - {fileID: 11400000, guid: 1956637e8269f054cb23ab2a495b3048, type: 2}
+  - {fileID: 11400000, guid: c010de2efcbd6734aa564d1863394fa1, type: 2}
 --- !u!1 &3173754400280807267
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +197,9 @@ MonoBehaviour:
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 8924740813c89f24098c0ce1033b7734, type: 2}
     <ToState>k__BackingField: {fileID: 9179791753564506218}
+  - <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 01e291c8f696dd84eb990c59886acbb5, type: 2}
+    <ToState>k__BackingField: {fileID: 3401221039345825821}
   animationName: Jump
   rotationSpeed: 20
   jumpForce: 10
@@ -446,10 +450,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultGravityMultiplier: 2
-  drag: 20
+  drag: 50
   defaultYVelocityLimit: -10
   debugText: Debug
-  groundedYVelocityCap: -0.2
+  groundedYVelocityCap: -0.25
   raycastDownDistance: 0.3
   groundLayer:
     serializedVersion: 2
@@ -468,7 +472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upOffsetFromPlayerBase: 0.5
   frontRayDistance: 0.5
-  downRayDistance: 2
+  maxHeightForDownRaycast: 5
   environmentLayer:
     serializedVersion: 2
     m_Bits: 64

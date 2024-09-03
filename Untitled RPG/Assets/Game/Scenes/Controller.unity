@@ -229,37 +229,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113460839}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &250337131
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 250337132}
-  m_Layer: 0
-  m_Name: InternalCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &250337132
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 250337131}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 885417483}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &612534103
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,12 +334,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612534103}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &885417483 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5101476017778187851, guid: ef3aafccbb9364c41a9b571f26b52f28,
-    type: 3}
-  m_PrefabInstance: {fileID: 5899271664724801071}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &924097614
 GameObject:
   m_ObjectHideFlags: 8
@@ -532,18 +495,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966569223}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1038705118 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5732995817782731308, guid: ef3aafccbb9364c41a9b571f26b52f28,
-    type: 3}
-  m_PrefabInstance: {fileID: 5899271664724801071}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c23c72d77227184fa4a16faabbfc30e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1930016390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -628,80 +579,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CORE
       objectReference: {fileID: 0}
-    - target: {fileID: 2294876647913050715, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      propertyPath: transitionList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2294876647913050715, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      propertyPath: transitionList.Array.data[1].<ToState>k__BackingField
-      value: 
-      objectReference: {fileID: 1038705118}
-    - target: {fileID: 2294876647913050715, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      propertyPath: transitionList.Array.data[1].<ConditionList>k__BackingField.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2294876647913050715, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      propertyPath: transitionList.Array.data[1].<ConditionList>k__BackingField.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 01e291c8f696dd84eb990c59886acbb5,
-        type: 2}
-    - target: {fileID: 3043701719067394279, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      propertyPath: transitionList.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3043701719067394279, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      propertyPath: transitionList.Array.data[1].<ToState>k__BackingField
-      value: 
-      objectReference: {fileID: 1038705118}
-    - target: {fileID: 3043701719067394279, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      propertyPath: transitionList.Array.data[1].<ConditionList>k__BackingField.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3043701719067394279, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      propertyPath: transitionList.Array.data[1].<ConditionList>k__BackingField.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 01e291c8f696dd84eb990c59886acbb5,
-        type: 2}
-    - target: {fileID: 3291813188103214682, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      propertyPath: drag
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3291813188103214682, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      propertyPath: groundedYVelocityCap
-      value: -0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4918544251019691438, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      propertyPath: m_Name
-      value: Simple Climb State
-      objectReference: {fileID: 0}
-    - target: {fileID: 5732995817782731308, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      propertyPath: climbConditions.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5732995817782731308, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      propertyPath: climbConditions.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 1956637e8269f054cb23ab2a495b3048,
-        type: 2}
-    - target: {fileID: 5732995817782731308, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      propertyPath: climbConditions.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: c010de2efcbd6734aa564d1863394fa1,
-        type: 2}
     - target: {fileID: 6707231226124142912, guid: ef3aafccbb9364c41a9b571f26b52f28,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -752,18 +629,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8920437008272219689, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5101476017778187851, guid: ef3aafccbb9364c41a9b571f26b52f28,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 250337132}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef3aafccbb9364c41a9b571f26b52f28, type: 3}
 --- !u!1660057539 &9223372036854775807
