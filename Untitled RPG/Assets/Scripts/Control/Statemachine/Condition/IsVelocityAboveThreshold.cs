@@ -26,6 +26,8 @@ namespace RPG.Control
             
             if (onlyYVelocity)
             {
+                return velocity.y > threshold;
+
                 float yVelocity = (context as PlayerContext).PhysicsHandler.Movement.y;
 
                 return yVelocity > threshold;

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809e363d643ec1945ba23ba6ff34c667, type: 3}
+  m_Name: CanClimbObject - 1M
+  m_EditorClassIdentifier: 
+  invert: 0
+  minHeight: 0.5
+  maxHeight: 1
+  MatchStartTime: 0.11
+  MatchEndTime: 0.17
+  <AnimationName>k__BackingField: Climb-1M
+  <MatchPositionOffset>k__BackingField: {x: 0.25, y: 0, z: 0}
+  <AvatarTarget>k__BackingField: 5
