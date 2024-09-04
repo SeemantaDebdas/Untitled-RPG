@@ -83,6 +83,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 93f978110d36c7e4fbbd85fba0e9fb4c, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
   rotationSpeed: 180
+  changedColliderRadius: 0.15
   climbConditions:
   - {fileID: 11400000, guid: 1956637e8269f054cb23ab2a495b3048, type: 2}
   - {fileID: 11400000, guid: c010de2efcbd6734aa564d1863394fa1, type: 2}
@@ -144,10 +145,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 01e291c8f696dd84eb990c59886acbb5, type: 2}
     <ToState>k__BackingField: {fileID: 3401221039345825821}
   walkAnimationName: Walk
-  walkBaseState: 1.17
+  walkBaseSpeed: 1.17
   walkRotationSpeed: 6
   runAnimationName: Run
-  runBaseState: 3.61
+  runBaseSpeed: 3.61
   runRotationSpeed: 6
 --- !u!1 &4923091267420813489
 GameObject:

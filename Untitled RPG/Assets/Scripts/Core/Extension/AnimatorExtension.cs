@@ -6,6 +6,11 @@ namespace RPG.Core
 {
     public static class AnimatorExtension
     {
+        public static void PlayAnimation(this Animator animator, string animationName, float transitionDuration = 0.25f, int layer = 0)
+        {
+            animator.CrossFadeInFixedTime(animationName, transitionDuration, layer);
+        }
+
         public static float GetNormalizedTime(this Animator animator, string tag, int layer = 0)
         {
             AnimatorStateInfo currentStateInfo = animator.GetCurrentAnimatorStateInfo(layer);
