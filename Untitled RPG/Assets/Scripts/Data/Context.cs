@@ -7,6 +7,5 @@ namespace RPG.Data
     public class Context 
     {
         public Transform Transform { get; set; }
-        public Animator Animator { get; set; }
     }
 }

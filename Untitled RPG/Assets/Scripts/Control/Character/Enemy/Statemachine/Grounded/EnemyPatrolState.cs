@@ -1,6 +1,4 @@
 using RPG.Core;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Control
@@ -10,6 +8,7 @@ namespace RPG.Control
         [SerializeField] string animationName = string.Empty;
         [SerializeField] float speed = 1.0f;
         [SerializeField] float rotationSpeed = 6.0f;
+        [SerializeField] float distanceThreshold = 0.1f;
 
         public override void Enter()
         {
@@ -19,6 +18,9 @@ namespace RPG.Control
 
             animator.PlayAnimation(animationName);
             navmeshPath = new();
+
+            agent.SetDestination(path.GetCurrentWaypoint());
+            
         }
 
         public override void Tick()
@@ -32,7 +34,31 @@ namespace RPG.Control
         public override void Exit()
         {
             base.Exit();
-            path.IncrementCurrentWaypointIndex();
+
+            Vector3 position = context.Transform.position;
+            Vector3 waypoint = context.Path.GetCurrentWaypoint();
+
+            float distanceToWaypoint = Vector3.Distance(position, waypoint);
+
+            if (distanceToWaypoint <= distanceThreshold)
+            {
+                path.IncrementCurrentWaypointIndex();
+            }
+        }
+        private void OnDrawGizmosSelected()
+        {
+            if (agent == null)
+            {
+                return;
+            }
+
+            if (agent.hasPath)
+            {
+                for (int i = 0; i < agent.path.corners.Length - 1; i++)
+                {
+                    Debug.DrawLine(agent.path.corners[i], agent.path.corners[i + 1], Color.blue);
+                }
+            }
         }
     }
 }

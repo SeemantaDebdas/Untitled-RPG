@@ -21,7 +21,7 @@ namespace RPG.Core
 
         protected override bool ProcessCondition(Context context)
         {
-            EnvironmentScanner scanner = (context as PlayerContext).EnvironmentScanner;
+            EnvironmentScanner scanner = (context as CharacterContext).EnvironmentScanner;
 
             if(!scanner.IsObjectInfront())
                 return false;

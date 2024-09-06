@@ -471,10 +471,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a7dadff06b3b14cb9c4f1fbcf75ebd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upOffsetFromPlayerBase: 0.5
-  frontRayDistance: 0.5
-  maxHeightForDownRaycast: 5
-  environmentLayer:
+  <UpOffsetFromPlayerBase>k__BackingField: 0.5
+  <FrontRayDistance>k__BackingField: 0.5
+  <MaxHeightForDownRaycast>k__BackingField: 5
+  <EnvironmentLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
 --- !u!1 &7009001920839669846

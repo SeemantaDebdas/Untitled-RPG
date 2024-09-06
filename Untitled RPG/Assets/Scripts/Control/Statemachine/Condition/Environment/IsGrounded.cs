@@ -22,9 +22,10 @@ namespace RPG.Control
 
         protected override bool ProcessCondition(Context context)
         {
-            if (context is PlayerContext playerContext)
+            if (context is CharacterContext characterContext)
             {
-                return playerContext.PhysicsHandler.IsGrounded();
+                Debug.Log("True");
+                return characterContext.PhysicsHandler.IsGrounded();
             }
 
             if (Physics.Raycast(context.Transform.position, Vector3.down,raycastDistance, groundLayer))

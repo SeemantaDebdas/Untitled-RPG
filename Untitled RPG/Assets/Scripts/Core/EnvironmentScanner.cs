@@ -6,10 +6,10 @@ namespace RPG.Core
 {
     public class EnvironmentScanner : MonoBehaviour
     {
-        [SerializeField] float upOffsetFromPlayerBase = 0.5f;
-        [SerializeField] float frontRayDistance = 1f;
-        [SerializeField] float maxHeightForDownRaycast = 5f;
-        [SerializeField] LayerMask environmentLayer;
+        [field: SerializeField] public float UpOffsetFromPlayerBase { get; private set; } = 0.5f;
+        [field: SerializeField] public float FrontRayDistance { get; private set; } = 1f;
+        [field: SerializeField] public float MaxHeightForDownRaycast { get; private set; } = 5f;
+        [field: SerializeField] public LayerMask EnvironmentLayer { get; private set; }
         
         public bool IsObjectInfront()
         {
@@ -22,11 +22,11 @@ namespace RPG.Core
 
         public RaycastHit? GetObjectInfront(Vector3 origin)
         {
-            if(Physics.Raycast(origin + transform.up * upOffsetFromPlayerBase,
+            if(Physics.Raycast(origin + transform.up * UpOffsetFromPlayerBase,
                                transform.forward,
                                out RaycastHit hit,
-                               frontRayDistance,
-                               environmentLayer))
+                               FrontRayDistance,
+                               EnvironmentLayer))
             { return hit; }
             
             return null;
@@ -34,11 +34,11 @@ namespace RPG.Core
 
         public RaycastHit? GetObjectBelow(Vector3 origin)
         {
-            if (Physics.Raycast(origin + Vector3.up * maxHeightForDownRaycast,
+            if (Physics.Raycast(origin + Vector3.up * MaxHeightForDownRaycast,
                                 Vector3.down,
                                 out RaycastHit hit,
-                                maxHeightForDownRaycast + 0.1f,
-                                environmentLayer))
+                                MaxHeightForDownRaycast + 0.1f,
+                                EnvironmentLayer))
             { return hit; }
 
             return null;

@@ -27,7 +27,6 @@ namespace RPG.Control
 
             if (distanceToWaypoint <= distanceThreshold)
             {
-                Debug.Log("Condition Satisfied");
                 return true;
             }
 

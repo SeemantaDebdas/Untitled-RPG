@@ -31,16 +31,15 @@ namespace RPG.Control
 
         protected override bool ProcessCondition(Context context)
         {
-            PlayerContext playerContext = context as PlayerContext;
+            CharacterContext characterContext = context as CharacterContext;
 
-            EnvironmentScanner scanner = playerContext.EnvironmentScanner;
+            EnvironmentScanner scanner = characterContext.EnvironmentScanner;
 
             RaycastHit? objHit = scanner.GetObjectInfront(context.Transform.position);
             Vector3 positionOnObject = scanner.GetObjectBelow(objHit.Value.point).Value.point;
 
             Vector3 heightDiff = positionOnObject - context.Transform.position;
 
-            Debug.Log(heightDiff);
 
             return heightDiff.y <= maxHeight && heightDiff.y >= minHeight;
         }

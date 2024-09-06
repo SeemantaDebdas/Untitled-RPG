@@ -22,7 +22,7 @@ namespace RPG.Control
 
         protected override bool ProcessCondition(Context context)
         {
-            Vector3 velocity = (context as PlayerContext).CharacterController.velocity;
+            Vector3 velocity = (context as CharacterContext).CharacterController.velocity;
             
             if (onlyYVelocity)
             {

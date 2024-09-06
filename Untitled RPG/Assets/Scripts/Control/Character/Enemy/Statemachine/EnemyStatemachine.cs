@@ -26,6 +26,7 @@ namespace RPG.Control
                     Agent = GetComponent<NavMeshAgent>(),
                     Path = GetComponent<Path>(),
                     PhysicsHandler = GetComponent<CharacterPhysicsHandler>(),
+                    EnvironmentScanner = GetComponent<EnvironmentScanner>(),
                 };
 
                 return enemyContext;    

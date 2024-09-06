@@ -23,10 +23,7 @@ namespace RPG.Control
                 context = new Context
                 {
                     Transform = transform,
-                    Animator = GetComponent<Animator>()
                 };
-
-                Debug.Log("Animator: " + GetComponent<Animator>());
 
                 return context;
             }

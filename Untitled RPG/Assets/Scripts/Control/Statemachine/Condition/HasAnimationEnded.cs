@@ -23,7 +23,9 @@ namespace RPG.Control
 
         protected override bool ProcessCondition(Context context)
         {
-            if (context.Animator.GetNormalizedTime(animationTag) > normalizedTimeThreshold)
+            CharacterContext characterContext = context as CharacterContext;
+
+            if (characterContext.Animator.GetNormalizedTime(animationTag) > normalizedTimeThreshold)
                 return true;
             
             return false;
