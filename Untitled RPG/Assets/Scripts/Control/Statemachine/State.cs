@@ -7,6 +7,7 @@ namespace RPG.Control
 {
     public abstract class State : MonoBehaviour
     {
+        [SerializeField] CommonTransitions commonTransitions;
         [SerializeField] protected List<Transition> transitionList;
 
         protected IStatemachine statemachine = null;
@@ -46,12 +47,31 @@ namespace RPG.Control
                 }
             }
 
+            if (commonTransitions == null) 
+                return false;
+
+            foreach(Transition transition in commonTransitions.TransitionList)
+            {
+                if (transition.EvaluateConditions(statemachine.Context))
+                {
+                    SwitchState(transition.ToState);
+                    return true;
+                }
+            }
             return false;
         }
 
         protected void ResetTransitions()
         {
             foreach (Transition transition in transitionList)
+            {
+                transition.Reset();
+            }
+
+            if (commonTransitions == null)
+                return;
+            
+            foreach (Transition transition in commonTransitions.TransitionList)
             {
                 transition.Reset();
             }

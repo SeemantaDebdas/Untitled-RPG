@@ -9,5 +9,6 @@ namespace RPG.Data
         public CharacterController CharacterController { get; set; }
         public CharacterPhysicsHandler PhysicsHandler { get; set; }
         public EnvironmentScanner EnvironmentScanner { get; set; }
+        public FieldOfView FieldOfView { get; set; }
     }
 }

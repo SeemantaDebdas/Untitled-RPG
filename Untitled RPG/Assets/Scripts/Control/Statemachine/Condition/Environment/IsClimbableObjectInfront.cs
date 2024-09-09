@@ -26,9 +26,15 @@ namespace RPG.Core
             if(!scanner.IsObjectInfront())
                 return false;
 
+            Debug.Log("Object infornt");
+
             RaycastHit? obj = scanner.GetObjectInfront(context.Transform.position);
 
-            return scanner.IsObjectBelow(obj.Value.point);
+            bool isObjectBelow = scanner.IsObjectBelow(obj.Value.point);
+
+            Debug.Log(isObjectBelow);
+
+            return isObjectBelow;
         }
     }
 }

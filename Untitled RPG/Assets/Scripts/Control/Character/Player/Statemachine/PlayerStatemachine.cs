@@ -23,6 +23,7 @@ namespace RPG.Control
                     PlayerInput = GetComponent<PlayerInput>(),
                     PhysicsHandler = GetComponent<CharacterPhysicsHandler>(),
                     EnvironmentScanner = GetComponent<EnvironmentScanner>(),
+                    FieldOfView = GetComponent<FieldOfView>()
                 };
 
                 return playerContext;

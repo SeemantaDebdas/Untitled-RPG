@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6000753651113927705}
   - component: {fileID: 416215409386494177}
   - component: {fileID: 6637542219373357983}
+  - component: {fileID: 3496940695026303767}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -184,6 +185,29 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3496940695026303767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103250625346758030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581a2b68adfcab2458faf29e0460c7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
+  angle: 90
+  scanCapacity: 20
+  delayBetweenScans: 0.2
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.11372549}
 --- !u!1 &310006802397265109
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,6 +242,59 @@ Transform:
   - {fileID: 7656409377236102525}
   m_Father: {fileID: 8422349264635784406}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &452446823185626860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3415256149357708854}
+  - component: {fileID: 4781345780323848918}
+  m_Layer: 0
+  m_Name: Chase State
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3415256149357708854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452446823185626860}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1083173625627944923}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4781345780323848918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452446823185626860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f3fbb7098715ef4dbbea9b4409e0738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 2044021711135378702}
+  transitionList:
+  - <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 0007be79065a08d47ae9b5b7223e78a4, type: 2}
+    <ToState>k__BackingField: {fileID: 1814708233858966575}
+  animationName: Run
+  speed: 3.61
+  speedMultiplier: 0.75
+  rotationSpeed: 6
 --- !u!1 &545920571725889117
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,6 +369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1083173625627944923}
+  - component: {fileID: 2044021711135378702}
   m_Layer: 0
   m_Name: GROUNDED STATES
   m_TagString: Untagged
@@ -314,8 +392,26 @@ Transform:
   m_Children:
   - {fileID: 1517706386721573487}
   - {fileID: 4684293417608307352}
+  - {fileID: 3415256149357708854}
   m_Father: {fileID: 3663916257321698498}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2044021711135378702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351062033954998292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406b4933e00da374ea5361d0456c94a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TransitionList>k__BackingField:
+  - <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: bf5eb97060c932044b0bf28b7219282b, type: 2}
+    - {fileID: 11400000, guid: 705d75bc201ddb04c87d2ec2ff428147, type: 2}
+    <ToState>k__BackingField: {fileID: 7784960166188865955}
 --- !u!1 &2057045322045852543
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +456,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179030866f55ec940bad9a0891fbb575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 2044021711135378702}
   transitionList:
+  - <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: b68e5f2f170e56147803a5d2514b33d4, type: 2}
+    <ToState>k__BackingField: {fileID: 4781345780323848918}
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: b257ae3fa5c3e8b43af7f14e62205adb, type: 2}
     <ToState>k__BackingField: {fileID: 8717531809637358629}
@@ -409,6 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa819a6b2e68ef4da7204c960f54fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 0}
   transitionList:
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 93f978110d36c7e4fbbd85fba0e9fb4c, type: 2}
@@ -462,6 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afae65d3d56fed499595766a8078ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 2044021711135378702}
   transitionList:
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 3aace035d031125409dd34d710741cbb, type: 2}
@@ -470,9 +572,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 01e291c8f696dd84eb990c59886acbb5, type: 2}
     <ToState>k__BackingField: {fileID: 7404008607496734123}
   - <ConditionList>k__BackingField:
-    - {fileID: 11400000, guid: bf5eb97060c932044b0bf28b7219282b, type: 2}
-    - {fileID: 11400000, guid: 705d75bc201ddb04c87d2ec2ff428147, type: 2}
-    <ToState>k__BackingField: {fileID: 7784960166188865955}
+    - {fileID: 11400000, guid: b68e5f2f170e56147803a5d2514b33d4, type: 2}
+    <ToState>k__BackingField: {fileID: 4781345780323848918}
   animationName: Walk
   speed: 1.17
   rotationSpeed: 6
@@ -521,6 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5837da122b0fc4ca36f09168e0a41f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 0}
   transitionList:
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: d6bb5917fcd343341afe7ea61f3ebe6b, type: 2}
@@ -571,6 +673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b06cc1a4a9aab47b1c320d4fca3207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 0}
   transitionList:
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 3927125837fb9be499377734871bd3f2, type: 2}
@@ -628,6 +731,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 137813620778190748, guid: c4e3b5d3572bced46ab0fdb482897812,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 522634f86da64874d84b5f844a619d86, type: 2}
     m_RemovedComponents:
     - {fileID: 95801823229539542, guid: c4e3b5d3572bced46ab0fdb482897812, type: 3}
     m_RemovedGameObjects: []

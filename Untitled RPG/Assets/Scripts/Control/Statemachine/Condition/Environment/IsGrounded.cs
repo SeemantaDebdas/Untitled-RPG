@@ -24,7 +24,6 @@ namespace RPG.Control
         {
             if (context is CharacterContext characterContext)
             {
-                Debug.Log("True");
                 return characterContext.PhysicsHandler.IsGrounded();
             }
 

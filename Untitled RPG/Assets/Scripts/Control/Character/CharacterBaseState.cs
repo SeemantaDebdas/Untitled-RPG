@@ -10,6 +10,7 @@ namespace RPG.Control
         protected CharacterController controller;
         protected CharacterPhysicsHandler physicsHandler;
         protected Animator animator;
+        protected FieldOfView fieldOfView;
 
         protected float slopeSpeedMultiplier = 1f;
 

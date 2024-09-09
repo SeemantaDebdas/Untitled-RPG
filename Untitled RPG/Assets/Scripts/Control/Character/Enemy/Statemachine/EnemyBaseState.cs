@@ -29,6 +29,7 @@ namespace RPG.Control
             path = context.Path;
             physicsHandler = context.PhysicsHandler;
             scanner = context.EnvironmentScanner;
+            fieldOfView = context.FieldOfView;
 
             Debug.Assert(agent != null, "agent is null");
         }

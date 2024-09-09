@@ -23,6 +23,8 @@ namespace RPG.Control
         {
             base.Enter();
 
+            Debug.Log("Enemy Climb State");
+
             for (int i = 0; i < climbConditions.Count; i++)
             {
                 if (climbConditions[i].Evaluate(context))

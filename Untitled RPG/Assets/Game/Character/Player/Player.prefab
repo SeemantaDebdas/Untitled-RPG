@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c23c72d77227184fa4a16faabbfc30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 0}
   transitionList:
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 93f978110d36c7e4fbbd85fba0e9fb4c, type: 2}
@@ -131,16 +132,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551f218cff3d02a49a966bf58faf5314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 2209697413664665727}
   transitionList:
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 8037c073e8b4572468a6d2f186ee6fdc, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
-  - <ConditionList>k__BackingField:
-    - {fileID: 11400000, guid: 4ea139f879e49c04a9993252ec9ac1ae, type: 2}
-    <ToState>k__BackingField: {fileID: 5368650604463102678}
-  - <ConditionList>k__BackingField:
-    - {fileID: 11400000, guid: bf5eb97060c932044b0bf28b7219282b, type: 2}
-    <ToState>k__BackingField: {fileID: 9179791753564506218}
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 01e291c8f696dd84eb990c59886acbb5, type: 2}
     <ToState>k__BackingField: {fileID: 3401221039345825821}
@@ -194,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165a676bcd31459458d56e48202b6098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 0}
   transitionList:
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 8924740813c89f24098c0ce1033b7734, type: 2}
@@ -247,6 +244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5643395339329463738}
+  - component: {fileID: 2209697413664665727}
   m_Layer: 0
   m_Name: GROUNDED STATES
   m_TagString: Untagged
@@ -271,6 +269,25 @@ Transform:
   - {fileID: 8694306857140967461}
   m_Father: {fileID: 5301069349421547800}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2209697413664665727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5721118380957856581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406b4933e00da374ea5361d0456c94a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TransitionList>k__BackingField:
+  - <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 4ea139f879e49c04a9993252ec9ac1ae, type: 2}
+    <ToState>k__BackingField: {fileID: 5368650604463102678}
+  - <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: bf5eb97060c932044b0bf28b7219282b, type: 2}
+    <ToState>k__BackingField: {fileID: 9179791753564506218}
 --- !u!1 &6603639611939421783
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,16 +332,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80f521b98b2dc344c97d5961b4e71bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 2209697413664665727}
   transitionList:
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: d14dd41361990d54bba66630cc8b6973, type: 2}
     <ToState>k__BackingField: {fileID: 6583075621183944049}
-  - <ConditionList>k__BackingField:
-    - {fileID: 11400000, guid: 4ea139f879e49c04a9993252ec9ac1ae, type: 2}
-    <ToState>k__BackingField: {fileID: 5368650604463102678}
-  - <ConditionList>k__BackingField:
-    - {fileID: 11400000, guid: bf5eb97060c932044b0bf28b7219282b, type: 2}
-    <ToState>k__BackingField: {fileID: 9179791753564506218}
   animationName: Idle
 --- !u!1 &6972971377313347014
 GameObject:
@@ -553,6 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf05c8c401d56b45903422e3536792e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 0}
   transitionList:
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 3927125837fb9be499377734871bd3f2, type: 2}
@@ -640,6 +653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0188abab4320aba479a33c0f7c1683b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 0}
   transitionList:
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: d6bb5917fcd343341afe7ea61f3ebe6b, type: 2}
@@ -713,6 +727,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1945037598739265427, guid: 54302052d63410f4abd41b3b563d056e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 522634f86da64874d84b5f844a619d86, type: 2}
     m_RemovedComponents:
     - {fileID: 5078393122079491448, guid: 54302052d63410f4abd41b3b563d056e, type: 3}
     m_RemovedGameObjects: []

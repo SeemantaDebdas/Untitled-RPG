@@ -27,6 +27,7 @@ namespace RPG.Control
                     Path = GetComponent<Path>(),
                     PhysicsHandler = GetComponent<CharacterPhysicsHandler>(),
                     EnvironmentScanner = GetComponent<EnvironmentScanner>(),
+                    FieldOfView = GetComponent<FieldOfView>()
                 };
 
                 return enemyContext;    
