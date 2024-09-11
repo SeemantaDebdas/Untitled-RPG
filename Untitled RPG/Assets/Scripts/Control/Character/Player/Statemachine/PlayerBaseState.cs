@@ -24,6 +24,7 @@ namespace RPG.Control
             input = context.PlayerInput;
             controller = context.CharacterController;
             physicsHandler = context.PhysicsHandler;
+            weaponHandler = context.WeaponHandler;
         }
 
         public override void Enter()

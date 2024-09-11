@@ -13,7 +13,12 @@ namespace RPG.Core
         public event Action OnWalkTogglePerformed;
         public bool ShouldWalk { get; private set; }
 
-        public event Action OnSprintAction;
+        public event Action OnSprintPerformed;
+
+        public event Action OnAttackPerformed;
+
+        public event Action OnHolsterPerformed;
+
         Control control;
 
         private void OnEnable()
@@ -57,7 +62,7 @@ namespace RPG.Core
         {
             if(!context.performed) return;
 
-            OnSprintAction?.Invoke();
+            OnSprintPerformed?.Invoke();
         }
 
         public void OnWalkToggle(InputAction.CallbackContext context)
@@ -66,6 +71,20 @@ namespace RPG.Core
             
             ShouldWalk = !ShouldWalk;
             OnWalkTogglePerformed?.Invoke();
+        }
+
+        public void OnAttack(InputAction.CallbackContext context)
+        {
+            if (!context.performed) return;
+
+            OnAttackPerformed?.Invoke();
+        }
+
+        public void OnHolster(InputAction.CallbackContext context)
+        {
+            if (!context.performed) return;
+
+            OnHolsterPerformed?.Invoke();
         }
     }
 }

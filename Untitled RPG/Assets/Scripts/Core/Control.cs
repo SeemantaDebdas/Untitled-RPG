@@ -73,6 +73,24 @@ namespace RPG.Core
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""35cab85a-4559-4d2c-9ed1-aec8d9f0dbba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Holster"",
+                    ""type"": ""Button"",
+                    ""id"": ""6cbe4913-f17f-4586-a8ca-f9884c84f4a3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -222,11 +240,55 @@ namespace RPG.Core
                 {
                     ""name"": """",
                     ""id"": ""029feea8-8281-41e0-88e5-7bbd0618ceda"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""WalkToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""147c9a61-a542-4d9b-8b23-ce34276a5135"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7784feb4-c020-476b-8872-7b6273743d88"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bcb3d82f-8527-41e0-b7bf-7b2164699269"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Holster"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e9a1073-7afb-4a2d-86af-8972dc98344c"",
+                    ""path"": ""<Keyboard>/leftAlt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Holster"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -270,6 +332,8 @@ namespace RPG.Core
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_WalkToggle = m_Player.FindAction("WalkToggle", throwIfNotFound: true);
+            m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+            m_Player_Holster = m_Player.FindAction("Holster", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -336,6 +400,8 @@ namespace RPG.Core
         private readonly InputAction m_Player_Sprint;
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_WalkToggle;
+        private readonly InputAction m_Player_Attack;
+        private readonly InputAction m_Player_Holster;
         public struct PlayerActions
         {
             private @Control m_Wrapper;
@@ -345,6 +411,8 @@ namespace RPG.Core
             public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @WalkToggle => m_Wrapper.m_Player_WalkToggle;
+            public InputAction @Attack => m_Wrapper.m_Player_Attack;
+            public InputAction @Holster => m_Wrapper.m_Player_Holster;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -369,6 +437,12 @@ namespace RPG.Core
                 @WalkToggle.started += instance.OnWalkToggle;
                 @WalkToggle.performed += instance.OnWalkToggle;
                 @WalkToggle.canceled += instance.OnWalkToggle;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
+                @Holster.started += instance.OnHolster;
+                @Holster.performed += instance.OnHolster;
+                @Holster.canceled += instance.OnHolster;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -388,6 +462,12 @@ namespace RPG.Core
                 @WalkToggle.started -= instance.OnWalkToggle;
                 @WalkToggle.performed -= instance.OnWalkToggle;
                 @WalkToggle.canceled -= instance.OnWalkToggle;
+                @Attack.started -= instance.OnAttack;
+                @Attack.performed -= instance.OnAttack;
+                @Attack.canceled -= instance.OnAttack;
+                @Holster.started -= instance.OnHolster;
+                @Holster.performed -= instance.OnHolster;
+                @Holster.canceled -= instance.OnHolster;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -430,6 +510,8 @@ namespace RPG.Core
             void OnSprint(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
             void OnWalkToggle(InputAction.CallbackContext context);
+            void OnAttack(InputAction.CallbackContext context);
+            void OnHolster(InputAction.CallbackContext context);
         }
     }
 }

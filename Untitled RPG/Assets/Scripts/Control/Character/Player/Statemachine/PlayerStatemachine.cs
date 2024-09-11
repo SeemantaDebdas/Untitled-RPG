@@ -2,6 +2,7 @@ using RPG.Data;
 using RPG.Core;
 using System.Collections.Generic;
 using UnityEngine;
+using RPG.Combat;
 
 namespace RPG.Control
 {
@@ -23,7 +24,8 @@ namespace RPG.Control
                     PlayerInput = GetComponent<PlayerInput>(),
                     PhysicsHandler = GetComponent<CharacterPhysicsHandler>(),
                     EnvironmentScanner = GetComponent<EnvironmentScanner>(),
-                    FieldOfView = GetComponent<FieldOfView>()
+                    FieldOfView = GetComponent<FieldOfView>(),
+                    WeaponHandler = GetComponent<WeaponHandler>()
                 };
 
                 return playerContext;

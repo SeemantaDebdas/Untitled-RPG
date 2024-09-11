@@ -1,3 +1,4 @@
+using RPG.Combat;
 using RPG.Core;
 using RPG.Data;
 using System.Collections;
@@ -27,7 +28,8 @@ namespace RPG.Control
                     Path = GetComponent<Path>(),
                     PhysicsHandler = GetComponent<CharacterPhysicsHandler>(),
                     EnvironmentScanner = GetComponent<EnvironmentScanner>(),
-                    FieldOfView = GetComponent<FieldOfView>()
+                    FieldOfView = GetComponent<FieldOfView>(),
+                    WeaponHandler = GetComponent<WeaponHandler>()
                 };
 
                 return enemyContext;    

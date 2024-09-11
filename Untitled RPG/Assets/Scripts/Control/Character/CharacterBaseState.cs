@@ -1,3 +1,4 @@
+using RPG.Combat;
 using RPG.Core;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace RPG.Control
         protected CharacterPhysicsHandler physicsHandler;
         protected Animator animator;
         protected FieldOfView fieldOfView;
+        protected WeaponHandler weaponHandler;
 
         protected float slopeSpeedMultiplier = 1f;
 

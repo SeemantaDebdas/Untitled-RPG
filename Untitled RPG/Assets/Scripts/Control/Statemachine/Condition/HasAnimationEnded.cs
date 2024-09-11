@@ -11,6 +11,7 @@ namespace RPG.Control
     {
         [SerializeField] string animationTag = "";
         [SerializeField] float normalizedTimeThreshold = 0.9f;
+        [SerializeField] int layerIndex = 0;
         public override void Initialize(Context context)
         {
             
@@ -25,7 +26,7 @@ namespace RPG.Control
         {
             CharacterContext characterContext = context as CharacterContext;
 
-            if (characterContext.Animator.GetNormalizedTime(animationTag) > normalizedTimeThreshold)
+            if (characterContext.Animator.GetNormalizedTime(animationTag, layerIndex) > normalizedTimeThreshold)
                 return true;
             
             return false;

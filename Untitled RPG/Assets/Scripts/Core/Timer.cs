@@ -10,17 +10,25 @@ namespace RPG.Core
         float seconds = 0;
         readonly Action onTimerEnd = null;
         public float RemainingSeconds { get; private set; }
+        CoroutineHandle handle;
 
         public Timer(float seconds, Action onTimerEnd)
         {
             this.seconds = seconds;
             this.onTimerEnd = onTimerEnd;
 
-            Timing.RunCoroutine(Tick());
+            handle = Timing.RunCoroutine(Tick());
         }
 
         public bool IsOver() => RemainingSeconds <= 0;
 
+        public void StopTimer()
+        {
+            if (handle.IsValid)
+            {
+                Timing.KillCoroutines(handle); // Stop the current coroutine if it is running
+            }
+        }
 
         IEnumerator<float> Tick()
         {
