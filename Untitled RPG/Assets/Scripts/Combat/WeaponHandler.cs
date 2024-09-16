@@ -19,7 +19,7 @@ namespace RPG.Combat
         
         public AttackSO CurrentAttack { get; private set; }
 
-        int currentAttackIndex = -1;
+        int currentLightAttackIndex = -1, currentHeavyAttackIndex = -1;
         Timer timeBetweenAttacksCounter;
 
 
@@ -34,10 +34,10 @@ namespace RPG.Combat
         public AttackSO GetLightAttack()
         {
 
-            Debug.Log("Get Light Attack Called");
-            currentAttackIndex = (currentAttackIndex + 1) == currentWeapon.LightAttackList.Count ? -1 : currentAttackIndex;
+            //Debug.Log("Get Light Attack Called");
+            currentLightAttackIndex = (currentLightAttackIndex + 1) == currentWeapon.LightAttackList.Count ? -1 : currentLightAttackIndex;
 
-            CurrentAttack = currentWeapon.LightAttackList[++currentAttackIndex];
+            CurrentAttack = currentWeapon.LightAttackList[++currentLightAttackIndex];
 
             ResetTimer();
             ResetColliderData();
@@ -49,7 +49,10 @@ namespace RPG.Combat
 
         public AttackSO GetHeavyAttack()
         {
-            CurrentAttack = currentWeapon.HeavyAttackList[0];
+            currentHeavyAttackIndex = (currentHeavyAttackIndex + 1) == currentWeapon.HeavyAttackList.Count ? -1 : currentHeavyAttackIndex;
+
+            CurrentAttack = currentWeapon.HeavyAttackList[++currentHeavyAttackIndex];
+
             return CurrentAttack;
         }
 
@@ -59,8 +62,8 @@ namespace RPG.Combat
 
             timeBetweenAttacksCounter = new(timeBetweenAttacks, () =>
             {
-                Debug.Log("Timer Reset");
-                currentAttackIndex = -1;
+                //Debug.Log("Timer Reset");
+                currentLightAttackIndex = -1;
             });
         }
 
@@ -73,9 +76,11 @@ namespace RPG.Combat
         {
             DOVirtual.Float(0, startTime, startTime, value => { }).SetEase(Ease.Linear).OnComplete(() =>
             {
+                //Debug.Log("Enabling collider");
                 EnableCollider();
                 DOVirtual.Float(0, endTime, endTime, value => { }).SetEase(Ease.Linear).OnComplete(() =>
                 {
+                    //Debug.Log("Disabling Collider");
                     DisableCollider();
                 });
             });

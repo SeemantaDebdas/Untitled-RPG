@@ -20,7 +20,7 @@ namespace RPG.Control
         {
             base.Exit();
 
-            animator.SetLayerWeight(weaponHandler.CurrentWeapon.AnimationLayer, 0);
+            animator.SetLayerWeightOverTime(0, layer: weaponHandler.CurrentWeapon.AnimationLayer);
         }
     }
 }

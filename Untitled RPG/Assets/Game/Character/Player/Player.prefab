@@ -227,7 +227,7 @@ Transform:
   m_Children:
   - {fileID: 128022863773165192}
   - {fileID: 7163920749890077672}
-  - {fileID: 4468845100672894687}
+  - {fileID: 8073047470637826516}
   m_Father: {fileID: 5643395339329463738}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3928655228461115384
@@ -335,7 +335,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: bf5eb97060c932044b0bf28b7219282b, type: 2}
     <ToState>k__BackingField: {fileID: 9179791753564506218}
   - <ConditionList>k__BackingField:
-    - {fileID: 11400000, guid: 85148a83719c24d45a908c7792621cc6, type: 2}
+    - {fileID: 11400000, guid: 0eb9ce1612fec1d4284ae1146cd4cf77, type: 2}
     - {fileID: 11400000, guid: d31240b40d2f93b42a141a95e49e4b4f, type: 2}
     <ToState>k__BackingField: {fileID: 6616888276600851569}
   - <ConditionList>k__BackingField:
@@ -344,6 +344,10 @@ MonoBehaviour:
     <ToState>k__BackingField: {fileID: 7572548491539266164}
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 85148a83719c24d45a908c7792621cc6, type: 2}
+    - {fileID: 11400000, guid: 86890a0b5d62c09488c7b0aff443e2c1, type: 2}
+    <ToState>k__BackingField: {fileID: 7996950414039419898}
+  - <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 0eb9ce1612fec1d4284ae1146cd4cf77, type: 2}
     - {fileID: 11400000, guid: 86890a0b5d62c09488c7b0aff443e2c1, type: 2}
     <ToState>k__BackingField: {fileID: 7854313682881161389}
 --- !u!1 &4923091267420813489
@@ -479,7 +483,7 @@ GameObject:
   - component: {fileID: 4468845100672894687}
   - component: {fileID: 7854313682881161389}
   m_Layer: 0
-  m_Name: Attack State
+  m_Name: Light Attack State
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -493,12 +497,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6598724752561903978}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3528319354835044557}
+  m_Father: {fileID: 8073047470637826516}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7854313682881161389
 MonoBehaviour:
@@ -517,10 +521,15 @@ MonoBehaviour:
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 12197306fb4b3e443a12b46fdd43ee30, type: 2}
     - {fileID: 11400000, guid: 85148a83719c24d45a908c7792621cc6, type: 2}
+    <ToState>k__BackingField: {fileID: 7996950414039419898}
+  - <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 12197306fb4b3e443a12b46fdd43ee30, type: 2}
+    - {fileID: 11400000, guid: 0eb9ce1612fec1d4284ae1146cd4cf77, type: 2}
     <ToState>k__BackingField: {fileID: 7854313682881161389}
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 385edb47ac69c684ebeae46481076e1c, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
+  rotationSpeed: 100
 --- !u!1 &6603639611939421783
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,7 +599,7 @@ GameObject:
   - component: {fileID: 7039371323966024518}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -808,13 +817,72 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7092386101853665861}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5884632, y: 0.17853646, z: 0.7774318, w: 0.13204394}
-  m_LocalPosition: {x: -0.216, y: 0.213, z: 0.312}
+  m_LocalRotation: {x: -0.52246284, y: -0.015330112, z: 0.8189606, w: 0.2368569}
+  m_LocalPosition: {x: -0.222, y: 0.201, z: 0.288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1871932075635107296}
-  m_LocalEulerAnglesHint: {x: -25.658, y: -74.316, z: 180.306}
+  m_LocalEulerAnglesHint: {x: -12.849, y: -62.274, z: 155.522}
+--- !u!1 &7218014946159925967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8073047470637826516}
+  - component: {fileID: 1809631143667238838}
+  m_Layer: 0
+  m_Name: ATTACK STATES
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8073047470637826516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7218014946159925967}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4468845100672894687}
+  - {fileID: 2769750482654836314}
+  m_Father: {fileID: 3528319354835044557}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1809631143667238838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7218014946159925967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581a2b68adfcab2458faf29e0460c7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startOnAwake: 0
+  radius: 5
+  angle: 90
+  scanCapacity: 20
+  delayBetweenScans: 0.2
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  ignoreTag: Player
+  gizmoColor: {r: 1, g: 0.1684183, b: 0.015686274, a: 0.33333334}
 --- !u!1 &7254731427580685229
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,6 +1021,56 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d6bb5917fcd343341afe7ea61f3ebe6b, type: 2}
     <ToState>k__BackingField: {fileID: 3883450141815737862}
   animationName: Fall
+--- !u!1 &8259083781785404813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2769750482654836314}
+  - component: {fileID: 7996950414039419898}
+  m_Layer: 0
+  m_Name: Heavy Attack State
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2769750482654836314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8259083781785404813}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8073047470637826516}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7996950414039419898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8259083781785404813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa75a9be83e63e4084ce28dd7fb86ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 0}
+  transitionList:
+  - <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 385edb47ac69c684ebeae46481076e1c, type: 2}
+    <ToState>k__BackingField: {fileID: 6305809296959556292}
+  rotationSpeed: 90
 --- !u!1001 &1376709064710067324
 PrefabInstance:
   m_ObjectHideFlags: 0

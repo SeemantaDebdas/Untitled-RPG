@@ -12,7 +12,7 @@ namespace RPG.Control
         {
             base.Enter();
 
-            animator.SetLayerWeight(weaponHandler.CurrentWeapon.AnimationLayer, 1);
+            animator.SetLayerWeightOverTime(1, layer: weaponHandler.CurrentWeapon.AnimationLayer);
             animator.PlayAnimation(animationName, layer: weaponHandler.CurrentWeapon.AnimationLayer);
 
             //weaponHandler.UnsheathWeapon();

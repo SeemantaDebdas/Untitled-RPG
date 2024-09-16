@@ -1,5 +1,7 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RPG.Core
@@ -54,6 +56,24 @@ namespace RPG.Core
             }
 
             animator.MatchTarget(matchPosition, matchRotation, target, weightMask, normalisedStartTime, normalisedEndTime);
+        }
+
+        public static void SetLayerWeightOverTime(this Animator animator, float from, float to, float time = 0.1f, int layer = 0)
+        {
+            DOVirtual.Float(from, to, time, (v) =>
+            {
+                animator.SetLayerWeight(layer, v);
+            });
+        }
+
+        public static void SetLayerWeightOverTime(this Animator animator, float to, float time = 0.1f, int layer = 0)
+        {
+            float from = animator.GetLayerWeight(layer);
+
+            DOVirtual.Float(from, to, time, (v) =>
+            {
+                animator.SetLayerWeight(layer, v);
+            });
         }
     }
 

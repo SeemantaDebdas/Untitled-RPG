@@ -19,4 +19,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f88f46d21e3d6a846b7cfddeeffb6a81, type: 2}
   - {fileID: 11400000, guid: 451531fd9428bd14e8dbe4deaa40c306, type: 2}
   - {fileID: 11400000, guid: a216f7925a53a7a43933a35d8728a09c, type: 2}
-  <HeavyAttackList>k__BackingField: []
+  <HeavyAttackList>k__BackingField:
+  - {fileID: 11400000, guid: 1159dfbc544f2824e8878f8ae815b21e, type: 2}
+  - {fileID: 11400000, guid: 443185736a04f19459b4e25a19b6de3f, type: 2}

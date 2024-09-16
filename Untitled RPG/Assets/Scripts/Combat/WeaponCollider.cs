@@ -19,7 +19,7 @@ namespace RPG.Combat
 
         private void Awake()
         {
-            collider = GetComponent<Collider>();
+            collider = GetComponentInChildren<Collider>();
         }
 
         public void EnableCollider() => collider.enabled = true;
@@ -46,7 +46,7 @@ namespace RPG.Combat
                 return;
             }
 
-            //Debug.Log(damageable.transform.name + " has been damaged.");
+            Debug.Log(damageable.transform.name + " has been damaged.");
 
             damageables.Add(damageable);
 

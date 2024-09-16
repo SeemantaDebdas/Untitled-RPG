@@ -4,7 +4,11 @@ using UnityEngine;
 
 namespace RPG.Core
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviour, IDamageable
     {
+        public void Damage(int damage)
+        {
+            //throw new System.NotImplementedException();
+        }
     }
 }

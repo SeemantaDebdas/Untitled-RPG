@@ -8,12 +8,18 @@ namespace RPG
 {
     public class FieldOfView : MonoBehaviour
     {
+        [SerializeField] bool startOnAwake = true;
+        
+        [Space]
         [SerializeField] float radius = 5f;
         [SerializeField] float angle = 90f;
         [SerializeField] int scanCapacity = 20;
         [SerializeField] float delayBetweenScans = 0.2f;
+
+        [Header("FILTERING")]
         [SerializeField] LayerMask targetLayer;
         [SerializeField] LayerMask obstructionLayer;
+        [SerializeField] string ignoreTag = string.Empty; //change this later to a scriptable object based solution
 
         [Header("GIZMO")]
         [SerializeField] Color gizmoColor = Color.yellow;
@@ -21,9 +27,11 @@ namespace RPG
         Collider[] scanArray;
         List<Transform> validTargets;
 
+
         private void Start()
         {
-            Timing.RunCoroutine(ScanRoutine());
+            if(startOnAwake)
+                Timing.RunCoroutine(ScanRoutine());
         }
 
         IEnumerator<float> ScanRoutine()
@@ -44,6 +52,12 @@ namespace RPG
             return validTargets[0].transform;
         }
 
+        public List<Transform> GetValidTargets()
+        {
+            Scan();
+            return validTargets;
+        }
+
         void Scan()
         {
             scanArray = new Collider[scanCapacity];
@@ -59,17 +73,20 @@ namespace RPG
                 Transform target = scanArray[i].transform;
 
                 if (target == transform)
-                    return;
+                    continue;
 
                 Vector3 directionToTarget = target.position - transform.position;
 
                 float angleToTarget = Vector3.Angle(transform.forward, directionToTarget.normalized);
 
                 if (angleToTarget > angle / 2)
-                    return;
+                    continue;
+
+                if (target.CompareTag(ignoreTag))
+                    continue;
 
                 validTargets.Add(target);
-                Debug.Log(target.name + ": Angle Satisfied");
+                //Debug.Log(target.name + ": Angle Satisfied");
             }
         }
 

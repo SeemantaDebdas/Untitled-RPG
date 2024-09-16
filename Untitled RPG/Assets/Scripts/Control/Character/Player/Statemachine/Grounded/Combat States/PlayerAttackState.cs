@@ -1,3 +1,4 @@
+using DG.Tweening;
 using RPG.Combat;
 using RPG.Core;
 using System.Collections;
@@ -6,25 +7,44 @@ using UnityEngine;
 
 namespace RPG.Control
 {
-    public class PlayerAttackState : PlayerBaseState
+    public abstract class PlayerAttackState : PlayerBaseState
     {
-        AttackSO attack;
+        protected AttackSO attack;
+        [SerializeField] protected float rotationSpeed = 90f;
+
         public override void Enter()
         {
             base.Enter();
 
-            animator.SetLayerWeight(weaponHandler.CurrentWeapon.AnimationLayer, 0);
-
-            attack = weaponHandler.GetLightAttack();
-
+            animator.SetLayerWeightOverTime(0, layer: weaponHandler.CurrentWeapon.AnimationLayer);
             animator.PlayAnimation(attack.AnimationName, 0.1f);
+            
+            FaceMovementDirection(CalculateDirection(), rotationSpeed);
+
+
+            FieldOfView attackFOV = GetComponentInParent<FieldOfView>();
+
+            List<Transform> validTargets = attackFOV.GetValidTargets();
+
+            if (validTargets.Count == 0)
+            {
+                animator.applyRootMotion = true;
+            }
+            else
+            {
+                Transform closestTarget = validTargets[0];
+                Vector3 dirFromTarget = (context.Transform.position - closestTarget.position).normalized;
+                context.Transform.LookAt(closestTarget);
+                context.Transform.DOMove(closestTarget.position + dirFromTarget, 0.1f);
+            }
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            animator.SetLayerWeight(weaponHandler.CurrentWeapon.AnimationLayer, 1);
+            animator.applyRootMotion = false;
+            animator.SetLayerWeightOverTime(1, layer: weaponHandler.CurrentWeapon.AnimationLayer);
         }
     }
 }
