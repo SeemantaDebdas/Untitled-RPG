@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2171a8952d66824bb9264a19dca561c, type: 3}
+  m_Name: Bow
+  m_EditorClassIdentifier: 
+  <WeaponPrefab>k__BackingField: {fileID: 6726393331512991212, guid: 3b154a8709e2aa74f8ebfeba811a035c,
+    type: 3}
+  <UnsheathAnimationLayer>k__BackingField: 2
+  <LightAttackList>k__BackingField:
+  - {fileID: 11400000, guid: 6e11bab9a68c38e43b682ca089272e2c, type: 2}
+  <HeavyAttackList>k__BackingField: []
+  <WeaponUnsheathLocation>k__BackingField: 0
+  <DrawFireAnimationLayer>k__BackingField: 3
+  <DrawAnimation>k__BackingField: Draw
+  <FireAnimation>k__BackingField: Fire

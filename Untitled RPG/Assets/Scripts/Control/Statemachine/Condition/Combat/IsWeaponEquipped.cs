@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RPG.Control
 {
-    [CreateAssetMenu(fileName = "IsWeaponEquipped", menuName = "Condition/Is Weapon Equipped", order = 1)]
+    [CreateAssetMenu(fileName = "IsWeaponEquipped", menuName = "Condition/Combat/Is Weapon Equipped", order = 1)]
     public class IsWeaponEquipped : ConditionSO
     {
         public override void Initialize(Context context)

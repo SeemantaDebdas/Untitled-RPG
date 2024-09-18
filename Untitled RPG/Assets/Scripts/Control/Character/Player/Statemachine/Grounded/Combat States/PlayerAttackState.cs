@@ -16,11 +16,10 @@ namespace RPG.Control
         {
             base.Enter();
 
-            animator.SetLayerWeightOverTime(0, layer: weaponHandler.CurrentWeapon.AnimationLayer);
             animator.PlayAnimation(attack.AnimationName, 0.1f);
+            animator.SetLayerWeightOverTime(0, layer: weaponHandler.CurrentWeapon.UnsheathAnimationLayer);
             
             FaceMovementDirection(CalculateDirection(), rotationSpeed);
-
 
             FieldOfView attackFOV = GetComponentInParent<FieldOfView>();
 
@@ -32,10 +31,7 @@ namespace RPG.Control
             }
             else
             {
-                Transform closestTarget = validTargets[0];
-                Vector3 dirFromTarget = (context.Transform.position - closestTarget.position).normalized;
-                context.Transform.LookAt(closestTarget);
-                context.Transform.DOMove(closestTarget.position + dirFromTarget, 0.1f);
+                MoveTowardsTarget(validTargets[0]);
             }
         }
 
@@ -44,7 +40,14 @@ namespace RPG.Control
             base.Exit();
 
             animator.applyRootMotion = false;
-            animator.SetLayerWeightOverTime(1, layer: weaponHandler.CurrentWeapon.AnimationLayer);
+            animator.SetLayerWeightOverTime(1, layer: weaponHandler.CurrentWeapon.UnsheathAnimationLayer);
+        }
+
+        protected void MoveTowardsTarget(Transform closestTarget)
+        {
+            Vector3 dirFromTarget = (context.Transform.position - closestTarget.position).normalized;
+            context.Transform.LookAt(closestTarget);
+            context.Transform.DOMove(closestTarget.position + dirFromTarget, 0.1f);
         }
     }
 }

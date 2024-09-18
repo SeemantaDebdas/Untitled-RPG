@@ -1,12 +1,22 @@
 using DG.Tweening;
 using RPG.Core;
+using System;
 using UnityEngine;
 
 namespace RPG.Combat
 {
     public class WeaponHandler : MonoBehaviour
     {
-        [SerializeField] Transform sheathLocation, unsheathLocation;
+
+        [Header("SHEATH LOCATIONS")]
+        [SerializeField] Transform rightBack;
+        [SerializeField] Transform leftBack;
+
+        [Header("UNSHEATH LOCATIONS")]
+        [SerializeField] Transform rightHand;
+        [SerializeField] Transform leftHand;
+
+        [Space]
         [SerializeField] WeaponSO defaultWeapon = null;
         [SerializeField] float timeBetweenAttacks = 2f;
 
@@ -93,6 +103,8 @@ namespace RPG.Combat
             //sheathedWeapon.SetActive(false);
             //unsheathedWeapon.SetActive(true);
 
+            Transform equipTransform = GetEquipTransform(weapon);
+
             if(currentWeapon == weapon) 
                 return;
 
@@ -103,8 +115,28 @@ namespace RPG.Combat
                 Destroy(currentWeaponInstance);
             }
 
-            currentWeaponInstance = Instantiate(weapon.WeaponPrefab, sheathLocation.position, sheathLocation.rotation);
+            currentWeaponInstance = Instantiate(weapon.WeaponPrefab, equipTransform.position, equipTransform.rotation);
             SheathWeapon();
+        }
+
+        Transform GetEquipTransform (WeaponSO weapon)
+        {
+            return weapon.WeaponUnsheathLocation switch
+            {
+                WeaponUnsheathLocation.LEFT_HAND => leftHand,
+                WeaponUnsheathLocation.RIGHT_HAND => rightHand,
+                _ => null,
+            };
+        }
+
+        Transform GetSheathTransform(WeaponSO weapon)
+        {
+            return weapon.WeaponUnsheathLocation switch
+            {
+                WeaponUnsheathLocation.LEFT_HAND => leftBack,
+                WeaponUnsheathLocation.RIGHT_HAND => rightBack,
+                _ => null,
+            };
         }
 
         /// <summary>
@@ -131,7 +163,7 @@ namespace RPG.Combat
 
             isSheathed = true;
 
-            currentWeaponInstance.SheathWeapon(sheathLocation);
+            currentWeaponInstance.SheathWeapon(GetSheathTransform(currentWeapon));
             
             DisableCollider(); 
         }
@@ -140,7 +172,7 @@ namespace RPG.Combat
         {
             if (!isSheathed || currentWeaponInstance == null) return;
 
-            currentWeaponInstance.UnsheathWeapon(unsheathLocation);
+            currentWeaponInstance.UnsheathWeapon(GetEquipTransform(currentWeapon));
 
             isSheathed = false;
         }

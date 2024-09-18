@@ -72,7 +72,7 @@ namespace RPG.Control
 
         private void OnActionCancelled(InputAction.CallbackContext context)
         {
-            Debug.Log(name + "Cancelled");
+            // Debug.Log(name + "Cancelled");
             cancelled = context.canceled; 
         }
     }

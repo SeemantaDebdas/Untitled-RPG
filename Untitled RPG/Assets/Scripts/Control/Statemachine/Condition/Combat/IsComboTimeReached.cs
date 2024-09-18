@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RPG.Control
 {
-    [CreateAssetMenu(fileName = "IsComboTimeReached", menuName = "Condition/Is Combo Time Reached", order = 1)]
+    [CreateAssetMenu(fileName = "IsComboTimeReached", menuName = "Condition/Combat/Is Combo Time Reached", order = 1)]
     public class IsComboTimeReached : ConditionSO
     {
         [SerializeField] string attackTag = string.Empty;

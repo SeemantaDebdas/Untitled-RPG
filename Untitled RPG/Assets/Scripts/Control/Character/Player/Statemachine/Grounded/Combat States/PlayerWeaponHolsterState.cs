@@ -13,14 +13,14 @@ namespace RPG.Control
         {
             base.Enter();
 
-            animator.PlayAnimation(animationName, layer: weaponHandler.CurrentWeapon.AnimationLayer);
+            animator.PlayAnimation(animationName, layer: weaponHandler.CurrentWeapon.UnsheathAnimationLayer);
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            animator.SetLayerWeightOverTime(0, layer: weaponHandler.CurrentWeapon.AnimationLayer);
+            animator.SetLayerWeightOverTime(0, layer: weaponHandler.CurrentWeapon.UnsheathAnimationLayer);
         }
     }
 }

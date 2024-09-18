@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using RPG.Combat;
 
 namespace RPG.Control
 {
@@ -9,6 +7,7 @@ namespace RPG.Control
         public override void Enter()
         {
             attack = weaponHandler.GetHeavyAttack();
+            
             base.Enter();
         }
     }

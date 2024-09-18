@@ -22,3 +22,4 @@ MonoBehaviour:
   <HeavyAttackList>k__BackingField:
   - {fileID: 11400000, guid: 1159dfbc544f2824e8878f8ae815b21e, type: 2}
   - {fileID: 11400000, guid: 443185736a04f19459b4e25a19b6de3f, type: 2}
+  <WeaponUnsheathLocation>k__BackingField: 1

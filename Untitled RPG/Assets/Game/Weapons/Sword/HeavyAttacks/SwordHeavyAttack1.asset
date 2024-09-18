@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cba6ae32a8550b489c0c3424aabb425, type: 3}
   m_Name: SwordHeavyAttack1
   m_EditorClassIdentifier: 
-  <AnimationName>k__BackingField: Heavy Attack 1
+  <AnimationName>k__BackingField: SwordHeavyAttack1
   <ComboTime>k__BackingField: 0.9
   <Force>k__BackingField: 0
   <VFXDataList>k__BackingField: []

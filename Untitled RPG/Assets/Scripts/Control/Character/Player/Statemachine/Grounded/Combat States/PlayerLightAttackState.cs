@@ -11,17 +11,8 @@ namespace RPG.Control
 
         public override void Enter()
         {
-
             attack = weaponHandler.GetLightAttack();
             base.Enter();
-
-            //animator.applyRootMotion = true;
-            
-            
-            //for(int i = 0; i < validTargets.Count; i++) 
-            //{
-            //    Debug.Log(validTargets[i].name);
-            //}
         }  
     }
 }

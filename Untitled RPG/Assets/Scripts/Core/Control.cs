@@ -240,7 +240,7 @@ namespace RPG.Core
                 {
                     ""name"": """",
                     ""id"": ""029feea8-8281-41e0-88e5-7bbd0618ceda"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -262,7 +262,7 @@ namespace RPG.Core
                 {
                     ""name"": """",
                     ""id"": ""7784feb4-c020-476b-8872-7b6273743d88"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
