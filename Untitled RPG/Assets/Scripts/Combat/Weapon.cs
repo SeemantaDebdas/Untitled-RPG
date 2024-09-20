@@ -8,6 +8,7 @@ namespace RPG.Combat
     [RequireComponent(typeof(WeaponCollider))]
     public class Weapon : MonoBehaviour
     {
+        [field: SerializeField] public Transform ShootPoint { get; private set; }   
         WeaponCollider weaponCollider = null;
         
 
@@ -50,5 +51,6 @@ namespace RPG.Combat
         {
             //dissolveShaderController.UnDissolve();
         }
+
     }
 }

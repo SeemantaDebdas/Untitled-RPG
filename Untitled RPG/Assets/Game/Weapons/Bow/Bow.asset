@@ -19,6 +19,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6e11bab9a68c38e43b682ca089272e2c, type: 2}
   <HeavyAttackList>k__BackingField: []
   <WeaponUnsheathLocation>k__BackingField: 0
+  <Projectile>k__BackingField: {fileID: -1142319551045968644, guid: 898e9724015aadd43b09be6c5c74979b,
+    type: 3}
   <DrawFireAnimationLayer>k__BackingField: 3
   <DrawAnimation>k__BackingField: Draw
   <FireAnimation>k__BackingField: Fire

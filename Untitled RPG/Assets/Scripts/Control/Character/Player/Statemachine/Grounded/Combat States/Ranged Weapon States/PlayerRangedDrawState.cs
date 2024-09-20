@@ -1,8 +1,5 @@
 using RPG.Combat;
-using RPG.Control;
 using RPG.Core;
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RPG.Control
@@ -14,15 +11,27 @@ namespace RPG.Control
         [SerializeField] string strafe = string.Empty;
         [SerializeField] string moveXParam, moveYParam;
 
-        [Space]
-        [SerializeField] float maxRange = 50f;
-        [SerializeField] LayerMask shootLayer;
+        [Header("SHOOT PARAMS")]
+        [SerializeField, Range(0.0f, 50.0f)] float maxForce;
+
+        [Header("STATE PARAMS")]
         [SerializeField] float speed = 5f;
         [SerializeField] float rotationSpeed = 180f;
+
         RangedWeaponSO rangedWeapon;
+        TrajectoryPredictor trajectory;
+        ProjectileThrower thrower;
+
+        float currentForce;
+
         public override void Enter()
         {
             base.Enter();
+
+            trajectory = GetComponent<TrajectoryPredictor>();
+            trajectory.EnableVisual();
+
+            thrower = GetComponentInParent<ProjectileThrower>();
 
             rangedWeapon = weaponHandler.CurrentWeapon as RangedWeaponSO;
 
@@ -34,10 +43,21 @@ namespace RPG.Control
             animator.PlayAnimation(strafe);
         }
 
+        public override void Exit()
+        {
+            base.Exit();
+
+            trajectory.DisbaleVisual();
+            thrower.SetForce(currentForce);
+        }
+
         public override void Tick()
         {
             base.Tick();
             
+            currentForce = Mathf.Min(currentForce + Time.deltaTime, maxForce);
+            
+            trajectory.PredictTrajectory(GetProjectileData());
             LookAtCenterOfScreen();
             HandleMovement(speed);
             HandleAnimation();
@@ -53,28 +73,45 @@ namespace RPG.Control
         {
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
-            Vector3 lookAt = ray.GetPoint(maxRange);
+            Vector3 lookAt = ray.GetPoint(maxForce);
 
-            RaycastHit[] raycastHits = new RaycastHit[20];
-            int hits = Physics.RaycastNonAlloc(ray, raycastHits, maxRange, shootLayer, QueryTriggerInteraction.Ignore);
+            //RaycastHit[] raycastHits = new RaycastHit[20];
+            ////int hits = Physics.RaycastNonAlloc(ray, raycastHits, maxRange, shootLayer, QueryTriggerInteraction.Ignore);
 
-            for (int i = 0; i < hits; i++)
-            {
-                var hit = raycastHits[i];
-                if (hit.collider.CompareTag("Player"))//change this with scriptable object variable
-                {
-                    continue;
-                }
+            ////for (int i = 0; i < hits; i++)
+            ////{
+            ////    var hit = raycastHits[i];
+            ////    if (hit.collider.CompareTag("Player"))//change this with scriptable object variable
+            ////    {
+            ////        continue;
+            ////    }
 
-                lookAt = hit.transform.position;
-                break;
-            }
+            ////    lookAt = hit.transform.position;
+            ////    break;
+            ////}
 
             Vector3 lookDirection = (lookAt - context.Transform.position).normalized;
+            lookDirection.y = 0;
 
             context.Transform.rotation = Quaternion.Slerp(context.Transform.rotation,
                                     Quaternion.LookRotation(lookDirection),
                                     rotationSpeed * Time.deltaTime);
+        }
+
+        ProjectileProperties GetProjectileData()
+        {
+            Weapon currentWeaponInstance = weaponHandler.CurrentWeaponInstance;
+
+            ProjectileProperties properties = new ProjectileProperties();
+            Rigidbody projectile = rangedWeapon.Projectile.GetComponent<Rigidbody>();
+
+            properties.direction = currentWeaponInstance.ShootPoint.forward;
+            properties.initialPosition = currentWeaponInstance.ShootPoint.position;
+            properties.initialSpeed = currentForce;
+            properties.mass = projectile.mass;
+            properties.drag = projectile.drag;
+
+            return properties;
         }
     }
 }

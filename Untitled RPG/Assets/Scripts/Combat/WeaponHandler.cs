@@ -21,11 +21,13 @@ namespace RPG.Combat
         [SerializeField] float timeBetweenAttacks = 2f;
 
         WeaponSO currentWeapon = null;
-        public WeaponSO CurrentWeapon { get => currentWeapon; }
+        public WeaponSO CurrentWeapon => currentWeapon; 
+
         Weapon currentWeaponInstance = null;
+        public Weapon CurrentWeaponInstance => currentWeaponInstance;
         
         bool isSheathed = false;
-        public bool IsSheathed { get => isSheathed; }   
+        public bool IsSheathed  => isSheathed; 
         
         public AttackSO CurrentAttack { get; private set; }
 
