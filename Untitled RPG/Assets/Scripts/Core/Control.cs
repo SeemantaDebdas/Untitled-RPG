@@ -34,7 +34,7 @@ namespace RPG.Core
                     ""type"": ""Value"",
                     ""id"": ""5576c462-da5e-44a7-8bc5-eb5416eab64a"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""NormalizeVector2,StickDeadzone(min=0.5)"",
+                    ""processors"": ""NormalizeVector2,StickDeadzone(min=0.75)"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
