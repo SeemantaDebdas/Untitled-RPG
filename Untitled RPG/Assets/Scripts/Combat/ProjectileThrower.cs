@@ -18,7 +18,7 @@ namespace RPG.Combat
 
         public void ThrowObject(Rigidbody projectilePrefab, Vector3 position, Vector3 direction)
         {
-            Rigidbody thrownObject = Instantiate(projectilePrefab, position, Quaternion.identity);
+            Rigidbody thrownObject = Instantiate(projectilePrefab, position, Quaternion.LookRotation(direction));
             thrownObject.AddForce(direction * force, ForceMode.Impulse);
         }
     }

@@ -1,6 +1,9 @@
+using DG.Tweening;
 using RPG.Combat;
 using RPG.Core;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 namespace RPG.Control
 {
@@ -13,10 +16,14 @@ namespace RPG.Control
 
         [Header("SHOOT PARAMS")]
         [SerializeField, Range(0.0f, 50.0f)] float maxForce;
+        [SerializeField] float speedToReachMaxForce = 5f;
 
         [Header("STATE PARAMS")]
         [SerializeField] float speed = 5f;
         [SerializeField] float rotationSpeed = 180f;
+
+        [Header("RIGS")]
+        [SerializeField] List<MultiAimConstraint> aimRigs;
 
         RangedWeaponSO rangedWeapon;
         TrajectoryPredictor trajectory;
@@ -28,8 +35,8 @@ namespace RPG.Control
         {
             base.Enter();
 
+            currentForce = 0;
             trajectory = GetComponent<TrajectoryPredictor>();
-            trajectory.EnableVisual();
 
             thrower = GetComponentInParent<ProjectileThrower>();
 
@@ -41,21 +48,29 @@ namespace RPG.Control
             animator.SetLayerWeightOverTime(1, 0.1f, rangedWeapon.DrawFireAnimationLayer);
             animator.PlayAnimation(rangedWeapon.DrawAnimation, 0.1f, rangedWeapon.DrawFireAnimationLayer);
             animator.PlayAnimation(strafe);
+            
+            trajectory.EnableVisual();
+
+            foreach(var aimRig in aimRigs)
+                DOVirtual.Float(0, 1, 0.1f, (v) => aimRig.weight = v);
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            trajectory.DisbaleVisual();
+            trajectory.DisableVisual();
             thrower.SetForce(currentForce);
+
+            foreach (var aimRig in aimRigs)
+                DOVirtual.Float(1, 0, 0.1f, (v) => aimRig.weight = v);
         }
 
         public override void Tick()
         {
             base.Tick();
             
-            currentForce = Mathf.Min(currentForce + Time.deltaTime, maxForce);
+            currentForce = Mathf.Min(currentForce + Time.deltaTime * speedToReachMaxForce, maxForce);
             
             trajectory.PredictTrajectory(GetProjectileData());
             LookAtCenterOfScreen();

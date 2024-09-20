@@ -98,7 +98,7 @@ namespace RPG.Core
                 hitMarker.gameObject.SetActive(true);
         }
 
-        public void DisbaleVisual() => trajectoryLine.enabled = false;
+        public void DisableVisual() => trajectoryLine.enabled = false;
     }
 
 }
