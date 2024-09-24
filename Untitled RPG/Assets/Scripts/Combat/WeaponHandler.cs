@@ -1,6 +1,7 @@
 using DG.Tweening;
 using RPG.Core;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -19,51 +20,70 @@ namespace RPG.Combat
         [Space]
         [SerializeField] WeaponSO defaultWeapon = null;
         [SerializeField] float timeBetweenAttacks = 2f;
+        [SerializeField] List<WeaponSO> weaponList;
 
-        WeaponSO currentWeapon = null;
-        public WeaponSO CurrentWeapon => currentWeapon; 
+        ///WeaponSO currentWeapon = null;
+        //public WeaponSO CurrentWeapon => currentWeapon; 
+        public WeaponSO CurrentWeapon { get; private set; } = null;
+        int currentWeaponIndex = 0;
 
-        Weapon currentWeaponInstance = null;
-        public Weapon CurrentWeaponInstance => currentWeaponInstance;
-        
-        bool isSheathed = false;
-        public bool IsSheathed  => isSheathed; 
+        public bool IsSheathed  => CurrentWeapon.IsSheathed; 
         
         public AttackSO CurrentAttack { get; private set; }
 
         int currentLightAttackIndex = -1, currentHeavyAttackIndex = -1;
         Timer timeBetweenAttacksCounter;
 
+        PlayerInput playerInput;
+
 
         private void Awake()
         {
-            EquipWeapon(defaultWeapon);
+            //EquipWeapon(defaultWeapon);
+
+            for(int i = 0; i < weaponList.Count; i++)
+            {
+                SpawnWeapon(weaponList[i]);
+            }
+            EquipWeapon(weaponList[currentWeaponIndex]);
+
             ResetTimer();
         }
 
-#region ATTACK LOGIC
+        private void OnEnable()
+        {
+            playerInput = GetComponent<PlayerInput>();
+            playerInput.OnChangeWeaponPerformed += PlayerInput_OnChangeWeaponPerformed;
+        }
+
+        private void OnDisable()
+        {
+            playerInput.OnChangeWeaponPerformed -= PlayerInput_OnChangeWeaponPerformed;
+        }
+
+        #region ATTACK LOGIC
 
         public AttackSO GetLightAttack()
         {
 
             //Debug.Log("Get Light Attack Called");
-            currentLightAttackIndex = (currentLightAttackIndex + 1) == currentWeapon.LightAttackList.Count ? -1 : currentLightAttackIndex;
+            currentLightAttackIndex = (currentLightAttackIndex + 1) == CurrentWeapon.LightAttackList.Count ? -1 : currentLightAttackIndex;
 
-            CurrentAttack = currentWeapon.LightAttackList[++currentLightAttackIndex];
+            CurrentAttack = CurrentWeapon.LightAttackList[++currentLightAttackIndex];
 
             ResetTimer();
-            ResetColliderData();
+            ResetColliderData(CurrentWeapon);
 
-            SetColliderState(CurrentAttack.ColliderEnableTime, CurrentAttack.ColliderDisableTime);
+            SetColliderState(CurrentWeapon, CurrentAttack.ColliderEnableTime, CurrentAttack.ColliderDisableTime);
             return CurrentAttack;
         }
 
 
         public AttackSO GetHeavyAttack()
         {
-            currentHeavyAttackIndex = (currentHeavyAttackIndex + 1) == currentWeapon.HeavyAttackList.Count ? -1 : currentHeavyAttackIndex;
+            currentHeavyAttackIndex = (currentHeavyAttackIndex + 1) == CurrentWeapon.HeavyAttackList.Count ? -1 : currentHeavyAttackIndex;
 
-            CurrentAttack = currentWeapon.HeavyAttackList[++currentHeavyAttackIndex];
+            CurrentAttack = CurrentWeapon.HeavyAttackList[++currentHeavyAttackIndex];
 
             return CurrentAttack;
         }
@@ -80,45 +100,41 @@ namespace RPG.Combat
         }
 
 #endregion ATTACK LOGIC
-        public void EnableCollider() => currentWeaponInstance.EnableCollider();
-        public void DisableCollider() => currentWeaponInstance.DisableCollider();
+        public void EnableCollider(WeaponSO weapon) => weapon.WeaponInstance.EnableCollider();
+        public void DisableCollider(WeaponSO weapon) => weapon.WeaponInstance.DisableCollider();
 
         
-        void SetColliderState(float startTime, float endTime)
+        void SetColliderState(WeaponSO weapon, float startTime, float endTime)
         {
             DOVirtual.Float(0, startTime, startTime, value => { }).SetEase(Ease.Linear).OnComplete(() =>
             {
                 //Debug.Log("Enabling collider");
-                EnableCollider();
+                EnableCollider(weapon);
                 DOVirtual.Float(0, endTime, endTime, value => { }).SetEase(Ease.Linear).OnComplete(() =>
                 {
                     //Debug.Log("Disabling Collider");
-                    DisableCollider();
+                    DisableCollider(weapon);
                 });
             });
         }
         
-        void ResetColliderData() => currentWeaponInstance.ResetColliderData();
+        void ResetColliderData(WeaponSO weapon) => weapon.WeaponInstance.ResetColliderData();
+
+        public void SpawnWeapon(WeaponSO weapon)
+        {
+            Transform equipTransform = GetEquipTransform(weapon);
+
+            weapon.SpawnWeapon(equipTransform);
+
+            SheathWeapon(weapon);
+        }
 
         public void EquipWeapon(WeaponSO weapon)
         {
-            //sheathedWeapon.SetActive(false);
-            //unsheathedWeapon.SetActive(true);
-
-            Transform equipTransform = GetEquipTransform(weapon);
-
-            if(currentWeapon == weapon) 
+            if (CurrentWeapon == weapon)
                 return;
 
-            currentWeapon = weapon;
-
-            if(currentWeaponInstance != null)
-            {
-                Destroy(currentWeaponInstance);
-            }
-
-            currentWeaponInstance = Instantiate(weapon.WeaponPrefab, equipTransform.position, equipTransform.rotation);
-            SheathWeapon();
+            CurrentWeapon = weapon;
         }
 
         Transform GetEquipTransform (WeaponSO weapon)
@@ -133,6 +149,8 @@ namespace RPG.Combat
 
         Transform GetSheathTransform(WeaponSO weapon)
         {
+            Debug.Log(weapon.name);
+
             return weapon.WeaponUnsheathLocation switch
             {
                 WeaponUnsheathLocation.LEFT_HAND => leftBack,
@@ -146,37 +164,33 @@ namespace RPG.Combat
         /// </summary>
         public void ToggleWeaponState()
         {
-            if(currentWeaponInstance == null)
-                return;
-
-            if (isSheathed)
+            if (CurrentWeapon.IsSheathed)
             {
-                UnsheathWeapon();
+                UnsheathWeapon(CurrentWeapon);
             }
             else
             {
-                SheathWeapon();
+                SheathWeapon(CurrentWeapon);
             }
         }
 
-        public void SheathWeapon()
+        public void SheathWeapon(WeaponSO weapon)
         {
-            if (isSheathed || currentWeaponInstance == null) return;
-
-            isSheathed = true;
-
-            currentWeaponInstance.SheathWeapon(GetSheathTransform(currentWeapon));
-            
-            DisableCollider(); 
+            weapon.SheathWeapon(GetSheathTransform(weapon));
+            DisableCollider(weapon); 
         }
 
-        public void UnsheathWeapon()
+        public void UnsheathWeapon(WeaponSO weapon)
         {
-            if (!isSheathed || currentWeaponInstance == null) return;
+            weapon.UnsheathWeapon(GetEquipTransform(weapon));
+        }
 
-            currentWeaponInstance.UnsheathWeapon(GetEquipTransform(currentWeapon));
 
-            isSheathed = false;
+        void PlayerInput_OnChangeWeaponPerformed(float value)
+        {
+            currentWeaponIndex += (int) value;
+            currentWeaponIndex = (int) Mathf.Repeat(currentWeaponIndex, weaponList.Count);
+            Debug.Log(currentWeaponIndex);
         }
     }
 }

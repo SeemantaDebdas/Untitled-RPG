@@ -16,7 +16,7 @@ namespace RPG.Control
             rangedWeapon = weaponHandler.CurrentWeapon as RangedWeaponSO;
             animator.PlayAnimation(rangedWeapon.FireAnimation, 0.1f, rangedWeapon.DrawFireAnimationLayer);
 
-            Weapon currentWeaponInstance = weaponHandler.CurrentWeaponInstance;
+            Weapon currentWeaponInstance = weaponHandler.CurrentWeapon.WeaponInstance;
             thrower.ThrowObject(rangedWeapon.Projectile, currentWeaponInstance.ShootPoint.position, currentWeaponInstance.ShootPoint.forward);
         }
 

@@ -10,6 +10,8 @@ namespace RPG.Combat
     {
         [field: SerializeField] public Transform ShootPoint { get; private set; }   
         WeaponCollider weaponCollider = null;
+
+        public bool IsSheathed { get; private set; } = true;
         
 
         private void Awake()
@@ -22,6 +24,8 @@ namespace RPG.Combat
             transform.SetParent(parent);
 
             transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+            IsSheathed = true;
         }
 
         public void UnsheathWeapon(Transform parent)
@@ -30,6 +34,8 @@ namespace RPG.Combat
             transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
             EnableVisual();
+
+            IsSheathed = false;
         }
 
         public void EnableCollider() => weaponCollider.EnableCollider();

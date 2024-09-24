@@ -115,7 +115,7 @@ namespace RPG.Control
 
         ProjectileProperties GetProjectileData()
         {
-            Weapon currentWeaponInstance = weaponHandler.CurrentWeaponInstance;
+            Weapon currentWeaponInstance = weaponHandler.CurrentWeapon.WeaponInstance;
 
             ProjectileProperties properties = new ProjectileProperties();
             Rigidbody projectile = rangedWeapon.Projectile.GetComponent<Rigidbody>();
