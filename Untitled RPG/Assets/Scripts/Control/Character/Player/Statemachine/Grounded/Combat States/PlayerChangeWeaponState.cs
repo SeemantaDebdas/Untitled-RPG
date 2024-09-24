@@ -1,3 +1,4 @@
+using RPG.Combat;
 using RPG.Core;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,21 +8,39 @@ namespace RPG.Control
 {
     public class PlayerChangeWeaponState : PlayerBaseState
     {
-        [SerializeField] string animationName = "";
+        [SerializeField] string sheathAnimation = string.Empty, unsheathAnimation = string.Empty;
+
+        WeaponSO previousWeapon, currentWeapon;
         public override void Enter()
         {
             base.Enter();
 
-            animator.SetLayerWeightOverTime(1, layer: weaponHandler.CurrentWeapon.AnimationLayer);
-            animator.PlayAnimation(animationName, layer: weaponHandler.CurrentWeapon.AnimationLayer);
+            previousWeapon = weaponHandler.PreviousWeapon;
+            currentWeapon = weaponHandler.CurrentWeapon;
 
-            //weaponHandler.UnsheathWeapon();
+            Debug.Log("Current Weapon: " + currentWeapon.name);
+
+            if (previousWeapon != null)
+            {
+                Debug.Log("Previous Weapon: " + previousWeapon.name);
+                //sheath the previous weapon
+                animator.PlayAnimation(sheathAnimation, layer: previousWeapon.AnimationLayer);
+            }
+
+            animator.SetLayerWeightOverTime(1, layer: currentWeapon.AnimationLayer);
+            animator.PlayAnimation(unsheathAnimation, layer: currentWeapon.AnimationLayer);
+
         }
 
         public override void Exit()
         {
             base.Exit();
-            //animator.SetLayerWeight(weaponHandler.CurrentWeapon.AnimationLayer, 0);
+
+            if (previousWeapon != null)
+            {
+                animator.SetLayerWeightOverTime(0, layer: previousWeapon.AnimationLayer);
+            }
+            
         }
     }
 }

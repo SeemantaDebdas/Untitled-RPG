@@ -25,6 +25,7 @@ namespace RPG.Combat
         ///WeaponSO currentWeapon = null;
         //public WeaponSO CurrentWeapon => currentWeapon; 
         public WeaponSO CurrentWeapon { get; private set; } = null;
+        public WeaponSO PreviousWeapon { get; private set; } = null;
         int currentWeaponIndex = 0;
 
         public bool IsSheathed  => CurrentWeapon.IsSheathed; 
@@ -134,6 +135,7 @@ namespace RPG.Combat
             if (CurrentWeapon == weapon)
                 return;
 
+            PreviousWeapon = CurrentWeapon;
             CurrentWeapon = weapon;
         }
 
@@ -149,7 +151,7 @@ namespace RPG.Combat
 
         Transform GetSheathTransform(WeaponSO weapon)
         {
-            Debug.Log(weapon.name);
+            //Debug.Log(weapon.name);
 
             return weapon.WeaponUnsheathLocation switch
             {
@@ -162,15 +164,15 @@ namespace RPG.Combat
         /// <summary>
         /// This function should be called from Equpping/Holstering Animation Event
         /// </summary>
-        public void ToggleWeaponState()
+        public void ToggleWeaponState(WeaponSO weapon) // not the best way to handle things especaially since we need to pass the weapon via animator. Do it dynamically by using normalized time and scripting logic
         {
-            if (CurrentWeapon.IsSheathed)
+            if (weapon.IsSheathed)
             {
-                UnsheathWeapon(CurrentWeapon);
+                UnsheathWeapon(weapon);
             }
             else
             {
-                SheathWeapon(CurrentWeapon);
+                SheathWeapon(weapon);
             }
         }
 
@@ -190,7 +192,10 @@ namespace RPG.Combat
         {
             currentWeaponIndex += (int) value;
             currentWeaponIndex = (int) Mathf.Repeat(currentWeaponIndex, weaponList.Count);
-            Debug.Log(currentWeaponIndex);
+
+            Debug.Log(weaponList[currentWeaponIndex].name);
+
+            EquipWeapon(weaponList[currentWeaponIndex]);
         }
     }
 }

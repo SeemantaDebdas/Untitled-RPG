@@ -562,7 +562,8 @@ MonoBehaviour:
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 322d396aab5e80b48b67017b48621f05, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
-  animationName: DrawWeapon
+  sheathAnimation: SheathWeapon
+  unsheathAnimation: DrawWeapon
 --- !u!1 &3937910371182858219
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,7 +1159,6 @@ MonoBehaviour:
     <ToState>k__BackingField: {fileID: 9179791753564506218}
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 3f53ec0b65d7b9c4e8df332233482dfe, type: 2}
-    - {fileID: 11400000, guid: 86890a0b5d62c09488c7b0aff443e2c1, type: 2}
     <ToState>k__BackingField: {fileID: 6616888276600851569}
   - <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 0eb9ce1612fec1d4284ae1146cd4cf77, type: 2}
@@ -1847,6 +1847,9 @@ MonoBehaviour:
   leftHand: {fileID: 6036999135856123144}
   defaultWeapon: {fileID: 11400000, guid: ba2611a39854ee445b42a5950acdb845, type: 2}
   timeBetweenAttacks: 2
+  weaponList:
+  - {fileID: 11400000, guid: ba2611a39854ee445b42a5950acdb845, type: 2}
+  - {fileID: 11400000, guid: d66d5975822e66b48ad30f8c96b223fe, type: 2}
 --- !u!114 &8915323458793073475
 MonoBehaviour:
   m_ObjectHideFlags: 0
