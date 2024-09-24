@@ -19,6 +19,8 @@ namespace RPG.Core
 
         public event Action OnHolsterPerformed;
 
+        public event Action<float> OnWeaponChangePerformed;
+
         Control control;
 
         private void OnEnable()
@@ -85,6 +87,14 @@ namespace RPG.Core
             if (!context.performed) return;
 
             OnHolsterPerformed?.Invoke();
+        }
+
+        public void OnChangeWeapon(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+                return;
+
+            OnWeaponChangePerformed?.Invoke(context.ReadValue<float>());
         }
     }
 }

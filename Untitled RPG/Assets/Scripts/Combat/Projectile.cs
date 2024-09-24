@@ -7,7 +7,7 @@ namespace RPG.Combat
 {
     public class Projectile : MonoBehaviour
     {
-        [SerializeField] float raycastDistance = 0.5f;
+        //[SerializeField] float raycastDistance = 0.5f;
 
         //void Update()
         //{
@@ -36,8 +36,8 @@ namespace RPG.Combat
 
             if (other.TryGetComponent(out IDamageable damageable))
             {
-                Debug.Log("True");
-                damageable.Damage(10);
+                Vector3 directionOfAttack = (other.transform.position - other.ClosestPoint(transform.position)).normalized;
+                damageable.Damage(new(10, directionOfAttack));
             }
 
             transform.position += transform.forward * 0.25f;

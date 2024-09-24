@@ -25,7 +25,7 @@ namespace RPG.Control
             base.Exit();
 
             thrower.ResetForce();
-            animator.SetLayerWeightOverTime(1, 0.25f, rangedWeapon.UnsheathAnimationLayer);
+            animator.SetLayerWeightOverTime(1, 0.25f, rangedWeapon.AnimationLayer);
             animator.SetLayerWeightOverTime(0, 0.25f, rangedWeapon.DrawFireAnimationLayer);
         }
     }

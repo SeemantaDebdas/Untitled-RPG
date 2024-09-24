@@ -44,7 +44,7 @@ namespace RPG.Control
 
 
             //This can be passed on to scriptable object, weaponSO by a function. Maybe SetWeaponLayerWeight(Animator animator)...
-            animator.SetLayerWeightOverTime(0, 0.1f, rangedWeapon.UnsheathAnimationLayer);
+            animator.SetLayerWeightOverTime(0, 0.1f, rangedWeapon.AnimationLayer);
             animator.SetLayerWeightOverTime(1, 0.1f, rangedWeapon.DrawFireAnimationLayer);
             animator.PlayAnimation(rangedWeapon.DrawAnimation, 0.1f, rangedWeapon.DrawFireAnimationLayer);
             animator.PlayAnimation(strafe);

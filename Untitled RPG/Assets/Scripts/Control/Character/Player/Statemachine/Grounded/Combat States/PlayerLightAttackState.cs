@@ -1,8 +1,5 @@
 using DG.Tweening;
-using RPG.Combat;
-using RPG.Core;
-using System.Collections.Generic;
-using UnityEngine;
+using RPG.Audio;
 
 namespace RPG.Control
 {
@@ -13,6 +10,9 @@ namespace RPG.Control
         {
             attack = weaponHandler.GetLightAttack();
             base.Enter();
+
+
+            //AudioManager.Instance.PlayOneShot(weaponHandler.CurrentWeapon.swooshSound, context.Transform.position);
         }  
     }
 }

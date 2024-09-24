@@ -91,6 +91,15 @@ namespace RPG.Core
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeWeapon"",
+                    ""type"": ""Value"",
+                    ""id"": ""3350e8c7-9214-48d1-94e5-d4f83b8aec41"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -291,6 +300,50 @@ namespace RPG.Core
                     ""action"": ""Holster"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""887a7130-64e6-48de-806d-0a99b562f8c4"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeWeapon"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""e881e328-241c-4101-a3bf-618adc751084"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""ChangeWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""649aa8c3-061d-4db0-b386-fe76b5d3d53d"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""ChangeWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df4f213b-b61e-4caf-9f2b-1957e89db2bd"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""ChangeWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -334,6 +387,7 @@ namespace RPG.Core
             m_Player_WalkToggle = m_Player.FindAction("WalkToggle", throwIfNotFound: true);
             m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
             m_Player_Holster = m_Player.FindAction("Holster", throwIfNotFound: true);
+            m_Player_ChangeWeapon = m_Player.FindAction("ChangeWeapon", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -402,6 +456,7 @@ namespace RPG.Core
         private readonly InputAction m_Player_WalkToggle;
         private readonly InputAction m_Player_Attack;
         private readonly InputAction m_Player_Holster;
+        private readonly InputAction m_Player_ChangeWeapon;
         public struct PlayerActions
         {
             private @Control m_Wrapper;
@@ -413,6 +468,7 @@ namespace RPG.Core
             public InputAction @WalkToggle => m_Wrapper.m_Player_WalkToggle;
             public InputAction @Attack => m_Wrapper.m_Player_Attack;
             public InputAction @Holster => m_Wrapper.m_Player_Holster;
+            public InputAction @ChangeWeapon => m_Wrapper.m_Player_ChangeWeapon;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -443,6 +499,9 @@ namespace RPG.Core
                 @Holster.started += instance.OnHolster;
                 @Holster.performed += instance.OnHolster;
                 @Holster.canceled += instance.OnHolster;
+                @ChangeWeapon.started += instance.OnChangeWeapon;
+                @ChangeWeapon.performed += instance.OnChangeWeapon;
+                @ChangeWeapon.canceled += instance.OnChangeWeapon;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -468,6 +527,9 @@ namespace RPG.Core
                 @Holster.started -= instance.OnHolster;
                 @Holster.performed -= instance.OnHolster;
                 @Holster.canceled -= instance.OnHolster;
+                @ChangeWeapon.started -= instance.OnChangeWeapon;
+                @ChangeWeapon.performed -= instance.OnChangeWeapon;
+                @ChangeWeapon.canceled -= instance.OnChangeWeapon;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -512,6 +574,7 @@ namespace RPG.Core
             void OnWalkToggle(InputAction.CallbackContext context);
             void OnAttack(InputAction.CallbackContext context);
             void OnHolster(InputAction.CallbackContext context);
+            void OnChangeWeapon(InputAction.CallbackContext context);
         }
     }
 }

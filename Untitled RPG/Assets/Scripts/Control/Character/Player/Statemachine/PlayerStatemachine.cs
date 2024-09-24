@@ -25,7 +25,8 @@ namespace RPG.Control
                     PhysicsHandler = GetComponent<CharacterPhysicsHandler>(),
                     EnvironmentScanner = GetComponent<EnvironmentScanner>(),
                     FieldOfView = GetComponent<FieldOfView>(),
-                    WeaponHandler = GetComponent<WeaponHandler>()
+                    WeaponHandler = GetComponent<WeaponHandler>(),
+                    VFXHandler = GetComponent<VFXHandler>()
                 };
 
                 return playerContext;

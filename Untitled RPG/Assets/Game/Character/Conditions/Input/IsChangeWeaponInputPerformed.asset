@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e1b91824504a04890905a9be7c579d, type: 3}
+  m_Name: IsChangeWeaponInputPerformed
+  m_EditorClassIdentifier: 
+  invert: 0
+  actionReference: {fileID: 7597909077688735197, guid: 46942bc09dc02594b8a05133a47185b1,
+    type: 3}
+  inputType: 1

@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 namespace RPG.Core
 {
     [CreateAssetMenu(fileName = "InputReader", menuName = "Input/Input Reader", order = 1)]
-    public class InputReaderSO : ScriptableObject, Control.IPlayerActions
+    public class InputReaderSO : ScriptableObject
     {
         public event Action OnJumpEvent;
         public Vector2 MoveInput { get; private set; }
@@ -37,7 +37,7 @@ namespace RPG.Core
 
         private void Start()
         {
-            control.Player.SetCallbacks(this);
+            //control.Player.SetCallbacks(this);
         }
 
         public void OnJump(InputAction.CallbackContext context)

@@ -15,6 +15,9 @@ MonoBehaviour:
   <AnimationName>k__BackingField: SwordLightAttack1
   <ComboTime>k__BackingField: 0.6
   <Force>k__BackingField: 0
-  <VFXDataList>k__BackingField: []
-  <ColliderEnableTime>k__BackingField: 0
-  <ColliderDisableTime>k__BackingField: 1
+  <VFXDataList>k__BackingField:
+  - VFXPrefab: {fileID: 6286452985739568321, guid: d19df3fe07622654ea7250cbe118bc8e,
+      type: 3}
+    VFXTime: 0.45
+  <ColliderEnableTime>k__BackingField: 0.3
+  <ColliderDisableTime>k__BackingField: 0.5

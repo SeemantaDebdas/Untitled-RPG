@@ -46,11 +46,12 @@ namespace RPG.Combat
                 return;
             }
 
-            Debug.Log(damageable.transform.name + " has been damaged.");
+            Debug.Log(other.ClosestPoint(transform.position));
+            Vector3 directionOfAttack = (other.transform.position - other.ClosestPoint(transform.position)).normalized;
 
             damageables.Add(damageable);
 
-            combatHandler.HandleHit(damageable);
+            combatHandler.HandleHit(damageable, directionOfAttack);
 
             onDamageDealt?.Invoke(other.ClosestPoint(transform.position));
         }

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using RPG.Audio;
 using RPG.Combat;
 using RPG.Core;
 using System.Collections;
@@ -17,7 +18,7 @@ namespace RPG.Control
             base.Enter();
 
             animator.PlayAnimation(attack.AnimationName, 0.1f);
-            animator.SetLayerWeightOverTime(0, layer: weaponHandler.CurrentWeapon.UnsheathAnimationLayer);
+            animator.SetLayerWeightOverTime(0, layer: weaponHandler.CurrentWeapon.AnimationLayer);
             
             FaceMovementDirection(CalculateDirection(), rotationSpeed);
 
@@ -33,6 +34,18 @@ namespace RPG.Control
             {
                 MoveTowardsTarget(validTargets[0]);
             }
+
+
+            for (int i = 0; i < attack.VFXDataList.Count; i++)
+            {
+                VFXData data = attack.VFXDataList[i];
+
+                Timer timeTillVFXPlays = new(data.VFXTime, () =>
+                {
+                    if (data.VFXPrefab != null)
+                        context.VFXHandler.PlayVFX(data.VFXPrefab, 1f);
+                });
+            }
         }
 
         public override void Exit()
@@ -40,7 +53,7 @@ namespace RPG.Control
             base.Exit();
 
             animator.applyRootMotion = false;
-            animator.SetLayerWeightOverTime(1, layer: weaponHandler.CurrentWeapon.UnsheathAnimationLayer);
+            animator.SetLayerWeightOverTime(1, layer: weaponHandler.CurrentWeapon.AnimationLayer);
         }
 
         protected void MoveTowardsTarget(Transform closestTarget)

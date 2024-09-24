@@ -14,11 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <WeaponPrefab>k__BackingField: {fileID: 6726393331512991212, guid: 3b154a8709e2aa74f8ebfeba811a035c,
     type: 3}
-  <UnsheathAnimationLayer>k__BackingField: 2
+  <AnimationLayer>k__BackingField: 2
   <LightAttackList>k__BackingField:
   - {fileID: 11400000, guid: 6e11bab9a68c38e43b682ca089272e2c, type: 2}
   <HeavyAttackList>k__BackingField: []
   <WeaponUnsheathLocation>k__BackingField: 0
+  swooshSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   <Projectile>k__BackingField: {fileID: -1142319551045968644, guid: 898e9724015aadd43b09be6c5c74979b,
     type: 3}
   <DrawFireAnimationLayer>k__BackingField: 3

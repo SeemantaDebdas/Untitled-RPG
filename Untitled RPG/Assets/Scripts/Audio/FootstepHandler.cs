@@ -1,6 +1,7 @@
 using FMODUnity;
 using UnityEngine;
 using RPG.Audio;
+using FMOD.Studio;
 
 namespace RPG.Core
 {
@@ -11,8 +12,8 @@ namespace RPG.Core
     public class FootstepHandler : MonoBehaviour
     {
         [Header("AUDIO")]
-        [SerializeField] EventReference audioClip;
-        [SerializeField] EventReference walkAudio, runAudio, skidAudio;
+        //[SerializeField] EventReference audioClip;
+        [SerializeField] EventReference footstepAudio;
 
         [Header("PARTICLES")]
         [SerializeField] GameObject dustParticle;
@@ -20,30 +21,45 @@ namespace RPG.Core
 
         //VFXHandler vfxHandler = null;
 
+        EventInstance walkAudioInstance, runAudioInstance;
+
         private void Awake()
         {
             //vfxHandler = GetComponent<VFXHandler>();    
         }
 
-        public void PlayAudio()
-        {
-            AudioManager.Instance.PlayOneShot(audioClip, transform.position);
-        }
-
         public void PlayWalkAudio()
-        {
-            AudioManager.Instance.PlayOneShot(walkAudio, transform.position);
+        { 
+            if(!walkAudioInstance.isValid())
+            {
+                Debug.Log("Walk audio instance not created. Creating.");
+                walkAudioInstance = AudioManager.Instance.CreateEventInstance(footstepAudio);
+            }
+
+            walkAudioInstance.setParameterByName("WalkRunParam", 0);
+            //AudioManager.Instance.PlayOneShot(walkAudio, transform.position);
+
+            walkAudioInstance.start();
         }
 
         public void PlayRunAudio()
         {
-            AudioManager.Instance.PlayOneShot(runAudio, transform.position);
+            if (!runAudioInstance.isValid())
+            {
+                Debug.Log("Run audio instance not created. Creating.");
+                runAudioInstance = AudioManager.Instance.CreateEventInstance(footstepAudio);
+            }
+
+            runAudioInstance.setParameterByName("WalkRunParam", 1);
+            //AudioManager.Instance.PlayOneShot(walkAudio, transform.position);
+
+            runAudioInstance.start();
         }
 
-        public void PlaySkidAudio()
-        {
-            AudioManager.Instance.PlayOneShot(skidAudio, transform.position);
-        }
+        //public void PlaySkidAudio()
+        //{
+        //    AudioManager.Instance.PlayOneShot(skidAudio, transform.position);
+        //}
 
         public void PlayDustParticles(FootstepLocation location)
         {

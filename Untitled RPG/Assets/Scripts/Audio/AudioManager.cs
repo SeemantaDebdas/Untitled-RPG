@@ -56,11 +56,17 @@ namespace RPG.Audio
 
         void InitializeAmbiance(EventReference ambianceSound)
         {
+            if (ambianceSound.IsNull)
+                return;
+
             ambianceInstance = CreateEventInstance(ambianceSound);
             ambianceInstance.start();
         }
         void InitializeMusic(EventReference music)
         {
+            if (music.IsNull)
+                return;
+
             musicInstance = CreateEventInstance(music);
             musicInstance.start();
         }
