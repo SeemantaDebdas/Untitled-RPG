@@ -18,7 +18,7 @@ namespace RPG.Combat
         [SerializeField] Transform leftHand;
 
         [Space]
-        [SerializeField] WeaponSO defaultWeapon = null;
+        //[SerializeField] WeaponSO defaultWeapon = null;
         [SerializeField] float timeBetweenAttacks = 2f;
         [SerializeField] List<WeaponSO> weaponList;
 

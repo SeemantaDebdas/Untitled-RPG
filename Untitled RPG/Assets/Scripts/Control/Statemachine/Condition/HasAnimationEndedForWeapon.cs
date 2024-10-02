@@ -8,7 +8,7 @@ using UnityEngine;
 namespace RPG
 {
     //This is temporary. Replace this by just using HasAnimationEnded and using ScriptableObject variable as layerIndex
-    [CreateAssetMenu(fileName = "HasAnimationEndedForWeapon", menuName = "Condition/Has Animation Ended For Weapon", order = 1)]
+    [CreateAssetMenu(fileName = "HasAnimationEndedForWeapon", menuName = "Condition/Animation/Has Animation Ended For Weapon", order = 1)]
     public class HasAnimationEndedForWeapon : ConditionSO
     {
         [SerializeField] string animationTag = "";

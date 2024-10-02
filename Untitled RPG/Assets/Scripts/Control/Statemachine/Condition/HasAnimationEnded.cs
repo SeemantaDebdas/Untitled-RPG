@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RPG.Control
 {
-    [CreateAssetMenu(fileName = "HasAnimationEnded", menuName = "Condition/Has Animation Ended", order = 1)]
+    [CreateAssetMenu(fileName = "HasAnimationEnded", menuName = "Condition/Animation/Has Animation Ended", order = 1)]
     public class HasAnimationEnded : ConditionSO
     {
         [SerializeField] string animationTag = "";

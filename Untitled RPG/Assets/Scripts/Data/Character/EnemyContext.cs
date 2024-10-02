@@ -7,5 +7,7 @@ namespace RPG.Data
     {
         public NavMeshAgent Agent { get; set; }
         public Path Path { get; set; }
+        public FieldOfView ChaseFOV { get; set; }
+        public FieldOfView AttackFOV { get; set; }  
     }
 }

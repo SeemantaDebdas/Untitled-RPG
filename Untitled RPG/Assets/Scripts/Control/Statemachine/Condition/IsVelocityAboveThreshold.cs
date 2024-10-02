@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RPG.Control
 {
-    [CreateAssetMenu(fileName = "IsVelocityAboveThreshold", menuName = "Condition/Is Velocity Above Threshold", order = 1)]
+    [CreateAssetMenu(fileName = "IsVelocityAboveThreshold", menuName = "Condition/Is Velocity Above Threshold", order = 2)]
     public class IsVelocityAboveThreshold : ConditionSO
     {
         [SerializeField] float threshold = 1.0f;

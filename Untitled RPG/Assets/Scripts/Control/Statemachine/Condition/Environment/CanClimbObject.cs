@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RPG.Control
 {
-    [CreateAssetMenu(fileName = "CanClimbObject", menuName = "Condition/Can Climb Object", order = 1)]
+    [CreateAssetMenu(fileName = "CanClimbObject", menuName = "Condition/Detection/Can Climb Object", order = 1)]
     public class CanClimbObject : ConditionSO
     {
         [Range(0f, 3f)]

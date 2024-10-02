@@ -1,8 +1,6 @@
 using RPG.Combat;
 using RPG.Core;
 using RPG.Data;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +8,9 @@ namespace RPG.Control
 {
     public class EnemyStatemachine : Statemachine
     {
+        [SerializeField] FieldOfView chaseFOV;
+        [SerializeField] FieldOfView attackFOV;
+
         EnemyContext enemyContext;
 
         public override Context Context
@@ -29,7 +30,9 @@ namespace RPG.Control
                     PhysicsHandler = GetComponent<CharacterPhysicsHandler>(),
                     EnvironmentScanner = GetComponent<EnvironmentScanner>(),
                     FieldOfView = GetComponent<FieldOfView>(),
-                    WeaponHandler = GetComponent<WeaponHandler>()
+                    WeaponHandler = GetComponent<WeaponHandler>(),
+                    ChaseFOV = chaseFOV,
+                    AttackFOV = attackFOV,
                 };
 
                 return enemyContext;    

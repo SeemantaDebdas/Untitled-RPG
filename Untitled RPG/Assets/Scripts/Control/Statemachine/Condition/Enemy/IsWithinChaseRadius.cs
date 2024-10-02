@@ -1,4 +1,3 @@
-using RPG.Core;
 using RPG.Data;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,16 +5,12 @@ using UnityEngine;
 
 namespace RPG.Control
 {
-    [CreateAssetMenu(fileName = "IsTimerOver", menuName = "Condition/Is Timer Over", order = 2)]
-    public class IsTimerOver : ConditionSO
+    [CreateAssetMenu(fileName = "IsWithinChaseRadius", menuName = "Condition/NPC/Is Within Chase Radius", order = 1)]
+    public class IsWithinChaseRadius : ConditionSO
     {
-        [SerializeField] float time = 1f;
-
-        Timer timer;
-
         public override void Initialize(Context context)
         {
-            timer = new(time, () => { });
+
         }
 
         public override void Reset()
@@ -25,8 +20,7 @@ namespace RPG.Control
 
         protected override bool ProcessCondition(Context context)
         {
-            return timer.IsOver();
+            return (context as EnemyContext).ChaseFOV.GetClosestTarget() != null;
         }
     }
 }
-

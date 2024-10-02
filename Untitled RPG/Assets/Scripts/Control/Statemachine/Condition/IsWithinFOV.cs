@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RPG.Control
 {
-    [CreateAssetMenu(fileName = "Is Within FOV", menuName = "Condition/Is Within FOV", order = 1)]
+    [CreateAssetMenu(fileName = "Is Within FOV", menuName = "Condition/Detection/Is Within FOV", order = 1)]
     public class IsWithinFOV : ConditionSO
     {
         public override void Initialize(Context context)

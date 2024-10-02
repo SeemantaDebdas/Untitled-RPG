@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace RPG.Control
 {
-    [CreateAssetMenu(fileName = "Has Input Action", menuName = "Condition/Has Input Action", order = 1)]
+    [CreateAssetMenu(fileName = "Has Input Action", menuName = "Condition/Input/Has Input Action", order = 1)]
     public class HasInputAction : ConditionSO
     {
         public enum InputType

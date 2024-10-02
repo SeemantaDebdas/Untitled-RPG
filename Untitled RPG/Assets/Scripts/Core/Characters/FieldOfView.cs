@@ -82,7 +82,7 @@ namespace RPG
                 if (angleToTarget > angle / 2)
                     continue;
 
-                if (target.CompareTag(ignoreTag))
+                if (ignoreTag != string.Empty && target.CompareTag(ignoreTag))
                     continue;
 
                 validTargets.Add(target);

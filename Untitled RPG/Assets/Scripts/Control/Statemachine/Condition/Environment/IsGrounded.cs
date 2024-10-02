@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RPG.Control
 {
-    [CreateAssetMenu(fileName = "IsGrounded", menuName = "Condition/Is Grounded", order = 1)]
+    [CreateAssetMenu(fileName = "IsGrounded", menuName = "Condition/Detection/Is Grounded", order = 1)]
     public class IsGrounded : ConditionSO
     {
         [SerializeField] float raycastDistance = 1.0f;

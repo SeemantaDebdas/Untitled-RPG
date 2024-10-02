@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace RPG.Control
 {
-    [CreateAssetMenu(fileName = "IsInputMagnitudeAboveThreshold", menuName = "Condition/Is Input Magnitude Above Threshold", order = 1)]
+    [CreateAssetMenu(fileName = "IsInputMagnitudeAboveThreshold", menuName = "Condition/Input/Is Input Magnitude Above Threshold", order = 1)]
     public class IsInputMagnitudeAboveThreshold : ConditionSO
     {
         [SerializeField] InputActionReference actionReference;
