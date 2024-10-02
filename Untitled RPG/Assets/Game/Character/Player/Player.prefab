@@ -163,7 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 0}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: Idle
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 3aba9bacf8c135f4290642f789829b3b, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
 --- !u!1 &1787725001241054001
@@ -332,7 +333,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 0}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: Idle
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 322d396aab5e80b48b67017b48621f05, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
   animationName: SheathWeapon
@@ -382,7 +384,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 0}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: Idle
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 93f978110d36c7e4fbbd85fba0e9fb4c, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
   rotationSpeed: 180
@@ -436,10 +439,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 6102497761764395310}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: 
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 8037c073e8b4572468a6d2f186ee6fdc, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
-  - <ConditionList>k__BackingField:
+  - name: 
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 01e291c8f696dd84eb990c59886acbb5, type: 2}
     <ToState>k__BackingField: {fileID: 3401221039345825821}
   walkAnimationName: Walk
@@ -559,7 +564,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 0}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: Idle
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 322d396aab5e80b48b67017b48621f05, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
   sheathAnimation: SheathWeapon
@@ -1150,34 +1156,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <TransitionList>k__BackingField:
-  - <ConditionList>k__BackingField:
+  - name: 'Jump '
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 4ea139f879e49c04a9993252ec9ac1ae, type: 2}
     <ToState>k__BackingField: {fileID: 5368650604463102678}
-  - <ConditionList>k__BackingField:
+  - name: 'Fall '
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 705d75bc201ddb04c87d2ec2ff428147, type: 2}
     - {fileID: 11400000, guid: bf5eb97060c932044b0bf28b7219282b, type: 2}
     <ToState>k__BackingField: {fileID: 9179791753564506218}
-  - <ConditionList>k__BackingField:
+  - name: Change Weapon Not Equipped
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 3f53ec0b65d7b9c4e8df332233482dfe, type: 2}
     <ToState>k__BackingField: {fileID: 6616888276600851569}
-  - <ConditionList>k__BackingField:
+  - name: Change Weapon Equipped
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 0eb9ce1612fec1d4284ae1146cd4cf77, type: 2}
     - {fileID: 11400000, guid: d31240b40d2f93b42a141a95e49e4b4f, type: 2}
     <ToState>k__BackingField: {fileID: 6616888276600851569}
-  - <ConditionList>k__BackingField:
+  - name: Weapon Holster
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 28895178f4f0902429e3f83a597978ba, type: 2}
     - {fileID: 11400000, guid: 86890a0b5d62c09488c7b0aff443e2c1, type: 2}
     <ToState>k__BackingField: {fileID: 7572548491539266164}
-  - <ConditionList>k__BackingField:
+  - name: Heavy Attack
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 85148a83719c24d45a908c7792621cc6, type: 2}
     - {fileID: 11400000, guid: 86890a0b5d62c09488c7b0aff443e2c1, type: 2}
     - {fileID: 11400000, guid: c1d86d54c8c906045a316e95d72c84fb, type: 2}
     <ToState>k__BackingField: {fileID: 7996950414039419898}
-  - <ConditionList>k__BackingField:
+  - name: Light Attack
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 0eb9ce1612fec1d4284ae1146cd4cf77, type: 2}
     - {fileID: 11400000, guid: 86890a0b5d62c09488c7b0aff443e2c1, type: 2}
     <ToState>k__BackingField: {fileID: 7854313682881161389}
-  - <ConditionList>k__BackingField:
+  - name: Ranged Draw
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 85148a83719c24d45a908c7792621cc6, type: 2}
     - {fileID: 11400000, guid: 86890a0b5d62c09488c7b0aff443e2c1, type: 2}
     - {fileID: 11400000, guid: 089cea629c2c6d0458428c6fb3924a21, type: 2}
@@ -1228,10 +1242,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 0}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: 'Fall '
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 8924740813c89f24098c0ce1033b7734, type: 2}
     <ToState>k__BackingField: {fileID: 9179791753564506218}
-  - <ConditionList>k__BackingField:
+  - name: Simple Climb
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 01e291c8f696dd84eb990c59886acbb5, type: 2}
     <ToState>k__BackingField: {fileID: 3401221039345825821}
   animationName: Jump
@@ -1319,7 +1335,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 0}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: Ranged Fire
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 0eb9ce1612fec1d4284ae1146cd4cf77, type: 2}
     <ToState>k__BackingField: {fileID: 8952264380144055297}
   strafe: Strafe
@@ -1581,15 +1598,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 0}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: Heavy Attack
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 12197306fb4b3e443a12b46fdd43ee30, type: 2}
     - {fileID: 11400000, guid: 85148a83719c24d45a908c7792621cc6, type: 2}
     <ToState>k__BackingField: {fileID: 7996950414039419898}
-  - <ConditionList>k__BackingField:
+  - name: Light Attack
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 12197306fb4b3e443a12b46fdd43ee30, type: 2}
     - {fileID: 11400000, guid: 0eb9ce1612fec1d4284ae1146cd4cf77, type: 2}
     <ToState>k__BackingField: {fileID: 7854313682881161389}
-  - <ConditionList>k__BackingField:
+  - name: Idle
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 385edb47ac69c684ebeae46481076e1c, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
   rotationSpeed: 100
@@ -1639,7 +1659,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 6102497761764395310}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: 
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: d14dd41361990d54bba66630cc8b6973, type: 2}
     <ToState>k__BackingField: {fileID: 6583075621183944049}
   animationName: Idle
@@ -1665,6 +1686,7 @@ GameObject:
   - component: {fileID: 5462042555079999357}
   - component: {fileID: 3035967484129583259}
   - component: {fileID: 2188422095210862824}
+  - component: {fileID: 7561849517480325422}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1845,7 +1867,6 @@ MonoBehaviour:
   leftBack: {fileID: 1311327440700585152}
   rightHand: {fileID: 2641027766804314274}
   leftHand: {fileID: 6036999135856123144}
-  defaultWeapon: {fileID: 11400000, guid: ba2611a39854ee445b42a5950acdb845, type: 2}
   timeBetweenAttacks: 2
   weaponList:
   - {fileID: 11400000, guid: ba2611a39854ee445b42a5950acdb845, type: 2}
@@ -2002,6 +2023,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultVFXPrefab: {fileID: 0}
+--- !u!114 &7561849517480325422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972971377313347014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18c7dc559691ea4ab098f4c1c091bf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots: 8
+  meleeRadius: 3
+  maxGridCapacity: 12
+  maxAttackCapacity: 10
 --- !u!1 &7009001920839669846
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,7 +2161,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   ignoreTag: Player
-  gizmoColor: {r: 1, g: 0.1684183, b: 0.015686274, a: 0.33333334}
+  gizmoColor: {r: 1, g: 0.1684183, b: 0.015686274, a: 0}
 --- !u!1 &7254731427580685229
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,11 +2208,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 0}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: Idle
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 3927125837fb9be499377734871bd3f2, type: 2}
     - {fileID: 11400000, guid: 8037c073e8b4572468a6d2f186ee6fdc, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
-  - <ConditionList>k__BackingField:
+  - name: Moving
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 3927125837fb9be499377734871bd3f2, type: 2}
     - {fileID: 11400000, guid: d14dd41361990d54bba66630cc8b6973, type: 2}
     <ToState>k__BackingField: {fileID: 6583075621183944049}
@@ -2259,7 +2298,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 0}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: Land
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: d6bb5917fcd343341afe7ea61f3ebe6b, type: 2}
     <ToState>k__BackingField: {fileID: 3883450141815737862}
   animationName: Fall
@@ -2309,7 +2349,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 0}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: Idle
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 385edb47ac69c684ebeae46481076e1c, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
   rotationSpeed: 90

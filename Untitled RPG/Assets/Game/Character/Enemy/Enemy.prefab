@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 416215409386494177}
   - component: {fileID: 6637542219373357983}
   - component: {fileID: 3496940695026303767}
+  - component: {fileID: 3613497620222515621}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -101,6 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 8717531809637358629}
+  chaseFOV: {fileID: 2615741874007794894}
+  attackFOV: {fileID: 1703295120105364839}
 --- !u!114 &4920172613512567230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581a2b68adfcab2458faf29e0460c7f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startOnAwake: 1
   radius: 5
   angle: 90
   scanCapacity: 20
@@ -207,7 +211,30 @@ MonoBehaviour:
   obstructionLayer:
     serializedVersion: 2
     m_Bits: 64
+  ignoreTag: 
   gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.11372549}
+--- !u!114 &3613497620222515621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103250625346758030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4cd313f6f11d8941a9e40c2cce40bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepAudio:
+    Guid:
+      Data1: -285012644
+      Data2: 1293146291
+      Data3: -961803597
+      Data4: -1380174494
+    Path: event:/Player/Footsteps
+  dustParticle: {fileID: 0}
+  leftFootTransform: {fileID: 0}
+  rightFootTransform: {fileID: 0}
 --- !u!1 &310006802397265109
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3415256149357708854}
   - component: {fileID: 4781345780323848918}
+  - component: {fileID: 2615741874007794894}
   m_Layer: 0
   m_Name: Chase State
   m_TagString: Untagged
@@ -288,13 +316,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 2044021711135378702}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: Idle
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 0007be79065a08d47ae9b5b7223e78a4, type: 2}
     <ToState>k__BackingField: {fileID: 1814708233858966575}
   animationName: Run
   speed: 3.61
   speedMultiplier: 0.75
   rotationSpeed: 6
+--- !u!114 &2615741874007794894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452446823185626860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581a2b68adfcab2458faf29e0460c7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startOnAwake: 1
+  radius: 7.5
+  angle: 90
+  scanCapacity: 20
+  delayBetweenScans: 0.2
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  ignoreTag: 
+  gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.11372549}
 --- !u!1 &545920571725889117
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +447,7 @@ Transform:
   - {fileID: 1517706386721573487}
   - {fileID: 4684293417608307352}
   - {fileID: 3415256149357708854}
+  - {fileID: 2954158602151209309}
   m_Father: {fileID: 3663916257321698498}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2044021711135378702
@@ -408,7 +463,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <TransitionList>k__BackingField:
-  - <ConditionList>k__BackingField:
+  - name: Fall
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: bf5eb97060c932044b0bf28b7219282b, type: 2}
     - {fileID: 11400000, guid: 705d75bc201ddb04c87d2ec2ff428147, type: 2}
     <ToState>k__BackingField: {fileID: 7784960166188865955}
@@ -458,10 +514,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 2044021711135378702}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: Chase
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: b68e5f2f170e56147803a5d2514b33d4, type: 2}
     <ToState>k__BackingField: {fileID: 4781345780323848918}
-  - <ConditionList>k__BackingField:
+  - name: Patrol
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: b257ae3fa5c3e8b43af7f14e62205adb, type: 2}
     <ToState>k__BackingField: {fileID: 8717531809637358629}
   animationName: Idle
@@ -511,7 +569,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 0}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: 
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 93f978110d36c7e4fbbd85fba0e9fb4c, type: 2}
     <ToState>k__BackingField: {fileID: 8717531809637358629}
   rotationSpeed: 180
@@ -565,19 +624,79 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 2044021711135378702}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: Idle
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 3aace035d031125409dd34d710741cbb, type: 2}
     <ToState>k__BackingField: {fileID: 1814708233858966575}
-  - <ConditionList>k__BackingField:
+  - name: Climb
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 01e291c8f696dd84eb990c59886acbb5, type: 2}
     <ToState>k__BackingField: {fileID: 7404008607496734123}
-  - <ConditionList>k__BackingField:
+  - name: Chase
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: b68e5f2f170e56147803a5d2514b33d4, type: 2}
     <ToState>k__BackingField: {fileID: 4781345780323848918}
   animationName: Walk
   speed: 1.17
   rotationSpeed: 6
   distanceThreshold: 0.1
+--- !u!1 &6066636424020174438
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2954158602151209309}
+  - component: {fileID: 1703295120105364839}
+  m_Layer: 0
+  m_Name: COMBAT STATES
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2954158602151209309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6066636424020174438}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1083173625627944923}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1703295120105364839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6066636424020174438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581a2b68adfcab2458faf29e0460c7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startOnAwake: 1
+  radius: 5
+  angle: 90
+  scanCapacity: 20
+  delayBetweenScans: 0.2
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  ignoreTag: 
+  gizmoColor: {r: 1, g: 0.015686274, b: 0.015686274, a: 0.3529412}
 --- !u!1 &6551988977545303353
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +743,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 0}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: 
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: d6bb5917fcd343341afe7ea61f3ebe6b, type: 2}
     <ToState>k__BackingField: {fileID: 6037762103591839111}
   animationName: Fall
@@ -675,7 +795,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 0}
   transitionList:
-  - <ConditionList>k__BackingField:
+  - name: 
+    <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 3927125837fb9be499377734871bd3f2, type: 2}
     <ToState>k__BackingField: {fileID: 8717531809637358629}
   animationName: LandIdle

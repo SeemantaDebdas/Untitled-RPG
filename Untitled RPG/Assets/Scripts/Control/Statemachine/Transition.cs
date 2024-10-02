@@ -10,6 +10,7 @@ namespace RPG.Control
     [Serializable]
     public class Transition
     {
+        [SerializeField] string name;//change this during editor scripting
         [field: SerializeField] public List<ConditionSO> ConditionList { get; private set; }
         [field: SerializeReference] public State ToState { get; private set; }
 
