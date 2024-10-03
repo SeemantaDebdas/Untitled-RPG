@@ -20,6 +20,7 @@ namespace RPG
         [SerializeField] LayerMask targetLayer;
         [SerializeField] LayerMask obstructionLayer;
         [SerializeField] string ignoreTag = string.Empty; //change this later to a scriptable object based solution
+        [SerializeField] Transform selfTransform;
 
         [Header("GIZMO")]
         [SerializeField] Color gizmoColor = Color.yellow;
@@ -75,6 +76,9 @@ namespace RPG
                 if (target == transform)
                     continue;
 
+                if (selfTransform != null && target == selfTransform)
+                    continue;
+
                 Vector3 directionToTarget = target.position - transform.position;
 
                 float angleToTarget = Vector3.Angle(transform.forward, directionToTarget.normalized);
@@ -86,6 +90,8 @@ namespace RPG
                     continue;
 
                 validTargets.Add(target);
+
+                Debug.Log(target);
                 //Debug.Log(target.name + ": Angle Satisfied");
             }
         }

@@ -12,6 +12,31 @@ namespace RPG.Control
 
         protected IStatemachine statemachine = null;
 
+        private void OnValidate()
+        { 
+            if (transitionList != null)
+            {
+                foreach (var transition in transitionList)
+                {
+                    transition.SetName(ExtractClassName(transition.ToState.ToString()));
+                }
+            }
+
+            if(commonTransitions != null)
+            {
+                foreach (var transition in commonTransitions.TransitionList)
+                {
+                    transition.SetName(ExtractClassName(transition.ToState.ToString()));
+                }
+            }
+
+            static string ExtractClassName(string fullName)
+            { 
+                int lastBracketIndex = fullName.IndexOf('(');
+                return fullName.Substring(0, lastBracketIndex);
+            }
+        }
+
         public virtual void Initialize(IStatemachine statemachine)
         {
             this.statemachine = statemachine;

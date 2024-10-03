@@ -68,16 +68,16 @@ namespace RPG.Combat
             return false;
         }
 
-        private void OnDrawGizmos()
-        {
-            for (int i = 0; i < slots; i++)
-            {
-                float degree = i * Mathf.PI * 2 / slots;
-                Vector3 direction = new Vector3(Mathf.Cos(degree) * meleeRadius, 0, Mathf.Sin(degree) * meleeRadius);
+        //private void OnDrawGizmos()
+        //{
+        //    for (int i = 0; i < slots; i++)
+        //    {
+        //        float degree = i * Mathf.PI * 2 / slots;
+        //        Vector3 direction = new Vector3(Mathf.Cos(degree) * meleeRadius, 0, Mathf.Sin(degree) * meleeRadius);
 
-                Handles.color = Color.green;
-                Handles.DrawLine(transform.position, transform.position + direction, 4.5f);
-            }
-        }
+        //        Handles.color = Color.green;
+        //        Handles.DrawLine(transform.position, transform.position + direction, 4.5f);
+        //    }
+        //}
     }
 }

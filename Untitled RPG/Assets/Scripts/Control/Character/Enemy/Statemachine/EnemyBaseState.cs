@@ -14,6 +14,7 @@ namespace RPG.Control
         protected NavMeshAgent agent;
         protected Path path;
         protected NavMeshPath navmeshPath;
+        protected FieldOfView chaseFov, attackFOV;
         EnvironmentScanner scanner;
 
         protected Vector3 moveDirection = Vector3.zero;
@@ -30,6 +31,8 @@ namespace RPG.Control
             physicsHandler = context.PhysicsHandler;
             scanner = context.EnvironmentScanner;
             fieldOfView = context.FieldOfView;
+            chaseFov = context.ChaseFOV;
+            attackFOV = context.AttackFOV;  
 
             Debug.Assert(agent != null, "agent is null");
         }

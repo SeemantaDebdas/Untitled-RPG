@@ -10,7 +10,7 @@ namespace RPG.Control
     [Serializable]
     public class Transition
     {
-        [SerializeField] string name;//change this during editor scripting
+        [HideInInspector] public string Name;
         [field: SerializeField] public List<ConditionSO> ConditionList { get; private set; }
         [field: SerializeReference] public State ToState { get; private set; }
 
@@ -41,6 +41,11 @@ namespace RPG.Control
             {
                 condition.Reset();
             }
+        }
+
+        public void SetName(string name)
+        {
+            this.Name = name;
         }
 
         void InitializeConditions(Context context)

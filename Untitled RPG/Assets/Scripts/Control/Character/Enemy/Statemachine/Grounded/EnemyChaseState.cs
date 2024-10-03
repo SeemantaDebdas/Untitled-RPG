@@ -31,7 +31,8 @@ namespace RPG.Control
         {
             base.Tick();
             
-            agent.SetDestination(fieldOfView.GetClosestTarget().position);
+            if(chaseFov.GetClosestTarget() != null) 
+                agent.SetDestination(chaseFov.GetClosestTarget().position);
 
             HandleMovement(speed * speedMultiplier);
             FaceMovementDirection(CalculateDirection(), rotationSpeed);
