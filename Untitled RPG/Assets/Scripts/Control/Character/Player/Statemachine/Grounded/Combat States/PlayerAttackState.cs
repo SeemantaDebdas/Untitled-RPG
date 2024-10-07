@@ -20,7 +20,7 @@ namespace RPG.Control
             animator.PlayAnimation(attack.AnimationName, 0.1f);
             animator.SetLayerWeightOverTime(0, layer: weaponHandler.CurrentWeapon.AnimationLayer);
             
-            FaceMovementDirection(CalculateDirection(), rotationSpeed);
+            FaceDirection(CalculateDirection(), rotationSpeed);
 
             FieldOfView attackFOV = GetComponentInParent<FieldOfView>();
 

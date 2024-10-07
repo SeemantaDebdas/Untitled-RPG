@@ -20,7 +20,7 @@ namespace RPG.Control
         {
             base.Tick();
             HandleMovement(baseSpeed);
-            FaceMovementDirection(CalculateDirection(), rotationSpeed);
+            FaceDirection(CalculateDirection(), rotationSpeed);
         }
     }
 }

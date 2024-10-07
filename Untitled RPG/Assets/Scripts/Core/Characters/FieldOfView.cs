@@ -10,8 +10,8 @@ namespace RPG
     {
         [SerializeField] bool startOnAwake = true;
         
-        [Space]
-        [SerializeField] float radius = 5f;
+        [field:Space]
+        [field: SerializeField] public float Radius { get; private set; } = 5f;
         [SerializeField] float angle = 90f;
         [SerializeField] int scanCapacity = 20;
         [SerializeField] float delayBetweenScans = 0.2f;
@@ -26,7 +26,8 @@ namespace RPG
         [SerializeField] Color gizmoColor = Color.yellow;
 
         Collider[] scanArray;
-        List<Transform> validTargets;
+
+        List<Transform> validTargets = new();
 
 
         private void Start()
@@ -48,7 +49,10 @@ namespace RPG
         {
             Scan();
             if (validTargets == null || validTargets.Count == 0)
+            {
+                Debug.LogWarning(transform.name + "Closest target is null");
                 return null;
+            }
 
             return validTargets[0].transform;
         }
@@ -62,9 +66,9 @@ namespace RPG
         void Scan()
         {
             scanArray = new Collider[scanCapacity];
-            validTargets = new();
+            validTargets.Clear();
 
-            int scanCount = Physics.OverlapSphereNonAlloc(transform.position, radius, scanArray, targetLayer, QueryTriggerInteraction.Ignore);
+            int scanCount = Physics.OverlapSphereNonAlloc(transform.position, Radius, scanArray, targetLayer, QueryTriggerInteraction.Ignore);
 
             if (scanCount == 0)
                 return;
@@ -91,20 +95,19 @@ namespace RPG
 
                 validTargets.Add(target);
 
-                Debug.Log(target);
                 //Debug.Log(target.name + ": Angle Satisfied");
             }
         }
 
         void OnDrawGizmosSelected()
         {
-            Handles.DrawWireDisc(transform.position, Vector3.up, radius);
+            Handles.DrawWireDisc(transform.position, Vector3.up, Radius);
 
             Handles.color = gizmoColor;
 
             Vector3 fromVector = Quaternion.Euler(0, -angle / 2, 0) * transform.forward;
 
-            Handles.DrawSolidArc(transform.position, Vector3.up, fromVector, angle, radius);
+            Handles.DrawSolidArc(transform.position, Vector3.up, fromVector, angle, Radius);
         }
     }
 }

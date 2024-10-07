@@ -14,7 +14,7 @@ namespace RPG.Control
         protected NavMeshAgent agent;
         protected Path path;
         protected NavMeshPath navmeshPath;
-        protected FieldOfView chaseFov, attackFOV;
+        protected FieldOfView chaseFov, attackFOV, avoidanceFOV;
         EnvironmentScanner scanner;
 
         protected Vector3 moveDirection = Vector3.zero;
@@ -32,7 +32,8 @@ namespace RPG.Control
             scanner = context.EnvironmentScanner;
             fieldOfView = context.FieldOfView;
             chaseFov = context.ChaseFOV;
-            attackFOV = context.AttackFOV;  
+            attackFOV = context.AttackFOV;
+            avoidanceFOV = context.AvoidanceFOV;
 
             Debug.Assert(agent != null, "agent is null");
         }
@@ -53,7 +54,7 @@ namespace RPG.Control
                 calculateStartPos = hit.position;
             }
 
-
+            #region very old code
             //if (NavMesh.CalculatePath(calculateStartPos, path.GetCurrentWaypoint(), NavMesh.AllAreas, navmeshPath))
             //{
             //    Vector3 nextPosition = navmeshPath.corners[1];
@@ -66,6 +67,8 @@ namespace RPG.Control
             //    for (int i = 0; i < navmeshPath.corners.Length - 1; i++)
             //        Debug.DrawLine(navmeshPath.corners[i], navmeshPath.corners[i + 1], Color.red);
             //}
+            #endregion
+
 
             if (agent.hasPath)
             {
@@ -75,6 +78,7 @@ namespace RPG.Control
             {
                 Debug.Log("No Path Found");
             }
+
 
             return moveDirection;
         }
@@ -94,7 +98,7 @@ namespace RPG.Control
             return dir;
         }
 
-        protected override void FaceMovementDirection(Vector3 movement, float rotationSpeed)
+        protected override void FaceDirection(Vector3 movement, float rotationSpeed)
         {
             context.Transform.rotation = Quaternion.Slerp(context.Transform.rotation,
                                                 Quaternion.LookRotation(movement),

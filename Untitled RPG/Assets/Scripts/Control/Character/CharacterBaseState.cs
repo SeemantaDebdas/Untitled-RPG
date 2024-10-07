@@ -46,7 +46,7 @@ namespace RPG.Control
 
         protected virtual Vector3 CalculateDirection() { return Vector3.zero; }
 
-        protected virtual void FaceMovementDirection(Vector3 movement, float rotationSpeed)
+        protected virtual void FaceDirection(Vector3 movement, float rotationSpeed)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation,
                                                 Quaternion.LookRotation(movement),

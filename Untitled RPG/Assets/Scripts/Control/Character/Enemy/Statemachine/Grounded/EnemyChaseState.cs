@@ -35,7 +35,7 @@ namespace RPG.Control
                 agent.SetDestination(chaseFov.GetClosestTarget().position);
 
             HandleMovement(speed * speedMultiplier);
-            FaceMovementDirection(CalculateDirection(), rotationSpeed);
+            FaceDirection(CalculateDirection(), rotationSpeed);
         }
     }
 }

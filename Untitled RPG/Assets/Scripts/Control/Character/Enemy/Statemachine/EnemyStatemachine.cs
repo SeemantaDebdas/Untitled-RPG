@@ -8,8 +8,7 @@ namespace RPG.Control
 {
     public class EnemyStatemachine : Statemachine
     {
-        [SerializeField] FieldOfView chaseFOV;
-        [SerializeField] FieldOfView attackFOV;
+        [SerializeField] FieldOfView chaseFOV, attackFOV, avoidanceFOV;
 
         EnemyContext enemyContext;
 
@@ -33,6 +32,7 @@ namespace RPG.Control
                     WeaponHandler = GetComponent<WeaponHandler>(),
                     ChaseFOV = chaseFOV,
                     AttackFOV = attackFOV,
+                    AvoidanceFOV = avoidanceFOV
                 };
 
                 return enemyContext;    
