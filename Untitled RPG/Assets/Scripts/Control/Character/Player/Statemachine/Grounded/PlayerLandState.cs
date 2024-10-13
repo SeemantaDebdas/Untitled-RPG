@@ -1,14 +1,12 @@
 using RPG.Core;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Control
 {
     public class PlayerLandState : PlayerBaseState
     {
-        [SerializeField] string idleLand = "IdleLand";
-        [SerializeField] string moveLand = "MoveLand";
+        [SerializeField] ScriptableString landIdle;
+        [SerializeField] ScriptableString landMove;
         [SerializeField] float baseSpeed = 2f;
 
         string animationName;
@@ -23,11 +21,11 @@ namespace RPG.Control
 
             if (input.MoveInput.magnitude < 0.1f)
             {
-                animationName = idleLand;
+                animationName = landIdle.Value;
             }
             else
             {
-                animationName = moveLand;
+                animationName = landMove.Value;
             }
 
             animator.PlayAnimation(animationName, 0.1f);

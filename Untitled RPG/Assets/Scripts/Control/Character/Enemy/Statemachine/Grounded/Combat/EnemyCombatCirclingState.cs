@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using RPG.Core;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,6 +17,7 @@ namespace RPG.Control
         int circleDirectionMultiplier = 1;
 
         [SerializeField] string moveXParam, moveYParam;
+        [SerializeField] ScriptableString animationName;
 
         Vector3 targetVelocity = Vector3.zero;
         Vector3 currentVelocity = Vector3.zero;
@@ -28,6 +28,12 @@ namespace RPG.Control
             base.Enter();
 
             circleDirectionMultiplier = Random.Range(0, 2) == 0 ? 1 : -1;
+
+            if(!animator.GetCurrentAnimatorStateInfo(0).IsName(animationName.Value))
+            {
+                //coming from attack state
+                animator.PlayAnimation(animationName.Value);
+            }
         }
 
         public override void Tick()
@@ -38,12 +44,18 @@ namespace RPG.Control
             targetVelocity = circleDirectionMultiplier * moveSpeed * moveDir;
             targetVelocity.y = 0;
 
+            //base.Tick();
+
+            if(EvaluateTransitions())
+            {
+                return;
+            }
             
             if (!IsObstacleBehind())
             {
-                base.Tick();
-                MaintainDistanceFromPlayer();
+                //we have to handle this in some other way. maybe through conditions. If there's and enemy with higher priority on right and it's moving, then start moving
             }
+            MaintainDistanceFromPlayer();
 
             CheckObstacleWithFOV();
 

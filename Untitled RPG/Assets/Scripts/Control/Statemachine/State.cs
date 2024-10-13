@@ -1,5 +1,3 @@
-using RPG.Data;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +16,7 @@ namespace RPG.Control
             {
                 foreach (var transition in transitionList)
                 {
-                    transition.SetName(ExtractClassName(transition.ToState.ToString()));
+                    transition.SetName(ExtractClassName(transition.ToState));
                 }
             }
 
@@ -26,12 +24,17 @@ namespace RPG.Control
             {
                 foreach (var transition in commonTransitions.TransitionList)
                 {
-                    transition.SetName(ExtractClassName(transition.ToState.ToString()));
+                    transition.SetName(ExtractClassName(transition.ToState));
                 }
             }
 
-            static string ExtractClassName(string fullName)
-            { 
+            static string ExtractClassName(State state)
+            {
+                if (state == null)
+                    return "No State Set";
+
+                string fullName = state.ToString();
+
                 int lastBracketIndex = fullName.IndexOf('(');
                 return fullName.Substring(0, lastBracketIndex);
             }

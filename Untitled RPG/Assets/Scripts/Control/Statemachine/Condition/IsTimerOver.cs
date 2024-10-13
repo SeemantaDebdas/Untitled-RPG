@@ -1,7 +1,5 @@
 using RPG.Core;
 using RPG.Data;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Control
@@ -16,7 +14,7 @@ namespace RPG.Control
         // Class to store instance-specific timer data
         class IsTimerOverInstance
         {
-            public Timer TimerInstance;  // Each instance has its own Timer
+            public AutoTimer TimerInstance;  // Each instance has its own Timer
         }
 
         // Initialize is called when the condition is first used in the context of an object
@@ -38,7 +36,7 @@ namespace RPG.Control
             }
 
             // Initialize the timer for this specific instance
-            instance.TimerInstance = new Timer(currentTime, () => { /* Add any callback if needed */ });
+            instance.TimerInstance = new AutoTimer(currentTime, () => { /* Add any callback if needed */ });
         }
 
         // Reset method to reset the timer if needed

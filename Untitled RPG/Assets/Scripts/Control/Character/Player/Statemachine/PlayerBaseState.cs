@@ -1,8 +1,6 @@
 using RPG.Data;
 using RPG.Core;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 namespace RPG.Control
 {
@@ -10,21 +8,14 @@ namespace RPG.Control
     {
         protected PlayerContext context;
         protected PlayerInput input;
-
-
         protected Vector2 moveInput = Vector2.zero;
-
 
         public override void Initialize(IStatemachine statemachine)
         {
             base.Initialize(statemachine);
             context = statemachine.Context as PlayerContext;
 
-            animator = context.Animator;
             input = context.PlayerInput;
-            controller = context.CharacterController;
-            physicsHandler = context.PhysicsHandler;
-            weaponHandler = context.WeaponHandler;
         }
 
         public override void Enter()

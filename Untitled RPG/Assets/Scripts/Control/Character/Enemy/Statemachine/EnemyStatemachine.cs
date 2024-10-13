@@ -30,9 +30,10 @@ namespace RPG.Control
                     EnvironmentScanner = GetComponent<EnvironmentScanner>(),
                     FieldOfView = GetComponent<FieldOfView>(),
                     WeaponHandler = GetComponent<WeaponHandler>(),
+                    CombatHandler = GetComponent<CombatHandler>(),
                     ChaseFOV = chaseFOV,
                     AttackFOV = attackFOV,
-                    AvoidanceFOV = avoidanceFOV
+                    AvoidanceFOV = avoidanceFOV,
                 };
 
                 return enemyContext;    

@@ -1,6 +1,3 @@
-using DG.Tweening;
-using RPG.Audio;
-
 namespace RPG.Control
 {
     public class PlayerLightAttackState : PlayerAttackState

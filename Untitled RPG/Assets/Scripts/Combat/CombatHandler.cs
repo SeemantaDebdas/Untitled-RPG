@@ -7,6 +7,7 @@ namespace RPG.Combat
     public class CombatHandler : MonoBehaviour
     {
         public UnityEvent onHit;
+        public UnityEvent onAttack;
 
         //have a list of attacks and calculate stats of player
         //then handle the hit
@@ -14,6 +15,11 @@ namespace RPG.Combat
         {
             damageable.Damage(new DamageData(10, attackDirection));
             onHit?.Invoke();
+        }
+
+        public void Attack()
+        {
+            onAttack?.Invoke();
         }
     }
 }

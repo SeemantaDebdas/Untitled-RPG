@@ -12,5 +12,6 @@ namespace RPG.Data
         public WeaponHandler WeaponHandler { get; set; }
         public EnvironmentScanner EnvironmentScanner { get; set; }
         public FieldOfView FieldOfView { get; set; }
+        public CombatHandler CombatHandler { get; set; }
     }
 }

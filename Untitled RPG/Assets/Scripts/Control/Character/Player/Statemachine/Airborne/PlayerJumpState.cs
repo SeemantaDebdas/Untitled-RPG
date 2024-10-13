@@ -5,7 +5,7 @@ namespace RPG.Control
 {
     public class PlayerJumpState : PlayerBaseState
     {
-        [SerializeField] string animationName = "Jump";
+        [SerializeField] ScriptableString animationName;
         [SerializeField] float rotationSpeed = 20f;
         [SerializeField] float jumpForce = 10f;
 
@@ -20,7 +20,7 @@ namespace RPG.Control
             physicsHandler.ResetVelocity();
             Jump();
 
-            animator.PlayAnimation(animationName);
+            animator.PlayAnimation(animationName.Value);
 
         }
 

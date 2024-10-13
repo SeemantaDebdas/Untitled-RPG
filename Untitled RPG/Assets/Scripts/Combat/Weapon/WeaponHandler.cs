@@ -1,6 +1,5 @@
 using DG.Tweening;
 using RPG.Core;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,7 +32,7 @@ namespace RPG.Combat
         public AttackSO CurrentAttack { get; private set; }
 
         int currentLightAttackIndex = -1, currentHeavyAttackIndex = -1;
-        Timer timeBetweenAttacksCounter;
+        AutoTimer timeBetweenAttacksCounter;
 
         PlayerInput playerInput;
 
@@ -54,12 +53,15 @@ namespace RPG.Combat
         private void OnEnable()
         {
             playerInput = GetComponent<PlayerInput>();
-            playerInput.OnChangeWeaponPerformed += PlayerInput_OnChangeWeaponPerformed;
+
+            if(playerInput)
+                playerInput.OnChangeWeaponPerformed += PlayerInput_OnChangeWeaponPerformed;
         }
 
         private void OnDisable()
         {
-            playerInput.OnChangeWeaponPerformed -= PlayerInput_OnChangeWeaponPerformed;
+            if(playerInput) 
+                playerInput.OnChangeWeaponPerformed -= PlayerInput_OnChangeWeaponPerformed;
         }
 
         #region ATTACK LOGIC
@@ -100,11 +102,13 @@ namespace RPG.Combat
             });
         }
 
-#endregion ATTACK LOGIC
+        #endregion ATTACK LOGIC
+
+        #region Colliders
+
         public void EnableCollider(WeaponSO weapon) => weapon.WeaponInstance.EnableCollider();
         public void DisableCollider(WeaponSO weapon) => weapon.WeaponInstance.DisableCollider();
 
-        
         void SetColliderState(WeaponSO weapon, float startTime, float endTime)
         {
             DOVirtual.Float(0, startTime, startTime, value => { }).SetEase(Ease.Linear).OnComplete(() =>
@@ -120,6 +124,8 @@ namespace RPG.Combat
         }
         
         void ResetColliderData(WeaponSO weapon) => weapon.WeaponInstance.ResetColliderData();
+
+        #endregion
 
         public void SpawnWeapon(WeaponSO weapon)
         {
@@ -186,7 +192,6 @@ namespace RPG.Combat
         {
             weapon.UnsheathWeapon(GetEquipTransform(weapon));
         }
-
 
         void PlayerInput_OnChangeWeaponPerformed(float value)
         {

@@ -11,8 +11,8 @@ namespace RPG.Control
     {
         //move this to SO variables later
         [Header("ANIMATION")]
-        [SerializeField] string strafe = string.Empty;
-        [SerializeField] string moveXParam, moveYParam;
+        [SerializeField] ScriptableString strafeAnimation;
+        [SerializeField] ScriptableString moveXParam, moveYParam;
 
         [Header("SHOOT PARAMS")]
         [SerializeField, Range(0.0f, 50.0f)] float maxForce;
@@ -47,7 +47,7 @@ namespace RPG.Control
             animator.SetLayerWeightOverTime(0, 0.1f, rangedWeapon.AnimationLayer);
             animator.SetLayerWeightOverTime(1, 0.1f, rangedWeapon.DrawFireAnimationLayer);
             animator.PlayAnimation(rangedWeapon.DrawAnimation, 0.1f, rangedWeapon.DrawFireAnimationLayer);
-            animator.PlayAnimation(strafe);
+            animator.PlayAnimation(strafeAnimation.Value);
             
             trajectory.EnableVisual();
 
@@ -80,8 +80,8 @@ namespace RPG.Control
 
         private void HandleAnimation()
         {
-            animator.SetFloat(moveXParam, input.MoveInput.x, 0.1f, Time.deltaTime);
-            animator.SetFloat(moveYParam, input.MoveInput.y, 0.1f, Time.deltaTime);
+            animator.SetFloat(moveXParam.Value, input.MoveInput.x, 0.1f, Time.deltaTime);
+            animator.SetFloat(moveYParam.Value, input.MoveInput.y, 0.1f, Time.deltaTime);
         }
 
         private void LookAtCenterOfScreen()

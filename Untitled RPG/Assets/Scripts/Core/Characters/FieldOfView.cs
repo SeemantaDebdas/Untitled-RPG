@@ -1,10 +1,9 @@
 using MEC;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace RPG
+namespace RPG.Core
 {
     public class FieldOfView : MonoBehaviour
     {
@@ -19,7 +18,7 @@ namespace RPG
         [Header("FILTERING")]
         [SerializeField] LayerMask targetLayer;
         [SerializeField] LayerMask obstructionLayer;
-        [SerializeField] string ignoreTag = string.Empty; //change this later to a scriptable object based solution
+        [SerializeField] ScriptableString ignoreTag;
         [SerializeField] Transform selfTransform;
 
         [Header("GIZMO")]
@@ -50,7 +49,7 @@ namespace RPG
             Scan();
             if (validTargets == null || validTargets.Count == 0)
             {
-                Debug.LogWarning(transform.name + "Closest target is null");
+                //Debug.LogWarning(transform.name + "Closest target is null");
                 return null;
             }
 
@@ -90,7 +89,7 @@ namespace RPG
                 if (angleToTarget > angle / 2)
                     continue;
 
-                if (ignoreTag != string.Empty && target.CompareTag(ignoreTag))
+                if (ignoreTag != null && target.CompareTag(ignoreTag.Value))
                     continue;
 
                 validTargets.Add(target);

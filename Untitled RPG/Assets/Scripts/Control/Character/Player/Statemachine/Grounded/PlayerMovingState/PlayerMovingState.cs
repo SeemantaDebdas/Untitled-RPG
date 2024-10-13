@@ -1,6 +1,4 @@
 using RPG.Core;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Control
@@ -8,12 +6,12 @@ namespace RPG.Control
     public class PlayerMovingState : PlayerBaseState
     {
         [Header("WALK")]
-        [SerializeField] string walkAnimationName = "Walk";
+        [SerializeField] ScriptableString walkAnimation;
         [SerializeField] float walkBaseSpeed = 1f;
         [SerializeField] float walkRotationSpeed = 6f;
 
         [Header("RUN")]
-        [SerializeField] string runAnimationName = "Run";
+        [SerializeField] ScriptableString runAnimation;
         [SerializeField] float runBaseSpeed = 1f;
         [SerializeField] float runRotationSpeed = 6f;
 
@@ -52,7 +50,7 @@ namespace RPG.Control
             {
                 baseSpeed = walkBaseSpeed;
                 rotationSpeed = walkRotationSpeed;
-                animationName = walkAnimationName;
+                animationName = walkAnimation.Value;
 
                 return true;
             }
@@ -61,7 +59,7 @@ namespace RPG.Control
             {
                 baseSpeed = runBaseSpeed;
                 rotationSpeed = runRotationSpeed;
-                animationName = runAnimationName;
+                animationName = runAnimation.Value;
 
                 return true;
             }

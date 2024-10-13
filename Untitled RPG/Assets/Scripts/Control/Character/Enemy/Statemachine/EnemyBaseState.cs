@@ -1,8 +1,6 @@
+using RPG.Combat;
 using RPG.Core;
 using RPG.Data;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,7 +13,6 @@ namespace RPG.Control
         protected Path path;
         protected NavMeshPath navmeshPath;
         protected FieldOfView chaseFov, attackFOV, avoidanceFOV;
-        EnvironmentScanner scanner;
 
         protected Vector3 moveDirection = Vector3.zero;
 
@@ -24,18 +21,15 @@ namespace RPG.Control
             base.Initialize(statemachine);
 
             context = statemachine.Context as EnemyContext;
-            animator = context.Animator;
-            controller = context.CharacterController;
+
             agent = context.Agent;
             path = context.Path;
-            physicsHandler = context.PhysicsHandler;
-            scanner = context.EnvironmentScanner;
             fieldOfView = context.FieldOfView;
             chaseFov = context.ChaseFOV;
             attackFOV = context.AttackFOV;
             avoidanceFOV = context.AvoidanceFOV;
 
-            Debug.Assert(agent != null, "agent is null");
+            Debug.Assert(weaponHandler != null, "weaponHandler is null");
         }
 
         public override void Enter()
@@ -85,10 +79,10 @@ namespace RPG.Control
 
         Vector3 ProjectDirectionOnPlane(Vector3 dir)
         {
-            if(Physics.Raycast(context.Transform.position + context.Transform.up * scanner.UpOffsetFromPlayerBase,
+            if(Physics.Raycast(context.Transform.position + context.Transform.up * environmentScanner.UpOffsetFromPlayerBase,
                                 Vector3.down, out RaycastHit hit,
-                                scanner.MaxHeightForDownRaycast + 0.1f,
-                                scanner.EnvironmentLayer))
+                                environmentScanner.MaxHeightForDownRaycast + 0.1f,
+                                environmentScanner.EnvironmentLayer))
             {
                 Vector3 projectedVector = Vector3.ProjectOnPlane(dir, hit.normal);
                 //Debug.Log(projectedVector);

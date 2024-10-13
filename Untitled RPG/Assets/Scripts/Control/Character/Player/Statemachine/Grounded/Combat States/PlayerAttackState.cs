@@ -1,8 +1,6 @@
 using DG.Tweening;
-using RPG.Audio;
 using RPG.Combat;
 using RPG.Core;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,7 +38,7 @@ namespace RPG.Control
             {
                 VFXData data = attack.VFXDataList[i];
 
-                Timer timeTillVFXPlays = new(data.VFXTime, () =>
+                AutoTimer timeTillVFXPlays = new(data.VFXTime, () =>
                 {
                     if (data.VFXPrefab != null)
                         context.VFXHandler.PlayVFX(data.VFXPrefab, 1f);

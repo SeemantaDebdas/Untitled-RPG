@@ -1,7 +1,6 @@
 using RPG.Combat;
 using RPG.Core;
-using System.Collections;
-using System.Collections.Generic;
+using RPG.Data;
 using UnityEngine;
 
 namespace RPG.Control
@@ -13,12 +12,24 @@ namespace RPG.Control
         protected Animator animator;
         protected FieldOfView fieldOfView;
         protected WeaponHandler weaponHandler;
+        protected CombatHandler combatHandler;
+        protected EnvironmentScanner environmentScanner;
 
         protected float slopeSpeedMultiplier = 1f;
 
         public override void Initialize(IStatemachine statemachine)
         {
             base.Initialize(statemachine);
+
+            CharacterContext context = statemachine.Context as CharacterContext;
+            
+            controller = context.CharacterController;
+            physicsHandler = context.PhysicsHandler;
+            animator = context.Animator;
+            fieldOfView = context.FieldOfView;
+            weaponHandler = context.WeaponHandler;
+            combatHandler = context.CombatHandler;
+            environmentScanner = context.EnvironmentScanner;
         }
 
         protected void HandleMovement(float baseSpeed = 1f)

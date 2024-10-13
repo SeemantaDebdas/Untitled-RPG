@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using RPG.Core;
 
@@ -7,7 +5,7 @@ namespace RPG.Control
 {
     public class PlayerIdleState : PlayerBaseState
     {
-        [SerializeField] string animationName = "Idle";
+        [SerializeField] ScriptableString animationName;
         public override void Initialize(IStatemachine statemachine)
         {
             base.Initialize(statemachine);
@@ -16,7 +14,7 @@ namespace RPG.Control
         public override void Enter()
         {
             base.Enter();
-            animator.PlayAnimation(animationName); 
+            animator.PlayAnimation(animationName.Value); 
         }
 
         public override void Tick()
