@@ -5,7 +5,7 @@ namespace RPG.Control
 {
     public class PlayerRangedFireState : PlayerBaseState
     {
-        RangedWeaponSO rangedWeapon;
+        RangedWeaponSO rangedWeaponData;
         ProjectileThrower thrower;
         public override void Enter()
         {
@@ -13,11 +13,11 @@ namespace RPG.Control
 
             thrower = GetComponentInParent<ProjectileThrower>();
 
-            rangedWeapon = weaponHandler.CurrentWeapon as RangedWeaponSO;
-            animator.PlayAnimation(rangedWeapon.FireAnimation, 0.1f, rangedWeapon.DrawFireAnimationLayer);
+            rangedWeaponData = weaponHandler.CurrentWeapon.WeaponData as RangedWeaponSO;
+            animator.PlayAnimation(rangedWeaponData.FireAnimation, 0.1f, rangedWeaponData.DrawFireAnimationLayer);
 
-            Weapon currentWeaponInstance = weaponHandler.CurrentWeapon.WeaponInstance;
-            thrower.ThrowObject(rangedWeapon.Projectile, currentWeaponInstance.ShootPoint.position, currentWeaponInstance.ShootPoint.forward);
+            Weapon currentWeaponInstance = weaponHandler.CurrentWeapon;
+            thrower.ThrowObject(rangedWeaponData.Projectile, currentWeaponInstance.ShootPoint.position, currentWeaponInstance.ShootPoint.forward);
         }
 
         public override void Exit()
@@ -25,8 +25,8 @@ namespace RPG.Control
             base.Exit();
 
             thrower.ResetForce();
-            animator.SetLayerWeightOverTime(1, 0.25f, rangedWeapon.AnimationLayer);
-            animator.SetLayerWeightOverTime(0, 0.25f, rangedWeapon.DrawFireAnimationLayer);
+            animator.SetLayerWeightOverTime(1, 0.25f, rangedWeaponData.AnimationLayer);
+            animator.SetLayerWeightOverTime(0, 0.25f, rangedWeaponData.DrawFireAnimationLayer);
         }
     }
 }

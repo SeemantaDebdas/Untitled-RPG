@@ -1012,12 +1012,11 @@ MonoBehaviour:
   transitionList:
   - Name: 'Combat Circling State '
     <ConditionList>k__BackingField:
-    - {fileID: 11400000, guid: 385edb47ac69c684ebeae46481076e1c, type: 2}
+    - {fileID: 11400000, guid: 9df625441089e654098bdb6c65ae2493, type: 2}
     <ToState>k__BackingField: {fileID: 861423058606527470}
   speed: 1.876
   speedMultiplier: 0.75
   rotationSpeed: 6
-  attack: {fileID: 11400000, guid: f88f46d21e3d6a846b7cfddeeffb6a81, type: 2}
   moveXParam: {fileID: 11400000, guid: 7cb91ea1981a1bf4c96e9bba2ed7c4b0, type: 2}
   moveYParam: {fileID: 11400000, guid: 8ae49fbee87a3284882850d1cd10c9df, type: 2}
   enemiesInAttackList: {fileID: 11400000, guid: 94a17ac9394427d4e9231606716b035d,

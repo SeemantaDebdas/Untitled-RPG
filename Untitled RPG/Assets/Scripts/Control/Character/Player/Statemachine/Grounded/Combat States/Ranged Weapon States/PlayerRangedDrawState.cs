@@ -25,7 +25,7 @@ namespace RPG.Control
         [Header("RIGS")]
         [SerializeField] List<MultiAimConstraint> aimRigs;
 
-        RangedWeaponSO rangedWeapon;
+        RangedWeaponSO rangedWeaponData;
         TrajectoryPredictor trajectory;
         ProjectileThrower thrower;
 
@@ -40,13 +40,13 @@ namespace RPG.Control
 
             thrower = GetComponentInParent<ProjectileThrower>();
 
-            rangedWeapon = weaponHandler.CurrentWeapon as RangedWeaponSO;
+            rangedWeaponData = weaponHandler.CurrentWeapon.WeaponData as RangedWeaponSO;
 
 
             //This can be passed on to scriptable object, weaponSO by a function. Maybe SetWeaponLayerWeight(Animator animator)...
-            animator.SetLayerWeightOverTime(0, 0.1f, rangedWeapon.AnimationLayer);
-            animator.SetLayerWeightOverTime(1, 0.1f, rangedWeapon.DrawFireAnimationLayer);
-            animator.PlayAnimation(rangedWeapon.DrawAnimation, 0.1f, rangedWeapon.DrawFireAnimationLayer);
+            animator.SetLayerWeightOverTime(0, 0.1f, rangedWeaponData.AnimationLayer);
+            animator.SetLayerWeightOverTime(1, 0.1f, rangedWeaponData.DrawFireAnimationLayer);
+            animator.PlayAnimation(rangedWeaponData.DrawAnimation, 0.1f, rangedWeaponData.DrawFireAnimationLayer);
             animator.PlayAnimation(strafeAnimation.Value);
             
             trajectory.EnableVisual();
@@ -115,10 +115,10 @@ namespace RPG.Control
 
         ProjectileProperties GetProjectileData()
         {
-            Weapon currentWeaponInstance = weaponHandler.CurrentWeapon.WeaponInstance;
+            Weapon currentWeaponInstance = weaponHandler.CurrentWeapon;
 
             ProjectileProperties properties = new ProjectileProperties();
-            Rigidbody projectile = rangedWeapon.Projectile.GetComponent<Rigidbody>();
+            Rigidbody projectile = rangedWeaponData.Projectile.GetComponent<Rigidbody>();
 
             properties.direction = currentWeaponInstance.ShootPoint.forward;
             properties.initialPosition = currentWeaponInstance.ShootPoint.position;

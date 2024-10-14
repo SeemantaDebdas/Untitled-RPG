@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 364cfe756b568094e8a02f1f8958a084, type: 3}
-  m_Name: IsComboTimeReached
+  m_Script: {fileID: 11500000, guid: de641283328eaf340a3f9fbc996ce465, type: 3}
+  m_Name: HasAnimationEnded - Attack - 4
   m_EditorClassIdentifier: 
   invert: 0
-  attackTag: Attack
-  layer: 4
+  animationTag: Attack
+  normalizedTimeThreshold: 0.9
+  layerIndex: 4

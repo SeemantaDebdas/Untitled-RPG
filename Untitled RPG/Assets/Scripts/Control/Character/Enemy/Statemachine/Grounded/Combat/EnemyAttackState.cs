@@ -9,7 +9,6 @@ namespace RPG.Control
         [SerializeField] float speed = 1.876f;
         [SerializeField] float speedMultiplier = 0.75f;
         [SerializeField] float rotationSpeed = 6f;
-        [SerializeField] AttackSO attack;
 
         [SerializeField] ScriptableString moveXParam, moveYParam;
         
@@ -30,6 +29,8 @@ namespace RPG.Control
             animator.SetFloat(moveXParam.Value, 0);
 
             isAttacking = false;
+
+            animator.SetLayerWeightOverTime(1, layer: 4);
         }
 
         public override void Exit()
@@ -40,6 +41,8 @@ namespace RPG.Control
             {
                 RemoveItem(statemachine);
             }
+
+            animator.SetLayerWeightOverTime(0, layer: 4);
         }
 
         public override void Tick()
@@ -64,7 +67,7 @@ namespace RPG.Control
             else if(!isAttacking)
             {
                 isAttacking = true;
-                animator.PlayAnimation(attack.AnimationName, 0.1f);
+                animator.PlayAnimation(weaponHandler.GetLightAttack().AnimationName, 0.1f, 4);
             }
         }
 

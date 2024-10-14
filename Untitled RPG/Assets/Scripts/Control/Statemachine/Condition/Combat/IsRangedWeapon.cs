@@ -21,7 +21,7 @@ namespace RPG.Control
         {
             if(context is CharacterContext characterContext)
             {
-                if (characterContext.WeaponHandler.CurrentWeapon is RangedWeaponSO)
+                if (characterContext.WeaponHandler.CurrentWeapon.WeaponData is RangedWeaponSO)
                     return true;
             }
 

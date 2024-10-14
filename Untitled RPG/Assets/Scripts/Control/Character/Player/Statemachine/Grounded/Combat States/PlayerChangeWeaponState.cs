@@ -8,7 +8,7 @@ namespace RPG.Control
     {
         [SerializeField] ScriptableString sheathAnimation, unsheathAnimation;
 
-        WeaponSO previousWeapon, currentWeapon;
+        WeaponSO previousWeaponData, currentWeaponData;
         public override void Enter()
         {
             base.Enter();
@@ -16,20 +16,20 @@ namespace RPG.Control
             if (weaponHandler == null)
                 Debug.Log("Weapon Handler not set.", gameObject);
 
-            previousWeapon = weaponHandler.PreviousWeapon;
-            currentWeapon = weaponHandler.CurrentWeapon;
+            currentWeaponData = weaponHandler.CurrentWeapon.WeaponData;
 
-            Debug.Log("Current Weapon: " + currentWeapon.name);
+            Debug.Log("Current Weapon: " + currentWeaponData.name);
 
-            if (previousWeapon != null)
+            if (weaponHandler.PreviousWeapon != null)
             {
-                Debug.Log("Previous Weapon: " + previousWeapon.name);
+                previousWeaponData = weaponHandler.PreviousWeapon.WeaponData;
+                Debug.Log("Previous Weapon: " + previousWeaponData.name);
                 //sheath the previous weapon
-                animator.PlayAnimation(sheathAnimation.Value, layer: previousWeapon.AnimationLayer);
+                animator.PlayAnimation(sheathAnimation.Value, layer: previousWeaponData.AnimationLayer);
             }
 
-            animator.SetLayerWeightOverTime(1, layer: currentWeapon.AnimationLayer);
-            animator.PlayAnimation(unsheathAnimation.Value, layer: currentWeapon.AnimationLayer);
+            animator.SetLayerWeightOverTime(1, layer: currentWeaponData.AnimationLayer);
+            animator.PlayAnimation(unsheathAnimation.Value, layer: currentWeaponData.AnimationLayer);
 
         }
 
@@ -37,9 +37,9 @@ namespace RPG.Control
         {
             base.Exit();
 
-            if (previousWeapon != null)
+            if (previousWeaponData != null)
             {
-                animator.SetLayerWeightOverTime(0, layer: previousWeapon.AnimationLayer);
+                animator.SetLayerWeightOverTime(0, layer: previousWeaponData.AnimationLayer);
             }
             
         }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -9,11 +10,16 @@ namespace RPG.Combat
         WeaponCollider weaponCollider = null;
 
         public bool IsSheathed { get; private set; } = true;
-        
+        public WeaponSO WeaponData { get; private set; }        
 
         private void Awake()
         {
             weaponCollider = GetComponent<WeaponCollider>();
+        }
+
+        public void SetWeaponData(WeaponSO weaponData)
+        {
+            WeaponData = weaponData;
         }
 
         public void SheathWeapon(Transform parent)

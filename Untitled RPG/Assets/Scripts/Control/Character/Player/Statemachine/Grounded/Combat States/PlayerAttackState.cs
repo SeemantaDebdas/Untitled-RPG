@@ -15,9 +15,10 @@ namespace RPG.Control
         {
             base.Enter();
 
-            animator.PlayAnimation(attack.AnimationName, 0.1f);
-            animator.SetLayerWeightOverTime(0, layer: weaponHandler.CurrentWeapon.AnimationLayer);
-            
+            animator.SetLayerWeightOverTime(1, layer: 4);
+            animator.PlayAnimation(attack.AnimationName, 0.1f, 4);
+            //animator.SetLayerWeightOverTime(0, layer: weaponHandler.CurrentWeapon.WeaponData.AnimationLayer);
+
             FaceDirection(CalculateDirection(), rotationSpeed);
 
             FieldOfView attackFOV = GetComponentInParent<FieldOfView>();
@@ -51,7 +52,8 @@ namespace RPG.Control
             base.Exit();
 
             animator.applyRootMotion = false;
-            animator.SetLayerWeightOverTime(1, layer: weaponHandler.CurrentWeapon.AnimationLayer);
+            //animator.SetLayerWeightOverTime(1, layer: weaponHandler.CurrentWeapon.WeaponData.AnimationLayer);
+            animator.SetLayerWeightOverTime(0, layer: 4);
         }
 
         protected void MoveTowardsTarget(Transform closestTarget)

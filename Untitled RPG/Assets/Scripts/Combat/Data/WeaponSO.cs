@@ -18,26 +18,11 @@ namespace RPG.Combat
         [Header("SFX")]
         [field: SerializeField] public EventReference swooshSound;
 
-        Weapon weaponInstance = null;
-
-        public Weapon WeaponInstance => weaponInstance;
-
-        public bool IsSheathed => weaponInstance.IsSheathed;
-
         public Weapon SpawnWeapon(Transform spawnTransform)
         {
-            weaponInstance =  Instantiate(WeaponPrefab, spawnTransform.position, spawnTransform.rotation);
+            Weapon weaponInstance =  Instantiate(WeaponPrefab, spawnTransform.position, spawnTransform.rotation);
+            weaponInstance.SetWeaponData(this);
             return weaponInstance;
-        }
-
-        public void SheathWeapon(Transform parent)
-        {
-            weaponInstance.SheathWeapon(parent);
-        }
-
-        public void UnsheathWeapon(Transform parent)
-        {
-            weaponInstance.UnsheathWeapon(parent); 
         }
     }
 }

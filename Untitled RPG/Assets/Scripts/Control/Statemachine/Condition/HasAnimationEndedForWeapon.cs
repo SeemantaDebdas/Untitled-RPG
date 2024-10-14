@@ -25,7 +25,7 @@ namespace RPG
         {
             CharacterContext characterContext = context as CharacterContext;
 
-            int layer = characterContext.WeaponHandler.CurrentWeapon.AnimationLayer;
+            int layer = characterContext.WeaponHandler.CurrentWeapon.WeaponData.AnimationLayer;
 
             if (characterContext.Animator.GetNormalizedTime(animationTag, layer) > normalizedTimeThreshold)
                 return true;

@@ -21,10 +21,9 @@ namespace RPG.Combat
         [SerializeField] float timeBetweenAttacks = 2f;
         [SerializeField] List<WeaponSO> weaponList;
 
-        ///WeaponSO currentWeapon = null;
-        //public WeaponSO CurrentWeapon => currentWeapon; 
-        public WeaponSO CurrentWeapon { get; private set; } = null;
-        public WeaponSO PreviousWeapon { get; private set; } = null;
+        Dictionary<WeaponSO, Weapon> weaponCache = new();
+        public Weapon CurrentWeapon { get; private set; } = null;
+        public Weapon PreviousWeapon { get; private set; } = null;
         int currentWeaponIndex = 0;
 
         public bool IsSheathed  => CurrentWeapon.IsSheathed; 
@@ -43,9 +42,10 @@ namespace RPG.Combat
 
             for(int i = 0; i < weaponList.Count; i++)
             {
-                SpawnWeapon(weaponList[i]);
+                Weapon weaponInstance = SpawnAndCacheWeapon(weaponList[i]);
+                SheathWeapon(weaponInstance);
             }
-            EquipWeapon(weaponList[currentWeaponIndex]);
+            EquipWeapon(weaponCache[weaponList[currentWeaponIndex]]);
 
             ResetTimer();
         }
@@ -68,14 +68,14 @@ namespace RPG.Combat
 
         public AttackSO GetLightAttack()
         {
-
+            WeaponSO currentWeaponData = CurrentWeapon.WeaponData;
             //Debug.Log("Get Light Attack Called");
-            currentLightAttackIndex = (currentLightAttackIndex + 1) == CurrentWeapon.LightAttackList.Count ? -1 : currentLightAttackIndex;
+            currentLightAttackIndex = (currentLightAttackIndex + 1) == currentWeaponData.LightAttackList.Count ? -1 : currentLightAttackIndex;
 
-            CurrentAttack = CurrentWeapon.LightAttackList[++currentLightAttackIndex];
+            CurrentAttack = currentWeaponData.LightAttackList[++currentLightAttackIndex];
 
             ResetTimer();
-            ResetColliderData(CurrentWeapon);
+            ResetColliderData(currentWeaponData);
 
             SetColliderState(CurrentWeapon, CurrentAttack.ColliderEnableTime, CurrentAttack.ColliderDisableTime);
             return CurrentAttack;
@@ -84,9 +84,11 @@ namespace RPG.Combat
 
         public AttackSO GetHeavyAttack()
         {
-            currentHeavyAttackIndex = (currentHeavyAttackIndex + 1) == CurrentWeapon.HeavyAttackList.Count ? -1 : currentHeavyAttackIndex;
+            WeaponSO currentWeaponData = CurrentWeapon.WeaponData;
 
-            CurrentAttack = CurrentWeapon.HeavyAttackList[++currentHeavyAttackIndex];
+            currentHeavyAttackIndex = (currentHeavyAttackIndex + 1) == currentWeaponData.HeavyAttackList.Count ? -1 : currentHeavyAttackIndex;
+
+            CurrentAttack = currentWeaponData.HeavyAttackList[++currentHeavyAttackIndex];
 
             return CurrentAttack;
         }
@@ -106,10 +108,10 @@ namespace RPG.Combat
 
         #region Colliders
 
-        public void EnableCollider(WeaponSO weapon) => weapon.WeaponInstance.EnableCollider();
-        public void DisableCollider(WeaponSO weapon) => weapon.WeaponInstance.DisableCollider();
+        public void EnableCollider(Weapon weapon) => weapon.EnableCollider();
+        public void DisableCollider(Weapon weapon) => weapon.DisableCollider();
 
-        void SetColliderState(WeaponSO weapon, float startTime, float endTime)
+        void SetColliderState(Weapon weapon, float startTime, float endTime)
         {
             DOVirtual.Float(0, startTime, startTime, value => { }).SetEase(Ease.Linear).OnComplete(() =>
             {
@@ -123,20 +125,20 @@ namespace RPG.Combat
             });
         }
         
-        void ResetColliderData(WeaponSO weapon) => weapon.WeaponInstance.ResetColliderData();
+        void ResetColliderData(WeaponSO weapon) => weaponCache[weapon].ResetColliderData();
 
         #endregion
 
-        public void SpawnWeapon(WeaponSO weapon)
+        Weapon SpawnAndCacheWeapon(WeaponSO weaponSO)
         {
-            Transform equipTransform = GetEquipTransform(weapon);
+            Transform equipTransform = GetSheathTransform(weaponSO);
+            Weapon weaponInstance = weaponSO.SpawnWeapon(equipTransform);
+            weaponCache[weaponSO] = weaponInstance;
 
-            weapon.SpawnWeapon(equipTransform);
-
-            SheathWeapon(weapon);
+            return weaponInstance;
         }
 
-        public void EquipWeapon(WeaponSO weapon)
+        public void EquipWeapon(Weapon weapon)
         {
             if (CurrentWeapon == weapon)
                 return;
@@ -170,8 +172,10 @@ namespace RPG.Combat
         /// <summary>
         /// This function should be called from Equpping/Holstering Animation Event
         /// </summary>
-        public void ToggleWeaponState(WeaponSO weapon) // not the best way to handle things especaially since we need to pass the weapon via animator. Do it dynamically by using normalized time and scripting logic
+        public void ToggleWeaponState(WeaponSO weaponData) // not the best way to handle things especaially since we need to pass the weapon via animator. Do it dynamically by using normalized time and scripting logic
         {
+            Weapon weapon = weaponCache[weaponData];
+
             if (weapon.IsSheathed)
             {
                 UnsheathWeapon(weapon);
@@ -182,15 +186,15 @@ namespace RPG.Combat
             }
         }
 
-        public void SheathWeapon(WeaponSO weapon)
+        public void SheathWeapon(Weapon weapon)
         {
-            weapon.SheathWeapon(GetSheathTransform(weapon));
+            weapon.SheathWeapon(GetSheathTransform(weapon.WeaponData));
             DisableCollider(weapon); 
         }
 
-        public void UnsheathWeapon(WeaponSO weapon)
+        public void UnsheathWeapon(Weapon weapon)
         {
-            weapon.UnsheathWeapon(GetEquipTransform(weapon));
+            weapon.UnsheathWeapon(GetEquipTransform(weapon.WeaponData));
         }
 
         void PlayerInput_OnChangeWeaponPerformed(float value)
@@ -200,7 +204,8 @@ namespace RPG.Combat
 
             Debug.Log(weaponList[currentWeaponIndex].name);
 
-            EquipWeapon(weaponList[currentWeaponIndex]);
+            WeaponSO weaponSO = weaponList[currentWeaponIndex];
+            EquipWeapon(weaponCache[weaponSO]);
         }
     }
 }
