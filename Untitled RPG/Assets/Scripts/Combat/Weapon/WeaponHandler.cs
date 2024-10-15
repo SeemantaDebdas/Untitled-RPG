@@ -1,5 +1,6 @@
 using DG.Tweening;
 using RPG.Core;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +22,10 @@ namespace RPG.Combat
         [SerializeField] float timeBetweenAttacks = 2f;
         [SerializeField] List<WeaponSO> weaponList;
 
+        [Space]
+        [SerializeField] ScriptableString sheathAnimation;
+        [SerializeField] ScriptableString unsheathAnimation;
+
         Dictionary<WeaponSO, Weapon> weaponCache = new();
         public Weapon CurrentWeapon { get; private set; } = null;
         public Weapon PreviousWeapon { get; private set; } = null;
@@ -32,13 +37,14 @@ namespace RPG.Combat
 
         int currentLightAttackIndex = -1, currentHeavyAttackIndex = -1;
         AutoTimer timeBetweenAttacksCounter;
+        Animator animator;
 
         PlayerInput playerInput;
 
 
         private void Awake()
         {
-            //EquipWeapon(defaultWeapon);
+            animator = GetComponent<Animator>();
 
             for(int i = 0; i < weaponList.Count; i++)
             {
@@ -145,6 +151,38 @@ namespace RPG.Combat
 
             PreviousWeapon = CurrentWeapon;
             CurrentWeapon = weapon;
+
+            //PlaySheathAndUnsheathAnimation();
+        }
+
+        public void PlaySheathAndUnsheathAnimation()
+        {
+            WeaponSO previousWeaponData, currentWeaponData;
+
+            if (PreviousWeapon != null)
+            {
+                previousWeaponData = PreviousWeapon.WeaponData;
+                Debug.Log("Previous Weapon: " + previousWeaponData.name);
+                //sheath the previous weapon
+                animator.PlayAnimation(sheathAnimation.Value, layer: previousWeaponData.AnimationLayer);
+            }
+        }
+
+        public void PlayCurrentWeaponUnsheathAnimation()
+        {
+            WeaponSO currentWeaponData = CurrentWeapon.WeaponData;
+            animator.SetLayerWeightOverTime(1, layer: currentWeaponData.AnimationLayer);
+            animator.PlayAnimation(unsheathAnimation.Value, layer: currentWeaponData.AnimationLayer);
+        }
+
+        public void PlayCurrentWeaponSheathAnimation()
+        {
+            animator.PlayAnimation(sheathAnimation.Value, layer: CurrentWeapon.WeaponData.AnimationLayer, 
+                onAnimationEnd: () => 
+                {
+                    animator.SetLayerWeightOverTime(0, layer: CurrentWeapon.WeaponData.AnimationLayer);
+                }, 
+                triggerTime: 0.9f);
         }
 
         Transform GetEquipTransform (WeaponSO weapon)
@@ -188,6 +226,13 @@ namespace RPG.Combat
 
         public void SheathWeapon(Weapon weapon)
         {
+            if (weapon == null || weapon.IsSheathed)
+            {
+                if (weapon.IsSheathed)
+                    Debug.Log("weapon is sheathed");
+                return;
+            }
+
             weapon.SheathWeapon(GetSheathTransform(weapon.WeaponData));
             DisableCollider(weapon); 
         }

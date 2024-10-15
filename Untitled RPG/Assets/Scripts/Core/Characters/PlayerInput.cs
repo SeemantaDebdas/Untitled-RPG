@@ -15,7 +15,7 @@ namespace RPG.Core
 
         public event Action OnSprintPerformed;
 
-        public event Action OnAttackPerformed;
+        public event Action OnAttackPerformed, OnAttackCancelled;
 
         public event Action OnHolsterPerformed;
 
@@ -77,9 +77,15 @@ namespace RPG.Core
 
         public void OnAttack(InputAction.CallbackContext context)
         {
-            if (!context.performed) return;
+            if (context.performed)
+            {
+                OnAttackPerformed?.Invoke();
+            }
 
-            OnAttackPerformed?.Invoke();
+            if(context.canceled)
+            {
+                OnAttackCancelled?.Invoke();
+            }
         }
 
         public void OnHolster(InputAction.CallbackContext context)

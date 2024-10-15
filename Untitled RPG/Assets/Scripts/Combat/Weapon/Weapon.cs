@@ -9,7 +9,7 @@ namespace RPG.Combat
         [field: SerializeField] public Transform ShootPoint { get; private set; }   
         WeaponCollider weaponCollider = null;
 
-        public bool IsSheathed { get; private set; } = true;
+        public bool IsSheathed { get; private set; } = false;
         public WeaponSO WeaponData { get; private set; }        
 
         private void Awake()

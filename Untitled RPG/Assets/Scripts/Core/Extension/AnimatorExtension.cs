@@ -1,13 +1,20 @@
 using DG.Tweening;
+using MEC;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Core
 {
     public static class AnimatorExtension
     {
-        public static void PlayAnimation(this Animator animator, string animationName, float transitionDuration = 0.25f, int layer = 0)
+        public static void PlayAnimation(this Animator animator, string animationName, float transitionDuration = 0.25f, int layer = 0, Action onAnimationEnd = null, float triggerTime = 1f)
         {
             animator.CrossFadeInFixedTime(animationName, transitionDuration, layer);
+            if (onAnimationEnd != null)
+            {
+                Timing.RunCoroutine(TrackAnimation(animator, animationName, layer, triggerTime, onAnimationEnd));
+            }
         }
 
         public static float GetNormalizedTime(this Animator animator, string tag, int layer = 0)
@@ -26,6 +33,27 @@ namespace RPG.Core
             else
             {
                 return 0;
+            }
+        }
+
+        private static IEnumerator<float> TrackAnimation(Animator animator, string animationName, int layer, float triggerTime, Action onAnimationEnd)
+        {
+            while (true)
+            {
+                AnimatorStateInfo currentStateInfo = animator.GetCurrentAnimatorStateInfo(layer);
+
+                // Check if the current animation is the one we want to track
+                if (currentStateInfo.IsName(animationName))
+                {
+                    // If the normalized time reaches the specified trigger time, call the action
+                    if (currentStateInfo.normalizedTime >= triggerTime)
+                    {
+                        onAnimationEnd?.Invoke();
+                        yield break; // Stop tracking after the action is called
+                    }
+                }
+
+                yield return Timing.WaitForOneFrame; // Wait until the next frame
             }
         }
 

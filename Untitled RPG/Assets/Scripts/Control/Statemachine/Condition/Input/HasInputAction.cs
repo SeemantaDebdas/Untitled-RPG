@@ -1,4 +1,6 @@
+using MEC;
 using RPG.Data;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,23 +9,28 @@ namespace RPG.Control
     [CreateAssetMenu(fileName = "Has Input Action", menuName = "Condition/Input/Has Input Action", order = 1)]
     public class HasInputAction : ConditionSO
     {
+        [Space]
+        [SerializeField] private bool performed = false;
+        [SerializeField] private bool cancelled = false;
+        [SerializeField] private bool started = false;
+
+        [SerializeField] bool prematureReset = false;
+        [SerializeField] float resetTimeWindow = 0.5f;
+
         public enum InputType
         {
             STARTED, PERFORMED, CANCELLED
         }
 
+        [Space]
         [SerializeField] InputActionReference actionReference;
         [SerializeField] InputType inputType;
 
-        private bool performed = false;
-        private bool cancelled = false;
-        private bool started = false;
+        CoroutineHandle resetInputStatesHandle;
 
         public override void Initialize(Context context)
         {
-            performed = false;
-            cancelled = false;
-            started = false;
+            Reset();
 
             actionReference.action.started += OnActionStarted;
             actionReference.action.performed += OnActionPerformed;
@@ -36,28 +43,49 @@ namespace RPG.Control
         public override void Reset()
         {
             // Reset states
-            performed = false;
-            cancelled = false;
-            started = false;
+            ResetInputStates();
 
             // Unsubscribe from events
             actionReference.action.started -= OnActionStarted;
             actionReference.action.performed -= OnActionPerformed;
             actionReference.action.canceled -= OnActionCancelled;
 
+            if(resetInputStatesHandle.IsValid)
+                Timing.KillCoroutines(resetInputStatesHandle);
             // Disable the action
             //actionReference.action.Disable();
         }
 
+        private void ResetInputStates()
+        {
+            started = false;
+            performed = false;
+            cancelled = false;
+        }
+
         protected override bool ProcessCondition(Context context)
         {
-            return inputType switch
+            bool result = inputType switch
             {
                 InputType.STARTED => started,
                 InputType.PERFORMED => performed,
                 InputType.CANCELLED => cancelled,
                 _ => false,
             };
+
+            if(result && prematureReset)
+            {
+                resetInputStatesHandle = Timing.RunCoroutine(ResetInputStatesAfterSeconds(resetTimeWindow));
+            }
+
+            return result;
+        }
+
+        IEnumerator<float> ResetInputStatesAfterSeconds(float resetTimeWindow)
+        {
+            yield return Timing.WaitForSeconds(resetTimeWindow);
+
+            ResetInputStates();
         }
 
         private void OnActionStarted(InputAction.CallbackContext context)

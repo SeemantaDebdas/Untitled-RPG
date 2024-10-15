@@ -1,6 +1,7 @@
 using RPG.Data;
 using RPG.Core;
 using UnityEngine;
+using System;
 
 namespace RPG.Control
 {
@@ -44,14 +45,31 @@ namespace RPG.Control
         protected virtual void AddInputActionsCallback()
         {
             input.OnWalkTogglePerformed += Input_OnWalkTogglePerformed;
+            input.OnAttackCancelled += Input_OnAttackCancelled;
+            input.OnHolsterPerformed += Input_OnHolsterPerformed;
         }
 
         protected virtual void RemoveInputActionsCallback()
         {
             input.OnWalkTogglePerformed -= Input_OnWalkTogglePerformed;
+            input.OnAttackCancelled -= Input_OnAttackCancelled;
+            input.OnHolsterPerformed -= Input_OnHolsterPerformed;
         }
 
+
         protected virtual void Input_OnWalkTogglePerformed(){}
+
+        protected void Input_OnAttackCancelled()
+        {
+            if(weaponHandler.CurrentWeapon.IsSheathed) 
+                weaponHandler.PlayCurrentWeaponUnsheathAnimation();
+        }
+
+        protected void Input_OnHolsterPerformed()
+        {
+            if(!weaponHandler.CurrentWeapon.IsSheathed)
+                weaponHandler.PlayCurrentWeaponSheathAnimation();
+        }
 
         #region ROTATION
 
