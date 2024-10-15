@@ -1,14 +1,12 @@
 using RPG.Combat;
 using RPG.Core;
+using RPG.Data;
 using UnityEngine;
 
 namespace RPG.Control
 {
     public class EnemyCombatIdleState : EnemyBaseState, IQueueValueSetter<CombatHandler>
     {
-        [SerializeField] string animationName = string.Empty;
-        [SerializeField] string moveXParam = "moveX", moveYParam = "moveY";
-
         [SerializeField] ScriptableAttackerQueue enemiesInCombatQueue;
 
 
@@ -16,17 +14,23 @@ namespace RPG.Control
         {
             base.Enter();
 
-            animator.PlayAnimation(animationName);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Strafe);
 
             AddItem(combatHandler);
+
+            if (attackFOV.GetClosestTarget() != null)
+            {
+                if (weaponHandler.CurrentWeapon.IsSheathed)
+                    weaponHandler.PlayCurrentWeaponUnsheathAnimation();
+            }
         }
 
         public override void Tick()
         {
             base.Tick();
 
-            animator.SetFloat(moveXParam, 0, 0.085f, Time.deltaTime);
-            animator.SetFloat(moveYParam, 0, 0.085f, Time.deltaTime);
+            animator.SetFloat(CharacterAnimationData.Instance.MoveX, 0, 0.085f, Time.deltaTime);
+            animator.SetFloat(CharacterAnimationData.Instance.MoveY, 0, 0.085f, Time.deltaTime);
         }
 
         public void RemoveItem()

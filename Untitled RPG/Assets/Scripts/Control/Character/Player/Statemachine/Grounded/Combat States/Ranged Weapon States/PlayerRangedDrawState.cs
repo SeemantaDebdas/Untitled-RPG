@@ -1,6 +1,7 @@
 using DG.Tweening;
 using RPG.Combat;
 using RPG.Core;
+using RPG.Data;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
@@ -9,11 +10,6 @@ namespace RPG.Control
 {
     public class PlayerRangedDrawState : PlayerBaseState
     {
-        //move this to SO variables later
-        [Header("ANIMATION")]
-        [SerializeField] ScriptableString strafeAnimation;
-        [SerializeField] ScriptableString moveXParam, moveYParam;
-
         [Header("SHOOT PARAMS")]
         [SerializeField, Range(0.0f, 50.0f)] float maxForce;
         [SerializeField] float speedToReachMaxForce = 5f;
@@ -47,7 +43,7 @@ namespace RPG.Control
             animator.SetLayerWeightOverTime(0, 0.1f, rangedWeaponData.AnimationLayer);
             animator.SetLayerWeightOverTime(1, 0.1f, rangedWeaponData.DrawFireAnimationLayer);
             animator.PlayAnimation(rangedWeaponData.DrawAnimation, 0.1f, rangedWeaponData.DrawFireAnimationLayer);
-            animator.PlayAnimation(strafeAnimation.Value);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Strafe);
             
             trajectory.EnableVisual();
 
@@ -80,8 +76,8 @@ namespace RPG.Control
 
         private void HandleAnimation()
         {
-            animator.SetFloat(moveXParam.Value, input.MoveInput.x, 0.1f, Time.deltaTime);
-            animator.SetFloat(moveYParam.Value, input.MoveInput.y, 0.1f, Time.deltaTime);
+            animator.SetFloat(CharacterAnimationData.Instance.MoveX, input.MoveInput.x, 0.1f, Time.deltaTime);
+            animator.SetFloat(CharacterAnimationData.Instance.MoveY, input.MoveInput.y, 0.1f, Time.deltaTime);
         }
 
         private void LookAtCenterOfScreen()

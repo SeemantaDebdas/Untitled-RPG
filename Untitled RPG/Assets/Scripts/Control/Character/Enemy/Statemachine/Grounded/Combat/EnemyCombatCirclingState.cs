@@ -1,4 +1,5 @@
 using RPG.Core;
+using RPG.Data;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,7 +17,6 @@ namespace RPG.Control
 
         int circleDirectionMultiplier = 1;
 
-        [SerializeField] string moveXParam, moveYParam;
         [SerializeField] ScriptableString animationName;
 
         Vector3 targetVelocity = Vector3.zero;
@@ -223,8 +223,8 @@ namespace RPG.Control
 
         private void HandleAnimation()
         {
-            animator.SetFloat(moveXParam, circleDirectionMultiplier, 0.085f, Time.deltaTime);
-            animator.SetFloat(moveYParam, context.Transform.InverseTransformDirection(controller.velocity).z, 0.085f, Time.deltaTime);
+            animator.SetFloat(CharacterAnimationData.Instance.MoveX, circleDirectionMultiplier, 0.085f, Time.deltaTime);
+            animator.SetFloat(CharacterAnimationData.Instance.MoveY, context.Transform.InverseTransformDirection(controller.velocity).z, 0.085f, Time.deltaTime);
 
             //if(context.Transform.root.name == "Enemy (1)")
             //    Debug.Log(context.Transform.InverseTransformDirection(controller.velocity));

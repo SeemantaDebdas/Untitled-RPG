@@ -1,12 +1,11 @@
 using RPG.Core;
+using RPG.Data;
 using UnityEngine;
 
 namespace RPG.Control
 {
     public class PlayerFallState : PlayerBaseState
     {
-        [SerializeField] ScriptableString animationName;
-
         Vector3 momentum = Vector3.zero;
         public override void Enter()
         {
@@ -15,7 +14,7 @@ namespace RPG.Control
             momentum = controller.velocity;
             momentum.y = 0f;
 
-            animator.PlayAnimation(animationName.Value);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Fall);
 
             physicsHandler.ResetVerticalVelocity();
         }

@@ -1,5 +1,6 @@
 using RPG.Combat;
 using RPG.Core;
+using RPG.Data;
 using UnityEngine;
 
 namespace RPG.Control
@@ -10,8 +11,6 @@ namespace RPG.Control
         [SerializeField] float speedMultiplier = 0.75f;
         [SerializeField] float rotationSpeed = 6f;
 
-        [SerializeField] ScriptableString moveXParam, moveYParam;
-        
         [SerializeField] ScriptableEnemyList enemiesInAttackList;
         bool isAttacking = false;
 
@@ -26,7 +25,7 @@ namespace RPG.Control
                 AddItem(statemachine);
             }
 
-            animator.SetFloat(moveXParam.Value, 0);
+            animator.SetFloatValueOverTime(CharacterAnimationData.Instance.MoveX, 0);
 
             isAttacking = false;
 
@@ -62,7 +61,7 @@ namespace RPG.Control
                 HandleMovement(speed * speedMultiplier);
                 FaceDirection(CalculateDirection(), rotationSpeed);
 
-                animator.SetFloat(moveYParam.Value, controller.velocity.magnitude);
+                animator.SetFloat(CharacterAnimationData.Instance.MoveY, controller.velocity.magnitude);
             }
             else if(!isAttacking)
             {

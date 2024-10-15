@@ -1,4 +1,5 @@
 using MEC;
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -28,6 +29,8 @@ namespace RPG.Core
 
         List<Transform> validTargets = new();
 
+        public event Action OnValidTargetsModified;
+
 
         private void Start()
         {
@@ -46,7 +49,6 @@ namespace RPG.Core
 
         public Transform GetClosestTarget()
         {
-            Scan();
             if (validTargets == null || validTargets.Count == 0)
             {
                 //Debug.LogWarning(transform.name + "Closest target is null");
@@ -58,7 +60,6 @@ namespace RPG.Core
 
         public List<Transform> GetValidTargets()
         {
-            Scan();
             return validTargets;
         }
 
@@ -94,8 +95,12 @@ namespace RPG.Core
 
                 validTargets.Add(target);
 
+                OnValidTargetsModified?.Invoke();
                 //Debug.Log(target.name + ": Angle Satisfied");
             }
+
+            if (validTargets.Count == 0)
+                OnValidTargetsModified?.Invoke();
         }
 
         void OnDrawGizmosSelected()

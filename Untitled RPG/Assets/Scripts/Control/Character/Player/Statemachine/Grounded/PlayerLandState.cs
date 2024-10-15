@@ -1,12 +1,11 @@
 using RPG.Core;
+using RPG.Data;
 using UnityEngine;
 
 namespace RPG.Control
 {
     public class PlayerLandState : PlayerBaseState
     {
-        [SerializeField] ScriptableString landIdle;
-        [SerializeField] ScriptableString landMove;
         [SerializeField] float baseSpeed = 2f;
 
         string animationName;
@@ -21,11 +20,11 @@ namespace RPG.Control
 
             if (input.MoveInput.magnitude < 0.1f)
             {
-                animationName = landIdle.Value;
+                animationName = CharacterAnimationData.Instance.LandIdle;
             }
             else
             {
-                animationName = landMove.Value;
+                animationName = CharacterAnimationData.Instance.LandMove;
             }
 
             animator.PlayAnimation(animationName, 0.1f);

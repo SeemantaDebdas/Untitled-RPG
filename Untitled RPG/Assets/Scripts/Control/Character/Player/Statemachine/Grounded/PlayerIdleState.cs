@@ -1,11 +1,11 @@
 using UnityEngine;
 using RPG.Core;
+using RPG.Data;
 
 namespace RPG.Control
 {
     public class PlayerIdleState : PlayerBaseState
     {
-        [SerializeField] ScriptableString animationName;
         public override void Initialize(IStatemachine statemachine)
         {
             base.Initialize(statemachine);
@@ -14,7 +14,7 @@ namespace RPG.Control
         public override void Enter()
         {
             base.Enter();
-            animator.PlayAnimation(animationName.Value); 
+            animator.PlayAnimation(CharacterAnimationData.Instance.Idle); 
         }
 
         public override void Tick()

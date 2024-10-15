@@ -1,11 +1,11 @@
 using RPG.Core;
+using RPG.Data;
 using UnityEngine;
 
 namespace RPG.Control
 {
     public class EnemyFallState : EnemyBaseState
     {
-        [SerializeField] string animationName = "Fall";
         [SerializeField] float forwardNudgeForce = 0.1f;
 
         Vector3 momentum = Vector3.zero;
@@ -19,7 +19,7 @@ namespace RPG.Control
             //add a bit of nudge towards character forward dir to push the character off the ledge
             momentum += context.Transform.forward * forwardNudgeForce;
 
-            animator.PlayAnimation(animationName);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Fall);
 
             physicsHandler.ResetVerticalVelocity();
         }

@@ -3,6 +3,7 @@ using MEC;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace RPG.Core
 {
@@ -88,6 +89,14 @@ namespace RPG.Core
             DOVirtual.Float(from, to, time, (v) =>
             {
                 animator.SetLayerWeight(layer, v);
+            });
+        }
+
+        public static void SetFloatValueOverTime(this Animator animator, string parameter, float to, float time = 0.1f)
+        {
+            DOVirtual.Float(animator.GetFloat(parameter), to, time, (v) =>
+            {
+                animator.SetFloat(parameter, v);
             });
         }
 

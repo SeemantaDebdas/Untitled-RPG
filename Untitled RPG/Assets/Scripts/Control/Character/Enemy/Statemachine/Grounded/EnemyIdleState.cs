@@ -1,15 +1,15 @@
 using RPG.Core;
+using RPG.Data;
 using UnityEngine;
 
 namespace RPG.Control
 {
     public class EnemyIdleState : EnemyBaseState
     {
-        [SerializeField] string animationName = "Idle";
         public override void Enter()
         {
             base.Enter();
-            animator.PlayAnimation(animationName);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Idle);
         }
     }
 }

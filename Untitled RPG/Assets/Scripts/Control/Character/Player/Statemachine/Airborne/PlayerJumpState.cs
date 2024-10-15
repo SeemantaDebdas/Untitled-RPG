@@ -1,11 +1,11 @@
 using RPG.Core;
+using RPG.Data;
 using UnityEngine;
 
 namespace RPG.Control
 {
     public class PlayerJumpState : PlayerBaseState
     {
-        [SerializeField] ScriptableString animationName;
         [SerializeField] float rotationSpeed = 20f;
         [SerializeField] float jumpForce = 10f;
 
@@ -20,7 +20,7 @@ namespace RPG.Control
             physicsHandler.ResetVelocity();
             Jump();
 
-            animator.PlayAnimation(animationName.Value);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Jump);
 
         }
 

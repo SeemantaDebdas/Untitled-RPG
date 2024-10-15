@@ -1,11 +1,11 @@
 using RPG.Core;
+using RPG.Data;
 using UnityEngine;
 
 namespace RPG.Control
 {
     public class EnemyPatrolState : EnemyBaseState
     {
-        [SerializeField] string animationName = string.Empty;
         [SerializeField] float speed = 1.0f;
         [SerializeField] float rotationSpeed = 6.0f;
         [SerializeField] float distanceThreshold = 0.1f;
@@ -16,11 +16,14 @@ namespace RPG.Control
 
             //agent.SetDestination(path.GetCurrentWaypoint());
 
-            animator.PlayAnimation(animationName);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Walk);
             navmeshPath = new();
 
             agent.SetDestination(path.GetCurrentWaypoint());
-            
+
+            if (!weaponHandler.CurrentWeapon.IsSheathed)
+                weaponHandler.PlayCurrentWeaponSheathAnimation();
+
         }
 
         public override void Tick()

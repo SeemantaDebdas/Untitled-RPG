@@ -1,11 +1,11 @@
 using RPG.Core;
+using RPG.Data;
 using UnityEngine;
 
 namespace RPG.Control
 {
     public class EnemyChaseState : EnemyBaseState
     {
-        [SerializeField] string animationName = string.Empty;
         [SerializeField] float speed = 1.876f;
         [SerializeField] float speedMultiplier = 0.75f;
         [SerializeField] float rotationSpeed = 6f;
@@ -13,7 +13,7 @@ namespace RPG.Control
         {
             base.Enter();
 
-            animator.PlayAnimation(animationName);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Run);
 
             animator.speed *= speedMultiplier;
         }

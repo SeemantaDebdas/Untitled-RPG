@@ -343,15 +343,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 2044021711135378702}
   transitionList:
-  - Name: 'Weapon Change State '
+  - Name: 'Combat Idle State '
     <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: ceac854d5a21eeb46bd992a35578ac00, type: 2}
-    <ToState>k__BackingField: {fileID: 2802499002626268905}
+    <ToState>k__BackingField: {fileID: 4126949090107757859}
   - Name: 'Idle State '
     <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 126205e68b5cbf5439523762ef52766a, type: 2}
     <ToState>k__BackingField: {fileID: 1814708233858966575}
-  animationName: Run
   speed: 3.61
   speedMultiplier: 0.75
   rotationSpeed: 6
@@ -367,7 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581a2b68adfcab2458faf29e0460c7f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startOnAwake: 0
+  startOnAwake: 1
   <Radius>k__BackingField: 10
   angle: 90
   scanCapacity: 20
@@ -616,7 +615,6 @@ MonoBehaviour:
     <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: b257ae3fa5c3e8b43af7f14e62205adb, type: 2}
     <ToState>k__BackingField: {fileID: 8717531809637358629}
-  animationName: Idle
 --- !u!1 &2865238131048693903
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,7 +873,6 @@ MonoBehaviour:
     <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 3aace035d031125409dd34d710741cbb, type: 2}
     <ToState>k__BackingField: {fileID: 1814708233858966575}
-  animationName: Walk
   speed: 1.17
   rotationSpeed: 6
   distanceThreshold: 0.1
@@ -928,7 +925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581a2b68adfcab2458faf29e0460c7f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startOnAwake: 0
+  startOnAwake: 1
   <Radius>k__BackingField: 5
   angle: 180
   scanCapacity: 20
@@ -1017,8 +1014,6 @@ MonoBehaviour:
   speed: 1.876
   speedMultiplier: 0.75
   rotationSpeed: 6
-  moveXParam: {fileID: 11400000, guid: 7cb91ea1981a1bf4c96e9bba2ed7c4b0, type: 2}
-  moveYParam: {fileID: 11400000, guid: 8ae49fbee87a3284882850d1cd10c9df, type: 2}
   enemiesInAttackList: {fileID: 11400000, guid: 94a17ac9394427d4e9231606716b035d,
     type: 2}
 --- !u!1 &6277861396595142024
@@ -1082,8 +1077,6 @@ MonoBehaviour:
   targetDistanceOffsetFromPlayer: 0.1
   minimumDistanceFromPlayer: 2
   velocityReachTime: 5
-  moveXParam: moveX
-  moveYParam: moveY
   animationName: {fileID: 11400000, guid: d9f88324a8f7d4f46850d5958cfdb411, type: 2}
 --- !u!114 &6952609400451423955
 MonoBehaviour:
@@ -1161,7 +1154,6 @@ MonoBehaviour:
     <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: d6bb5917fcd343341afe7ea61f3ebe6b, type: 2}
     <ToState>k__BackingField: {fileID: 6037762103591839111}
-  animationName: Fall
   forwardNudgeForce: 2
 --- !u!1 &6883885087511836520
 GameObject:
@@ -1213,9 +1205,6 @@ MonoBehaviour:
     <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: abc4a6508d5bfa54c8dceb0dbd0181ad, type: 2}
     <ToState>k__BackingField: {fileID: 861423058606527470}
-  animationName: Strafe
-  moveXParam: moveX
-  moveYParam: moveY
   enemiesInCombatQueue: {fileID: 11400000, guid: 9327401d5771fe3409106b9b3fc252a0,
     type: 2}
 --- !u!1 &7296316604369481914
@@ -1268,7 +1257,6 @@ MonoBehaviour:
     <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 3927125837fb9be499377734871bd3f2, type: 2}
     <ToState>k__BackingField: {fileID: 8717531809637358629}
-  animationName: LandIdle
 --- !u!1 &8664447941167344334
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using DG.Tweening;
 using RPG.Core;
+using RPG.Data;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,10 +22,6 @@ namespace RPG.Combat
         //[SerializeField] WeaponSO defaultWeapon = null;
         [SerializeField] float timeBetweenAttacks = 2f;
         [SerializeField] List<WeaponSO> weaponList;
-
-        [Space]
-        [SerializeField] ScriptableString sheathAnimation;
-        [SerializeField] ScriptableString unsheathAnimation;
 
         Dictionary<WeaponSO, Weapon> weaponCache = new();
         public Weapon CurrentWeapon { get; private set; } = null;
@@ -168,9 +165,12 @@ namespace RPG.Combat
             if (!CurrentWeapon.IsSheathed)
                 return;
 
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName(CharacterAnimationData.Instance.Unsheath))
+                return;
+
             WeaponSO currentWeaponData = CurrentWeapon.WeaponData;
             animator.SetLayerWeightOverTime(1, layer: currentWeaponData.AnimationLayer);
-            animator.PlayAnimation(unsheathAnimation.Value, layer: currentWeaponData.AnimationLayer);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Unsheath, layer: currentWeaponData.AnimationLayer);
         }
 
         public void PlayCurrentWeaponSheathAnimation()
@@ -183,7 +183,10 @@ namespace RPG.Combat
             if (weapon.IsSheathed) 
                 return;
 
-            animator.PlayAnimation(sheathAnimation.Value, layer: weapon.WeaponData.AnimationLayer,
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName(CharacterAnimationData.Instance.Sheath))
+                return;
+
+            animator.PlayAnimation(CharacterAnimationData.Instance.Sheath, layer: weapon.WeaponData.AnimationLayer,
                                     onAnimationEnd: () =>
                                     {
                                         animator.SetLayerWeightOverTime(0, layer: weapon.WeaponData.AnimationLayer);

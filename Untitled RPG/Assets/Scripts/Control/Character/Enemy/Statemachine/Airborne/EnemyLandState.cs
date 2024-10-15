@@ -1,17 +1,16 @@
 using RPG.Core;
+using RPG.Data;
 using UnityEngine;
 
 namespace RPG.Control
 {
     public class EnemyLandState : EnemyBaseState
     {
-        [SerializeField] string animationName = "IdleLand";
-
         public override void Enter()
         {
             base.Enter();
 
-            animator.PlayAnimation(animationName, 0.1f);
+            animator.PlayAnimation(CharacterAnimationData.Instance.LandIdle, 0.1f);
         }
 
         public override void Exit()
