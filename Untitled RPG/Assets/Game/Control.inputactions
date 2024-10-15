@@ -72,7 +72,7 @@
                     "name": "ChangeWeapon",
                     "type": "Value",
                     "id": "3350e8c7-9214-48d1-94e5-d4f83b8aec41",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -315,7 +315,7 @@
                     "id": "df4f213b-b61e-4caf-9f2b-1957e89db2bd",
                     "path": "<Mouse>/scroll",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "groups": "Keyboard & Mouse",
                     "action": "ChangeWeapon",
                     "isComposite": false,

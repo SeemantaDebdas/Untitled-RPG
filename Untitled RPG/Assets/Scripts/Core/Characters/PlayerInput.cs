@@ -100,7 +100,22 @@ namespace RPG.Core
             if (!context.performed)
                 return;
 
-            OnChangeWeaponPerformed?.Invoke(context.ReadValue<float>());
+            float input = 0;
+
+            if(context.control.device is Mouse)
+            {
+                Debug.Log("True Mouse");
+                input = context.ReadValue<Vector2>().y;
+            }
+            else if(context.control.device is Gamepad)
+            {
+                Debug.Log("True Gamepad");
+                input = context.ReadValue<float>();
+            }
+
+            Debug.Log(input);
+
+            OnChangeWeaponPerformed?.Invoke(input);
         }
     }
 }

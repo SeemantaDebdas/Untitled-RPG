@@ -1851,6 +1851,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onAttack:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7039371323966024518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1871,6 +1874,8 @@ MonoBehaviour:
   weaponList:
   - {fileID: 11400000, guid: ba2611a39854ee445b42a5950acdb845, type: 2}
   - {fileID: 11400000, guid: d66d5975822e66b48ad30f8c96b223fe, type: 2}
+  sheathAnimation: {fileID: 11400000, guid: 3e3afc39495b6084582df81bc548ef63, type: 2}
+  unsheathAnimation: {fileID: 11400000, guid: 8f03e0e5ad27b804d8dc90d8b1463b77, type: 2}
 --- !u!114 &8915323458793073475
 MonoBehaviour:
   m_ObjectHideFlags: 0

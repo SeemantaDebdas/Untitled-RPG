@@ -152,24 +152,22 @@ namespace RPG.Combat
             PreviousWeapon = CurrentWeapon;
             CurrentWeapon = weapon;
 
-            //PlaySheathAndUnsheathAnimation();
-        }
+            if(PreviousWeapon == null)
+                return;
 
-        public void PlaySheathAndUnsheathAnimation()
-        {
-            WeaponSO previousWeaponData, currentWeaponData;
+            if (PreviousWeapon.IsSheathed)
+                return;
 
-            if (PreviousWeapon != null)
-            {
-                previousWeaponData = PreviousWeapon.WeaponData;
-                Debug.Log("Previous Weapon: " + previousWeaponData.name);
-                //sheath the previous weapon
-                animator.PlayAnimation(sheathAnimation.Value, layer: previousWeaponData.AnimationLayer);
-            }
+            PlayWeaponSheathAnimation(PreviousWeapon);
+
+            PlayCurrentWeaponUnsheathAnimation();
         }
 
         public void PlayCurrentWeaponUnsheathAnimation()
         {
+            if (!CurrentWeapon.IsSheathed)
+                return;
+
             WeaponSO currentWeaponData = CurrentWeapon.WeaponData;
             animator.SetLayerWeightOverTime(1, layer: currentWeaponData.AnimationLayer);
             animator.PlayAnimation(unsheathAnimation.Value, layer: currentWeaponData.AnimationLayer);
@@ -177,12 +175,20 @@ namespace RPG.Combat
 
         public void PlayCurrentWeaponSheathAnimation()
         {
-            animator.PlayAnimation(sheathAnimation.Value, layer: CurrentWeapon.WeaponData.AnimationLayer, 
-                onAnimationEnd: () => 
-                {
-                    animator.SetLayerWeightOverTime(0, layer: CurrentWeapon.WeaponData.AnimationLayer);
-                }, 
-                triggerTime: 0.9f);
+            PlayWeaponSheathAnimation(CurrentWeapon);
+        }
+
+        public void PlayWeaponSheathAnimation(Weapon weapon)
+        {
+            if (weapon.IsSheathed) 
+                return;
+
+            animator.PlayAnimation(sheathAnimation.Value, layer: weapon.WeaponData.AnimationLayer,
+                                    onAnimationEnd: () =>
+                                    {
+                                        animator.SetLayerWeightOverTime(0, layer: weapon.WeaponData.AnimationLayer);
+                                    },
+                                    triggerTime: 0.9f);
         }
 
         Transform GetEquipTransform (WeaponSO weapon)
