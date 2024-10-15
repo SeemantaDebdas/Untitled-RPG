@@ -65,13 +65,22 @@ namespace RPG.Control
             #endregion
 
 
-            if (agent.hasPath)
+            // Check if the agent has a valid path and the path status is complete
+            if (agent.hasPath && agent.pathStatus == NavMeshPathStatus.PathComplete)
             {
                 moveDirection = (agent.steeringTarget - calculateStartPos).normalized;
             }
+            else if (agent.pathStatus == NavMeshPathStatus.PathPartial)
+            {
+                Debug.LogWarning("Path is partial. Agent can't fully reach the target.");
+            }
+            else if (agent.pathStatus == NavMeshPathStatus.PathInvalid)
+            {
+                Debug.LogWarning("Invalid path. No path found or unreachable target.");
+            }
             else
             {
-                Debug.Log("No Path Found");
+                Debug.LogWarning("Agent has no valid path. Still calculating or destination not set.");
             }
 
 

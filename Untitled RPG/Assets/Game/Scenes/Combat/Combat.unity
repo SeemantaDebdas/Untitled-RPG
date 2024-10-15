@@ -400,6 +400,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7985200937736350676, guid: ef3aafccbb9364c41a9b571f26b52f28,
+        type: 3}
+      propertyPath: m_ChildCameras.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -857,7 +862,7 @@ PrefabInstance:
     - target: {fileID: 103250625346758030, guid: abbcf79579ce85b4fbb070da9774eb18,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6637542219373357983, guid: abbcf79579ce85b4fbb070da9774eb18,
         type: 3}
@@ -935,7 +940,7 @@ PrefabInstance:
     - target: {fileID: 103250625346758030, guid: abbcf79579ce85b4fbb070da9774eb18,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6637542219373357983, guid: abbcf79579ce85b4fbb070da9774eb18,
         type: 3}
@@ -1013,7 +1018,7 @@ PrefabInstance:
     - target: {fileID: 103250625346758030, guid: abbcf79579ce85b4fbb070da9774eb18,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6637542219373357983, guid: abbcf79579ce85b4fbb070da9774eb18,
         type: 3}

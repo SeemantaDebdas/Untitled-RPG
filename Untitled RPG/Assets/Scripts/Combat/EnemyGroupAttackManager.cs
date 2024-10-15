@@ -23,7 +23,12 @@ namespace RPG.Combat
             if (enemiesInCombatQueue.Value.Count == 0)
                 return;
 
+
             CombatHandler enemy = enemiesInCombatQueue.FirstElement;
+
+            Debug.Assert(enemy != null, "Enemy is null");
+            Debug.Log(enemy.name);
+
             enemy.Attack();
 
             ResetNotInAttackTimer();
@@ -35,9 +40,11 @@ namespace RPG.Combat
                 return;
 
             if(enemiesInAttackList.Value.Count == 0)
-            { 
+            {
                 notInAttackTimer.Tick(Time.deltaTime);
             }
+
+            //Debug.Log("Not in attack timer: " + notInAttackTimer.RemainingSeconds);
 
             if(notInAttackTimer.IsOver())
             {

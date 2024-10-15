@@ -36,6 +36,8 @@ namespace RPG.Core
             {
                 Debug.LogWarning($"{caller.name} is not authorized to modify this list!");
             }
+
+            //Debug.Log(value.Count);
         }
 
         public void RemoveLastItem(UnityEngine.Object caller)

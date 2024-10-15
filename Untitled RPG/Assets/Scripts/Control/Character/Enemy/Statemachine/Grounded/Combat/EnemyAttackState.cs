@@ -18,7 +18,9 @@ namespace RPG.Control
         {
             base.Enter();
 
-            agent.ResetPath();  
+            //agent.ResetPath();
+            //
+            Debug.Log("Entered Enemy Attack State", context.Transform);
 
             if(enemiesInAttackList != null )
             {
@@ -42,12 +44,17 @@ namespace RPG.Control
             }
 
             animator.SetLayerWeightOverTime(0, layer: 4);
+            
+            //agent.ResetPath();
         }
 
         public override void Tick()
         {
             if (EvaluateTransitions())
+            {
+                Debug.Log("Coniditons not met", context.Transform);
                 return;
+            }
 
             Transform closestTarget = attackFOV.GetClosestTarget();
 
