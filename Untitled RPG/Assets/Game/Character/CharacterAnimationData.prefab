@@ -44,15 +44,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2d1a4d7f005284fbac8f16b569aa1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Idle>k__BackingField: Idle
-  <Walk>k__BackingField: Walk
-  <Run>k__BackingField: Run
-  <Jump>k__BackingField: Jump
-  <Fall>k__BackingField: Fall
-  <Strafe>k__BackingField: Strafe
-  <LandIdle>k__BackingField: LandIdle
-  <LandMove>k__BackingField: LandMove
-  <Sheath>k__BackingField: SheathWeapon
-  <Unsheath>k__BackingField: DrawWeapon
-  <MoveX>k__BackingField: moveX
-  <MoveY>k__BackingField: moveY
+  <Locomotion>k__BackingField:
+    <Idle>k__BackingField: Idle
+    <Walk>k__BackingField: Walk
+    <Run>k__BackingField: Run
+    <Jump>k__BackingField: Jump
+    <Fall>k__BackingField: Fall
+    <Strafe>k__BackingField: Strafe
+    <LandIdle>k__BackingField: LandIdle
+    <LandMove>k__BackingField: LandMove
+    <MoveX>k__BackingField: moveX
+    <MoveY>k__BackingField: moveY
+  <Combat>k__BackingField:
+    <Sheath>k__BackingField: SheathWeapon
+    <Unsheath>k__BackingField: DrawWeapon
+  <Hurt>k__BackingField:
+    <Left>k__BackingField: SwordLeft
+    <Right>k__BackingField: SwordRight
+    <Front>k__BackingField: SwordFront
+    <Back>k__BackingField: SwordBack
+    <Death>k__BackingField: Death

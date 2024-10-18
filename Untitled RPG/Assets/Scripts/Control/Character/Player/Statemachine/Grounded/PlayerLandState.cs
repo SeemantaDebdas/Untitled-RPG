@@ -20,11 +20,11 @@ namespace RPG.Control
 
             if (input.MoveInput.magnitude < 0.1f)
             {
-                animationName = CharacterAnimationData.Instance.LandIdle;
+                animationName = CharacterAnimationData.Instance.Locomotion.LandIdle;
             }
             else
             {
-                animationName = CharacterAnimationData.Instance.LandMove;
+                animationName = CharacterAnimationData.Instance.Locomotion.LandMove;
             }
 
             animator.PlayAnimation(animationName, 0.1f);

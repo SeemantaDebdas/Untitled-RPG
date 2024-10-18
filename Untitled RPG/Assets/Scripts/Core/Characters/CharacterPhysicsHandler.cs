@@ -44,12 +44,8 @@ namespace RPG.Core
         {
             addedForce = Vector3.SmoothDamp(addedForce, Vector3.zero, ref dampingVelocity, drag * Time.deltaTime);
 
-            debugText = Movement.magnitude.ToString();
+            debugText = addedForce.ToString();
 
-            if (agent != null && addedForce == Vector3.zero)
-            {
-                agent.enabled = true;
-            }
 
             if (IsGrounded())
             { 
@@ -68,11 +64,8 @@ namespace RPG.Core
 
         public void AddForce(Vector3 force)
         {
+            Debug.Log("Called: " + force);
             addedForce = force;
-            if (agent != null)
-            {
-                agent.enabled = false;
-            }
         }
 
         public void ResetVelocity()

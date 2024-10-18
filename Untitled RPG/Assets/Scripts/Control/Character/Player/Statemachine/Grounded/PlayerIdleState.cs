@@ -14,7 +14,7 @@ namespace RPG.Control
         public override void Enter()
         {
             base.Enter();
-            animator.PlayAnimation(CharacterAnimationData.Instance.Idle); 
+            animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Idle); 
         }
 
         public override void Tick()

@@ -20,7 +20,7 @@ namespace RPG.Control
             physicsHandler.ResetVelocity();
             Jump();
 
-            animator.PlayAnimation(CharacterAnimationData.Instance.Jump);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Jump);
 
         }
 

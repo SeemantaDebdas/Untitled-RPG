@@ -165,12 +165,12 @@ namespace RPG.Combat
             if (!CurrentWeapon.IsSheathed)
                 return;
 
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName(CharacterAnimationData.Instance.Unsheath))
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName(CharacterAnimationData.Instance.Combat.Unsheath))
                 return;
 
             WeaponSO currentWeaponData = CurrentWeapon.WeaponData;
             animator.SetLayerWeightOverTime(1, layer: currentWeaponData.AnimationLayer);
-            animator.PlayAnimation(CharacterAnimationData.Instance.Unsheath, layer: currentWeaponData.AnimationLayer);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Combat.Unsheath, layer: currentWeaponData.AnimationLayer);
         }
 
         public void PlayCurrentWeaponSheathAnimation()
@@ -183,10 +183,10 @@ namespace RPG.Combat
             if (weapon.IsSheathed) 
                 return;
 
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName(CharacterAnimationData.Instance.Sheath))
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName(CharacterAnimationData.Instance.Combat.Sheath))
                 return;
 
-            animator.PlayAnimation(CharacterAnimationData.Instance.Sheath, layer: weapon.WeaponData.AnimationLayer,
+            animator.PlayAnimation(CharacterAnimationData.Instance.Combat.Sheath, layer: weapon.WeaponData.AnimationLayer,
                                     onAnimationEnd: () =>
                                     {
                                         animator.SetLayerWeightOverTime(0, layer: weapon.WeaponData.AnimationLayer);

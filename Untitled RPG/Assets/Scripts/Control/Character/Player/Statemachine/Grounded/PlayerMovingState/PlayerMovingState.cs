@@ -49,7 +49,7 @@ namespace RPG.Control
             {
                 baseSpeed = walkBaseSpeed;
                 rotationSpeed = walkRotationSpeed;
-                animationName = CharacterAnimationData.Instance.Walk;
+                animationName = CharacterAnimationData.Instance.Locomotion.Walk;
 
                 return true;
             }
@@ -58,7 +58,7 @@ namespace RPG.Control
             {
                 baseSpeed = runBaseSpeed;
                 rotationSpeed = runRotationSpeed;
-                animationName = CharacterAnimationData.Instance.Run;
+                animationName = CharacterAnimationData.Instance.Locomotion.Run;
 
                 return true;
             }

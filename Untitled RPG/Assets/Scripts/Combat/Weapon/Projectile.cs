@@ -35,7 +35,7 @@ namespace RPG.Combat
             if (other.TryGetComponent(out IDamageable damageable))
             {
                 Vector3 directionOfAttack = (other.transform.position - other.ClosestPoint(transform.position)).normalized;
-                damageable.Damage(new(10, directionOfAttack));
+                damageable.Damage(new(transform, 10, directionOfAttack));
             }
 
             transform.position += transform.forward * 0.25f;

@@ -16,7 +16,7 @@ namespace RPG.Control
 
             //agent.SetDestination(path.GetCurrentWaypoint());
 
-            animator.PlayAnimation(CharacterAnimationData.Instance.Walk);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Walk);
             navmeshPath = new();
 
             agent.SetDestination(path.GetCurrentWaypoint());

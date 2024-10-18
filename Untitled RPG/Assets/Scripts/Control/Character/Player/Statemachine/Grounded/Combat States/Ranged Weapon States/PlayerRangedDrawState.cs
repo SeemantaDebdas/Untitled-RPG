@@ -43,7 +43,7 @@ namespace RPG.Control
             animator.SetLayerWeightOverTime(0, 0.1f, rangedWeaponData.AnimationLayer);
             animator.SetLayerWeightOverTime(1, 0.1f, rangedWeaponData.DrawFireAnimationLayer);
             animator.PlayAnimation(rangedWeaponData.DrawAnimation, 0.1f, rangedWeaponData.DrawFireAnimationLayer);
-            animator.PlayAnimation(CharacterAnimationData.Instance.Strafe);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Strafe);
             
             trajectory.EnableVisual();
 
@@ -76,8 +76,8 @@ namespace RPG.Control
 
         private void HandleAnimation()
         {
-            animator.SetFloat(CharacterAnimationData.Instance.MoveX, input.MoveInput.x, 0.1f, Time.deltaTime);
-            animator.SetFloat(CharacterAnimationData.Instance.MoveY, input.MoveInput.y, 0.1f, Time.deltaTime);
+            animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveX, input.MoveInput.x, 0.1f, Time.deltaTime);
+            animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveY, input.MoveInput.y, 0.1f, Time.deltaTime);
         }
 
         private void LookAtCenterOfScreen()

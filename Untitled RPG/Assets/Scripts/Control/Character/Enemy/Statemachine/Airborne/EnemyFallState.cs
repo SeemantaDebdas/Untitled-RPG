@@ -19,7 +19,7 @@ namespace RPG.Control
             //add a bit of nudge towards character forward dir to push the character off the ledge
             momentum += context.Transform.forward * forwardNudgeForce;
 
-            animator.PlayAnimation(CharacterAnimationData.Instance.Fall);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Fall);
 
             physicsHandler.ResetVerticalVelocity();
         }

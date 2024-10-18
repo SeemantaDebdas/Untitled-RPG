@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invert: 0
   animationTag: Attack
-  normalizedTimeThreshold: 0.9
+  normalizedTimeThreshold: 0.85
   layerIndex: 4

@@ -10,7 +10,7 @@ namespace RPG.Control
         {
             base.Enter();
 
-            animator.PlayAnimation(CharacterAnimationData.Instance.LandIdle, 0.1f);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.LandIdle, 0.1f);
         }
 
         public override void Exit()

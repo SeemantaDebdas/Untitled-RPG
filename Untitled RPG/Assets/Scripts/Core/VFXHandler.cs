@@ -12,6 +12,12 @@ namespace RPG.Core
             Destroy(vfxPrefabSpawn, timeTillDestroy);
         }
 
+        public void PlayVFX(GameObject vfxPrefab)
+        {
+            GameObject vfxPrefabSpawn = Instantiate(vfxPrefab, transform);
+            Destroy(vfxPrefabSpawn, 1f);
+        }
+
 
         public void PlayVFX(GameObject vfxPrefab, float timeTillDestroy)
         {

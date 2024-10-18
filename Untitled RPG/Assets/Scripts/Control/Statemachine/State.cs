@@ -55,7 +55,7 @@ namespace RPG.Control
         {
             if (transitionList == null || transitionList.Count < 1)
             {
-                Debug.Log("Transition List is null or empty");
+                //Debug.Log("Transition List is null or empty");
                 return;
             }
 

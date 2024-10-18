@@ -27,7 +27,7 @@ namespace RPG.Control
                 AddItem(statemachine);
             }
 
-            animator.SetFloatValueOverTime(CharacterAnimationData.Instance.MoveX, 0);
+            animator.SetFloatValueOverTime(CharacterAnimationData.Instance.Locomotion.MoveX, 0);
 
             isAttacking = false;
 
@@ -68,7 +68,7 @@ namespace RPG.Control
                 HandleMovement(speed * speedMultiplier);
                 FaceDirection(CalculateDirection(), rotationSpeed);
 
-                animator.SetFloat(CharacterAnimationData.Instance.MoveY, controller.velocity.magnitude);
+                animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveY, controller.velocity.magnitude);
             }
             else if(!isAttacking)
             {

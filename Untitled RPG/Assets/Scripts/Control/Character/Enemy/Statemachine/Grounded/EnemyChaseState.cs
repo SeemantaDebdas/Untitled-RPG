@@ -13,7 +13,7 @@ namespace RPG.Control
         {
             base.Enter();
 
-            animator.PlayAnimation(CharacterAnimationData.Instance.Run);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Run);
 
             animator.speed *= speedMultiplier;
         }

@@ -14,7 +14,7 @@ namespace RPG.Control
             momentum = controller.velocity;
             momentum.y = 0f;
 
-            animator.PlayAnimation(CharacterAnimationData.Instance.Fall);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Fall);
 
             physicsHandler.ResetVerticalVelocity();
         }

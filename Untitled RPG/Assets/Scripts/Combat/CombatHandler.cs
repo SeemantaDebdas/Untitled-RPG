@@ -11,9 +11,9 @@ namespace RPG.Combat
 
         //have a list of attacks and calculate stats of player
         //then handle the hit
-        public void HandleHit(IDamageable damageable, Vector3 attackDirection)
+        public void HandleHit(IDamageable damageable, DamageData damageData)
         {
-            damageable.Damage(new DamageData(10, attackDirection));
+            damageable.Damage(damageData);
             onHit?.Invoke();
         }
 

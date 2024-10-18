@@ -16,7 +16,7 @@ MonoBehaviour:
   <ComboTime>k__BackingField: 0.9
   <Force>k__BackingField: 0
   <VFXDataList>k__BackingField:
-  - VFXPrefab: {fileID: 8077277601010179374, guid: 07503f672c4675649b6af3ed2f5208ed,
+  - VFXPrefab: {fileID: 8228749912201023271, guid: d685918de6f95064081a4dbdc203147e,
       type: 3}
     VFXTime: 0.5
   <ColliderEnableTime>k__BackingField: 0.3

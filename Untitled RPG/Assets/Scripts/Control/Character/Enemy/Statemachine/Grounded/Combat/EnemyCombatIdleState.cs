@@ -14,7 +14,7 @@ namespace RPG.Control
         {
             base.Enter();
 
-            animator.PlayAnimation(CharacterAnimationData.Instance.Strafe);
+            animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Strafe);
 
             AddItem(combatHandler);
 
@@ -23,14 +23,21 @@ namespace RPG.Control
                 if (weaponHandler.CurrentWeapon.IsSheathed)
                     weaponHandler.PlayCurrentWeaponUnsheathAnimation();
             }
+
+            agent.ResetPath();
         }
 
         public override void Tick()
         {
-            base.Tick();
+            if(EvaluateTransitions())
+            {
+                return;
+            }
 
-            animator.SetFloat(CharacterAnimationData.Instance.MoveX, 0, 0.085f, Time.deltaTime);
-            animator.SetFloat(CharacterAnimationData.Instance.MoveY, 0, 0.085f, Time.deltaTime);
+            agent.SetDestination(attackFOV.GetClosestTarget().position);
+
+            animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveX, 0, 0.085f, Time.deltaTime);
+            animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveY, 0, 0.085f, Time.deltaTime);
         }
 
         public void RemoveItem()

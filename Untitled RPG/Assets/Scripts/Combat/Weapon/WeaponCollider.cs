@@ -46,12 +46,17 @@ namespace RPG.Combat
                 return;
             }
 
-            Debug.Log(other.ClosestPoint(transform.position));
-            Vector3 directionOfAttack = (other.transform.position - other.ClosestPoint(transform.position)).normalized;
+            //Debug.Log(other.ClosestPoint(transform.position));
+            //Vector3 directionOfAttack = (other.transform.position - other.ClosestPointOnBounds(transform.position));
+            Vector3 attackDirection = (other.transform.position - collider.ClosestPoint(other.transform.position));
+            attackDirection.y = 0;
+            attackDirection.Normalize();
 
             damageables.Add(damageable);
 
-            combatHandler.HandleHit(damageable, directionOfAttack);
+
+            DamageData damageData = new(combatHandler.transform, 10, attackDirection);
+            combatHandler.HandleHit(damageable, damageData);
 
             onDamageDealt?.Invoke(other.ClosestPoint(transform.position));
         }

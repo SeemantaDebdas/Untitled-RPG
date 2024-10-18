@@ -19,6 +19,8 @@ GameObject:
   - component: {fileID: 3613497620222515621}
   - component: {fileID: 4484557846610931427}
   - component: {fileID: 2059894840670662552}
+  - component: {fileID: 3827605960521145402}
+  - component: {fileID: 964673933202338252}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -262,6 +264,75 @@ MonoBehaviour:
   timeBetweenAttacks: 2
   weaponList:
   - {fileID: 11400000, guid: ba2611a39854ee445b42a5950acdb845, type: 2}
+--- !u!114 &3827605960521145402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103250625346758030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462b31fccad42ba46a5ca0d60d41a7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MaxHealth>k__BackingField: 100
+  invulnerabilityTime: 1
+  onDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2319604292471554566}
+        m_TargetAssemblyTypeName: RPG.EnemyHurtState, Assembly-CSharp
+        m_MethodName: SetDamageData
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 919901273159198512}
+        m_TargetAssemblyTypeName: RPG.Control.Statemachine, Assembly-CSharp
+        m_MethodName: SwitchState
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2319604292471554566}
+          m_ObjectArgumentAssemblyTypeName: RPG.Control.State, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 919901273159198512}
+        m_TargetAssemblyTypeName: RPG.Control.Statemachine, Assembly-CSharp
+        m_MethodName: SwitchState
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4083224016017417026}
+          m_ObjectArgumentAssemblyTypeName: RPG.Control.State, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &964673933202338252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103250625346758030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34aac40da3691f641a724435ce33e430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultVFXPrefab: {fileID: 0}
 --- !u!1 &310006802397265109
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +580,7 @@ Transform:
   - {fileID: 1517706386721573487}
   - {fileID: 4684293417608307352}
   - {fileID: 3415256149357708854}
+  - {fileID: 9204817599457670940}
   - {fileID: 2954158602151209309}
   m_Father: {fileID: 3663916257321698498}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -561,6 +633,79 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3132943855806333005}
   m_LocalEulerAnglesHint: {x: -12.849, y: -62.274, z: 155.522}
+--- !u!1 &1921738552500600369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9204817599457670940}
+  - component: {fileID: 4083224016017417026}
+  m_Layer: 0
+  m_Name: Death State
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9204817599457670940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921738552500600369}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1083173625627944923}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4083224016017417026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921738552500600369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6227f47020a43cc489f53948c2ab2aac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 0}
+  transitionList: []
+  onEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6637542219373357983}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4400938563883051380}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2057045322045852543
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,24 +856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c55c44a555d6b48b9d546ec5ec26b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventResponseList:
-  - inspectorName: EnemySelectedForAttackEvent
-    scriptableEvent: {fileID: 11400000, guid: 7c05cc101b227e44d9b63fbac62da450, type: 2}
-    response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 919901273159198512}
-          m_TargetAssemblyTypeName: RPG.Control.Statemachine, Assembly-CSharp
-          m_MethodName: SwitchState
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 6232828292560028574}
-            m_ObjectArgumentAssemblyTypeName: RPG.Control.State, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  eventResponseList: []
 --- !u!1 &4519079119369998598
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +1039,7 @@ Transform:
   - {fileID: 3067007441327291640}
   - {fileID: 1712633385610100299}
   - {fileID: 6069901732427263312}
+  - {fileID: 7637666926187165055}
   m_Father: {fileID: 1083173625627944923}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1703295120105364839
@@ -1005,7 +1134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9642cbe54e640c94592b1e4f441c5f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commonTransitions: {fileID: 0}
+  commonTransitions: {fileID: 825476812841664522}
   transitionList:
   - Name: 'Combat Circling State '
     <ConditionList>k__BackingField:
@@ -1257,6 +1386,73 @@ MonoBehaviour:
     <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 3927125837fb9be499377734871bd3f2, type: 2}
     <ToState>k__BackingField: {fileID: 8717531809637358629}
+--- !u!1 &7586908631845769301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7637666926187165055}
+  - component: {fileID: 2319604292471554566}
+  m_Layer: 0
+  m_Name: Hurt State
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7637666926187165055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7586908631845769301}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2954158602151209309}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2319604292471554566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7586908631845769301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cffbdf38cdbd674cb3c1856b33069d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 0}
+  transitionList:
+  - Name: 'Combat Idle State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 866a8520df29de04b8ff80c5b7120adc, type: 2}
+    <ToState>k__BackingField: {fileID: 4126949090107757859}
+  hurtForceDampMultiplier: 0.25
+  onEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 964673933202338252}
+        m_TargetAssemblyTypeName: RPG.Core.VFXHandler, Assembly-CSharp
+        m_MethodName: PlayVFX
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 5635420580061061637, guid: ecb325e5ba6c460408775b4e938b0b04,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8664447941167344334
 GameObject:
   m_ObjectHideFlags: 0
