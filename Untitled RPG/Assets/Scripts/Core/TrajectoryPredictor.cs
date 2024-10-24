@@ -57,6 +57,8 @@ namespace RPG.Core
                 UpdateLineRender(maxPoints, (i, position)); //Unneccesary to set count here, but not harmful
             }
         }
+
+
         /// <summary>
         /// Allows us to set line count and an induvidual position at the same time
         /// </summary>
@@ -66,6 +68,7 @@ namespace RPG.Core
         {
             trajectoryLine.positionCount = count;
             trajectoryLine.SetPosition(pointPos.point, pointPos.pos);
+            trajectoryLine.positionCount = count; // Add this line
         }
 
         private Vector3 CalculateNewVelocity(Vector3 velocity, float drag, float increment)

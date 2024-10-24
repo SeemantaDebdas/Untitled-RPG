@@ -100,6 +100,15 @@ namespace RPG.Core
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Roll"",
+                    ""type"": ""Button"",
+                    ""id"": ""7bf29822-d333-4ce0-9eae-44bb45afc134"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -344,6 +353,17 @@ namespace RPG.Core
                     ""action"": ""ChangeWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2254dbb3-ae56-4363-8f41-8ab0b7dea54a"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -388,6 +408,7 @@ namespace RPG.Core
             m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
             m_Player_Holster = m_Player.FindAction("Holster", throwIfNotFound: true);
             m_Player_ChangeWeapon = m_Player.FindAction("ChangeWeapon", throwIfNotFound: true);
+            m_Player_Roll = m_Player.FindAction("Roll", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -457,6 +478,7 @@ namespace RPG.Core
         private readonly InputAction m_Player_Attack;
         private readonly InputAction m_Player_Holster;
         private readonly InputAction m_Player_ChangeWeapon;
+        private readonly InputAction m_Player_Roll;
         public struct PlayerActions
         {
             private @Control m_Wrapper;
@@ -469,6 +491,7 @@ namespace RPG.Core
             public InputAction @Attack => m_Wrapper.m_Player_Attack;
             public InputAction @Holster => m_Wrapper.m_Player_Holster;
             public InputAction @ChangeWeapon => m_Wrapper.m_Player_ChangeWeapon;
+            public InputAction @Roll => m_Wrapper.m_Player_Roll;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -502,6 +525,9 @@ namespace RPG.Core
                 @ChangeWeapon.started += instance.OnChangeWeapon;
                 @ChangeWeapon.performed += instance.OnChangeWeapon;
                 @ChangeWeapon.canceled += instance.OnChangeWeapon;
+                @Roll.started += instance.OnRoll;
+                @Roll.performed += instance.OnRoll;
+                @Roll.canceled += instance.OnRoll;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -530,6 +556,9 @@ namespace RPG.Core
                 @ChangeWeapon.started -= instance.OnChangeWeapon;
                 @ChangeWeapon.performed -= instance.OnChangeWeapon;
                 @ChangeWeapon.canceled -= instance.OnChangeWeapon;
+                @Roll.started -= instance.OnRoll;
+                @Roll.performed -= instance.OnRoll;
+                @Roll.canceled -= instance.OnRoll;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -575,6 +604,7 @@ namespace RPG.Core
             void OnAttack(InputAction.CallbackContext context);
             void OnHolster(InputAction.CallbackContext context);
             void OnChangeWeapon(InputAction.CallbackContext context);
+            void OnRoll(InputAction.CallbackContext context);
         }
     }
 }

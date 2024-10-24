@@ -38,7 +38,8 @@ namespace RPG.Combat
                 damageable.Damage(new(transform, 10, directionOfAttack));
             }
 
-            transform.position += transform.forward * 0.25f;
+            transform.position += transform.forward * 0.1f;
+            transform.SetParent(other.transform);
         }
     }
 }

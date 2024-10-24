@@ -324,6 +324,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 8519154542035563957}
     m_Position: {x: 390, y: 780, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 6095539645472253238}
+    m_Position: {x: 610, y: 250, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: -9122432847257241882}
@@ -2369,6 +2372,33 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -6134350730599535110}
+--- !u!1102 &6095539645472253238
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Roll
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 1
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: -3247882011074867165, guid: 4432557de1a86944aa8fabb8e92c3feb,
+    type: 3}
+  m_Tag: Locomotion
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &6167359017241858700
 AnimatorState:
   serializedVersion: 6

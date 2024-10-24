@@ -48,4 +48,4 @@ MonoBehaviour:
     type: 2}
   enemiesInAttackList: {fileID: 11400000, guid: 94a17ac9394427d4e9231606716b035d,
     type: 2}
-  notInAttackTimeRange: {x: 1, y: 4}
+  notInAttackTimeRange: {x: 2, y: 4}

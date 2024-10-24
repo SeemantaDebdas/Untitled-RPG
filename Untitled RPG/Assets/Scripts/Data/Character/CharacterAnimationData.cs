@@ -17,6 +17,7 @@ namespace RPG.Data
         [field: SerializeField] public string Strafe { get; private set; }
         [field: SerializeField] public string LandIdle { get; private set; }
         [field: SerializeField] public string LandMove { get; private set; }
+        [field: SerializeField] public string Roll { get; private set; }
 
         [field: Header("Parameters")]
         [field: SerializeField] public string MoveX { get; private set; }

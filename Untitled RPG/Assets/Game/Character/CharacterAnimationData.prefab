@@ -53,6 +53,7 @@ MonoBehaviour:
     <Strafe>k__BackingField: Strafe
     <LandIdle>k__BackingField: LandIdle
     <LandMove>k__BackingField: LandMove
+    <Roll>k__BackingField: Roll
     <MoveX>k__BackingField: moveX
     <MoveY>k__BackingField: moveY
   <Combat>k__BackingField:

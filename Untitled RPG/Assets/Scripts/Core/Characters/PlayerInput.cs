@@ -117,5 +117,9 @@ namespace RPG.Core
 
             OnChangeWeaponPerformed?.Invoke(input);
         }
+
+        public void OnRoll(InputAction.CallbackContext context)
+        {
+        }
     }
 }
