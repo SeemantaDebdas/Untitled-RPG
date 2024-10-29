@@ -30,16 +30,20 @@ namespace RPG.Combat
         private void OnTriggerEnter(Collider other)
         {
             Rigidbody rb = GetComponent<Rigidbody>();
-            Destroy(rb);
+            
 
             if (other.TryGetComponent(out IDamageable damageable))
             {
                 Vector3 directionOfAttack = (other.transform.position - other.ClosestPoint(transform.position)).normalized;
                 damageable.Damage(new(transform, 10, directionOfAttack));
             }
+            
+            Destroy(gameObject);
 
-            transform.position += transform.forward * 0.1f;
-            transform.SetParent(other.transform);
+            //transform.position += transform.forward * 0.1f;
+            //transform.SetParent(other.transform);
+            
+            
         }
     }
 }

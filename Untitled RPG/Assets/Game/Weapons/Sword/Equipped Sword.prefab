@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3607788372353787870}
   - component: {fileID: 294589274316076963}
   - component: {fileID: 8509593734646441522}
+  - component: {fileID: -7405340246590319603}
   m_Layer: 0
   m_Name: Equipped Sword
   m_TagString: Untagged
@@ -49,7 +50,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDamageDealt:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -7405340246590319603}
+        m_TargetAssemblyTypeName: RPG.Audio.PlayOneShotAudio, Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &294589274316076963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2d93724267483468c05f527e8070d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ShootPoint>k__BackingField: {fileID: 0}
 --- !u!54 &8509593734646441522
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -89,6 +103,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &-7405340246590319603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6810092543480360649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c8e39675292a384aaa716ee1bee32e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip:
+    Guid:
+      Data1: 98035698
+      Data2: 1123829881
+      Data3: 1369422246
+      Data4: -2056284033
+    Path: event:/Weapon/Impact/FleshImpact
 --- !u!1001 &1302229140031645475
 PrefabInstance:
   m_ObjectHideFlags: 0

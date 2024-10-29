@@ -42,10 +42,10 @@ MonoBehaviour:
   Path: ../../../../Audio/Untitled RPG/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638627243341030073
+  lastModified: 638658095336819620
   FileSizes:
   - Name: Desktop
-    Value: 421408
+    Value: 596096
   Exists: 1
 --- !u!114 &-7747347922142713708
 MonoBehaviour:
@@ -89,10 +89,10 @@ MonoBehaviour:
   Path: ../../../../Audio/Untitled RPG/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638627243334772830
+  lastModified: 638658095334894908
   FileSizes:
   - Name: Desktop
-    Value: 1132
+    Value: 1232
   Exists: 1
 --- !u!114 &-4024875109829109287
 MonoBehaviour:
@@ -109,11 +109,38 @@ MonoBehaviour:
   Path: ../../../../Audio/Untitled RPG/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638627243334742811
+  lastModified: 638658095334884898
   FileSizes:
   - Name: Desktop
     Value: 1036
   Exists: 1
+--- !u!114 &-2601596488388370533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemy/SmallEnemyDeath
+  m_EditorClassIdentifier: 
+  Path: event:/Enemy/SmallEnemyDeath
+  Guid:
+    Data1: 393949581
+    Data2: 1220593992
+    Data3: 1886334607
+    Data4: 1686540984
+  Banks:
+  - {fileID: -7986427533762276898}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1050
 --- !u!114 &-2101158442137246207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,13 +215,42 @@ MonoBehaviour:
   - {fileID: 6085692818315370258}
   - {fileID: -7747347922142713708}
   - {fileID: 3712504987578755367}
+  - {fileID: 2680920983097565588}
+  - {fileID: -2601596488388370533}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4024875109829109287}
   StringsBanks:
   - {fileID: -4924478659726053577}
-  cacheTime: 638627243341030073
+  cacheTime: 638658095336819620
   cacheVersion: 131619
+--- !u!114 &2680920983097565588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemy/SmallEnemyGrunt
+  m_EditorClassIdentifier: 
+  Path: event:/Enemy/SmallEnemyGrunt
+  Guid:
+    Data1: 1067028684
+    Data2: 1328725130
+    Data3: 1391590566
+    Data4: -1651444806
+  Banks:
+  - {fileID: -7986427533762276898}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 470
 --- !u!114 &3712504987578755367
 MonoBehaviour:
   m_ObjectHideFlags: 0

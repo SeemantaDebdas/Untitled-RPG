@@ -13,6 +13,8 @@ namespace RPG.Core
         [SerializeField] UnityEvent<DamageData> onDamage, onDeath;
 
         public float CurrentHealth { get; private set; }
+        
+        public bool IsDead => CurrentHealth <= 0;
 
         private void Awake()
         {

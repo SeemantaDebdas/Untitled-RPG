@@ -31,6 +31,7 @@ namespace RPG.Control
                     FieldOfView = GetComponent<FieldOfView>(),
                     WeaponHandler = GetComponent<WeaponHandler>(),
                     CombatHandler = GetComponent<CombatHandler>(),
+                    Health = GetComponent<Health>(),
                     ChaseFOV = chaseFOV,
                     AttackFOV = attackFOV,
                     AvoidanceFOV = avoidanceFOV,
@@ -43,6 +44,14 @@ namespace RPG.Control
         private void Start()
         {
             SwitchState(initialState);
+        }
+
+        public override void SwitchState(State newState)
+        {
+            if (currentState != null && currentState.GetType() == typeof(EnemyDeathState))
+                return;
+            
+            base.SwitchState(newState);
         }
     }
 }

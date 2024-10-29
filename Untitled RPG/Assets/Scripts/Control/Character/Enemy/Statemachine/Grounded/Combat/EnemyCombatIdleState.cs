@@ -8,7 +8,7 @@ namespace RPG.Control
     public class EnemyCombatIdleState : EnemyBaseState, IQueueValueSetter<CombatHandler>
     {
         [SerializeField] ScriptableAttackerQueue enemiesInCombatQueue;
-
+        [SerializeField] float rotationSpeed = 6f;
 
         public override void Enter()
         {
@@ -33,8 +33,10 @@ namespace RPG.Control
             {
                 return;
             }
-
+            
             agent.SetDestination(attackFOV.GetClosestTarget().position);
+            
+            FaceDirection(CalculateDirection(), rotationSpeed);
 
             animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveX, 0, 0.085f, Time.deltaTime);
             animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveY, 0, 0.085f, Time.deltaTime);

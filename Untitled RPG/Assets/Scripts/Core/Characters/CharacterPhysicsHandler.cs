@@ -64,7 +64,7 @@ namespace RPG.Core
 
         public void AddForce(Vector3 force)
         {
-            Debug.Log("Called: " + force);
+            //Debug.Log("Called: " + force);
             addedForce = force;
         }
 

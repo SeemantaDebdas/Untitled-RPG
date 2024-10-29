@@ -38,18 +38,17 @@ namespace RPG.Control
 
         public override void Tick()
         {
+            if(EvaluateTransitions())
+            {
+                return;
+            }
+            
             closestTarget = attackFOV.GetClosestTarget();
 
             Vector3 moveDir = Vector3.Cross(Vector3.up, CalculateDirection());
             targetVelocity = circleDirectionMultiplier * moveSpeed * moveDir;
             targetVelocity.y = 0;
 
-            //base.Tick();
-
-            if(EvaluateTransitions())
-            {
-                return;
-            }
             
             if (!IsObstacleBehind())
             {

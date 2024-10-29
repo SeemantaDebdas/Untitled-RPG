@@ -1,3 +1,4 @@
+using RPG.Combat;
 using RPG.Core;
 using RPG.Data;
 using UnityEngine;
@@ -9,8 +10,9 @@ namespace RPG.Control
     {
         [SerializeField] float hurtForceDampMultiplier = 0.5f;
         [SerializeField] UnityEvent onEnter;
+        [SerializeField] private UnityEvent<int> onHurt;
+        
         DamageData damageData;
-
         
         public void SetDamageData(DamageData damageData) => this.damageData = damageData;
 
@@ -28,6 +30,7 @@ namespace RPG.Control
             physicsHandler.AddForce(GetDamageForce());
 
             onEnter?.Invoke();
+            onHurt?.Invoke(damageData.damage);
             //Debug.Break();
         }
 
@@ -75,8 +78,8 @@ namespace RPG.Control
         Vector3 GetDamageForce()
         {
             Vector3 dirFromAttacker = (context.Transform.position - damageData.instigator.position).normalized;
-
-            return dirFromAttacker * damageData.damage * hurtForceDampMultiplier;
+            return dirFromAttacker * (damageData.damage * hurtForceDampMultiplier);
         }
+        
     }
 }

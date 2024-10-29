@@ -10,19 +10,31 @@ namespace RPG.Control
     {
         [SerializeField] float speed = 1f;
         [SerializeField] float rotationSpeed = 20f;
+
+        private bool hasInput;
+        
         public override void Enter()
         {
             base.Enter();
 
             animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Roll, 0.1f);
+            
+            hasInput = input.MoveInput.magnitude > 0.1f;
         }
 
         public override void Tick()
         {
             base.Tick();
 
-            HandleMovement(speed);
-            FaceDirection(CalculateDirection(), rotationSpeed);
+            if (hasInput)
+            {
+                HandleMovement(speed);
+                FaceDirection(CalculateDirection(), rotationSpeed);
+            }
+            else
+            {
+                Move(context.Transform.forward * GetMovementSpeed(speed));
+            }
         }
     }
 }

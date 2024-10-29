@@ -107,6 +107,9 @@ namespace RPG.Control
 
         protected void SwitchState(State toState)
         {
+            if (toState == null)
+                return;
+            
             statemachine.SwitchState(toState);
         }
     }
