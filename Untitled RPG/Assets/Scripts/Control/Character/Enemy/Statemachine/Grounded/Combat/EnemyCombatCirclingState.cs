@@ -178,7 +178,8 @@ namespace RPG.Control
 
         private void MaintainDistanceFromPlayer()
         {
-            float targetDistanceFromPlayer = attackFOV.Radius - targetDistanceOffsetFromPlayer;
+            float agentPriorityOffset = agent.avoidancePriority * 0.5f;
+            float targetDistanceFromPlayer = attackFOV.Radius - targetDistanceOffsetFromPlayer - agentPriorityOffset;
 
             float distanceFromPlayer = Vector3.Distance(context.Transform.position, closestTarget.position);
 

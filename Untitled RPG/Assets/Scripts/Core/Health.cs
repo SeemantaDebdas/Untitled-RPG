@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,6 +12,9 @@ namespace RPG.Core
         float invulnerabilityTimer = int.MaxValue;
 
         [SerializeField] UnityEvent<DamageData> onDamage, onDeath;
+        
+        public Action<DamageData> OnDamage { get; set; }
+        public Action<DamageData> OnDeath { get; set; }
 
         public float CurrentHealth { get; private set; }
         
@@ -37,11 +41,13 @@ namespace RPG.Core
             if (CurrentHealth <= 0)
             {
                 onDeath?.Invoke(damageData);
+                OnDeath?.Invoke(damageData);
                 this.enabled = false;
                 return;
             }
 
             onDamage?.Invoke(damageData);
+            OnDamage?.Invoke(damageData);
         }
     }
 }

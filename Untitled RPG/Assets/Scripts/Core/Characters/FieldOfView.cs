@@ -12,7 +12,7 @@ namespace RPG.Core
         
         [field:Space]
         [field: SerializeField] public float Radius { get; private set; } = 5f;
-        [SerializeField] float angle = 90f;
+        [SerializeField] float defaultAngle = 90f;
         [SerializeField] int scanCapacity = 20;
         [SerializeField] float delayBetweenScans = 0.2f;
 
@@ -29,11 +29,14 @@ namespace RPG.Core
 
         List<Transform> validTargets = new();
 
+        private float angle;
+
         public event Action OnValidTargetsModified;
 
-
-        private void Start()
+        private void Awake()
         {
+            angle = defaultAngle; 
+            
             if(startOnAwake)
                 Timing.RunCoroutine(ScanRoutine());
         }
@@ -46,6 +49,10 @@ namespace RPG.Core
                 yield return Timing.WaitForSeconds(delayBetweenScans);
             }
         }
+
+        public void SetMaxAngle(float angle) => this.angle = 360f;
+        public void ResetAngle() => angle = defaultAngle;
+        public void SetAngle(float angle) => this.angle = angle;
 
         public Transform GetClosestTarget()
         {
@@ -109,9 +116,9 @@ namespace RPG.Core
 
             Handles.color = gizmoColor;
 
-            Vector3 fromVector = Quaternion.Euler(0, -angle / 2, 0) * transform.forward;
+            Vector3 fromVector = Quaternion.Euler(0, -defaultAngle / 2, 0) * transform.forward;
 
-            Handles.DrawSolidArc(transform.position, Vector3.up, fromVector, angle, Radius);
+            Handles.DrawSolidArc(transform.position, Vector3.up, fromVector, defaultAngle, Radius);
         }
     }
 }
