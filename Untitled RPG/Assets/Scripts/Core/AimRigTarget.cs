@@ -8,7 +8,7 @@ namespace RPG
 
         void Update()
         {
-            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            Ray ray = UnityEngine.Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
             transform.position = ray.GetPoint(distanceFromCamera);
         }

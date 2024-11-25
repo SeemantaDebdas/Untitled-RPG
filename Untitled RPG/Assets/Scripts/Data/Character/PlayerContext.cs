@@ -1,4 +1,5 @@
 using RPG.Core;
+using RPG.DialogueSystem;
 
 namespace RPG.Data
 {
@@ -6,5 +7,6 @@ namespace RPG.Data
     {
         public PlayerInput PlayerInput { get; set; }
         public VFXHandler VFXHandler { get; set; }
+        public PlayerConversant PlayerConversant { get; set; }
     }
 }

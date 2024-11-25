@@ -1,0 +1,119 @@
+#node-border {
+    background-color: rgb(56, 56, 56);
+    border-left-color: rgb(47, 47, 47);
+    border-right-color: rgb(47, 47, 47);
+    border-top-color: rgb(47, 47, 47);
+    border-bottom-color: rgb(47, 47, 47);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    flex-grow: 1;
+    justify-content: flex-start;
+}
+
+#selection-border {
+    border-left-color: rgb(0, 255, 244);
+    border-right-color: rgb(0, 255, 244);
+    border-top-color: rgb(0, 255, 244);
+    border-bottom-color: rgb(0, 255, 244);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+:hover > #selection-border {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+}
+
+:selected > #selection-border {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+}
+
+:hover:selected > #selection-border {
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+}
+
+.node {
+    min-width: 180px;
+    min-height: 75px;
+    align-content: stretch;
+    justify-content: space-around;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.nodeTextField > .unity-text-field__input {
+    min-width: 50px;
+    max-width: 200px;
+    flex-direction: column-reverse;
+    flex-grow: 1;
+    white-space: normal;
+    background-color: rgb(43, 43, 43);
+    border-left-color: rgb(88, 88, 88);
+    border-right-color: rgba(56, 56, 56, 0);
+    border-top-color: rgba(56, 56, 56, 0);
+    border-bottom-color: rgba(56, 56, 56, 0);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    padding-top: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    border-left-width: 4px;
+}
+
+.textFieldContainer {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background-color: rgb(56, 56, 56);
+    padding-top: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+}
+
+.nodeTextField:hover > .unity-text-field__input {
+    background-color: rgb(48, 48, 48);
+}
+
+.nodeTextField:focus > .unity-text-field__input {
+    background-color: rgb(32, 32, 32);
+}
+
+.optionNode {
+    background-color: rgb(31, 45, 64);
+}
+
+.defaultNode {
+    background-color: rgb(32, 32, 32);
+}

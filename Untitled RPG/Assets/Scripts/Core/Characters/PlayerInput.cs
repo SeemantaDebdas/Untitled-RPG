@@ -121,5 +121,9 @@ namespace RPG.Core
         public void OnRoll(InputAction.CallbackContext context)
         {
         }
+
+        public void OnInteract(InputAction.CallbackContext context)
+        {
+        }
     }
 }

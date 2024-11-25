@@ -1186,6 +1186,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 86890a0b5d62c09488c7b0aff443e2c1, type: 2}
     - {fileID: 11400000, guid: 089cea629c2c6d0458428c6fb3924a21, type: 2}
     <ToState>k__BackingField: {fileID: 6329662599778718100}
+  - Name: 'Conversation State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: e5c8b0f1320bf5f48b1e10fbed1b4cd0, type: 2}
+    - {fileID: 11400000, guid: 2de26c71cfa566144bf8cb7e7e64814b, type: 2}
+    <ToState>k__BackingField: {fileID: 4929314985107148883}
 --- !u!1 &4923091267420813489
 GameObject:
   m_ObjectHideFlags: 0
@@ -1353,6 +1358,9 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1536,8 +1544,70 @@ Transform:
   m_Children:
   - {fileID: 8663650150689636559}
   - {fileID: 3528319354835044557}
+  - {fileID: 3925337369038901365}
   m_Father: {fileID: 5301069349421547800}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6117061569446618628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3925337369038901365}
+  - component: {fileID: 4929314985107148883}
+  m_Layer: 0
+  m_Name: Conversation State
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3925337369038901365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6117061569446618628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5643395339329463738}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4929314985107148883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6117061569446618628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f56125331881a34e8b326f706dbf83b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 0}
+  transitionList: []
+  OnConversationEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8055725816441204898}
+        m_TargetAssemblyTypeName: RPG.Control.Statemachine, Assembly-CSharp
+        m_MethodName: SwitchState
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 6305809296959556292}
+          m_ObjectArgumentAssemblyTypeName: RPG.Control.State, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6598724752561903978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1675,6 +1745,9 @@ GameObject:
   - component: {fileID: 3035967484129583259}
   - component: {fileID: 2188422095210862824}
   - component: {fileID: 7561849517480325422}
+  - component: {fileID: 3700850580495245790}
+  - component: {fileID: 9030517790649169104}
+  - component: {fileID: 8586906149063584143}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1716,7 +1789,6 @@ CharacterController:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1729,7 +1801,7 @@ CharacterController:
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!95 &1596493337114113809
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1743,6 +1815,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -2004,6 +2077,56 @@ MonoBehaviour:
   meleeRadius: 3
   maxGridCapacity: 12
   maxAttackCapacity: 10
+--- !u!114 &3700850580495245790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972971377313347014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4c57b9621ede142b48959c6177eafd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fieldOfView: {fileID: 9030517790649169104}
+  interactionAction: {fileID: 7586792032747686036, guid: 46942bc09dc02594b8a05133a47185b1,
+    type: 3}
+--- !u!114 &9030517790649169104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972971377313347014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581a2b68adfcab2458faf29e0460c7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startOnAwake: 1
+  <Radius>k__BackingField: 5
+  defaultAngle: 90
+  scanCapacity: 20
+  delayBetweenScans: 0.2
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  ignoreTag: {fileID: 11400000, guid: 8d43769e02d2d904d83526e324a0e266, type: 2}
+  selfTransform: {fileID: 2769771741359129722}
+  gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.19607843}
+--- !u!114 &8586906149063584143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972971377313347014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ccaf6e4f2f837945b13ddbca7f0256b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7009001920839669846
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,15 +2239,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startOnAwake: 1
   <Radius>k__BackingField: 5
-  angle: 90
+  defaultAngle: 90
   scanCapacity: 20
   delayBetweenScans: 0.2
   targetLayer:
     serializedVersion: 2
     m_Bits: 1
-  obstructionLayer:
-    serializedVersion: 2
-    m_Bits: 0
   ignoreTag: {fileID: 0}
   selfTransform: {fileID: 2769771741359129722}
   gizmoColor: {r: 1, g: 0.1684183, b: 0.015686274, a: 0}
@@ -2439,7 +2559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1945037598739265427, guid: 54302052d63410f4abd41b3b563d056e,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 522634f86da64874d84b5f844a619d86, type: 2}
     - target: {fileID: 2060708120343826533, guid: 54302052d63410f4abd41b3b563d056e,

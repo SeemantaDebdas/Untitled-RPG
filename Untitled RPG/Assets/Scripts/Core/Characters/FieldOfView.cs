@@ -1,6 +1,7 @@
 using MEC;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -18,7 +19,6 @@ namespace RPG.Core
 
         [Header("FILTERING")]
         [SerializeField] LayerMask targetLayer;
-        [SerializeField] LayerMask obstructionLayer;
         [SerializeField] ScriptableString ignoreTag;
         [SerializeField] Transform selfTransform;
 
@@ -26,6 +26,7 @@ namespace RPG.Core
         [SerializeField] Color gizmoColor = Color.yellow;
 
         Collider[] scanArray;
+        public List<Collider> ObjectsInRange { get; private set; } = new();
 
         List<Transform> validTargets = new();
 
@@ -76,7 +77,8 @@ namespace RPG.Core
             validTargets.Clear();
 
             int scanCount = Physics.OverlapSphereNonAlloc(transform.position, Radius, scanArray, targetLayer, QueryTriggerInteraction.Ignore);
-
+            ObjectsInRange = scanArray.Where(obj => obj != null).ToList();
+            
             if (scanCount == 0)
                 return;
 

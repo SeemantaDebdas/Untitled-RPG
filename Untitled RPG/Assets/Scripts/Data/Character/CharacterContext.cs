@@ -13,6 +13,7 @@ namespace RPG.Data
         public EnvironmentScanner EnvironmentScanner { get; set; }
         public FieldOfView FieldOfView { get; set; }
         public CombatHandler CombatHandler { get; set; }
+        public Interactor Interactor { get; set; }
         public Health Health { get; set; }
     }
 }

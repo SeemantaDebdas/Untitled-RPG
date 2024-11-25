@@ -2,6 +2,7 @@ using RPG.Data;
 using RPG.Core;
 using UnityEngine;
 using RPG.Combat;
+using RPG.DialogueSystem;
 
 namespace RPG.Control
 {
@@ -25,7 +26,10 @@ namespace RPG.Control
                     EnvironmentScanner = GetComponent<EnvironmentScanner>(),
                     FieldOfView = GetComponent<FieldOfView>(),
                     WeaponHandler = GetComponent<WeaponHandler>(),
-                    VFXHandler = GetComponent<VFXHandler>()
+                    VFXHandler = GetComponent<VFXHandler>(),
+                    Interactor = GetComponent<Interactor>(),
+                    CombatHandler = GetComponent<CombatHandler>(),
+                    PlayerConversant = GetComponent<PlayerConversant>(),
                 };
 
                 return playerContext;

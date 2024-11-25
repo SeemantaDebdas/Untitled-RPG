@@ -1,0 +1,4 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/Dialogue/Editor/DialogueSystemEditor.uss?fileID=7433441132597879392&amp;guid=7575330717e850c42b73a9d9640a85ce&amp;type=3#DialogueSystemEditor" />
+    <RPG.DialogueSystem.Editor.DialogueGraphView />
+</engine:UXML>

@@ -82,7 +82,7 @@ namespace RPG.Control
 
         private void LookAtCenterOfScreen()
         {
-            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            Ray ray = UnityEngine.Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
             Vector3 lookAt = ray.GetPoint(maxForce);
 
@@ -120,7 +120,7 @@ namespace RPG.Control
             properties.initialPosition = currentWeaponInstance.ShootPoint.position;
             properties.initialSpeed = currentForce;
             properties.mass = projectile.mass;
-            properties.drag = projectile.drag;
+            properties.drag = projectile.linearDamping;
 
             return properties;
         }

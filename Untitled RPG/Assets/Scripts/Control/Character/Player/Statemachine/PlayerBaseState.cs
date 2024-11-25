@@ -2,6 +2,7 @@ using RPG.Data;
 using RPG.Core;
 using UnityEngine;
 using System;
+using RPG.DialogueSystem;
 
 namespace RPG.Control
 {
@@ -9,6 +10,8 @@ namespace RPG.Control
     {
         protected PlayerContext context;
         protected PlayerInput input;
+        protected PlayerConversant conversant;
+        
         protected Vector2 moveInput = Vector2.zero;
 
         public override void Initialize(IStatemachine statemachine)
@@ -17,6 +20,7 @@ namespace RPG.Control
             context = statemachine.Context as PlayerContext;
 
             input = context.PlayerInput;
+            conversant = context.PlayerConversant;
         }
 
         public override void Enter()
@@ -59,13 +63,13 @@ namespace RPG.Control
 
         protected virtual void Input_OnWalkTogglePerformed(){}
 
-        protected void Input_OnAttackCancelled()
+        protected virtual void Input_OnAttackCancelled()
         {
             if(weaponHandler.CurrentWeapon.IsSheathed) 
                 weaponHandler.PlayCurrentWeaponUnsheathAnimation();
         }
 
-        protected void Input_OnHolsterPerformed()
+        protected virtual void Input_OnHolsterPerformed()
         {
             if(!weaponHandler.CurrentWeapon.IsSheathed)
                 weaponHandler.PlayCurrentWeaponSheathAnimation();
@@ -85,7 +89,7 @@ namespace RPG.Control
 
         protected override Vector3 CalculateDirection()
         {
-            Transform cameraTransform = Camera.main.transform;
+            Transform cameraTransform = UnityEngine.Camera.main.transform;
 
             Vector3 cameraForward = cameraTransform.forward;
             cameraForward.y = 0;

@@ -41,11 +41,18 @@ namespace RPG.Data
         [field: SerializeField] public string Death { get; private set; }
     }
 
+    [System.Serializable]
+    public class ConversationAnimationData
+    {
+        [field: SerializeField] public string IdleArmsCrossed { get; private set; }
+    }
+
     public class CharacterAnimationData : MonoBehaviour
     {
         [field: SerializeField] public LocomotionAnimationData Locomotion { get; private set; }
         [field: SerializeField] public CombatAnimationData Combat { get; private set; }
         [field: SerializeField] public HurtAnimationData Hurt { get; private set; }
+        [field: SerializeField] public ConversationAnimationData Conversation { get; private set; }
 
         public static CharacterAnimationData Instance { get; private set; }
 

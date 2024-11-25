@@ -65,3 +65,5 @@ MonoBehaviour:
     <Front>k__BackingField: SwordFront
     <Back>k__BackingField: SwordBack
     <Death>k__BackingField: Death
+  <Conversation>k__BackingField:
+    <IdleArmsCrossed>k__BackingField: Idle_ArmsCrossed

@@ -8,7 +8,7 @@ namespace RPG.Core
         [SerializeField] bool ignoreYRotation = false;
         private void Update()
         {
-            Vector3 dirToCamera = (Camera.main.transform.position - transform.position).normalized;
+            Vector3 dirToCamera = (UnityEngine.Camera.main.transform.position - transform.position).normalized;
             
             if (ignoreYRotation)
             {
