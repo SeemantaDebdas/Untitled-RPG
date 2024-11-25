@@ -107,6 +107,12 @@ namespace RPG.DialogueSystem
         
         public void DeleteNode(DialogueNode nodeToDelete)
         {
+            if (!Nodes.Contains(nodeToDelete))
+            {
+                Debug.Log("Node not saved in asset. Returning");
+                return;
+            }
+            
             Undo.RecordObject(this, "Delete Dialogue Node");
             
             Nodes.Remove(nodeToDelete);

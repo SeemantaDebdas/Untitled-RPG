@@ -88,6 +88,9 @@
     padding-bottom: 8px;
     padding-left: 8px;
     border-left-width: 4px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
 }
 
 .textFieldContainer {
@@ -116,4 +119,39 @@
 
 .defaultNode {
     background-color: rgb(32, 32, 32);
+}
+
+.eventField {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    width: 100%;
+    align-items: center;
+    max-width: 230px;
+    border-bottom-width: 0;
+    padding-bottom: 2.5px;
+}
+
+.eventField > .unity-label {
+    flex-shrink: 0;
+    white-space: nowrap;
+    margin-right: -25.5%;
+    width: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.eventField > .unity-object-field__input {
+    flex-grow: 3;
+    width: 100%;
+    background-color: rgb(43, 43, 43);
+    border-radius: 4px;
+    padding: 5px;
+}
+
+#events-holder {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }

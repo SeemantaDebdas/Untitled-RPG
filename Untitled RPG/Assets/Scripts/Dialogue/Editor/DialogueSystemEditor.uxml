@@ -1,13 +1,4 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Scripts/Dialogue/Editor/DialogueSystemEditor.uss?fileID=7433441132597879392&amp;guid=7575330717e850c42b73a9d9640a85ce&amp;type=3#DialogueSystemEditor" />
-    <RPG.DialogueSystem.Editor.SplitView fixed-pane-initial-dimension="200">
-        <engine:VisualElement name="left-panel" style="flex-grow: 1; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-            <engine:Label text="Inspector" name="Label" style="background-color: rgb(32, 32, 32); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; color: rgb(255, 255, 255); -unity-text-align: upper-center; padding-top: 8px; padding-bottom: 8px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);" />
-            <RPG.DialogueSystem.Editor.DialogueInspectorView style="background-color: rgb(56, 56, 56); flex-grow: 1;" />
-        </engine:VisualElement>
-        <engine:VisualElement name="right-panel" style="flex-grow: 1; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-            <engine:Label text="Dialogue View" style="background-color: rgb(32, 32, 32); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; color: rgb(255, 255, 255); -unity-text-align: upper-center; -unity-font-style: bold; padding-top: 8px; padding-bottom: 8px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);" />
-            <RPG.DialogueSystem.Editor.DialogueGraphView />
-        </engine:VisualElement>
-    </RPG.DialogueSystem.Editor.SplitView>
+    <RPG.DialogueSystem.Editor.DialogueGraphView />
 </engine:UXML>

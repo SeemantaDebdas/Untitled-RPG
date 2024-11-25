@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using RPG.Core;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.Serialization;
@@ -12,6 +13,37 @@ namespace RPG.DialogueSystem
         [field: SerializeField] public List<string> Children { get; private set; } = new();
         [field: SerializeField] public bool IsPlayerSpeaking { get; private set; }
         [field: SerializeField] public Vector2 Position { get; private set; }
+
+
+        [Space]
+        [SerializeField] private ScriptableEvent onEnterEvent;
+        [SerializeField] private ScriptableEvent onExitEvent;
+
+        public ScriptableEvent OnEnterEvent
+        {
+            get => onEnterEvent;
+            set
+            {
+                if (onEnterEvent == value) return;
+
+                Debug.Log($"OnEnterEvent changed from {onEnterEvent} to {value}");
+                Undo.RecordObject(this, "Set OnEnterEvent");
+                onEnterEvent = value;
+                EditorUtility.SetDirty(this);
+            }
+        }
+
+        public ScriptableEvent OnExitEvent
+        {
+            get => onExitEvent;
+            set
+            {
+                if (onExitEvent == value) return;
+                Undo.RecordObject(this, "Set OnExitEvent");
+                onExitEvent = value;
+                EditorUtility.SetDirty(this);
+            }
+        }
 
         public void SetPosition(Vector2 position)
         { 

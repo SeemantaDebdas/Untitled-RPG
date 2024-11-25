@@ -1,7 +1,10 @@
 using System;
+using RPG.Core;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Object = UnityEngine.Object;
 
 namespace RPG.DialogueSystem.Editor
 {
@@ -15,6 +18,7 @@ namespace RPG.DialogueSystem.Editor
         public event Action<Vector2> OnDragEnded;
 
         public Port inputPort, outputPort;
+        public EventObjectField onEnterField, onExitField;
         public string dialogueText;
 
         public DialogueNodeView()
@@ -36,6 +40,12 @@ namespace RPG.DialogueSystem.Editor
 
             viewDataKey = node.name;
             dialogueText = node.Text;
+            
+            onEnterField = this.Q<EventObjectField>("on-enter-event");
+            onExitField = this.Q<EventObjectField>("on-exit-event");
+            
+            onEnterField.value = node.OnEnterEvent;
+            onExitField.value = node.OnExitEvent;
 
             style.left = this.node.Position.x;
             style.top = this.node.Position.y;
@@ -43,6 +53,7 @@ namespace RPG.DialogueSystem.Editor
             CreateInputPort();
             CreateOutputPort();
             CreateTextArea();
+            BindOnEnterAndExitEvents();
 
             topContainer.style.flexDirection = FlexDirection.Row;
         }
@@ -126,5 +137,41 @@ namespace RPG.DialogueSystem.Editor
             
             outputContainer.Add(outputPort);
         }
+
+        void BindOnEnterAndExitEvents()
+        {
+            if (onEnterField == null || onExitField == null)
+            {
+                Debug.LogError("EventObjectFields are not correctly initialized.");
+                return;
+            }
+            
+            onEnterField.RegisterCallback<ChangeEvent<Object>>(evt =>
+            {
+                Debug.Log("Event Changed");
+
+                if (evt.newValue is not ScriptableEvent newEnterEvent)
+                    return;
+                
+                if (newEnterEvent == node.OnEnterEvent) 
+                    return;
+
+                Debug.Log("Event not same as that of node");
+                
+                node.OnEnterEvent = newEnterEvent;
+            });
+            
+            onExitField.RegisterCallback<ChangeEvent<Object>>(evt =>
+            {
+                if (evt.newValue is not ScriptableEvent newExitEvent)
+                    return;
+                
+                if (newExitEvent == node.OnExitEvent) 
+                    return;
+
+                node.OnExitEvent = newExitEvent;
+            });
+        }
+
     }
 }
