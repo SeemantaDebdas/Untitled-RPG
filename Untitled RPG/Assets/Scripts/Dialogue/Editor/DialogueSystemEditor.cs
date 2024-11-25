@@ -10,6 +10,7 @@ namespace RPG.DialogueSystem.Editor
         [SerializeField] private VisualTreeAsset visualTreeAsset = default;
 
         private DialogueGraphView graphView;
+        DialogueInspectorView inspectorView;
 
         [MenuItem("Window/DialogueSystemEditor")]
         public static void OpenWindow()
@@ -34,16 +35,26 @@ namespace RPG.DialogueSystem.Editor
             visualTreeAsset.CloneTree(root);
             
             graphView = root.Q<DialogueGraphView>();
+            inspectorView = root.Q<DialogueInspectorView>();
+            
+            graphView.OnNodeSelected += GraphView_OnNodeSelected;
+            
 
             OnSelectionChange();
         }
-        
+
+
         private void OnSelectionChange()
         {
-            if (Selection.activeObject is DialogueSystem.Dialogue dialogue && AssetDatabase.CanOpenAssetInEditor(dialogue.GetInstanceID()))
+            if (Selection.activeObject is Dialogue dialogue && AssetDatabase.CanOpenAssetInEditor(dialogue.GetInstanceID()))
             {
                 graphView.Populate(dialogue);
             }
+        }
+        
+        private void GraphView_OnNodeSelected(DialogueNodeView nodeView)
+        {
+            inspectorView.UpdateSelection(nodeView);
         }
     }
 }

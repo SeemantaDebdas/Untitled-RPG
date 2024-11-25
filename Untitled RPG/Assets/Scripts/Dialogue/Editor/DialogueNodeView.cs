@@ -54,6 +54,12 @@ namespace RPG.DialogueSystem.Editor
             node.SetPosition(new (newPos.center.x, newPos.center.y));
         }
 
+        public override void OnSelected()
+        {
+            base.OnSelected();
+            OnNodeSelected?.Invoke(this);
+        }
+
         private void CreateTextArea()
         {
             TextField textField = new TextField()

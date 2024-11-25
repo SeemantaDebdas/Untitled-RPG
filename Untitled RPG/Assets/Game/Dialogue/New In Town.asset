@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9181427895642549009
+--- !u!114 &-9181272388145249189
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,13 +10,48 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: 61999921-1380-4faf-b415-8a41a15528dd
+  m_Name: 97b62b7e-1727-4ec7-a001-c315f8a41687
   m_EditorClassIdentifier: 
-  <Text>k__BackingField: What say?
+  <Text>k__BackingField: I've lived here my whole life
+  <Children>k__BackingField:
+  - 34d54753-cdc9-4a48-998d-fa420c357ece
+  <IsPlayerSpeaking>k__BackingField: 1
+  <Position>k__BackingField: {x: 1526.749, y: -323}
+--- !u!114 &-8613374522388418307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
+  m_Name: 34d54753-cdc9-4a48-998d-fa420c357ece
+  m_EditorClassIdentifier: 
+  <Text>k__BackingField: Oh really? Then you must know Mr. Bowler
+  <Children>k__BackingField:
+  - c848635e-4d36-42e1-9c32-dce715061c2e
+  - 8e6819a2-96bb-4326-ae61-ebc57484d874
+  <IsPlayerSpeaking>k__BackingField: 0
+  <Position>k__BackingField: {x: 2592.3223, y: -315.5}
+--- !u!114 &-6442710266528395462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
+  m_Name: 4e59146f-5a0e-4f9a-928f-9b1f2b6e24dc
+  m_EditorClassIdentifier: 
+  <Text>k__BackingField: You liar! I just made him up.
   <Children>k__BackingField: []
   <IsPlayerSpeaking>k__BackingField: 0
-  <Position>k__BackingField: {x: 3028.3, y: 379.30002}
---- !u!114 &-5057729364836017470
+  <Position>k__BackingField: {x: 3284.5, y: -323}
+--- !u!114 &-5319240865577846671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26,32 +61,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: 66d3cbfd-7b20-4053-9c30-84fb3dc65a60
+  m_Name: c848635e-4d36-42e1-9c32-dce715061c2e
   m_EditorClassIdentifier: 
-  <Text>k__BackingField: Newtown heh? I heard there's trouble brewing over there.
+  <Text>k__BackingField: Mr Bowler is a good friend of mine.
   <Children>k__BackingField:
-  - 7c752e5f-404b-4a04-a1af-3bffceb7fc33
-  - 3db24d1e-c185-4ad1-92ec-ffe8f5ae080a
-  <IsPlayerSpeaking>k__BackingField: 0
-  <Position>k__BackingField: {x: 1509, y: 215.5}
---- !u!114 &-4804993490880546987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: 3e3b23b7-3c51-483a-a375-8bdb2ff08124
-  m_EditorClassIdentifier: 
-  <Text>k__BackingField: Who?
-  <Children>k__BackingField:
-  - 4e8d3b33-ea1f-4cb3-a5f7-4779cc76f31a
+  - 4e59146f-5a0e-4f9a-928f-9b1f2b6e24dc
   <IsPlayerSpeaking>k__BackingField: 1
-  <Position>k__BackingField: {x: 2460.9524, y: 16}
---- !u!114 &-3462320434401854238
+  <Position>k__BackingField: {x: 2935.95, y: -315.5}
+--- !u!114 &-3307216882175068291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,31 +78,66 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: 6065e8f5-88ec-4226-81e7-c2ba9c50e572
+  m_Name: 4af6c2c9-bf12-4f25-a930-2f6a71b3c2ea
   m_EditorClassIdentifier: 
-  <Text>k__BackingField: You don't look from around here.
+  <Text>k__BackingField: Did I say Newtown? I'm actually from Barasat.
   <Children>k__BackingField:
-  - 13ca20a2-d96f-403a-bd1b-d3bce04fad08
-  - 5d68fd32-ab34-4217-8972-165e753cb031
-  <IsPlayerSpeaking>k__BackingField: 0
-  <Position>k__BackingField: {x: 813, y: 44.5}
---- !u!114 &-2493888522289946762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: bb57621d-9400-4fe8-9d49-ac5b23f30278
-  m_EditorClassIdentifier: 
-  <Text>k__BackingField: Mr. Bowler is a good friend of mine.
-  <Children>k__BackingField:
-  - 8adacdbf-d028-4039-8c4b-4e316fe858cf
+  - 34d54753-cdc9-4a48-998d-fa420c357ece
   <IsPlayerSpeaking>k__BackingField: 1
-  <Position>k__BackingField: {x: 2461.9294, y: -363.3863}
+  <Position>k__BackingField: {x: 2274.9282, y: 88.500015}
+--- !u!114 &-2676494318542498333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
+  m_Name: 22dc5e2c-c330-40c7-afce-72d70c7db07d
+  m_EditorClassIdentifier: 
+  <Text>k__BackingField: I haven't heard of any trouble
+  <Children>k__BackingField:
+  - 90bb7776-c5ee-44df-94f0-fec6c04dc262
+  <IsPlayerSpeaking>k__BackingField: 1
+  <Position>k__BackingField: {x: 2272, y: 405.50198}
+--- !u!114 &-1835462191193397298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
+  m_Name: e1d1a944-506b-4bb3-9a85-f78230dcf31b
+  m_EditorClassIdentifier: 
+  <Text>k__BackingField: Newtown heh? I've heard there's trouble brewing there.
+  <Children>k__BackingField:
+  - 4af6c2c9-bf12-4f25-a930-2f6a71b3c2ea
+  - 22dc5e2c-c330-40c7-afce-72d70c7db07d
+  <IsPlayerSpeaking>k__BackingField: 0
+  <Position>k__BackingField: {x: 1831, y: 87.5}
+--- !u!114 &-1112074426431006575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
+  m_Name: c022dc82-b47d-42c3-8432-ff91f3e17bc3
+  m_EditorClassIdentifier: 
+  <Text>k__BackingField: You don't look like you're from around here.
+  <Children>k__BackingField:
+  - 97b62b7e-1727-4ec7-a001-c315f8a41687
+  - 744f4a70-9bcf-4d01-bbfc-56a9086d88e3
+  <IsPlayerSpeaking>k__BackingField: 0
+  <Position>k__BackingField: {x: 1099.2975, y: -84.375}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,22 +148,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af85c12f5813c6a42a6611f6311cf837, type: 3}
-  m_Name: New in town
+  m_Name: New In Town
   m_EditorClassIdentifier: 
   <Nodes>k__BackingField:
-  - {fileID: -3462320434401854238}
-  - {fileID: 4399141937395621029}
-  - {fileID: 4567295807913739289}
-  - {fileID: 6405155359286963722}
-  - {fileID: -2493888522289946762}
-  - {fileID: 5923580341639729947}
-  - {fileID: -4804993490880546987}
-  - {fileID: 2961526612010712018}
-  - {fileID: -5057729364836017470}
-  - {fileID: 8130719568066472269}
-  - {fileID: 7603944012779814620}
-  - {fileID: -9181427895642549009}
---- !u!114 &2961526612010712018
+  - {fileID: -1112074426431006575}
+  - {fileID: -9181272388145249189}
+  - {fileID: 5208342711212763168}
+  - {fileID: -8613374522388418307}
+  - {fileID: -1835462191193397298}
+  - {fileID: -3307216882175068291}
+  - {fileID: -5319240865577846671}
+  - {fileID: -6442710266528395462}
+  - {fileID: 6290438680895712621}
+  - {fileID: 1403984559146483183}
+  - {fileID: -2676494318542498333}
+--- !u!114 &1403984559146483183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,15 +172,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: 4e8d3b33-ea1f-4cb3-a5f7-4779cc76f31a
+  m_Name: 90bb7776-c5ee-44df-94f0-fec6c04dc262
   m_EditorClassIdentifier: 
-  <Text>k__BackingField: Don't worry about it. Say, do you have something to eat?
-    I'm starving.
-  <Children>k__BackingField:
-  - 61999921-1380-4faf-b415-8a41a15528dd
+  <Text>k__BackingField: Don't worry about it. Say do you wanna have something to
+    eat?
+  <Children>k__BackingField: []
   <IsPlayerSpeaking>k__BackingField: 0
-  <Position>k__BackingField: {x: 2703.7742, y: 376.5}
---- !u!114 &4399141937395621029
+  <Position>k__BackingField: {x: 3274.5002, y: 420.50012}
+--- !u!114 &5208342711212763168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,14 +189,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: 13ca20a2-d96f-403a-bd1b-d3bce04fad08
+  m_Name: 744f4a70-9bcf-4d01-bbfc-56a9086d88e3
   m_EditorClassIdentifier: 
   <Text>k__BackingField: I came here from Newtown.
   <Children>k__BackingField:
-  - 66d3cbfd-7b20-4053-9c30-84fb3dc65a60
+  - e1d1a944-506b-4bb3-9a85-f78230dcf31b
   <IsPlayerSpeaking>k__BackingField: 1
-  <Position>k__BackingField: {x: 1149.5, y: 208.0001}
---- !u!114 &4567295807913739289
+  <Position>k__BackingField: {x: 1506, y: 80}
+--- !u!114 &6290438680895712621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,78 +206,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: 5d68fd32-ab34-4217-8972-165e753cb031
+  m_Name: 8e6819a2-96bb-4326-ae61-ebc57484d874
   m_EditorClassIdentifier: 
-  <Text>k__BackingField: I've lived here my whole life.
+  <Text>k__BackingField: Who?
   <Children>k__BackingField:
-  - 2b26124f-9e22-440f-85d3-15b9c0adc30d
+  - 90bb7776-c5ee-44df-94f0-fec6c04dc262
   <IsPlayerSpeaking>k__BackingField: 1
-  <Position>k__BackingField: {x: 1151, y: -183.02087}
---- !u!114 &5923580341639729947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: 8adacdbf-d028-4039-8c4b-4e316fe858cf
-  m_EditorClassIdentifier: 
-  <Text>k__BackingField: You liar! There ain't no Mr Bowler. I made him up!
-  <Children>k__BackingField: []
-  <IsPlayerSpeaking>k__BackingField: 0
-  <Position>k__BackingField: {x: 2910.9297, y: -363.3863}
---- !u!114 &6405155359286963722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: 2b26124f-9e22-440f-85d3-15b9c0adc30d
-  m_EditorClassIdentifier: 
-  <Text>k__BackingField: Oh really, then you must know Mr. Bowler.
-  <Children>k__BackingField:
-  - bb57621d-9400-4fe8-9d49-ac5b23f30278
-  - 3e3b23b7-3c51-483a-a375-8bdb2ff08124
-  <IsPlayerSpeaking>k__BackingField: 0
-  <Position>k__BackingField: {x: 2075.9294, y: -363.3863}
---- !u!114 &7603944012779814620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: 3db24d1e-c185-4ad1-92ec-ffe8f5ae080a
-  m_EditorClassIdentifier: 
-  <Text>k__BackingField: I haven't heard of any trouble
-  <Children>k__BackingField:
-  - 4e8d3b33-ea1f-4cb3-a5f7-4779cc76f31a
-  <IsPlayerSpeaking>k__BackingField: 1
-  <Position>k__BackingField: {x: 1862.0001, y: 362}
---- !u!114 &8130719568066472269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: 7c752e5f-404b-4a04-a1af-3bffceb7fc33
-  m_EditorClassIdentifier: 
-  <Text>k__BackingField: Did I say Newtown? I'm actually from Barasat.
-  <Children>k__BackingField:
-  - 2b26124f-9e22-440f-85d3-15b9c0adc30d
-  <IsPlayerSpeaking>k__BackingField: 1
-  <Position>k__BackingField: {x: 1858.125, y: 25.216412}
+  <Position>k__BackingField: {x: 2901, y: -72.853836}

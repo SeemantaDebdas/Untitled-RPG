@@ -390,8 +390,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7737943240399341294}
   - component: {fileID: 2140147257932469275}
-  - component: {fileID: 7644874945791402713}
-  - component: {fileID: 5710230794868875991}
+  - component: {fileID: 1419291140204818400}
+  - component: {fileID: 1507966745729130817}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -426,7 +426,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7644874945791402713
+--- !u!114 &1419291140204818400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979270866321120900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BindingMode: 1
+  m_FollowOffset: {x: 0, y: 1.5, z: -4}
+  m_XDamping: 1
+  m_YDamping: 1
+  m_ZDamping: 1
+  m_AngularDampingMode: 0
+  m_PitchDamping: 0
+  m_YawDamping: 0
+  m_RollDamping: 0
+  m_AngularDamping: 0
+--- !u!114 &1507966745729130817
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -453,7 +475,7 @@ MonoBehaviour:
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
-  m_GroupFramingSize: 0.75
+  m_GroupFramingSize: 0.8
   m_FramingMode: 2
   m_FrameDamping: 2
   m_AdjustmentMode: 0
@@ -461,32 +483,10 @@ MonoBehaviour:
   m_MaxDollyOut: 5000
   m_MinimumDistance: 1
   m_MaximumDistance: 5000
-  m_MinimumFOV: 3
+  m_MinimumFOV: 40
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
---- !u!114 &5710230794868875991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1979270866321120900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 2, z: -10}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
-  m_AngularDampingMode: 0
-  m_PitchDamping: 0
-  m_YawDamping: 0
-  m_RollDamping: 0
-  m_AngularDamping: 0
 --- !u!1 &2559978471539108138
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,7 +962,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4775086113596009939}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1181,8 +1181,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4976700501169138559}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.04981369, y: -0.00000016335238, z: 0.000000008119438, w: 0.99875855}
-  m_LocalPosition: {x: 0, y: 2, z: -10}
+  m_LocalRotation: {x: 0.060322575, y: -0.17016563, z: 0.010436912, w: 0.98351204}
+  m_LocalPosition: {x: 0, y: 3, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1209,7 +1209,7 @@ MonoBehaviour:
   m_Priority: 9
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 5439231108972799234}
-  m_Follow: {fileID: 5439231108972799234}
+  m_Follow: {fileID: 3556696129126583210}
   m_Lens:
     FieldOfView: 60.000004
     OrthographicSize: 5
@@ -1223,7 +1223,7 @@ MonoBehaviour:
     m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
-    m_InheritPosition: 0
+    m_InheritPosition: 1
     m_OnCameraLive:
       m_PersistentCalls:
         m_Calls: []
@@ -1254,8 +1254,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5440209523409046240}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.04981369, y: 0.00000016335238, z: -0.000000008119438, w: 0.99875855}
-  m_LocalPosition: {x: 0.0000032711923, y: -0.9950373, z: 10.14938}
+  m_LocalRotation: {x: -0.019671522, y: 0.94519067, z: -0.057972178, w: 0.32072866}
+  m_LocalPosition: {x: 0.27463245, y: -1.1332607, z: 12.795538}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1277,12 +1277,12 @@ MonoBehaviour:
   m_RotationMode: 1
   m_UpdateMethod: 2
   m_Targets:
-  - target: {fileID: 5101476017778187851}
-    weight: 2
-    radius: 0
+  - target: {fileID: 3556696129126583210}
+    weight: 0.25
+    radius: 1
   - target: {fileID: 0}
-    weight: 2
-    radius: 0
+    weight: 1
+    radius: 2
 --- !u!1 &6228804504789582417
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,8 +1311,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6228804504789582417}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.04709479, y: -0.8031919, z: 0.064069815, w: 0.59038967}
-  m_LocalPosition: {x: 5.223337, y: 2.232851, z: 6.7970285}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1351,7 +1351,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 53.405838
+  field of view: 55.00002
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1433,14 +1433,14 @@ MonoBehaviour:
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 0.2
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
+  m_CustomBlends: {fileID: 11400000, guid: 928920d586d95be4296127a0817b96d5, type: 2}
   m_CameraCutEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2567,17 +2567,17 @@ PrefabInstance:
     - target: {fileID: 2769771741359129722, guid: 712dbe317199a3843ad520b32bd512cc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2769771741359129722, guid: 712dbe317199a3843ad520b32bd512cc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2769771741359129722, guid: 712dbe317199a3843ad520b32bd512cc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2769771741359129722, guid: 712dbe317199a3843ad520b32bd512cc,
         type: 3}
