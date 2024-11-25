@@ -28,6 +28,7 @@ namespace RPG.DialogueSystem.UI
             continueButton.onClick.AddListener(OnContinueButtonClicked);
             quitButton?.onClick.AddListener(playerConversant.QuitConversation);
             
+            DeactivateAll();
             UpdateUI();
         }
 
@@ -40,6 +41,7 @@ namespace RPG.DialogueSystem.UI
 
         private void OnContinueButtonClicked()
         {
+            DeactivateAll();
             playerConversant.Next();
         }
 
@@ -50,20 +52,31 @@ namespace RPG.DialogueSystem.UI
             if (!playerConversant.IsActive)
                 return;
             
-            continueButton.gameObject.SetActive(playerConversant.HasNext() && !playerConversant.HasChoices);
-            choicesContainer.gameObject.SetActive(playerConversant.HasChoices);
+            aiText.text = string.Empty;
+            string message = playerConversant.GetText();
+            DOTween.To(() => aiText.text, x => aiText.text = x, message, 2f).SetEase(Ease.Linear).OnComplete(ShowChoicesOrNextButton);
+        }
+
+        void DeactivateAll()
+        {
+            continueButton.gameObject.SetActive(false);
+            choicesContainer.gameObject.SetActive(false);
+            
+            quitButton.gameObject.SetActive(false);
+        }
+
+        void ShowChoicesOrNextButton()
+        {
+            continueButton.gameObject.SetActive(playerConversant.HasNext() && !playerConversant.HasChoices());
+            choicesContainer.gameObject.SetActive(playerConversant.HasChoices());
             
             quitButton.gameObject.SetActive(!playerConversant.HasNext());
 
-            if (playerConversant.HasChoices)
+
+            if (playerConversant.HasChoices())
             {
+                //show the choices list
                 BuildChoiceList();
-            }
-            else
-            {
-                aiText.text = string.Empty;
-                string message = playerConversant.GetText();
-                DOTween.To(() => aiText.text, x => aiText.text = x, message, 2f).SetEase(Ease.Linear);
             }
         }
 
@@ -81,6 +94,7 @@ namespace RPG.DialogueSystem.UI
                 choiceButton.onClick.AddListener(() =>
                 {
                     playerConversant.SelectChoice(choiceNode);
+                    DeactivateAll();
                 });
             }
         }

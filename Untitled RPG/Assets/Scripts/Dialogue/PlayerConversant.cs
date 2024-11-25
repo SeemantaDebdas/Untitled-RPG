@@ -12,7 +12,6 @@ namespace RPG.DialogueSystem
         private DialogueNode currentDialogueNode = null;
         public event Action OnConversationUpdated, OnConversationEnded;
         
-        public bool HasChoices { get; private set; }
         public bool IsActive => currentDialogue != null;
 
         public void StartConversation(Dialogue dialogue)
@@ -25,7 +24,6 @@ namespace RPG.DialogueSystem
         public void QuitConversation()
         {
             currentDialogue = null;
-            HasChoices = false;
             OnConversationUpdated?.Invoke();
             OnConversationEnded?.Invoke();
         }
@@ -42,7 +40,6 @@ namespace RPG.DialogueSystem
         {
             if (currentDialogue.GetChoiceChildrenOfNode(currentDialogueNode).Any())
             {
-                HasChoices = true;
                 OnConversationUpdated?.Invoke();
                 return;
             }
@@ -66,9 +63,21 @@ namespace RPG.DialogueSystem
 
         public void SelectChoice(DialogueNode chosenNode)
         {
-            HasChoices = false;
             currentDialogueNode = chosenNode;
             Next();
+        }
+
+        public bool HasChoices()
+        {
+            if (currentDialogue == null)
+                return false;
+            
+            if (currentDialogue.GetChoiceChildrenOfNode(currentDialogueNode).Any())
+            {
+                return true;
+            }
+            
+            return false;
         }
     }
 }
