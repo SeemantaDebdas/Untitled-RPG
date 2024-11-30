@@ -9,7 +9,7 @@ namespace RPG.Control
     public abstract class PlayerBaseState : CharacterBaseState
     {
         protected PlayerContext context;
-        protected PlayerInput input;
+        protected InputReader InputReader;
         protected PlayerConversant conversant;
         
         protected Vector2 moveInput = Vector2.zero;
@@ -19,7 +19,7 @@ namespace RPG.Control
             base.Initialize(statemachine);
             context = statemachine.Context as PlayerContext;
 
-            input = context.PlayerInput;
+            InputReader = context.InputReader;
             conversant = context.PlayerConversant;
         }
 
@@ -42,34 +42,34 @@ namespace RPG.Control
         public override void HandleInput()
         {
             base.HandleInput();
-            moveInput = input.MoveInput;
+            moveInput = InputReader.MoveInput;
         }
 
 
         protected virtual void AddInputActionsCallback()
         {
-            input.OnWalkTogglePerformed += Input_OnWalkTogglePerformed;
-            input.OnAttackCancelled += Input_OnAttackCancelled;
-            input.OnHolsterPerformed += Input_OnHolsterPerformed;
+            InputReader.OnWalkTogglePerformed += InputReader_OnWalkTogglePerformed;
+            InputReader.OnAttackCancelled += InputReader_OnAttackCancelled;
+            InputReader.OnHolsterPerformed += InputReader_OnHolsterPerformed;
         }
 
         protected virtual void RemoveInputActionsCallback()
         {
-            input.OnWalkTogglePerformed -= Input_OnWalkTogglePerformed;
-            input.OnAttackCancelled -= Input_OnAttackCancelled;
-            input.OnHolsterPerformed -= Input_OnHolsterPerformed;
+            InputReader.OnWalkTogglePerformed -= InputReader_OnWalkTogglePerformed;
+            InputReader.OnAttackCancelled -= InputReader_OnAttackCancelled;
+            InputReader.OnHolsterPerformed -= InputReader_OnHolsterPerformed;
         }
 
 
-        protected virtual void Input_OnWalkTogglePerformed(){}
+        protected virtual void InputReader_OnWalkTogglePerformed(){}
 
-        protected virtual void Input_OnAttackCancelled()
+        protected virtual void InputReader_OnAttackCancelled()
         {
             if(weaponHandler.CurrentWeapon.IsSheathed) 
                 weaponHandler.PlayCurrentWeaponUnsheathAnimation();
         }
 
-        protected virtual void Input_OnHolsterPerformed()
+        protected virtual void InputReader_OnHolsterPerformed()
         {
             if(!weaponHandler.CurrentWeapon.IsSheathed)
                 weaponHandler.PlayCurrentWeaponSheathAnimation();

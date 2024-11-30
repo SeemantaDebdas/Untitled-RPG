@@ -19,7 +19,7 @@ namespace RPG.Control
 
             animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Roll, 0.1f);
             
-            hasInput = input.MoveInput.magnitude > 0.1f;
+            hasInput = InputReader.MoveInput.magnitude > 0.1f;
         }
 
         public override void Tick()

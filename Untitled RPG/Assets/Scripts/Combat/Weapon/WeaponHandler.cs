@@ -36,7 +36,7 @@ namespace RPG.Combat
         AutoTimer timeBetweenAttacksCounter;
         Animator animator;
 
-        PlayerInput playerInput;
+        InputReader inputReader;
 
 
         private void Awake()
@@ -55,16 +55,16 @@ namespace RPG.Combat
 
         private void OnEnable()
         {
-            playerInput = GetComponent<PlayerInput>();
+            inputReader = GetComponent<InputReader>();
 
-            if(playerInput)
-                playerInput.OnChangeWeaponPerformed += PlayerInput_OnChangeWeaponPerformed;
+            if(inputReader)
+                inputReader.OnChangeWeaponPerformed += InputReader_OnChangeWeaponPerformed;
         }
 
         private void OnDisable()
         {
-            if(playerInput) 
-                playerInput.OnChangeWeaponPerformed -= PlayerInput_OnChangeWeaponPerformed;
+            if(inputReader) 
+                inputReader.OnChangeWeaponPerformed -= InputReader_OnChangeWeaponPerformed;
         }
 
         #region ATTACK LOGIC
@@ -251,7 +251,7 @@ namespace RPG.Combat
             weapon.UnsheathWeapon(GetEquipTransform(weapon.WeaponData));
         }
 
-        void PlayerInput_OnChangeWeaponPerformed(float value)
+        void InputReader_OnChangeWeaponPerformed(float value)
         {
             currentWeaponIndex += (int) value;
             currentWeaponIndex = (int) Mathf.Repeat(currentWeaponIndex, weaponList.Count);

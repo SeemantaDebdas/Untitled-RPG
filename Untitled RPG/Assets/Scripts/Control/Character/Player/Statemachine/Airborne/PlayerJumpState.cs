@@ -36,7 +36,7 @@ namespace RPG.Control
 
             HandleMovement();
 
-            if (input.MoveInput.magnitude > 0.1f)
+            if (InputReader.MoveInput.magnitude > 0.1f)
             {
                 FaceDirection(CalculateDirection(), rotationSpeed);
             }

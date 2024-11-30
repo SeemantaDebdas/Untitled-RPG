@@ -76,8 +76,8 @@ namespace RPG.Control
 
         private void HandleAnimation()
         {
-            animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveX, input.MoveInput.x, 0.1f, Time.deltaTime);
-            animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveY, input.MoveInput.y, 0.1f, Time.deltaTime);
+            animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveX, InputReader.MoveInput.x, 0.1f, Time.deltaTime);
+            animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveY, InputReader.MoveInput.y, 0.1f, Time.deltaTime);
         }
 
         private void LookAtCenterOfScreen()

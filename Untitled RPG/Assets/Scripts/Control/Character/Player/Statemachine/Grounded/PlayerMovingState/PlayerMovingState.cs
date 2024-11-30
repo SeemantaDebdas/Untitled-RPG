@@ -33,9 +33,9 @@ namespace RPG.Control
             base.Tick();
         }
 
-        protected override void Input_OnWalkTogglePerformed()
+        protected override void InputReader_OnWalkTogglePerformed()
         {
-            base.Input_OnWalkTogglePerformed();
+            base.InputReader_OnWalkTogglePerformed();
 
             if (!EvaluateMoveAndRotationSpeed())
                 return;
@@ -45,7 +45,7 @@ namespace RPG.Control
 
         bool EvaluateMoveAndRotationSpeed()
         {
-            if (input.ShouldWalk && baseSpeed != walkBaseSpeed)
+            if (InputReader.ShouldWalk && baseSpeed != walkBaseSpeed)
             {
                 baseSpeed = walkBaseSpeed;
                 rotationSpeed = walkRotationSpeed;
@@ -54,7 +54,7 @@ namespace RPG.Control
                 return true;
             }
             
-            if(!input.ShouldWalk && baseSpeed != runBaseSpeed)
+            if(!InputReader.ShouldWalk && baseSpeed != runBaseSpeed)
             {
                 baseSpeed = runBaseSpeed;
                 rotationSpeed = runRotationSpeed;

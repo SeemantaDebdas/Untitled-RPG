@@ -36,7 +36,7 @@ namespace RPG.Control
             OnConversationEnded?.Invoke();
         }
 
-        protected override void Input_OnAttackCancelled(){}
-        protected override void Input_OnHolsterPerformed(){}
+        protected override void InputReader_OnAttackCancelled(){}
+        protected override void InputReader_OnHolsterPerformed(){}
     }
 }

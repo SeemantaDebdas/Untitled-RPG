@@ -21,7 +21,7 @@ namespace RPG.Control
                     Transform = transform,
                     Animator = GetComponent<Animator>(),
                     CharacterController = GetComponent<CharacterController>(),
-                    PlayerInput = GetComponent<PlayerInput>(),
+                    InputReader = GetComponent<InputReader>(),
                     PhysicsHandler = GetComponent<CharacterPhysicsHandler>(),
                     EnvironmentScanner = GetComponent<EnvironmentScanner>(),
                     FieldOfView = GetComponent<FieldOfView>(),

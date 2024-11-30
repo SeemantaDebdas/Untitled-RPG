@@ -161,7 +161,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888736a07cbe13745bfd4ab91c289d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: 454cced20d433554eb7977bc7c9f3aba, type: 2}
+  dialogue: {fileID: 11400000, guid: 367a6dddf8a3ce846b23933e160922bc, type: 2}
 --- !u!114 &3985194101537405548
 MonoBehaviour:
   m_ObjectHideFlags: 0

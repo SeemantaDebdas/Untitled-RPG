@@ -18,12 +18,18 @@ namespace RPG.DialogueSystem
         {
             currentDialogue = dialogue;
             currentDialogueNode = currentDialogue.RootNode;
+            
+            TriggerEnterAction();
+            
             OnConversationUpdated?.Invoke();
         }
 
         public void QuitConversation()
         {
             currentDialogue = null;
+            
+            TriggerExitAction();
+            
             OnConversationUpdated?.Invoke();
             OnConversationEnded?.Invoke();
         }
@@ -45,7 +51,12 @@ namespace RPG.DialogueSystem
             }
             
             List<DialogueNode> currentDialogueNodeChildren = currentDialogue.GetNonChoiceChildrenOfNode(currentDialogueNode).ToList();
+            
+            TriggerExitAction();
+            
             currentDialogueNode = currentDialogueNodeChildren[0];
+            
+            TriggerEnterAction();
             
             OnConversationUpdated?.Invoke();
         }
@@ -63,7 +74,12 @@ namespace RPG.DialogueSystem
 
         public void SelectChoice(DialogueNode chosenNode)
         {
+            TriggerExitAction();
+            
             currentDialogueNode = chosenNode;
+            
+            TriggerEnterAction();
+            
             Next();
         }
 
@@ -78,6 +94,28 @@ namespace RPG.DialogueSystem
             }
             
             return false;
+        }
+
+        public void TriggerEnterAction()
+        {
+            if (currentDialogueNode == null)
+                return;
+
+            if (currentDialogueNode.OnEnterEvent == null)
+                return;
+            
+            currentDialogueNode.OnEnterEvent.Raise(this, null);
+        }
+        
+        public void TriggerExitAction()
+        {
+            if (currentDialogueNode == null)
+                return;
+
+            if (currentDialogueNode.OnExitEvent == null)
+                return;
+            
+            currentDialogueNode.OnExitEvent.Raise(this, null);
         }
     }
 }

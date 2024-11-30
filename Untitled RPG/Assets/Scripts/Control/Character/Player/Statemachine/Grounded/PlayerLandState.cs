@@ -18,7 +18,7 @@ namespace RPG.Control
             momentum = context.CharacterController.velocity;
             momentum.y = 0;
 
-            if (input.MoveInput.magnitude < 0.1f)
+            if (InputReader.MoveInput.magnitude < 0.1f)
             {
                 animationName = CharacterAnimationData.Instance.Locomotion.LandIdle;
             }
@@ -34,7 +34,7 @@ namespace RPG.Control
         {
             base.Tick();
 
-            if (momentum.magnitude > 0.1f && input.MoveInput.magnitude > 0.1f)
+            if (momentum.magnitude > 0.1f && InputReader.MoveInput.magnitude > 0.1f)
             {
                 HandleMovement(baseSpeed);
             }

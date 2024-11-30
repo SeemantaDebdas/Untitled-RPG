@@ -4,7 +4,7 @@ using System;
 
 namespace RPG.Core
 {
-    public class PlayerInput : MonoBehaviour, Control.IPlayerActions
+    public class InputReader : MonoBehaviour, Control.IPlayerActions
     {
         public event Action OnJumpEvent;
         public Vector2 MoveInput { get; private set; }
@@ -21,21 +21,18 @@ namespace RPG.Core
 
         public event Action<float> OnChangeWeaponPerformed;
 
+        public Control Control => control;
         Control control;
-
-        private void OnEnable()
-        {
-            control ??= new Control();
-            control.Enable();
-        }
-
+        
         private void OnDisable()
         {
             control.Disable();
         }
 
-        private void Start()
+        private void Awake()
         {
+            control ??= new Control();
+            control.Enable();
             control.Player.SetCallbacks(this);
         }
 
@@ -46,7 +43,9 @@ namespace RPG.Core
             OnJumpEvent?.Invoke();
         }
 
-        public void OnLook(InputAction.CallbackContext context){}
+        public void OnLook(InputAction.CallbackContext context)
+        {
+        }
 
         public void OnMove(InputAction.CallbackContext context)
         {
@@ -123,6 +122,10 @@ namespace RPG.Core
         }
 
         public void OnInteract(InputAction.CallbackContext context)
+        {
+        }
+
+        public void OnQuestUIToggle(InputAction.CallbackContext context)
         {
         }
     }

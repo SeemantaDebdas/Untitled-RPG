@@ -21,7 +21,8 @@ namespace RPG.Control
         {
             base.Tick();
 
-            HandleMovement();
+            //HandleMovement();
+            Move();
         }
     }
 }

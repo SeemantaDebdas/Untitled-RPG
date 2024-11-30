@@ -37,7 +37,7 @@ namespace RPG.Control
             actionReference.action.canceled += OnActionCancelled;
 
             // Enable the action
-            actionReference.action.Enable();
+            //actionReference.action.Enable();
         }
 
         public override void Reset()
@@ -65,6 +65,9 @@ namespace RPG.Control
 
         protected override bool ProcessCondition(Context context)
         {
+            if (!actionReference.action.actionMap.enabled)
+                return false;
+            
             bool result = inputType switch
             {
                 InputType.STARTED => started,

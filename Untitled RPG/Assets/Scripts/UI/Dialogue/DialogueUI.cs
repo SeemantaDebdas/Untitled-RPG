@@ -93,6 +93,7 @@ namespace RPG.DialogueSystem.UI
                 choiceButton.GetComponentInChildren<TextMeshProUGUI>().text = choiceNode.Text;
                 choiceButton.onClick.AddListener(() =>
                 {
+                    Debug.Log("Choice Button Clicked");
                     playerConversant.SelectChoice(choiceNode);
                     DeactivateAll();
                 });
