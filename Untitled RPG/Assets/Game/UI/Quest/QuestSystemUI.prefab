@@ -3906,6 +3906,7 @@ GameObject:
   - component: {fileID: 1254712487818316759}
   - component: {fileID: 1020685573390528585}
   - component: {fileID: 6478931634803365863}
+  - component: {fileID: 3031511953630513110}
   m_Layer: 5
   m_Name: QuestSystemUI
   m_TagString: Untagged
@@ -3999,6 +4000,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3031511953630513110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428082833110005806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3886bc3d0b40d543b8bdfc48ba0bfb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableAction: {fileID: -6226804691453192841, guid: 46942bc09dc02594b8a05133a47185b1,
+    type: 3}
+  disableAction: {fileID: -6787386572840304696, guid: 46942bc09dc02594b8a05133a47185b1,
+    type: 3}
 --- !u!1 &7619206258204415729
 GameObject:
   m_ObjectHideFlags: 0

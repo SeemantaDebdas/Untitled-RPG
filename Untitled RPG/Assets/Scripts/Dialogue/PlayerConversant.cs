@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace RPG.DialogueSystem
 {
@@ -11,6 +12,8 @@ namespace RPG.DialogueSystem
         Dialogue currentDialogue;
         private DialogueNode currentDialogueNode = null;
         public event Action OnConversationUpdated, OnConversationEnded;
+        
+        public UnityEvent OnConversationStarted;
         
         public bool IsActive => currentDialogue != null;
 
@@ -22,6 +25,7 @@ namespace RPG.DialogueSystem
             TriggerEnterAction();
             
             OnConversationUpdated?.Invoke();
+            OnConversationStarted?.Invoke();
         }
 
         public void QuitConversation()

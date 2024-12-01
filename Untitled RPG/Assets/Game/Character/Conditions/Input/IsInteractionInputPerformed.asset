@@ -16,8 +16,8 @@ MonoBehaviour:
   performed: 0
   cancelled: 0
   started: 0
-  prematureReset: 0
-  resetTimeWindow: 0.5
+  prematureReset: 1
+  resetTimeWindow: 0.1
   actionReference: {fileID: 7586792032747686036, guid: 46942bc09dc02594b8a05133a47185b1,
     type: 3}
   inputType: 1

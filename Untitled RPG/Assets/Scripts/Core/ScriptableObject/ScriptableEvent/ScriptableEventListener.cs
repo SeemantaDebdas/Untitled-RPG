@@ -18,7 +18,7 @@ namespace RPG.Core
 
             public void SetInspectorName()
             {
-                inspectorName = scriptableEvent.name;
+                inspectorName = scriptableEvent != null? scriptableEvent.name : "No Event";
             }
         }
 

@@ -1,4 +1,5 @@
 using System;
+using RPG.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -7,9 +8,6 @@ namespace RPG.Core
 {
     public class InputActionMapSwitcher : MonoBehaviour
     {
-        [SerializeField] InputActionReference switchAction;
-        [SerializeField] InputActionReference uiCancelAction;
-
         PlayerInput playerInput;
 
         private InputActionMap playerActionMap, uiActionMap;
@@ -25,14 +23,14 @@ namespace RPG.Core
 
         private void Start()
         {
-            switchAction.action.performed += _ =>
+            ViewManager.OnAnyViewShow += _ =>
             {
-                SwitchActionMap();
+                playerInput.SwitchCurrentActionMap(uiActionMap.name);
             };
 
-            uiCancelAction.action.performed += _ =>
+            ViewManager.OnDefaultViewShow += _ =>
             {
-                SwitchActionMap();
+                playerInput.SwitchCurrentActionMap(playerActionMap.name);
             };
         }
 
@@ -51,11 +49,8 @@ namespace RPG.Core
 
             Debug.Log($"Current Action Map: {playerInput.currentActionMap.name}");
             Debug.Log($"UI Action Map Enabled: {uiActionMap.enabled}");
-            Debug.Log($"Cancel Action Enabled: {uiCancelAction.action.enabled}");
+            //Debug.Log($"Cancel Action Enabled: {uiCancelAction.action.enabled}");
         }
-
-        private void Update()
-        {
-        }
+        
     }
 }

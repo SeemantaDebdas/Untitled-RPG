@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6855195476183336312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
+  m_Name: 64c6b0fd-56d8-4e7c-9e5f-542a921ce00c
+  m_EditorClassIdentifier: 
+  <Text>k__BackingField: I come from Newtown, my man!
+  <Children>k__BackingField:
+  - 1f216fa6-4e58-422b-9fb8-abe1afe3aeb9
+  <IsPlayerSpeaking>k__BackingField: 1
+  <Position>k__BackingField: {x: 1481.4354, y: 375.5}
+  onEnterEvent: {fileID: 0}
+  onExitEvent: {fileID: 0}
 --- !u!114 &-2087851658742647945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,7 +71,6 @@ MonoBehaviour:
   <Nodes>k__BackingField:
   - {fileID: 417208454544005510}
   - {fileID: 4543494491817535324}
-  - {fileID: 3581771498131813211}
   - {fileID: 2874001789340378098}
   - {fileID: 2704642646567841770}
   - {fileID: 947071415923306732}
@@ -61,6 +79,7 @@ MonoBehaviour:
   - {fileID: 7579985399502709032}
   - {fileID: 731850797210338365}
   - {fileID: 6087482905622569838}
+  - {fileID: -6855195476183336312}
 --- !u!114 &417208454544005510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +95,7 @@ MonoBehaviour:
   <Text>k__BackingField: You don't look like you're from around here
   <Children>k__BackingField:
   - 3279b9f8-0b82-47d3-992f-ebf9a697ce16
-  - d27de3cc-98fe-42c7-aa86-2e9086fbee00
+  - 64c6b0fd-56d8-4e7c-9e5f-542a921ce00c
   <IsPlayerSpeaking>k__BackingField: 0
   <Position>k__BackingField: {x: 1012.1356, y: 161.13548}
   onEnterEvent: {fileID: 11400000, guid: 2745ab9ee192ca548ab191d9aac72501, type: 2}
@@ -136,7 +155,7 @@ MonoBehaviour:
   - 929942a1-7862-4d8c-8c5a-661f42a0878f
   - acb8a506-a7ca-42a3-a950-28ede7c93a1f
   <IsPlayerSpeaking>k__BackingField: 0
-  <Position>k__BackingField: {x: 1970, y: 355.5}
+  <Position>k__BackingField: {x: 1973.9679, y: 375.9825}
   onEnterEvent: {fileID: 11400000, guid: 21392095e40f38544a290bcf5c8e4b0d, type: 2}
   onExitEvent: {fileID: 11400000, guid: b6881739c7e0dd844b96323af354f452, type: 2}
 --- !u!114 &2874001789340378098
@@ -159,25 +178,6 @@ MonoBehaviour:
   <Position>k__BackingField: {x: 2738.9165, y: -173.5}
   onEnterEvent: {fileID: 11400000, guid: 21392095e40f38544a290bcf5c8e4b0d, type: 2}
   onExitEvent: {fileID: 11400000, guid: b6881739c7e0dd844b96323af354f452, type: 2}
---- !u!114 &3581771498131813211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: d27de3cc-98fe-42c7-aa86-2e9086fbee00
-  m_EditorClassIdentifier: 
-  <Text>k__BackingField: I came here from Newtown.
-  <Children>k__BackingField:
-  - 1f216fa6-4e58-422b-9fb8-abe1afe3aeb9
-  <IsPlayerSpeaking>k__BackingField: 1
-  <Position>k__BackingField: {x: 1469, y: 348.08002}
-  onEnterEvent: {fileID: 11400000, guid: 1f3610d42873feb4d933fbaac95182f9, type: 2}
-  onExitEvent: {fileID: 11400000, guid: 86718e97371760642ba0b7495e1217f5, type: 2}
 --- !u!114 &4543494491817535324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   <Position>k__BackingField: {x: 3668, y: 549.5}
   onEnterEvent: {fileID: 0}
-  onExitEvent: {fileID: 0}
+  onExitEvent: {fileID: 11400000, guid: 12fade91a18b29b49a011d4f7b16c3cd, type: 2}
 --- !u!114 &7579985399502709032
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,17 +1,17 @@
 using System;
 using DG.Tweening;
+using RPG.UI;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace RPG.DialogueSystem.UI
 {
-    public class DialogueUI : MonoBehaviour
+    public class DialogueUI : View
     {
         private PlayerConversant playerConversant;
         [SerializeField] private TextMeshProUGUI aiText;
-        [FormerlySerializedAs("nextButton")] [SerializeField] private Button continueButton;
+        [SerializeField] private Button continueButton;
 
         [Header("Choices")] 
         [SerializeField] private Transform choicesContainer;
@@ -20,23 +20,24 @@ namespace RPG.DialogueSystem.UI
 
         [Space, SerializeField] private Button quitButton;
 
-        private void Start()
+        private void OnDestroy()
+        {
+            playerConversant.OnConversationUpdated -= UpdateUI;
+            continueButton.onClick.RemoveAllListeners();
+            quitButton?.onClick.RemoveAllListeners();
+        }
+
+        public override void Initialize()
         {
             playerConversant = GameObject.FindWithTag("Player").GetComponent<PlayerConversant>();
             playerConversant.OnConversationUpdated += UpdateUI;
+            playerConversant.OnConversationEnded += () => OnHideRequest?.Invoke();
             
             continueButton.onClick.AddListener(OnContinueButtonClicked);
             quitButton?.onClick.AddListener(playerConversant.QuitConversation);
             
             DeactivateAll();
             UpdateUI();
-        }
-
-        private void OnDestroy()
-        {
-            playerConversant.OnConversationUpdated -= UpdateUI;
-            continueButton.onClick.RemoveAllListeners();
-            quitButton?.onClick.RemoveAllListeners();
         }
 
         private void OnContinueButtonClicked()
@@ -51,6 +52,8 @@ namespace RPG.DialogueSystem.UI
 
             if (!playerConversant.IsActive)
                 return;
+            
+            OnShowRequest?.Invoke();
             
             aiText.text = string.Empty;
             string message = playerConversant.GetText();
