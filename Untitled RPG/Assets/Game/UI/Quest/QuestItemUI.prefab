@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3198442417925004739}
   - component: {fileID: 4427953437077378108}
   m_Layer: 5
-  m_Name: QuestItem
+  m_Name: QuestItemUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c4195af9b31cd45893700d0e92df11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questTitle: {fileID: 107277120097933911}
 --- !u!1 &5851778384475685020
 GameObject:
   m_ObjectHideFlags: 0

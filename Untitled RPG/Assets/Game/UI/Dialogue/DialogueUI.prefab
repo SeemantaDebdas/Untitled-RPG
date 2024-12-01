@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aiText: {fileID: 163490093822968432}
-  nextButton: {fileID: 2514840638892599419}
+  continueButton: {fileID: 2514840638892599419}
   choicesContainer: {fileID: 3861508924494576913}
   choicesButtonContainer: {fileID: 3962739973423379175}
   choiceButtonPrefab: {fileID: 7857586551100514404, guid: 1ff458cbedd99bf459351be782e72585,
@@ -2498,6 +2498,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6371951986469970708, guid: 1ff458cbedd99bf459351be782e72585,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371951986469970708, guid: 1ff458cbedd99bf459351be782e72585,
+        type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -2647,6 +2652,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6371951986469970708, guid: 1ff458cbedd99bf459351be782e72585,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371951986469970708, guid: 1ff458cbedd99bf459351be782e72585,
+        type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -2792,6 +2802,11 @@ PrefabInstance:
     - target: {fileID: 6371951986469970708, guid: 1ff458cbedd99bf459351be782e72585,
         type: 3}
       propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371951986469970708, guid: 1ff458cbedd99bf459351be782e72585,
+        type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6371951986469970708, guid: 1ff458cbedd99bf459351be782e72585,

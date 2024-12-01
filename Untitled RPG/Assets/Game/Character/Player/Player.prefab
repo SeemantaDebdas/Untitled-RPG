@@ -1750,6 +1750,7 @@ GameObject:
   - component: {fileID: 8586906149063584143}
   - component: {fileID: 111100337509712113}
   - component: {fileID: 8221340605555139253}
+  - component: {fileID: 2515742843110619548}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2176,6 +2177,28 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2515742843110619548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972971377313347014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9673362230e721a4c97cbc2eb44374dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <QuestStatusList>k__BackingField:
+  - <Quest>k__BackingField: {fileID: 11400000, guid: e3b39a441c0125b42980810ef43821b3,
+      type: 2}
+    <CompletedObjectiveList>k__BackingField:
+    - Sneak into Demon Lord's palace
+    - Eliminate 5 enemies
+  - <Quest>k__BackingField: {fileID: 11400000, guid: 84dd2c49bd79cec4ab74f2499776eff7,
+      type: 2}
+    <CompletedObjectiveList>k__BackingField:
+    - Talk to the village head
 --- !u!1 &7009001920839669846
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,19 +1,38 @@
+using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace RPG
+namespace RPG.Quest.UI
 {
     public class QuestItemUI : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
+        [SerializeField] TextMeshProUGUI questTitle;
+        private Button button;
         
+        private QuestStatus questStatus;
+
+        public static event Action<QuestStatus> OnAnyQuestItemSelected;
+        
+        private void Awake()
+        {
+            button = GetComponent<Button>();
+        }
+        
+        private void OnEnable()
+        {
+            button.onClick.AddListener(() => OnAnyQuestItemSelected?.Invoke(questStatus));
+        }
+        
+        public void Setup(QuestStatus questStatus)
+        {
+            this.questStatus = questStatus;
+            questTitle.text = questStatus.Quest.name;
         }
 
-        // Update is called once per frame
-        void Update()
+        public void Select()
         {
-        
+            OnAnyQuestItemSelected?.Invoke(questStatus);
         }
     }
 }
