@@ -1,42 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7610205745770843607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: c0141b51-a130-41b0-8b58-dcde7a0a668a
-  m_EditorClassIdentifier: 
-  <Text>k__BackingField: 
-  <Children>k__BackingField: []
-  <IsPlayerSpeaking>k__BackingField: 0
-  <Position>k__BackingField: {x: 2964.4314, y: -351.5}
-  onEnterEvent: {fileID: 0}
-  onExitEvent: {fileID: 0}
---- !u!114 &-3628143254650203575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: 341e368b-43f7-417b-b08e-fd86a974f7a0
-  m_EditorClassIdentifier: 
-  <Text>k__BackingField: 
-  <Children>k__BackingField:
-  - 2dd0833e-548b-4af4-8641-e13b6d2e9f00
-  <IsPlayerSpeaking>k__BackingField: 0
-  <Position>k__BackingField: {x: 2149.4226, y: -35.178772}
-  onEnterEvent: {fileID: 0}
-  onExitEvent: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,26 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af85c12f5813c6a42a6611f6311cf837, type: 3}
   m_Name: TestDialogue
   m_EditorClassIdentifier: 
-  <Nodes>k__BackingField:
-  - {fileID: -3628143254650203575}
-  - {fileID: 7108546655452400326}
-  - {fileID: -7610205745770843607}
---- !u!114 &7108546655452400326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
-  m_Name: 2dd0833e-548b-4af4-8641-e13b6d2e9f00
-  m_EditorClassIdentifier: 
-  <Text>k__BackingField: TestChoice
-  <Children>k__BackingField:
-  - c0141b51-a130-41b0-8b58-dcde7a0a668a
-  <IsPlayerSpeaking>k__BackingField: 1
-  <Position>k__BackingField: {x: 2550.7, y: -351.5}
-  onEnterEvent: {fileID: 0}
-  onExitEvent: {fileID: 0}
+  <Nodes>k__BackingField: []

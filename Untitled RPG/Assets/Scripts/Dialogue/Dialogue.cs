@@ -77,7 +77,8 @@ namespace RPG.DialogueSystem
             
             AddNode(newNode);
             
-            //AssetDatabase.SaveAssets();
+            EditorUtility.SetDirty(this);
+            AssetDatabase.SaveAssets();
             
             return newNode;
         }
@@ -120,7 +121,7 @@ namespace RPG.DialogueSystem
             OnValidate();
             Undo.DestroyObjectImmediate(nodeToDelete);
             
-            //AssetDatabase.SaveAssets();
+            AssetDatabase.SaveAssets();
         }
 
         private void RemoveNodeFromChildrenList(DialogueNode nodeToDelete)
@@ -130,7 +131,7 @@ namespace RPG.DialogueSystem
                 node.RemoveChild(nodeToDelete);
             }
             
-            //AssetDatabase.SaveAssets();
+            AssetDatabase.SaveAssets();
         }
 
 

@@ -49,12 +49,17 @@ namespace RPG.DialogueSystem.Editor
             if (Selection.activeObject is Dialogue dialogue && AssetDatabase.CanOpenAssetInEditor(dialogue.GetInstanceID()))
             {
                 graphView.Populate(dialogue);
+                
+                EditorApplication.delayCall += () =>
+                {
+                    graphView.FrameAll();
+                };
             }
         }
         
         private void GraphView_OnNodeSelected(DialogueNodeView nodeView)
         {
-            //inspectorView.UpdateSelection(nodeView);
+            inspectorView.UpdateSelection(nodeView);
         }
     }
 }
