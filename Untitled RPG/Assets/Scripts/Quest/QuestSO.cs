@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Quest
@@ -5,11 +6,32 @@ namespace RPG.Quest
     [CreateAssetMenu(fileName = "Quest", menuName = "Quest")]
     public class QuestSO : ScriptableObject
     {
-        [field: SerializeField] public string[] Objectives { get; private set; }
+        [System.Serializable]
+        public class Objective
+        {
+            public string reference;
+            public string description;
+        }
+        [field: SerializeField] public List<Objective> Objectives { get; private set; } = new();
 
         public string Title
         {
             get => name;
+        }
+
+        public bool HasObjective(string objectiveRef, out Objective matchedObjective)
+        {
+            matchedObjective = null;
+            foreach (var objective in Objectives)
+            {
+                if (objective.reference == objectiveRef)
+                {
+                    matchedObjective = objective;
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

@@ -8,15 +8,38 @@ namespace RPG.Quest.UI
     {
         [SerializeField] QuestList questList;
         [SerializeField] QuestItemUI questItemUIPrefab = null;
+        
+        private void OnEnable()
+        {
+            questList.OnQuestListUpdated += RegenerateQuestList;
+        }
+
+        private void OnDestroy()
+        {
+            questList.OnQuestListUpdated -= RegenerateQuestList;
+        }
 
         private void Start()
         {
-            ClearQuestList();
+            RegenerateQuestList();
+        }
 
+        void RegenerateQuestList()
+        {
+            ClearQuestList();
+            BuildQuestList();
+        }
+
+        private void BuildQuestList()
+        {
+            if (questList.QuestStatusList.Count == 0)
+            {
+                return;
+            }
+            
             for (int i = 0; i < questList.QuestStatusList.Count; i++)
             {
                 QuestStatus questStatus = questList.QuestStatusList[i];
-                QuestSO quest = questStatus.Quest;
                 
                 QuestItemUI questItemUI = Instantiate(questItemUIPrefab, transform);
                 questItemUI.Setup(questStatus);
@@ -27,11 +50,6 @@ namespace RPG.Quest.UI
                     questItemUI.Select();
                 }
             }
-        }
-
-        private void OnEnable()
-        {
-            Debug.Log("Enabled QuestListUI");
         }
 
         private void ClearQuestList()

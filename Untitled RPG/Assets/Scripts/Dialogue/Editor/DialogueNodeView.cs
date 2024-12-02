@@ -150,6 +150,12 @@ namespace RPG.DialogueSystem.Editor
             {
                 Debug.Log("Event Changed");
 
+                if (evt.newValue == null)
+                {
+                    node.OnEnterEvent = null;
+                    return;
+                }
+
                 if (evt.newValue is not ScriptableEvent newEnterEvent)
                     return;
                 
@@ -163,6 +169,12 @@ namespace RPG.DialogueSystem.Editor
             
             onExitField.RegisterCallback<ChangeEvent<Object>>(evt =>
             {
+                if (evt.newValue == null)
+                {
+                    node.OnExitEvent = null;
+                    return;
+                }
+                
                 if (evt.newValue is not ScriptableEvent newExitEvent)
                     return;
                 

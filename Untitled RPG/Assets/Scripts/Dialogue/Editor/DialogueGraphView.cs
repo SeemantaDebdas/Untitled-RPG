@@ -22,6 +22,12 @@ namespace RPG.DialogueSystem.Editor
             styleSheets.Add(styleSheet);
 
             AddManipulators();
+
+            Undo.undoRedoPerformed += () =>
+            {
+                Populate(dialogue);
+                AssetDatabase.SaveAssets();
+            };
         }
 
         private void AddManipulators()

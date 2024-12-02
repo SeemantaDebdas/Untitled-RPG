@@ -36,12 +36,17 @@ namespace RPG.DialogueSystem.Editor
             if (evt.newValue is ScriptableEvent scriptableEvent)
             {
                 value = scriptableEvent;
-                Debug.Log($"Assigned object is a valid ScriptableEvent: {evt.newValue.name}");
+                //Debug.Log($"Assigned object is a valid ScriptableEvent: {evt.newValue.name}");
             }
             else if (evt.newValue != null)
             {
-                Debug.LogWarning($"Assigned object is not a ScriptableEvent. Reverting to previous value.");
+                //Debug.LogWarning($"Assigned object is not a ScriptableEvent. Reverting to previous value.");
                 SetValueWithoutNotify(evt.previousValue); // Revert to the previous value
+            }
+            else if (evt.newValue == null)
+            {
+                Debug.Log("Value is set to null");
+                value = null;
             }
         }
     }

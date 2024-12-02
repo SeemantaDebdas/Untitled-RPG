@@ -1648,6 +1648,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5036772620880578030, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
+        type: 3}
+      propertyPath: eventResponseList.Array.data[0].response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036772620880578030, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
+        type: 3}
+      propertyPath: eventResponseList.Array.data[0].response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GiveQuest
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036772620880578030, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
+        type: 3}
+      propertyPath: eventResponseList.Array.data[0].response.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6286171764688301451, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
         type: 3}
       propertyPath: m_Name
@@ -1656,8 +1671,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6286171764688301451, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7177106908166226613}
   m_SourcePrefab: {fileID: 100100000, guid: 13b6b2c14621aea49ab7d905d0ca0efc, type: 3}
+--- !u!1 &7177106908166226612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6286171764688301451, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7177106908166226611}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7177106908166226613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7177106908166226612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a29a85a61ec81a469818cdcddf941a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 11400000, guid: e3b39a441c0125b42980810ef43821b3, type: 2}
+  objective: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

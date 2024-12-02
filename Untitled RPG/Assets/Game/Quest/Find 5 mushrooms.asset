@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Find 5 mushrooms
   m_EditorClassIdentifier: 
   <Objectives>k__BackingField:
-  - Sneak into Demon Lord's palace
-  - Eliminate 5 enemies
-  - Retrive 5 mushrooms
+  - reference: 1
+    description: This is objective 1
+  - reference: 2
+    description: This is objective 2
+  - reference: 3
+    description: This is objective 3

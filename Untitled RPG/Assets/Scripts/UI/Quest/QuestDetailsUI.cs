@@ -28,9 +28,11 @@ namespace RPG.Quest.UI
             questTitle.text = questStatus.Quest.Title;
             ClearObjectiveContainer();
 
-            foreach (string objectiveText in questStatus.Quest.Objectives)
+            foreach (QuestSO.Objective objective in questStatus.Quest.Objectives)
             {
-                var prefabToSpawn = questStatus.CompletedObjectiveList.Contains(objectiveText) ? 
+                string objectiveText = objective.description;
+                
+                var prefabToSpawn = questStatus.HasCompletedObjective(objectiveText) ? 
                     objectiveCompletePrefab : objectiveIncompletePrefab;
                 
                 GameObject objectivePrefabSpawn = Instantiate(prefabToSpawn, objectiveContainer.transform);

@@ -6,9 +6,10 @@ namespace RPG.Quest
     {
         [SerializeField] QuestSO quest;
 
-        public void GiveQuest()
+        public void GiveQuest(Component caller, object data)
         {
-            Debug.Log("Giving Quest: " + quest.Title);
+            QuestStatus questStatus = new QuestStatus(quest);
+            caller.GetComponent<QuestList>().AddQuest(questStatus);
         }
     }
 }
