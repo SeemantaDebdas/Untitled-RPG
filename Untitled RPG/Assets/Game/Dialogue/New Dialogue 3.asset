@@ -16,7 +16,7 @@ MonoBehaviour:
   - 85a5a866-8228-4537-aaf9-34902f0f20c8
   - 02c55c65-0090-415e-907a-ab9f7bc55f1e
   - b6b3ae64-ad89-4017-b225-6cc665d48b76
-  <Position>k__BackingField: {x: -141, y: -5.5}
+  <Position>k__BackingField: {x: -151.1449, y: -28.87004}
 --- !u!114 &-7539290854349650498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Children>k__BackingField:
   - 781daf5e-c67a-47ae-8228-eb968f07c916
-  <Position>k__BackingField: {x: 251, y: 13.5}
+  <Position>k__BackingField: {x: 251, y: 23}
   <Text>k__BackingField: 
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 0}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 781daf5e-c67a-47ae-8228-eb968f07c916
   m_EditorClassIdentifier: 
   <Children>k__BackingField: []
-  <Position>k__BackingField: {x: 632, y: 13.500008}
+  <Position>k__BackingField: {x: 632, y: 23.499992}
   <Text>k__BackingField: 
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}

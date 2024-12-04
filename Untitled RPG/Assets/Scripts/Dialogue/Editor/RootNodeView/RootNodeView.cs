@@ -9,10 +9,10 @@ namespace RPG.DialogueSystem.Editor
     {
         public RootNodeView(){}
         public RootNodeView(RootNode node) : base(node,
-            "Assets/Scripts/Dialogue/Editor/DialogueNodeView/NodeViewEditor.uxml")
+            "Assets/Scripts/Dialogue/Editor/RootNodeView/RootNodeViewEditor.uxml")
         {
             if (node == null)
-                throw new ArgumentNullException(nameof(node), "DialogueNode cannot be null.");
+                throw new ArgumentNullException(nameof(node), "Root Node cannot be null.");
             
             this.node = node;
             title = "Root Node";
