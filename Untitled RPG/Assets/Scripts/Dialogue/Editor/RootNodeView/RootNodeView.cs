@@ -1,19 +1,30 @@
+using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-namespace RPG
+namespace RPG.DialogueSystem.Editor
 {
-    public class RootNodeView : MonoBehaviour
+    [UxmlElement]
+    public partial class RootNodeView : BaseNodeView
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        public RootNodeView(){}
+        public RootNodeView(RootNode node) : base(node,
+            "Assets/Scripts/Dialogue/Editor/DialogueNodeView/NodeViewEditor.uxml")
         {
-        
-        }
+            if (node == null)
+                throw new ArgumentNullException(nameof(node), "DialogueNode cannot be null.");
+            
+            this.node = node;
+            title = "Root Node";
 
-        // Update is called once per frame
-        void Update()
-        {
-        
+            viewDataKey = node.name;
+
+            style.left = this.node.Position.x;
+            style.top = this.node.Position.y;
+            
+            CreateOutputPort();
+
+            topContainer.style.flexDirection = FlexDirection.Row;
         }
     }
 }

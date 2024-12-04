@@ -45,16 +45,37 @@ namespace RPG.DialogueSystem.Editor
             graphViewChanged -= OnGraphViewChanged;
             DeleteElements(graphElements);
             graphViewChanged += OnGraphViewChanged;
+
+            CreateRootNodeView(dialogue.RootNode);
             
-            dialogue.Nodes.ForEach(node => CreateNodeView(node));
-            
+            dialogue.Nodes.ForEach(node => CreateDialogueNodeView(node));
             dialogue.Nodes.ForEach(CreateEdges);
         }
-        
-        private DialogueNodeView CreateNodeView(DialogueNode node)
+
+        private RootNodeView CreateRootNodeView(RootNode rootNode)
+        {
+            RootNodeView nodeView = new RootNodeView(rootNode);
+            
+            SubscribeToNodeViewEvents(nodeView);
+
+            AddElement(nodeView);
+            
+            return nodeView;
+        }
+
+        private DialogueNodeView CreateDialogueNodeView(DialogueNode node)
         {
             DialogueNodeView nodeView = new DialogueNodeView(node);
             
+            SubscribeToNodeViewEvents(nodeView);
+
+            AddElement(nodeView);
+            
+            return nodeView;
+        }
+
+        private void SubscribeToNodeViewEvents(BaseNodeView nodeView)
+        {
             nodeView.OnNodeSelected += OnNodeSelected;
             // Subscribe to drag events
             nodeView.OnDragStarted += OnNodeDragStarted;
@@ -67,30 +88,26 @@ namespace RPG.DialogueSystem.Editor
                 float nodeHeight = nodeView.resolvedStyle.height;
 
                 // Calculate the new position so the center aligns with the mouse
-                Vector2 nodePosition = node.Position - new Vector2(nodeWidth / 2, nodeHeight / 2);
+                Vector2 nodePosition = nodeView.node.Position - new Vector2(nodeWidth / 2, nodeHeight / 2);
 
                 // Set the node position after the size is determined
-                node.SetPosition(nodePosition);
+                nodeView.node.SetPosition(nodePosition);
                 nodeView.SetPosition(new Rect(nodePosition, new Vector2(nodeWidth, nodeHeight)));
             });
-            
-            AddElement(nodeView);
-            
-            return nodeView;
         }
-        
-        void CreateEdges(DialogueNode parent)
+
+        void CreateEdges(BaseNode parent)
         {
             List<DialogueNode> children = dialogue.GetChildrenOfNode(parent).ToList();
             
             if(children.Count == 0)
                 return;
 
-            DialogueNodeView parentView = GetNodeViewFromNode(parent);
+            BaseNodeView parentView = GetNodeViewFromNode(parent);
                 
             children.ForEach(child =>
             {
-                DialogueNodeView childView = GetNodeViewFromNode(child);
+                DialogueNodeView childView = GetNodeViewFromNode(child) as DialogueNodeView;
                 Edge edge = parentView.outputPort.ConnectTo(childView.inputPort);
                 AddElement(edge);
             });
@@ -123,7 +140,7 @@ namespace RPG.DialogueSystem.Editor
             evt.menu.AppendAction($"New Node", action =>
             {
                 var newNode = CreateNode(mousePosition);
-                CreateNodeView(newNode);
+                CreateDialogueNodeView(newNode);
             });
         }
 
@@ -219,7 +236,7 @@ namespace RPG.DialogueSystem.Editor
             {
                 foreach (var edgeToCreate in changes.edgesToCreate)
                 {
-                    DialogueNodeView parentView = edgeToCreate.output.node as DialogueNodeView;
+                    BaseNodeView parentView = edgeToCreate.output.node as BaseNodeView;
                     DialogueNodeView childView = edgeToCreate.input.node as DialogueNodeView;
 
                     //dialogue.AddChild(parentView.node, childView.node);
@@ -235,7 +252,7 @@ namespace RPG.DialogueSystem.Editor
         
         private void RemoveChildrenAfterEdgeRemoval(Edge removedEdge)
         {
-            DialogueNodeView parentView = removedEdge.output.node as DialogueNodeView;
+            BaseNodeView parentView = removedEdge.output.node as BaseNodeView;
             DialogueNodeView childView = removedEdge.input.node as DialogueNodeView;
             
             parentView.node.RemoveChild(childView.node as DialogueNode);
@@ -244,7 +261,7 @@ namespace RPG.DialogueSystem.Editor
         private void CreateChildNode(BaseNodeView parentView, Vector2 position)
         {
             DialogueNode newChildNode = CreateNode(position, parentView.node);
-            DialogueNodeView childNodeView = CreateNodeView(newChildNode);
+            DialogueNodeView childNodeView = CreateDialogueNodeView(newChildNode);
 
             // Connect parent to child
             Edge edge = parentView.outputPort.ConnectTo(childNodeView.inputPort);
@@ -253,9 +270,9 @@ namespace RPG.DialogueSystem.Editor
             parentView.node.AddChild(newChildNode);
         }
         
-        private DialogueNodeView GetNodeViewFromNode(DialogueNode node)
+        private BaseNodeView GetNodeViewFromNode(BaseNode node)
         {
-            return GetNodeByGuid(node.name) as DialogueNodeView;
+            return GetNodeByGuid(node.name) as BaseNodeView;
         }
 
     }
