@@ -46,9 +46,12 @@ namespace RPG.DialogueSystem.Editor
             DeleteElements(graphElements);
             graphViewChanged += OnGraphViewChanged;
 
+            //Create view for root node and all other nodes.
             CreateRootNodeView(dialogue.RootNode);
-            
             dialogue.Nodes.ForEach(node => CreateDialogueNodeView(node));
+            
+            //Create edges for root node and all other nodes
+            CreateEdges(dialogue.RootNode);
             dialogue.Nodes.ForEach(CreateEdges);
         }
 
@@ -108,6 +111,25 @@ namespace RPG.DialogueSystem.Editor
             children.ForEach(child =>
             {
                 DialogueNodeView childView = GetNodeViewFromNode(child) as DialogueNodeView;
+
+                if (parentView == null)
+                {
+                    Debug.LogError("Parent View Null.");
+                    return;
+                }
+
+                if (childView == null)
+                {
+                    Debug.LogError("Child View Null.");
+                    return;
+                }
+                
+                if (parentView.outputPort == null || childView.inputPort == null)
+                {
+                    Debug.LogError("Ports are not initialized correctly.");
+                    return;
+                }
+                
                 Edge edge = parentView.outputPort.ConnectTo(childView.inputPort);
                 AddElement(edge);
             });
@@ -115,8 +137,7 @@ namespace RPG.DialogueSystem.Editor
         
         private DialogueNode CreateNode(Vector2 instantiationPosition, BaseNode parent = null)
         {
-            //CHANGE THIS HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            DialogueNode node = dialogue.CreateAndAddNode(parent as DialogueNode);//<=====================
+            DialogueNode node = dialogue.CreateAndAddNode(parent);
             node.SetPosition(instantiationPosition);
 
             return node;

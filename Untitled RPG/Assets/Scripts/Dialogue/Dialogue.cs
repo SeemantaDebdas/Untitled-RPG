@@ -67,7 +67,7 @@ namespace RPG.DialogueSystem
             }
         }
 
-        public DialogueNode CreateAndAddNode(DialogueNode parent)
+        public DialogueNode CreateAndAddNode(BaseNode parent)
         {
             var newNode = CreateNode(parent);
 
@@ -82,7 +82,7 @@ namespace RPG.DialogueSystem
             return newNode;
         }
         
-        private DialogueNode CreateNode(DialogueNode parent)
+        private DialogueNode CreateNode(BaseNode parent)
         {
             DialogueNode newNode = CreateInstance<DialogueNode>();
             newNode.name = Guid.NewGuid().ToString();
@@ -90,7 +90,9 @@ namespace RPG.DialogueSystem
             if (parent != null)
             {
                 parent.AddChild(newNode);
-                newNode.SetIsPlayerSpeaking(!parent.IsPlayerSpeaking);
+                
+                if(parent is DialogueNode parentDialogueNode)
+                    newNode.SetIsPlayerSpeaking(!parentDialogueNode.IsPlayerSpeaking);
             }
             
             //AssetDatabase.SaveAssets();
