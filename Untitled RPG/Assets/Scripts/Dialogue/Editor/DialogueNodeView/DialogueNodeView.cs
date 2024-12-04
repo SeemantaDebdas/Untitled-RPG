@@ -9,15 +9,8 @@ using Object = UnityEngine.Object;
 namespace RPG.DialogueSystem.Editor
 {
     [UxmlElement]
-    public partial class DialogueNodeView : Node
+    public partial class DialogueNodeView : BaseNodeView
     {
-        public DialogueNode node;
-
-        public event Action<DialogueNodeView> OnNodeSelected;
-        public event Action<DialogueNodeView> OnDragStarted;
-        public event Action<Vector2> OnDragEnded;
-
-        public Port inputPort, outputPort;
         public EventObjectField onEnterField, onExitField;
         public string dialogueText;
 
@@ -25,7 +18,7 @@ namespace RPG.DialogueSystem.Editor
         {
         }
 
-        public DialogueNodeView(DialogueNode node) : base("Assets/Scripts/Dialogue/Editor/NodeViewEditor.uxml")
+        public DialogueNodeView(DialogueNode node) : base(node,"Assets/Scripts/Dialogue/Editor/DialogueNodeView/NodeViewEditor.uxml")
         {
             if (node == null)
                 throw new ArgumentNullException(nameof(node), "DialogueNode cannot be null.");
@@ -58,19 +51,6 @@ namespace RPG.DialogueSystem.Editor
             topContainer.style.flexDirection = FlexDirection.Row;
         }
         
-        public override void SetPosition(Rect newPos)
-        {
-            base.SetPosition(newPos);
-            
-            node.SetPosition(new (newPos.center.x, newPos.center.y));
-        }
-
-        public override void OnSelected()
-        {
-            base.OnSelected();
-            OnNodeSelected?.Invoke(this);
-        }
-
         private void CreateTextArea()
         {
             TextField textField = new TextField()
@@ -84,7 +64,7 @@ namespace RPG.DialogueSystem.Editor
             textField.RegisterValueChangedCallback(evt =>
             {
                 // Update the node's text
-                node.SetText(evt.newValue);
+                ((DialogueNode)node).SetText(evt.newValue);
             });
 
             VisualElement customDataContainer = new VisualElement()
@@ -119,27 +99,10 @@ namespace RPG.DialogueSystem.Editor
             }
         }
 
-        private void CreateInputPort()
-        {
-            inputPort = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(bool));
-            inputPort.portName = "";
-            inputContainer.Add(inputPort);
-        }
-        
-        private void CreateOutputPort()
-        {
-            outputPort = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, typeof(bool));
-            outputPort.portName = "";
-            
-            // Register the drag start and end events
-            outputPort.RegisterCallback<MouseDownEvent>(evt => OnDragStarted?.Invoke(this));
-            outputPort.RegisterCallback<MouseUpEvent>(evt => OnDragEnded?.Invoke(evt.mousePosition));
-            
-            outputContainer.Add(outputPort);
-        }
-
         void BindOnEnterAndExitEvents()
         {
+            DialogueNode dialogueNode = ((DialogueNode)node);
+            
             if (onEnterField == null || onExitField == null)
             {
                 Debug.LogError("EventObjectFields are not correctly initialized.");
@@ -152,36 +115,36 @@ namespace RPG.DialogueSystem.Editor
 
                 if (evt.newValue == null)
                 {
-                    node.OnEnterEvent = null;
+                    dialogueNode.OnEnterEvent = null;
                     return;
                 }
 
                 if (evt.newValue is not ScriptableEvent newEnterEvent)
                     return;
                 
-                if (newEnterEvent == node.OnEnterEvent) 
+                if (newEnterEvent == dialogueNode.OnEnterEvent) 
                     return;
 
                 Debug.Log("Event not same as that of node");
                 
-                node.OnEnterEvent = newEnterEvent;
+                dialogueNode.OnEnterEvent = newEnterEvent;
             });
             
             onExitField.RegisterCallback<ChangeEvent<Object>>(evt =>
             {
                 if (evt.newValue == null)
                 {
-                    node.OnExitEvent = null;
+                    dialogueNode.OnExitEvent = null;
                     return;
                 }
                 
                 if (evt.newValue is not ScriptableEvent newExitEvent)
                     return;
                 
-                if (newExitEvent == node.OnExitEvent) 
+                if (newExitEvent == dialogueNode.OnExitEvent) 
                     return;
 
-                node.OnExitEvent = newExitEvent;
+                dialogueNode.OnExitEvent = newExitEvent;
             });
         }
 

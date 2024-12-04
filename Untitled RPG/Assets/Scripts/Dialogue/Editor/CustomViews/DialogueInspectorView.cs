@@ -10,7 +10,7 @@ namespace RPG.DialogueSystem.Editor
         private UnityEditor.Editor editor;
         public DialogueInspectorView(){}
 
-        public void UpdateSelection(DialogueNodeView nodeView)
+        public void UpdateSelection(BaseNodeView nodeView)
         {
             Clear();
             

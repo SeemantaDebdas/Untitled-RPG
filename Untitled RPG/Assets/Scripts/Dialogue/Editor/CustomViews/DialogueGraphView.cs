@@ -12,7 +12,7 @@ namespace RPG.DialogueSystem.Editor
     public partial class DialogueGraphView : GraphView
     {
         Dialogue dialogue;
-        public Action<DialogueNodeView> OnNodeSelected;
+        public Action<BaseNodeView> OnNodeSelected;
 
         public DialogueGraphView()
         {
@@ -96,9 +96,10 @@ namespace RPG.DialogueSystem.Editor
             });
         }
         
-        private DialogueNode CreateNode(Vector2 instantiationPosition, DialogueNode parent = null)
+        private DialogueNode CreateNode(Vector2 instantiationPosition, BaseNode parent = null)
         {
-            DialogueNode node = dialogue.CreateAndAddNode(parent);
+            //CHANGE THIS HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            DialogueNode node = dialogue.CreateAndAddNode(parent as DialogueNode);//<=====================
             node.SetPosition(instantiationPosition);
 
             return node;
@@ -138,7 +139,7 @@ namespace RPG.DialogueSystem.Editor
 
         #region Drag and Drop to Create Node
         
-        DialogueNodeView draggingNodeView = null;
+        BaseNodeView draggingNodeView = null;
         
         bool IsMouseOnAnyGraphElement(Vector2 mousePosition)
         {
@@ -161,7 +162,7 @@ namespace RPG.DialogueSystem.Editor
             return true;
         }
 
-        private void OnNodeDragStarted(DialogueNodeView nodeView)
+        private void OnNodeDragStarted(BaseNodeView nodeView)
         {
             // Track the node being dragged
             draggingNodeView = nodeView;
@@ -201,7 +202,7 @@ namespace RPG.DialogueSystem.Editor
                         nodeView.OnDragStarted -= OnNodeDragStarted;
                         nodeView.OnDragEnded -= OnNodeDragEnded;
                         
-                        dialogue.DeleteNode(nodeView.node);
+                        dialogue.DeleteNode(nodeView.node as DialogueNode);//<==================!!!!!!!!!!!!!!!
                     }
                     
                     if (element is Edge edge)
@@ -222,9 +223,9 @@ namespace RPG.DialogueSystem.Editor
                     DialogueNodeView childView = edgeToCreate.input.node as DialogueNodeView;
 
                     //dialogue.AddChild(parentView.node, childView.node);
-                    if (!parentView.node.IsChild(childView.node))
+                    if (!parentView.node.IsChild(childView.node as DialogueNode))
                     {
-                        parentView.node.AddChild(childView.node);
+                        parentView.node.AddChild(childView.node as DialogueNode);
                     }
                 }
             }
@@ -237,10 +238,10 @@ namespace RPG.DialogueSystem.Editor
             DialogueNodeView parentView = removedEdge.output.node as DialogueNodeView;
             DialogueNodeView childView = removedEdge.input.node as DialogueNodeView;
             
-            parentView.node.RemoveChild(childView.node);
+            parentView.node.RemoveChild(childView.node as DialogueNode);
         }
         
-        private void CreateChildNode(DialogueNodeView parentView, Vector2 position)
+        private void CreateChildNode(BaseNodeView parentView, Vector2 position)
         {
             DialogueNode newChildNode = CreateNode(position, parentView.node);
             DialogueNodeView childNodeView = CreateNodeView(newChildNode);

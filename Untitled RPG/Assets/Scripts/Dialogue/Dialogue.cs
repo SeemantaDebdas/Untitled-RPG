@@ -8,6 +8,7 @@ namespace RPG.DialogueSystem
     [CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue")]
     public class Dialogue : ScriptableObject , ISerializationCallbackReceiver
     {
+        [field: SerializeField] public RootNode RootNode { get; private set; }
         [field: SerializeField] public List<DialogueNode> Nodes { get; private set; } = new();
         
         Dictionary<string, DialogueNode> nodesDictionary = new();
@@ -34,10 +35,8 @@ namespace RPG.DialogueSystem
         }
 
         public IEnumerable<DialogueNode> GetAllNodes() => Nodes;
-        
-        public DialogueNode RootNode => Nodes[0];
 
-        public IEnumerable<DialogueNode> GetChildrenOfNode(DialogueNode parent)
+        public IEnumerable<DialogueNode> GetChildrenOfNode(BaseNode parent)
         {
             foreach (string uID in parent.Children)
             {
@@ -57,7 +56,7 @@ namespace RPG.DialogueSystem
             }
         }
 
-        public IEnumerable<DialogueNode> GetNonChoiceChildrenOfNode(DialogueNode parent)
+        public IEnumerable<DialogueNode> GetNonChoiceChildrenOfNode(BaseNode parent)
         {
             IEnumerable<DialogueNode> choices = GetChildrenOfNode(parent);
 
@@ -137,14 +136,19 @@ namespace RPG.DialogueSystem
 
         public void OnBeforeSerialize()
         {
-            // if (Nodes.Count == 0)
-            // {
-            //     var newNode = CreateNode(null);
-            //     AddNode(newNode);
-            // }
-            //
+            if (RootNode == null)
+            {
+                CreateRootNode();
+            }
+            
             if (AssetDatabase.GetAssetPath(this) != "")
             {
+                if (AssetDatabase.GetAssetPath(RootNode) == "")
+                {
+                    AssetDatabase.AddObjectToAsset(RootNode, this);
+                    EditorUtility.SetDirty(this);
+                }
+                
                 foreach (DialogueNode node in Nodes)
                 {
                     if (node != null && AssetDatabase.GetAssetPath(node) == "")
@@ -154,6 +158,15 @@ namespace RPG.DialogueSystem
                     }
                 }
             }
+        }
+
+        private RootNode CreateRootNode()
+        {
+            RootNode = CreateInstance<RootNode>();
+            RootNode.name = Guid.NewGuid().ToString();
+            
+            //AssetDatabase.SaveAssets();
+            return RootNode;
         }
 
         public void OnAfterDeserialize(){}

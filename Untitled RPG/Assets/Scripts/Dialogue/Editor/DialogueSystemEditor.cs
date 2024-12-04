@@ -57,7 +57,7 @@ namespace RPG.DialogueSystem.Editor
             }
         }
         
-        private void GraphView_OnNodeSelected(DialogueNodeView nodeView)
+        private void GraphView_OnNodeSelected(BaseNodeView nodeView)
         {
             inspectorView.UpdateSelection(nodeView);
         }

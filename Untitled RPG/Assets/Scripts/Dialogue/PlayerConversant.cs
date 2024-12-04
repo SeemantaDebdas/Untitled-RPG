@@ -20,7 +20,9 @@ namespace RPG.DialogueSystem
         public void StartConversation(Dialogue dialogue)
         {
             currentDialogue = dialogue;
-            currentDialogueNode = currentDialogue.RootNode;
+            
+            var rootNodeChildren = currentDialogue.GetNonChoiceChildrenOfNode(currentDialogue.RootNode).ToList();
+            currentDialogueNode = rootNodeChildren.FirstOrDefault();
             
             TriggerEnterAction();
             
