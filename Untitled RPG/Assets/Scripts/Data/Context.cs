@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace RPG.Data
 {
+    public interface IContextProvider
+    {
+         Context GetContext();
+    }
     public class Context 
     {
         public Transform Transform { get; set; }

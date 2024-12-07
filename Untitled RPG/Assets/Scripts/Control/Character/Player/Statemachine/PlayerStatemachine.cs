@@ -3,10 +3,11 @@ using RPG.Core;
 using UnityEngine;
 using RPG.Combat;
 using RPG.DialogueSystem;
+using RPG.Quest;
 
 namespace RPG.Control
 {
-    public class PlayerStatemachine : Statemachine
+    public class PlayerStatemachine : Statemachine, IContextProvider
     {
         PlayerContext playerContext;
         public override Context Context
@@ -30,6 +31,7 @@ namespace RPG.Control
                     Interactor = GetComponent<Interactor>(),
                     CombatHandler = GetComponent<CombatHandler>(),
                     PlayerConversant = GetComponent<PlayerConversant>(),
+                    QuestList = GetComponent<QuestList>(),
                 };
 
                 return playerContext;
@@ -41,5 +43,6 @@ namespace RPG.Control
             SwitchState(initialState);
         }
 
+        public Context GetContext() => Context;
     }
 }

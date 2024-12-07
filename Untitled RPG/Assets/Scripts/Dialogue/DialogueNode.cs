@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using RPG.Core;
+using RPG.Data;
 using UnityEngine;
 using UnityEditor;
-using UnityEngine.Serialization;
 
 namespace RPG.DialogueSystem
 {
@@ -15,6 +15,8 @@ namespace RPG.DialogueSystem
         [Space]
         [SerializeField] private ScriptableEvent onEnterEvent;
         [SerializeField] private ScriptableEvent onExitEvent;
+
+        [Space] [SerializeField] private CompoundCondition<DialogueConditionSO> condition;
 
         public ScriptableEvent OnEnterEvent
         {
@@ -59,6 +61,15 @@ namespace RPG.DialogueSystem
             
             IsPlayerSpeaking = isPlayerSpeaking;
             EditorUtility.SetDirty(this);
-        } 
+        }
+
+        public bool CheckCondition(Context context)
+        {
+            bool result = condition.Evaluate(context);
+            
+            Debug.Log(result + " " + Text);
+            
+            return result;
+        }
     }
 }

@@ -32,6 +32,8 @@ namespace RPG.Quest.UI
 
         private void BuildQuestList()
         {
+            Debug.Log("Building quest list");
+            
             if (questList.QuestStatusList.Count == 0)
             {
                 return;

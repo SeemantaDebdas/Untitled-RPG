@@ -57,7 +57,7 @@ namespace RPG.DialogueSystem.UI
             
             aiText.text = string.Empty;
             string message = playerConversant.GetText();
-            DOTween.To(() => aiText.text, x => aiText.text = x, message, 2f).SetEase(Ease.Linear).OnComplete(ShowChoicesOrNextButton);
+            DOTween.To(() => aiText.text, x => aiText.text = x, message, 1.5f).SetEase(Ease.Linear).OnComplete(ShowChoicesOrNextButton);
         }
 
         void DeactivateAll()

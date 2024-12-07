@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using RPG.Data;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,11 +18,18 @@ namespace RPG.DialogueSystem
         
         public bool IsActive => currentDialogue != null;
 
+        private IContextProvider contextProvider = null;
+
+        private void Awake()
+        {
+            contextProvider = GetComponent<IContextProvider>(); 
+        }
+
         public void StartConversation(Dialogue dialogue)
         {
             currentDialogue = dialogue;
             
-            var rootNodeChildren = currentDialogue.GetNonChoiceChildrenOfNode(currentDialogue.RootNode).ToList();
+            var rootNodeChildren = FilterOnCondition(currentDialogue.GetNonChoiceChildrenOfNode(currentDialogue.RootNode));
             currentDialogueNode = rootNodeChildren.FirstOrDefault();
             
             TriggerEnterAction();
@@ -50,17 +58,19 @@ namespace RPG.DialogueSystem
 
         public void Next()
         {
-            if (currentDialogue.GetChoiceChildrenOfNode(currentDialogueNode).Any())
+            var choiceChildren = FilterOnCondition(currentDialogue.GetChoiceChildrenOfNode(currentDialogueNode)).ToList();
+
+            if (choiceChildren.Count > 0)
             {
                 OnConversationUpdated?.Invoke();
                 return;
             }
             
-            List<DialogueNode> currentDialogueNodeChildren = currentDialogue.GetNonChoiceChildrenOfNode(currentDialogueNode).ToList();
+            var nonChoiceChildren = FilterOnCondition(currentDialogue.GetNonChoiceChildrenOfNode(currentDialogueNode)).ToList();
             
             TriggerExitAction();
             
-            currentDialogueNode = currentDialogueNodeChildren[0];
+            currentDialogueNode = nonChoiceChildren[0];
             
             TriggerEnterAction();
             
@@ -69,13 +79,22 @@ namespace RPG.DialogueSystem
 
         public bool HasNext()
         {
-            List<DialogueNode> currentDialogueNodeChildren = currentDialogue.GetChildrenOfNode(currentDialogueNode).ToList();
+            List<DialogueNode> currentDialogueNodeChildren = FilterOnCondition(currentDialogue.GetChildrenOfNode(currentDialogueNode)).ToList();
             return currentDialogueNodeChildren.Count != 0;
         }
 
+        public IEnumerable<DialogueNode> FilterOnCondition(IEnumerable<DialogueNode> inputNodes)
+        {
+            foreach (DialogueNode dialogueNode in inputNodes)
+            {
+                if(dialogueNode.CheckCondition(contextProvider.GetContext()))
+                    yield return dialogueNode;
+            }
+        }
+        
         public IEnumerable<DialogueNode> GetChoices()
         {
-            return currentDialogue.GetChoiceChildrenOfNode(currentDialogueNode);
+            return FilterOnCondition(currentDialogue.GetChoiceChildrenOfNode(currentDialogueNode));
         }
 
         public void SelectChoice(DialogueNode chosenNode)
@@ -94,7 +113,7 @@ namespace RPG.DialogueSystem
             if (currentDialogue == null)
                 return false;
             
-            if (currentDialogue.GetChoiceChildrenOfNode(currentDialogueNode).Any())
+            if (FilterOnCondition(currentDialogue.GetChoiceChildrenOfNode(currentDialogueNode)).Any())
             {
                 return true;
             }

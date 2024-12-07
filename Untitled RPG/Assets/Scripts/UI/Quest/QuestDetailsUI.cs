@@ -18,13 +18,15 @@ namespace RPG.Quest.UI
             QuestItemUI.OnAnyQuestItemSelected += QuestItemUI_OnAnyQuestItemSelected;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             QuestItemUI.OnAnyQuestItemSelected -= QuestItemUI_OnAnyQuestItemSelected;
         }
 
         private void QuestItemUI_OnAnyQuestItemSelected(QuestStatus questStatus)
         {
+            Debug.Log("Quest Details UI: " + questStatus.Quest.name);
+            
             questTitle.text = questStatus.Quest.Title;
             ClearObjectiveContainer();
 
@@ -32,7 +34,7 @@ namespace RPG.Quest.UI
             {
                 string objectiveText = objective.description;
                 
-                var prefabToSpawn = questStatus.HasCompletedObjective(objectiveText) ? 
+                var prefabToSpawn = questStatus.HasCompletedObjective(objective.reference) ? 
                     objectiveCompletePrefab : objectiveIncompletePrefab;
                 
                 GameObject objectivePrefabSpawn = Instantiate(prefabToSpawn, objectiveContainer.transform);

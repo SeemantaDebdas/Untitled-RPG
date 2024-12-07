@@ -23,6 +23,8 @@ namespace RPG.Quest
             if (CompletedObjectiveList.Contains(objective))
                 return;
             
+            Debug.Log("Complete Objective called on Quest Status");
+            
             CompletedObjectiveList.Add(objective);
         }
 

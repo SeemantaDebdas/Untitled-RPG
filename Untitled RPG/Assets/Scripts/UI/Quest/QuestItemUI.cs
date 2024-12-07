@@ -32,6 +32,7 @@ namespace RPG.Quest.UI
 
         public void Select()
         {
+            Debug.Log("Selecting first item of quest");
             OnAnyQuestItemSelected?.Invoke(questStatus);
         }
     }

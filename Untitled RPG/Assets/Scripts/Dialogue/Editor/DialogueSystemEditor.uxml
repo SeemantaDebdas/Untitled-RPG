@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Scripts/Dialogue/Editor/DialogueSystemEditor.uss?fileID=7433441132597879392&amp;guid=7575330717e850c42b73a9d9640a85ce&amp;type=3#DialogueSystemEditor" />
-    <RPG.DialogueSystem.Editor.SplitView fixed-pane-initial-dimension="200">
+    <RPG.DialogueSystem.Editor.SplitView fixed-pane-initial-dimension="350">
         <engine:VisualElement name="left-panel" style="flex-grow: 1; border-top-width: 4px; border-right-width: 2px; border-bottom-width: 4px; border-left-width: 4px; border-left-color: rgb(32, 32, 32); border-right-color: rgb(32, 32, 32); border-top-color: rgb(32, 32, 32); border-bottom-color: rgb(32, 32, 32); border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0;">
             <engine:Label text="Inspector" style="background-color: rgb(37, 37, 37); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; color: rgb(255, 255, 255); -unity-font-style: normal; padding-left: 8px; padding-top: 8px; padding-right: 8px; padding-bottom: 8px;" />
             <RPG.DialogueSystem.Editor.DialogueInspectorView style="flex-grow: 1; background-color: rgb(56, 56, 56);" />

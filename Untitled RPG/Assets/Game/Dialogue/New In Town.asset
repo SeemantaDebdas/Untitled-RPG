@@ -19,6 +19,8 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 11400000, guid: 1f3610d42873feb4d933fbaac95182f9, type: 2}
   onExitEvent: {fileID: 11400000, guid: 86718e97371760642ba0b7495e1217f5, type: 2}
+  condition:
+    and: []
 --- !u!114 &-8613374522388418307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39,6 +41,8 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  condition:
+    and: []
 --- !u!114 &-6442710266528395462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,6 +61,8 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  condition:
+    and: []
 --- !u!114 &-5404404680606161813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +83,8 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 11400000, guid: 2745ab9ee192ca548ab191d9aac72501, type: 2}
   onExitEvent: {fileID: 0}
+  condition:
+    and: []
 --- !u!114 &-5319240865577846671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +104,8 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  condition:
+    and: []
 --- !u!114 &-3307216882175068291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +125,8 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  condition:
+    and: []
 --- !u!114 &-2676494318542498333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +146,8 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  condition:
+    and: []
 --- !u!114 &-1835462191193397298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +168,8 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 11400000, guid: 21392095e40f38544a290bcf5c8e4b0d, type: 2}
   onExitEvent: {fileID: 11400000, guid: b6881739c7e0dd844b96323af354f452, type: 2}
+  condition:
+    and: []
 --- !u!114 &-1107321037523990216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +228,8 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  condition:
+    and: []
 --- !u!114 &5208342711212763168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +249,8 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 11400000, guid: 1f3610d42873feb4d933fbaac95182f9, type: 2}
   onExitEvent: {fileID: 11400000, guid: 86718e97371760642ba0b7495e1217f5, type: 2}
+  condition:
+    and: []
 --- !u!114 &5309545438885895852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +284,8 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  condition:
+    and: []
 --- !u!114 &6507886789959338411
 MonoBehaviour:
   m_ObjectHideFlags: 0
