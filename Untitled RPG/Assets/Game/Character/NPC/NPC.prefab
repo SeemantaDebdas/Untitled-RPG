@@ -337,12 +337,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2727928242946070490}
   - component: {fileID: 797846209212232842}
-  - component: {fileID: 6761686672559359157}
   - component: {fileID: 3985194101537405548}
   - component: {fileID: 3691360954390645525}
-  - component: {fileID: 5840189979888165172}
-  - component: {fileID: 5036772620880578030}
-  - component: {fileID: 3439040733540142889}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -390,19 +386,6 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &6761686672559359157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6286171764688301451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 888736a07cbe13745bfd4ab91c289d31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: 367a6dddf8a3ce846b23933e160922bc, type: 2}
 --- !u!114 &3985194101537405548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,80 +519,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5840189979888165172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6286171764688301451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 480db1abd80111b4fb259a111fad9294, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quest: {fileID: 11400000, guid: e3b39a441c0125b42980810ef43821b3, type: 2}
---- !u!114 &5036772620880578030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6286171764688301451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7c55c44a555d6b48b9d546ec5ec26b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventResponseList:
-  - inspectorName: GiveQuest
-    scriptableEvent: {fileID: 11400000, guid: 12fade91a18b29b49a011d4f7b16c3cd, type: 2}
-    response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5840189979888165172}
-          m_TargetAssemblyTypeName: RPG.Quest.QuestGiver, Assembly-CSharp
-          m_MethodName: GiveQuest
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - inspectorName: CompleteQuest
-    scriptableEvent: {fileID: 11400000, guid: b511094026776d64cb41b687f165ea6e, type: 2}
-    response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3439040733540142889}
-          m_TargetAssemblyTypeName: RPG.Quest.QuestCompletion, Assembly-CSharp
-          m_MethodName: CompleteObjective
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &3439040733540142889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6286171764688301451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a29a85a61ec81a469818cdcddf941a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quest: {fileID: 11400000, guid: e3b39a441c0125b42980810ef43821b3, type: 2}
-  objective: 1
 --- !u!1 &7491785216808671758
 GameObject:
   m_ObjectHideFlags: 0

@@ -2234,6 +2234,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6970483507436427825}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7020998684999844107 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 131651998130969402, guid: 712dbe317199a3843ad520b32bd512cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6970483507436427825}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158dea8fe4a16b346bfa45cc10feef69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &8546640131304549664 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1596493337114113809, guid: 712dbe317199a3843ad520b32bd512cc,
@@ -2303,6 +2315,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -115.025
       objectReference: {fileID: 0}
+    - target: {fileID: 835259128679643689, guid: 535cb83f3fe14fd4ab709e1b01cf0325,
+        type: 3}
+      propertyPath: shopper
+      value: 
+      objectReference: {fileID: 7020998684999844107}
     - target: {fileID: 1140574252969999919, guid: 535cb83f3fe14fd4ab709e1b01cf0325,
         type: 3}
       propertyPath: m_AnchorMax.y

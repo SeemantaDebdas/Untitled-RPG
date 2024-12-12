@@ -10,11 +10,6 @@ namespace RPG.Core
         public virtual bool Evaluate(Context context)
         {
             bool result = ProcessCondition(context);
-
-            if (!result && invert)
-            {
-                Debug.Log(name + "Condition is true");
-            }
             
             return invert ? !result : result;
         }

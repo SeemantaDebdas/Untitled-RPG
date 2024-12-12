@@ -25,6 +25,9 @@ namespace RPG.DialogueSystem.Editor
 
             Undo.undoRedoPerformed += () =>
             {
+                if (dialogue == null)
+                    return;
+                
                 Populate(dialogue);
                 AssetDatabase.SaveAssets();
             };
