@@ -128,5 +128,9 @@ namespace RPG.Core
         public void OnQuestUIToggle(InputAction.CallbackContext context)
         {
         }
+
+        public void OnInventoryUIToggle(InputAction.CallbackContext context)
+        {
+        }
     }
 }

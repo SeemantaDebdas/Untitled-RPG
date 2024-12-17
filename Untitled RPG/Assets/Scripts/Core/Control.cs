@@ -127,6 +127,15 @@ namespace RPG.Core
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InventoryUIToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""e99b38a7-b4db-4d14-b04d-111130079ebc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -402,6 +411,17 @@ namespace RPG.Core
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse"",
                     ""action"": ""QuestUIToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10f6656b-ecb0-4814-8d5b-eeae2557def0"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""InventoryUIToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -967,6 +987,7 @@ namespace RPG.Core
             m_Player_Roll = m_Player.FindAction("Roll", throwIfNotFound: true);
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
             m_Player_QuestUIToggle = m_Player.FindAction("QuestUIToggle", throwIfNotFound: true);
+            m_Player_InventoryUIToggle = m_Player.FindAction("InventoryUIToggle", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1057,6 +1078,7 @@ namespace RPG.Core
         private readonly InputAction m_Player_Roll;
         private readonly InputAction m_Player_Interact;
         private readonly InputAction m_Player_QuestUIToggle;
+        private readonly InputAction m_Player_InventoryUIToggle;
         public struct PlayerActions
         {
             private @Control m_Wrapper;
@@ -1072,6 +1094,7 @@ namespace RPG.Core
             public InputAction @Roll => m_Wrapper.m_Player_Roll;
             public InputAction @Interact => m_Wrapper.m_Player_Interact;
             public InputAction @QuestUIToggle => m_Wrapper.m_Player_QuestUIToggle;
+            public InputAction @InventoryUIToggle => m_Wrapper.m_Player_InventoryUIToggle;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1114,6 +1137,9 @@ namespace RPG.Core
                 @QuestUIToggle.started += instance.OnQuestUIToggle;
                 @QuestUIToggle.performed += instance.OnQuestUIToggle;
                 @QuestUIToggle.canceled += instance.OnQuestUIToggle;
+                @InventoryUIToggle.started += instance.OnInventoryUIToggle;
+                @InventoryUIToggle.performed += instance.OnInventoryUIToggle;
+                @InventoryUIToggle.canceled += instance.OnInventoryUIToggle;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1151,6 +1177,9 @@ namespace RPG.Core
                 @QuestUIToggle.started -= instance.OnQuestUIToggle;
                 @QuestUIToggle.performed -= instance.OnQuestUIToggle;
                 @QuestUIToggle.canceled -= instance.OnQuestUIToggle;
+                @InventoryUIToggle.started -= instance.OnInventoryUIToggle;
+                @InventoryUIToggle.performed -= instance.OnInventoryUIToggle;
+                @InventoryUIToggle.canceled -= instance.OnInventoryUIToggle;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1317,6 +1346,7 @@ namespace RPG.Core
             void OnRoll(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
             void OnQuestUIToggle(InputAction.CallbackContext context);
+            void OnInventoryUIToggle(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
