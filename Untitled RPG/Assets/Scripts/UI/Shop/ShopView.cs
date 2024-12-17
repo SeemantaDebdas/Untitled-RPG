@@ -60,14 +60,20 @@ namespace RPG.Shop.UI
             shopper.OnActiveShopUpdated -= Shopper_OnActiveShopUpdated;
         }
 
-        private void Shopper_OnActiveShopUpdated(Shop shop)
+        private void Shopper_OnActiveShopUpdated(Shop newShop)
         {
-            if (shop != null)
+            if (activeShop != null)
             {
-                OnShowRequest?.Invoke();
-                activeShop = shop;
+                activeShop.OnUpdate -= UpdateShopUI;
+            }
+            
+            if (newShop != null)
+            {
+                activeShop = newShop;
+                activeShop.OnUpdate += UpdateShopUI;
                 UpdateShopUI();
                 
+                OnShowRequest?.Invoke();
                 return;
             }
             
@@ -95,6 +101,16 @@ namespace RPG.Shop.UI
             {
                 RowUI rowUI = Instantiate(rowPrefab, rowContainer);
                 rowUI.Setup(shopItem);
+                
+                rowUI.OnAddButtonClicked += () =>
+                {
+                    activeShop.AddToTransaction(shopItem.InventoryItem, +1);
+                };
+
+                rowUI.OnRemoveButtonClicked += () =>
+                {
+                    activeShop.AddToTransaction(shopItem.InventoryItem, -1);
+                };
             }
         }
     }

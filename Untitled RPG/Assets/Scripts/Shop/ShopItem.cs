@@ -5,14 +5,14 @@ namespace RPG.Shop
 {
     public class ShopItem
     {
-        private InventoryItem item;
+        public InventoryItem InventoryItem { get; private set; }
         private int availability;
         private float price;
         private int quantityInTransaction;
 
         public ShopItem(InventoryItem item, int availability, float price, int quantityInTransaction)
         {
-            this.item = item;
+            InventoryItem = item;
             this.availability = availability;
             this.price = price;
             this.quantityInTransaction = quantityInTransaction;
@@ -20,12 +20,12 @@ namespace RPG.Shop
 
         public string GetName()
         {
-            return item.DisplayName;
+            return InventoryItem.DisplayName;
         }
 
         public Sprite GetIcon()
         {
-            return item.Icon;
+            return InventoryItem.Icon;
         }
 
         public int GetAvailability()
@@ -36,6 +36,11 @@ namespace RPG.Shop
         public float GetPrice()
         {
             return price;
+        }
+
+        public int GetQuantity()
+        {
+            return quantityInTransaction;
         }
     }
 }

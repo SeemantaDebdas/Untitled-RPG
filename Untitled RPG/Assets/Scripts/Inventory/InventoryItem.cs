@@ -21,5 +21,7 @@ namespace RPG.Inventory
         
         [Tooltip("If true, multiple items of this type can be stacked in the same inventory slot.")]
         [SerializeField] bool stackable = false;
+        
+        [field: SerializeField] public float Price { get; private set; } = 0;
     }
 }

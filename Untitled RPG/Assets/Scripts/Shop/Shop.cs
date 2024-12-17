@@ -3,15 +3,27 @@ using System.Collections.Generic;
 using RPG.Core;
 using RPG.Inventory;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace RPG.Shop
 {
     public class Shop : MonoBehaviour
     {
+        [Serializable]
+        class ShopItemConfig
+        {
+            public InventoryItem item;
+            public int initialStock;
+            [Range(0, 100)]
+            public float buyingDiscountPercentage;
+        }
+        
         [field: SerializeField] public string Name { get; private set; }
-        [SerializeField] List<InventoryItem> items = new List<InventoryItem>();
+        [SerializeField] private List<ShopItemConfig> stockConfigList = new();
         public event Action OnUpdate;
         Interactable interactable;
+        
+        Dictionary<InventoryItem, int> transactionDictionary = new();
         
         private void OnEnable()
         {
@@ -36,10 +48,19 @@ namespace RPG.Shop
 
         public IEnumerable<ShopItem> GetFilteredItems()
         {
-            yield return new ShopItem(items[0], 10, 10f, 0);
-            yield return new ShopItem(items[1], 2, 100f, 0);
-            yield return new ShopItem(items[2], 50, 50f, 0);
-            yield return new ShopItem(items[3], 1, 10001f, 0);
+            foreach (ShopItemConfig config in stockConfigList)
+            {
+                float itemPrice = config.item.Price;
+                itemPrice -= itemPrice * config.buyingDiscountPercentage * 0.01f;
+
+                int transactionAmount = 0;
+                if (transactionDictionary.TryGetValue(config.item, out int currentTransaction))
+                {
+                    transactionAmount = currentTransaction;
+                }
+                
+                yield return new ShopItem(config.item, config.initialStock, itemPrice, transactionAmount);
+            }
         }
 
         public void SelectFilter(ItemCategory category)
@@ -67,13 +88,28 @@ namespace RPG.Shop
             return 0f;
         }
 
-        public void AddToTransaction(InventoryItem item, float amount)
+        public void AddToTransaction(InventoryItem item, int quantity)
         {
+            transactionDictionary.TryAdd(item, 0);
+
+            transactionDictionary[item] += quantity;
+
+            if (transactionDictionary[item] <= 0)
+            {
+                transactionDictionary.Remove(item);
+            }
             
+            OnUpdate?.Invoke();
         }
 
+        /// <summary>
+        /// 1. Transact to and from inventory
+        /// 2. Cancel out the transaction
+        /// 3. Credit or Debit funds
+        /// </summary>
         public void ConfirmTransaction()
         {
+            
         }
 
     }
