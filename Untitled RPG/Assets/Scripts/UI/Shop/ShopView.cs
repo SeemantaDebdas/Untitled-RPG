@@ -104,12 +104,12 @@ namespace RPG.Shop.UI
                 
                 rowUI.OnAddButtonClicked += () =>
                 {
-                    activeShop.AddToTransaction(shopItem.InventoryItem, +1);
+                    activeShop.AddToTransaction(shopItem.InventoryItemSO, +1);
                 };
 
                 rowUI.OnRemoveButtonClicked += () =>
                 {
-                    activeShop.AddToTransaction(shopItem.InventoryItem, -1);
+                    activeShop.AddToTransaction(shopItem.InventoryItemSO, -1);
                 };
             }
         }

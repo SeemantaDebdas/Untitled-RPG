@@ -3,8 +3,8 @@ using UnityEngine.Serialization;
 
 namespace RPG.Inventory
 {
-    [CreateAssetMenu(fileName = "New Inventory Item", menuName = "Inventory Item")]
-    public class InventoryItem : ScriptableObject
+    [CreateAssetMenu(fileName = "New Inventory Item", menuName = "Inventory/InventoryItemSO")]
+    public class InventoryItemSO : ScriptableObject
     {
         [field: SerializeField] 
         public string ItemID { get; private set; }

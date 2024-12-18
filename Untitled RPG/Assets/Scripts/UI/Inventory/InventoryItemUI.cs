@@ -29,6 +29,7 @@ namespace RPG.Inventory.UI
         public void ResetData()
         {
             itemImage.gameObject.SetActive(false);
+            quantityText.text = "";
             print("Resetting data");
         }
 

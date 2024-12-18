@@ -12,7 +12,7 @@ namespace RPG.Shop
         [Serializable]
         class ShopItemConfig
         {
-            public InventoryItem item;
+            public InventoryItemSO item;
             public int initialStock;
             [Range(0, 100)]
             public float buyingDiscountPercentage;
@@ -23,7 +23,7 @@ namespace RPG.Shop
         public event Action OnUpdate;
         Interactable interactable;
         
-        Dictionary<InventoryItem, int> transactionDictionary = new();
+        Dictionary<InventoryItemSO, int> transactionDictionary = new();
         
         private void OnEnable()
         {
@@ -88,7 +88,7 @@ namespace RPG.Shop
             return 0f;
         }
 
-        public void AddToTransaction(InventoryItem item, int quantity)
+        public void AddToTransaction(InventoryItemSO item, int quantity)
         {
             transactionDictionary.TryAdd(item, 0);
 

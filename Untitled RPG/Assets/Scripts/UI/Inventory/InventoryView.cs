@@ -84,6 +84,11 @@ namespace RPG.Inventory.UI
             
             itemList[itemIndex].SetData(itemSprite, itemQuantity);
         }
+        
+        public void UpdateDescription(int itemIndex, string itemDisplayName, string itemDescription)
+        {
+            descriptionUI.SetDescription(itemDisplayName, itemDescription);
+        }
 
         public void CreateDraggedItem(Sprite itemSprite, int itemQuantity)
         {
@@ -96,6 +101,9 @@ namespace RPG.Inventory.UI
             int index = itemList.IndexOf(itemUI);
             if (index == -1)
                 return;
+            
+            DeselectAllItems();
+            itemList[index].Select();
             
             OnDescriptionRequested?.Invoke(index);
         }
@@ -130,8 +138,10 @@ namespace RPG.Inventory.UI
                 return;
             
             OnSwapItems?.Invoke(currentlyDraggedItemIndex, index);
+            InventoryItemUI_OnItemClicked(itemUI);
         }
-        void ResetSelection()
+
+        public void ResetSelection()
         {
             descriptionUI.ResetDescription();
             DeselectAllItems();
@@ -150,6 +160,15 @@ namespace RPG.Inventory.UI
             {
                 itemUI.Deselect();
             }    
+        }
+
+        public void ResetAllItems()
+        {
+            foreach (InventoryItemUI itemUI in itemList)
+            {
+                itemUI.ResetData();
+                itemUI.Deselect();
+            }
         }
     }
 }
