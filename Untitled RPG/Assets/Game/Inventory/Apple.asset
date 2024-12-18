@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c10050a205f5194d9536b835a8bef69, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  itemID: 
-  <DisplayName>k__BackingField: Apple
-  description: 
-  <Icon>k__BackingField: {fileID: 21300068, guid: 5721a85c7a977e048b974b03e60ab865,
+  <ItemID>k__BackingField: 
+  <Description>k__BackingField: Grants the Player +10 Health.
+  <ItemImage>k__BackingField: {fileID: 1756684116, guid: 22eaacd057029994d8ad85055ee2be08,
     type: 3}
-  stackable: 0
+  <IsStackable>k__BackingField: 1
+  <MaxStackSize>k__BackingField: 99
   <Price>k__BackingField: 10

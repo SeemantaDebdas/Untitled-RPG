@@ -1,27 +1,28 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace RPG.Inventory
 {
     [CreateAssetMenu(fileName = "New Inventory Item", menuName = "Inventory Item")]
     public class InventoryItem : ScriptableObject
     {
-        [Tooltip("Auto-generated UUID for saving/loading. Clear this field if you want to generate a new one.")]
-        [SerializeField] string itemID = null;
+        [field: SerializeField] 
+        public string ItemID { get; private set; }
+        
+        [field: SerializeField, TextArea]
+        public string Description { get; private set; } = null;
 
-        [Tooltip("Item name to be displayed in UI.")]
         [field: SerializeField]
-        public string DisplayName { get; private set; } = null;
+        public Sprite ItemImage { get; private set; } = null;
         
-        [Tooltip("Item description to be displayed in UI.")]
-        [SerializeField][TextArea] string description = null;
+        [field: SerializeField] 
+        public bool IsStackable { get; private set; } = false;
 
-        [Tooltip("The UI icon to represent this item in the inventory.")]
-        [field: SerializeField]
-        public Sprite Icon { get; private set; } = null;
+        [field: SerializeField] 
+        public int MaxStackSize { get; private set; } = 1;
         
-        [Tooltip("If true, multiple items of this type can be stacked in the same inventory slot.")]
-        [SerializeField] bool stackable = false;
-        
-        [field: SerializeField] public float Price { get; private set; } = 0;
+        [field: SerializeField] 
+        public float Price { get; private set; } = 0;
+        public string DisplayName => name;
     }
 }

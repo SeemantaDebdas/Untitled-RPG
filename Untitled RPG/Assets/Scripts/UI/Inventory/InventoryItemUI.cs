@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace RPG.Inventory.UI
 {
-    public class InventoryItemUI : MonoBehaviour
+    public class InventoryItemUI : MonoBehaviour, IPointerClickHandler, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler 
     {
         [SerializeField] Sprite activeSprite, inactiveSprite;
         [SerializeField] Image itemImage, borderImage;
@@ -50,30 +50,9 @@ namespace RPG.Inventory.UI
             
             print("Setting data");
         }
-
-        public void OnBeginDrag()
+        
+        public void OnPointerClick(PointerEventData pointerEventData)
         {
-            if (IsEmpty) return;
-            
-            OnItemBeginDrag?.Invoke(this);
-        }
-
-        public void OnDrop()
-        {
-            OnItemDroppedOn?.Invoke(this);
-        }
-
-        public void OnEndDrag()
-        {
-            OnItemEndDrag?.Invoke(this);
-        }
-
-        public void OnPointerClick(BaseEventData eventData)
-        {
-            if (IsEmpty) return;
-            
-            PointerEventData pointerEventData = eventData as PointerEventData;
-
             if (pointerEventData.button == PointerEventData.InputButton.Left)
             {
                 OnItemClicked?.Invoke(this);
@@ -81,7 +60,26 @@ namespace RPG.Inventory.UI
             else
             {
                 OnRightMouseButtonClick?.Invoke(this);
-            }
+            }          
         }
+
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            if (IsEmpty) return;
+            
+            OnItemBeginDrag?.Invoke(this);
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            OnItemEndDrag?.Invoke(this);
+        }
+
+        public void OnDrop(PointerEventData eventData)
+        {
+            OnItemDroppedOn?.Invoke(this);
+        }
+
+        public void OnDrag(PointerEventData eventData){}
     }
 }

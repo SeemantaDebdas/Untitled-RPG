@@ -25,7 +25,7 @@ namespace RPG.Shop
 
         public Sprite GetIcon()
         {
-            return InventoryItem.Icon;
+            return InventoryItem.ItemImage;
         }
 
         public int GetAvailability()
