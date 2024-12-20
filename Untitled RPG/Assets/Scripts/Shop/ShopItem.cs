@@ -1,4 +1,5 @@
 using RPG.Inventory;
+using RPG.Inventory.Model;
 using UnityEngine;
 
 namespace RPG.Shop

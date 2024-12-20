@@ -43,6 +43,10 @@ namespace RPG.Core
         {
             List<Collider> objectsInRange = fieldOfView.ObjectsInRange;
             
+            focusList.RemoveAll(interactable => !interactable.IsAlive());
+            inRangeList.RemoveAll(interactable => !interactable.IsAlive());
+            objectsInRange.RemoveAll(objectInRange => objectInRange == null);
+            
             CallInRangeOnInteractables(objectsInRange);
 
             List<Transform> objectsInSight = fieldOfView.GetValidTargets();
@@ -61,7 +65,13 @@ namespace RPG.Core
 
             foreach (Collider objectInRange in objectsInRange)
             {
+                if (objectInRange == null)
+                    continue;
+                
                 if (!objectInRange.TryGetComponent(out IInteractable interactable))
+                    continue;
+                
+                if(!interactable.IsAlive())
                     continue;
 
                 if (inRangeList.Contains(interactable))
@@ -74,22 +84,23 @@ namespace RPG.Core
 
         private void ClearInteractablesNotInRange(List<Collider> objectsInRange)
         {
-            List<IInteractable> toRemove = new();
-
-            foreach (IInteractable interactable in inRangeList)
+            foreach (IInteractable interactable in inRangeList.ToList())
             {
+                // Check if the interactable or its GameObject is null (destroyed)
+                if (!interactable.IsAlive())
+                {
+                    // Handle destroyed object here
+                    inRangeList.Remove(interactable);
+                    Debug.LogWarning("Interactable or its GameObject is destroyed.");
+                    continue;
+                }
+                
                 Collider interactableCollider = interactable.gameObject.GetComponent<Collider>();
 
                 if (objectsInRange.Contains(interactableCollider))
                     continue;
 
                 interactable.OutOfRange(this);
-                toRemove.Add(interactable); // Mark for removal
-            }
-
-            // Remove outside the iteration
-            foreach (IInteractable interactable in toRemove)
-            {
                 inRangeList.Remove(interactable);
             }
         }
@@ -103,6 +114,9 @@ namespace RPG.Core
 
             foreach (Transform objectInSight in objectsInSight)
             {
+                if (objectInSight == null)
+                    continue;
+                
                 if (!objectInSight.TryGetComponent(out IInteractable interactable))
                     continue;
 
@@ -118,6 +132,15 @@ namespace RPG.Core
         {
             foreach (IInteractable interactable in focusList.ToList())
             {
+                // Check if the interactable or its Transform is null (destroyed)
+                if (!interactable.IsAlive())
+                {
+                    // Handle destroyed object here
+                    focusList.Remove(interactable);
+                    Debug.LogWarning("Interactable or its GameObject is destroyed.");
+                    continue;
+                }
+                
                 Transform interactableTransform = interactable.transform;
                 if (!objectsInSight.Contains(interactableTransform))
                 {
@@ -134,6 +157,9 @@ namespace RPG.Core
 
             foreach (Transform objectInSight in objectsInSight)
             {
+                if (objectInSight == null)
+                    continue;
+                
                 float centerX = 0.5f;
                 float centerXOffset = 0.1f;
 

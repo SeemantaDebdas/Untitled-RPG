@@ -1,13 +1,12 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace RPG.Inventory
+namespace RPG.Inventory.Model
 {
     [CreateAssetMenu(fileName = "New Inventory Item", menuName = "Inventory/InventoryItemSO")]
     public class InventoryItemSO : ScriptableObject
     {
-        [field: SerializeField] 
-        public string ItemID { get; private set; }
+        public int ItemID => GetInstanceID();
         
         [field: SerializeField, TextArea]
         public string Description { get; private set; } = null;

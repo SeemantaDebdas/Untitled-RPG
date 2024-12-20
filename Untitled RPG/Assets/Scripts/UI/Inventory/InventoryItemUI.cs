@@ -30,7 +30,6 @@ namespace RPG.Inventory.UI
         {
             itemImage.gameObject.SetActive(false);
             quantityText.text = "";
-            print("Resetting data");
         }
 
         public void Select()
@@ -49,7 +48,7 @@ namespace RPG.Inventory.UI
             quantityText.text = quantity.ToString();
             itemImage.gameObject.SetActive(true);
             
-            print("Setting data");
+            //print("Setting data");
         }
         
         public void OnPointerClick(PointerEventData pointerEventData)

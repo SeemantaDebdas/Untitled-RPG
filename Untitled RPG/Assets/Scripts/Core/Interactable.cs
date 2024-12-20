@@ -20,6 +20,7 @@ namespace RPG.Core
         [FormerlySerializedAs("OnInteract")] [SerializeField] private UnityEvent<Interactor> onInteract;
 
         public event Action<Interactor> OnInteract, OnFocus, OnUnfocus, OnInRange, OnOutOfRange;
+        public event Action OnDestroyed;
         
         public void Focus(Interactor interactor)
         {
@@ -49,6 +50,11 @@ namespace RPG.Core
         {
             onInteract?.Invoke(interactor);
             OnInteract?.Invoke(interactor);
+        }
+
+        private void OnDestroy()
+        {
+            OnDestroyed?.Invoke();
         }
     }
 }

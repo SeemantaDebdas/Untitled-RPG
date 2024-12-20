@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using RPG.Core;
 using RPG.Inventory;
+using RPG.Inventory.Model;
 using UnityEngine;
 using UnityEngine.Serialization;
 

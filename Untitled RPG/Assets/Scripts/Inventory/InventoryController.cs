@@ -31,7 +31,9 @@ namespace RPG.Inventory
             foreach (InventoryItem item in initialInventoryItemList)
             {
                 if (item.IsNull)
-                    return;
+                    continue;
+                
+                Debug.Log(item.itemData.DisplayName);
 
                 inventoryData.AddItem(item);
             }
