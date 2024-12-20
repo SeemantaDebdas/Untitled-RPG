@@ -26,25 +26,24 @@ namespace RPG.Inventory.Model
         public int AddItem(InventoryItemSO item, int quantity)
         {
             int remainingQuantity = quantity;
-            if (!item.IsStackable)
-            {
-                Debug.Log("Item is not stackable + " + item.DisplayName);
-                
-                while (remainingQuantity > 0 && !IsInventoryFull())
-                {
-                    remainingQuantity = AddItemToFirstEmptySlot(item, 1);
-                }
-                
-                InformAboutChange();
-                return remainingQuantity;
-            }
             
-            remainingQuantity = AddStackableItem(item, quantity);
+            if (item.IsStackable)
+            {
+                remainingQuantity = AddStackableItem(item, quantity);
+            }
+            else
+            {
+                while (remainingQuantity > 0 && AddItemToFirstEmptySlot(item, 1))
+                {
+                    remainingQuantity--;
+                }
+            }
+
             InformAboutChange();
             return remainingQuantity;
         }
 
-        int AddItemToFirstEmptySlot(InventoryItemSO item, int itemQuantity)
+        bool AddItemToFirstEmptySlot(InventoryItemSO item, int itemQuantity)
         {
             InventoryItem newItem = new(item, itemQuantity);
 
@@ -53,18 +52,15 @@ namespace RPG.Inventory.Model
                 if (inventoryItemList[i].IsNull)
                 {
                     inventoryItemList[i] = newItem;
-                    return 0;
+                    return true;
                 }
             }
 
-            return itemQuantity;
+            return false;
         }
 
         int AddStackableItem(InventoryItemSO item, int quantity)
         {
-            Debug.Log("Item is stackable + " + item.DisplayName);
-            //finish this code
-
             for (int i = 0; i < inventoryItemList.Count; i++)
             {
                 //we want to stack the item. so find the matching item
@@ -73,13 +69,11 @@ namespace RPG.Inventory.Model
 
                 if (inventoryItemList[i].itemData.ItemID != item.ItemID) 
                     continue;
-                
-                Debug.Log("Item ID same as inventory item");
-                
-                //if the item stack can take 99 total, and it already has 90 items,
-                //Then that slot can take [99 - 90 = 8] more items.
-                int amountPossibleToTake =
-                    inventoryItemList[i].itemData.MaxStackSize - inventoryItemList[i].quantity;
+
+
+                int maxStackSize = inventoryItemList[i].itemData.MaxStackSize;
+                int currentQuantity = inventoryItemList[i].quantity;
+                int amountPossibleToTake = maxStackSize - currentQuantity;
 
                 //if the number of items we want to insert is more than the slot can take
                 if (quantity > amountPossibleToTake)
@@ -96,14 +90,13 @@ namespace RPG.Inventory.Model
                 return 0;
             }
 
-            while (quantity > 0 && !IsInventoryFull())
+            // Use empty slots for remaining quantity
+            while (quantity > 0 && AddItemToFirstEmptySlot(item, Mathf.Min(quantity, item.MaxStackSize)))
             {
-                int newQuantity = Mathf.Clamp(quantity, 0, item.MaxStackSize);
-                quantity = AddItemToFirstEmptySlot(item, newQuantity);
+                quantity -= Mathf.Min(quantity, item.MaxStackSize);
             }
             
             InformAboutChange();
-            
             return quantity;
         }
 
