@@ -2209,6 +2209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158dea8fe4a16b346bfa45cc10feef69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Inventory>k__BackingField: {fileID: 11400000, guid: 061cad982b8c4a9458d81d92035f175b,
+    type: 2}
 --- !u!114 &3043342546280165317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2223,6 +2225,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryData: {fileID: 11400000, guid: 061cad982b8c4a9458d81d92035f175b, type: 2}
   inventoryUI: {fileID: 0}
+  initialInventoryItemList:
+  - quantity: 50
+    itemData: {fileID: 11400000, guid: 10e01cdae0be0a74e9c3db7a962acc26, type: 2}
+  - quantity: 1
+    itemData: {fileID: 11400000, guid: 856cf0a3ac5b5584bba599a95dad1177, type: 2}
 --- !u!1 &7009001920839669846
 GameObject:
   m_ObjectHideFlags: 0

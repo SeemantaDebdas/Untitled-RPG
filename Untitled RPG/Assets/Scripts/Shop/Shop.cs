@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using RPG.Core;
 using RPG.Inventory;
 using RPG.Inventory.Model;
@@ -23,6 +24,8 @@ namespace RPG.Shop
         [SerializeField] private List<ShopItemConfig> stockConfigList = new();
         public event Action OnUpdate;
         Interactable interactable;
+
+        private Shopper activeShopper = null;
         
         Dictionary<InventoryItemSO, int> transactionDictionary = new();
         
@@ -104,14 +107,35 @@ namespace RPG.Shop
         }
 
         /// <summary>
+        /// Confirm by buying or selling
         /// 1. Transact to and from inventory
         /// 2. Cancel out the transaction
         /// 3. Credit or Debit funds
         /// </summary>
         public void ConfirmTransaction()
         {
-            
-        }
+            if (activeShopper == null)
+            {
+                Debug.LogWarning("No shopper set. Please select a shopper.");
+                return;
+            }
 
+            InventorySO inventory = activeShopper.Inventory;
+            
+            Dictionary<InventoryItemSO, int> dictionaryCopy = new(transactionDictionary);
+            
+            foreach (InventoryItemSO inventoryItem in dictionaryCopy.Keys)
+            {
+                int quantity = dictionaryCopy[inventoryItem];
+                int notAddedQuanity = inventory.AddItem(inventoryItem, quantity);
+                
+                AddToTransaction(inventoryItem, notAddedQuanity - quantity); 
+            }
+        }
+        
+        public void SetShopper(Shopper shopper)
+        {
+            activeShopper = shopper;
+        }
     }
 }

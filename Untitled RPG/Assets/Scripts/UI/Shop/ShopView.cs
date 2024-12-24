@@ -19,13 +19,16 @@ namespace RPG.Shop.UI
         [SerializeField] private Button closeButton = null;
         [SerializeField] private Transform rowContainer = null;
         [SerializeField] private RowUI rowPrefab = null;
+        
+        [Space]
+        [SerializeField] Button confirmTransactionButton = null;
  
         private Shop activeShop = null;
+
+        private bool subscribedToEvents = false;
         
         public override void Initialize()
         {
-            #region Get Shopper if not assigned in inspector
-
             if (shopper == null)
             {
                 shopper = GameObject.FindWithTag("Player").GetComponent<Shopper>();
@@ -37,9 +40,18 @@ namespace RPG.Shop.UI
                 return;
             }
             
+            SubscribeToEvents();
 
-            #endregion
+            Shopper_OnActiveShopUpdated(null);
+        }
 
+        private void SubscribeToEvents()
+        {
+            if (subscribedToEvents)
+                return;
+            
+            subscribedToEvents = true;
+            
             shopper.OnActiveShopUpdated += Shopper_OnActiveShopUpdated;
             
             closeButton?.onClick.AddListener(() =>
@@ -52,11 +64,19 @@ namespace RPG.Shop.UI
                 shopper.SetActiveShop(null);
             };
             
-            Shopper_OnActiveShopUpdated(null);
+            confirmTransactionButton?.onClick.AddListener(() =>
+            {
+                activeShop.ConfirmTransaction();
+            });
+            
         }
 
         private void OnDestroy()
         {
+            subscribedToEvents = false;
+            
+            closeButton?.onClick.RemoveAllListeners();
+            confirmTransactionButton?.onClick.RemoveAllListeners();
             shopper.OnActiveShopUpdated -= Shopper_OnActiveShopUpdated;
         }
 

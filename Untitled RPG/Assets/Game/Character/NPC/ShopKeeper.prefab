@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 2727928242946070490, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2727928242946070490, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
         type: 3}
@@ -21,27 +21,27 @@ PrefabInstance:
     - target: {fileID: 2727928242946070490, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2727928242946070490, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.38268006
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2727928242946070490, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2727928242946070490, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.92388093
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2727928242946070490, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2727928242946070490, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
         type: 3}
@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: 2727928242946070490, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -225
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2727928242946070490, guid: 13b6b2c14621aea49ab7d905d0ca0efc,
         type: 3}
@@ -96,3 +96,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d386490f5e39500459954c262e68b511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: 
+  stockConfigList: []
