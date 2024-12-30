@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using RPG.Core;
 using RPG.Inventory;
 using RPG.Inventory.Model;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace RPG.Shop
 {
@@ -27,8 +25,17 @@ namespace RPG.Shop
 
         private Shopper activeShopper = null;
         
-        Dictionary<InventoryItemSO, int> transactionDictionary = new();
-        
+        Dictionary<InventoryItemSO, int> quantityInTransactionDict = new();
+        Dictionary<InventoryItemSO, int> stockDict = new();
+
+        private void Awake()
+        {
+            foreach (ShopItemConfig shopItemConfig in stockConfigList)
+            {
+                stockDict[shopItemConfig.item] = shopItemConfig.initialStock;
+            }
+        }
+
         private void OnEnable()
         {
             if(interactable == null) 
@@ -52,18 +59,23 @@ namespace RPG.Shop
 
         public IEnumerable<ShopItem> GetFilteredItems()
         {
+            return GetAllItems();
+        }
+        
+        public IEnumerable<ShopItem> GetAllItems() 
+        {
             foreach (ShopItemConfig config in stockConfigList)
             {
                 float itemPrice = config.item.Price;
                 itemPrice -= itemPrice * config.buyingDiscountPercentage * 0.01f;
 
-                int transactionAmount = 0;
-                if (transactionDictionary.TryGetValue(config.item, out int currentTransaction))
+                int transactionQuantity = 0;
+                if (quantityInTransactionDict.TryGetValue(config.item, out int res))
                 {
-                    transactionAmount = currentTransaction;
+                    transactionQuantity = res;
                 }
                 
-                yield return new ShopItem(config.item, config.initialStock, itemPrice, transactionAmount);
+                yield return new ShopItem(config.item, stockDict[config.item], itemPrice, transactionQuantity);
             }
         }
 
@@ -84,23 +96,58 @@ namespace RPG.Shop
 
         public bool CanTransact()
         {
+            // Check if Transaction is empty
+            if (quantityInTransactionDict.Count == 0)
+                return false;
+            
+            // Check if No money to buy transaction
+            if (!HasSufficientFunds())
+                return false;
+            
+            // Check if there's enough inventory space. Lecture: 1.23 & 1.24
+            
             return true;
         }
-        
-        public float TransactionTotal()
+
+        public bool HasSufficientFunds()
         {
-            return 0f;
+            CoinPurse coinPurse = activeShopper.GetComponent<CoinPurse>();
+
+            if (coinPurse == null)
+                return false;
+            
+            //print($"Current Balance: {coinPurse.GetBalance()}/ Transaction Price: {priceInTransaction}");
+            if (coinPurse.GetBalance() >= TransactionTotal())
+                return true;
+
+            return false;
         }
 
-        public void AddToTransaction(InventoryItemSO item, int quantity)
+        public float TransactionTotal()
         {
-            transactionDictionary.TryAdd(item, 0);
-
-            transactionDictionary[item] += quantity;
-
-            if (transactionDictionary[item] <= 0)
+            float transactionTotal = 0;
+            
+            foreach (ShopItem shopItem in GetAllItems())
             {
-                transactionDictionary.Remove(item);
+                transactionTotal += shopItem.GetQuantityInTransaction() * shopItem.GetPrice();    
+            }
+            
+            return transactionTotal;
+        }
+
+        public void AddToTransaction(InventoryItemSO item, int toAddQuantity)
+        {
+            quantityInTransactionDict.TryAdd(item, 0);
+            
+            quantityInTransactionDict[item] += toAddQuantity;
+
+            if (quantityInTransactionDict[item] <= 0)
+            {
+                quantityInTransactionDict.Remove(item);
+            }
+            else if (quantityInTransactionDict[item] > stockDict[item])
+            {
+                quantityInTransactionDict[item] = stockDict[item];
             }
             
             OnUpdate?.Invoke();
@@ -121,16 +168,34 @@ namespace RPG.Shop
             }
 
             InventorySO inventory = activeShopper.Inventory;
-            
-            Dictionary<InventoryItemSO, int> dictionaryCopy = new(transactionDictionary);
-            
-            foreach (InventoryItemSO inventoryItem in dictionaryCopy.Keys)
+            CoinPurse coinPurse = activeShopper.GetComponent<CoinPurse>();
+
+            if (inventory == null || coinPurse == null)
             {
-                int quantity = dictionaryCopy[inventoryItem];
-                int notAddedQuanity = inventory.AddItem(inventoryItem, quantity);
-                
-                AddToTransaction(inventoryItem, notAddedQuanity - quantity); 
+                Debug.LogWarning("No inventory or purse set. Please set inventory or purse.");
+                return;
             }
+            
+            foreach (ShopItem shopItem in GetAllItems())
+            {
+                InventoryItemSO inventoryItem = shopItem.InventoryItemData;
+                
+                int quantity = shopItem.GetQuantityInTransaction();
+                int quantityThatCanBeBought = (int)coinPurse.GetBalance() / (int)shopItem.GetPrice();
+                
+                int toAdd = Math.Min(quantity, quantityThatCanBeBought);
+                int notAddedQuantity = inventory.AddItem(inventoryItem, toAdd);
+                int addedQuantity = toAdd - notAddedQuantity;
+                
+                print($"Quantity: {quantity}. Q That can be bought: {quantityThatCanBeBought}. To Add: {toAdd}");
+                print($"To Debit: {addedQuantity * shopItem.GetPrice()}");
+                
+                AddToTransaction(inventoryItem, -addedQuantity); 
+                stockDict[inventoryItem] -= addedQuantity;
+                coinPurse.DebitBalance(addedQuantity * shopItem.GetPrice());
+            }
+            
+            OnUpdate?.Invoke();
         }
         
         public void SetShopper(Shopper shopper)

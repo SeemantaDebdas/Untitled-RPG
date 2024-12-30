@@ -6,6 +6,7 @@ namespace RPG.Core
 {
     public class InputReader : MonoBehaviour, Control.IPlayerActions
     {
+        [SerializeField] InputActionAsset inputAsset;
         public event Action OnJumpEvent;
         public Vector2 MoveInput { get; private set; }
         public event Action OnMovePerformed, OnMoveCancelled;
@@ -23,6 +24,9 @@ namespace RPG.Core
 
         public Control Control => control;
         Control control;
+        
+        string playerActionMapName = "Player";
+        string uiActionMapName = "UI";
         
         private void OnDisable()
         {
@@ -76,6 +80,9 @@ namespace RPG.Core
 
         public void OnAttack(InputAction.CallbackContext context)
         {
+            if (!IsPlayerActionMapEnabled())
+                return;
+            
             if (context.performed)
             {
                 OnAttackPerformed?.Invoke();
@@ -96,6 +103,9 @@ namespace RPG.Core
 
         public void OnChangeWeapon(InputAction.CallbackContext context)
         {
+            if (!IsPlayerActionMapEnabled())
+                return;
+            
             if (!context.performed)
                 return;
 
@@ -103,16 +113,14 @@ namespace RPG.Core
 
             if(context.control.device is Mouse)
             {
-                Debug.Log("True Mouse");
                 input = context.ReadValue<Vector2>().y;
             }
             else if(context.control.device is Gamepad)
             {
-                Debug.Log("True Gamepad");
                 input = context.ReadValue<float>();
             }
 
-            Debug.Log(input);
+            //Debug.Log(input);
 
             OnChangeWeaponPerformed?.Invoke(input);
         }
@@ -131,6 +139,11 @@ namespace RPG.Core
 
         public void OnInventoryUIToggle(InputAction.CallbackContext context)
         {
+        }
+
+        bool IsPlayerActionMapEnabled()
+        {
+            return inputAsset.FindActionMap(playerActionMapName).enabled;
         }
     }
 }

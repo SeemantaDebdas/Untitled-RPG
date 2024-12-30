@@ -2306,6 +2306,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 712dbe317199a3843ad520b32bd512cc, type: 3}
+--- !u!114 &2820946757785614161 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5159478039208160608, guid: 712dbe317199a3843ad520b32bd512cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6970483507436427825}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8455576ed5182fd4cab7b32a3025c59b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3556696129126583210 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5901911892027199899, guid: 712dbe317199a3843ad520b32bd512cc,
@@ -2621,6 +2633,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1698356927251701801, guid: 535cb83f3fe14fd4ab709e1b01cf0325,
+        type: 3}
+      propertyPath: coinPurse
+      value: 
+      objectReference: {fileID: 2820946757785614161}
     - target: {fileID: 1716226488655984137, guid: 535cb83f3fe14fd4ab709e1b01cf0325,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3131,6 +3148,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -48.8403
       objectReference: {fileID: 0}
+    - target: {fileID: 3291985227218858760, guid: 535cb83f3fe14fd4ab709e1b01cf0325,
+        type: 3}
+      propertyPath: coinPurse
+      value: 
+      objectReference: {fileID: 2820946757785614161}
     - target: {fileID: 3303200704403188433, guid: 535cb83f3fe14fd4ab709e1b01cf0325,
         type: 3}
       propertyPath: m_AnchorMax.y

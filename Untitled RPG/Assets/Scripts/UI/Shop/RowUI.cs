@@ -28,7 +28,7 @@ namespace RPG.Shop.UI
             itemImage.sprite = shopItem.GetIcon();
             availablilityText.text = shopItem.GetAvailability().ToString();
             priceText.text = $"${shopItem.GetPrice():N2}";
-            quantityText.text = shopItem.GetQuantity().ToString();
+            quantityText.text = shopItem.GetQuantityInTransaction().ToString();
         }
     }
 }

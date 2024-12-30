@@ -21,11 +21,14 @@ namespace RPG.Shop.UI
         [SerializeField] private RowUI rowPrefab = null;
         
         [Space]
+        [SerializeField] TextMeshProUGUI totalTransactionText = null;
         [SerializeField] Button confirmTransactionButton = null;
  
         private Shop activeShop = null;
 
         private bool subscribedToEvents = false;
+
+        private Color originalTransactionTextColor;
         
         public override void Initialize()
         {
@@ -41,8 +44,10 @@ namespace RPG.Shop.UI
             }
             
             SubscribeToEvents();
-
             Shopper_OnActiveShopUpdated(null);
+            
+            //initialize field state
+            originalTransactionTextColor = totalTransactionText.color;
         }
 
         private void SubscribeToEvents()
@@ -64,6 +69,7 @@ namespace RPG.Shop.UI
                 shopper.SetActiveShop(null);
             };
             
+            print("Subscribing to confirm transaction button");
             confirmTransactionButton?.onClick.AddListener(() =>
             {
                 activeShop.ConfirmTransaction();
@@ -106,6 +112,11 @@ namespace RPG.Shop.UI
                 return;
 
             shopName.text = activeShop.Name;
+            
+            totalTransactionText.text = $"{activeShop.TransactionTotal():N2}";
+            totalTransactionText.color = activeShop.HasSufficientFunds() ? originalTransactionTextColor : Color.red;
+            
+            confirmTransactionButton.interactable = activeShop.CanTransact();
 
             RegenerateRowContainer();
         }
@@ -124,12 +135,12 @@ namespace RPG.Shop.UI
                 
                 rowUI.OnAddButtonClicked += () =>
                 {
-                    activeShop.AddToTransaction(shopItem.InventoryItemSO, +1);
+                    activeShop.AddToTransaction(shopItem.InventoryItemData, +1);
                 };
 
                 rowUI.OnRemoveButtonClicked += () =>
                 {
-                    activeShop.AddToTransaction(shopItem.InventoryItemSO, -1);
+                    activeShop.AddToTransaction(shopItem.InventoryItemData, -1);
                 };
             }
         }
