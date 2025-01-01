@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using RPG.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace RPG.Shop.UI
@@ -23,6 +25,15 @@ namespace RPG.Shop.UI
         [Space]
         [SerializeField] TextMeshProUGUI totalTransactionText = null;
         [SerializeField] Button confirmTransactionButton = null;
+        
+        [Space]
+        [SerializeField] private Button buyModeButton = null;
+        [SerializeField] private Button sellModeButton = null;
+
+        [FormerlySerializedAs("filterButtons")]
+        [Header("Filter Buttons")] 
+        [SerializeField] List<FilterButtonUI> filterButtonUIList = null;
+        
  
         private Shop activeShop = null;
 
@@ -69,12 +80,13 @@ namespace RPG.Shop.UI
                 shopper.SetActiveShop(null);
             };
             
-            print("Subscribing to confirm transaction button");
             confirmTransactionButton?.onClick.AddListener(() =>
             {
                 activeShop.ConfirmTransaction();
             });
             
+            buyModeButton?.onClick.AddListener(() => activeShop.SelectMode(true));
+            sellModeButton?.onClick.AddListener(() => activeShop.SelectMode(false));
         }
 
         private void OnDestroy()
@@ -83,6 +95,9 @@ namespace RPG.Shop.UI
             
             closeButton?.onClick.RemoveAllListeners();
             confirmTransactionButton?.onClick.RemoveAllListeners();
+            buyModeButton?.onClick.RemoveAllListeners();
+            sellModeButton?.onClick.RemoveAllListeners();
+            
             shopper.OnActiveShopUpdated -= Shopper_OnActiveShopUpdated;
         }
 
@@ -96,10 +111,17 @@ namespace RPG.Shop.UI
             if (newShop != null)
             {
                 activeShop = newShop;
+                foreach (FilterButtonUI filterButtonUI in filterButtonUIList)
+                {
+                    filterButtonUI.SetShop(activeShop);
+                }
+                
                 activeShop.OnUpdate += UpdateShopUI;
                 UpdateShopUI();
                 
                 OnShowRequest?.Invoke();
+
+                
                 return;
             }
             
@@ -112,12 +134,23 @@ namespace RPG.Shop.UI
                 return;
 
             shopName.text = activeShop.Name;
+
+            foreach (FilterButtonUI filterButtonUI in filterButtonUIList)
+            {
+                filterButtonUI.RefreshUI();
+            }
             
             totalTransactionText.text = $"{activeShop.TransactionTotal():N2}";
             totalTransactionText.color = activeShop.HasSufficientFunds() ? originalTransactionTextColor : Color.red;
             
             confirmTransactionButton.interactable = activeShop.CanTransact();
-
+            TextMeshProUGUI confirmText = confirmTransactionButton.GetComponentInChildren<TextMeshProUGUI>();
+            confirmText.text = activeShop.IsBuying ? "Buy" : "Sell";
+            
+            //Because we want to be able to click the sell button if we are in buying mode and vise-versa
+            buyModeButton.interactable = !activeShop.IsBuying;
+            sellModeButton.interactable = activeShop.IsBuying;
+            
             RegenerateRowContainer();
         }
 

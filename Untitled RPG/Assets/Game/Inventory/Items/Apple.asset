@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c10050a205f5194d9536b835a8bef69, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  <ItemID>k__BackingField: 
+  <Category>k__BackingField: 3
   <Description>k__BackingField: Grants the Player +10 Health.
   <ItemImage>k__BackingField: {fileID: 1756684116, guid: 22eaacd057029994d8ad85055ee2be08,
     type: 3}

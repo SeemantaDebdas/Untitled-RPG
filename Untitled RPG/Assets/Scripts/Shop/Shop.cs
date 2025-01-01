@@ -19,6 +19,7 @@ namespace RPG.Shop
         }
         
         [field: SerializeField] public string Name { get; private set; }
+        [SerializeField, Range(0, 100)] float sellingPercentage;
         [SerializeField] private List<ShopItemConfig> stockConfigList = new();
         public event Action OnUpdate;
         Interactable interactable;
@@ -27,6 +28,8 @@ namespace RPG.Shop
         
         Dictionary<InventoryItemSO, int> quantityInTransactionDict = new();
         Dictionary<InventoryItemSO, int> stockDict = new();
+
+        private ItemCategory currentCategoryFilter = ItemCategory.NONE;
 
         private void Awake()
         {
@@ -57,17 +60,23 @@ namespace RPG.Shop
             }
         }
 
+        public bool IsBuying { get; private set; } = true;
+
         public IEnumerable<ShopItem> GetFilteredItems()
         {
-            return GetAllItems();
+            foreach (ShopItem shopItem in GetAllItems())
+            {
+                ItemCategory itemCategory = shopItem.InventoryItemData.Category;
+                if(itemCategory == currentCategoryFilter || currentCategoryFilter == ItemCategory.NONE)
+                    yield return shopItem;
+            }
         }
         
         public IEnumerable<ShopItem> GetAllItems() 
         {
             foreach (ShopItemConfig config in stockConfigList)
             {
-                float itemPrice = config.item.Price;
-                itemPrice -= itemPrice * config.buyingDiscountPercentage * 0.01f;
+                float itemPrice = GetItemPrice(config);
 
                 int transactionQuantity = 0;
                 if (quantityInTransactionDict.TryGetValue(config.item, out int res))
@@ -75,23 +84,24 @@ namespace RPG.Shop
                     transactionQuantity = res;
                 }
                 
-                yield return new ShopItem(config.item, stockDict[config.item], itemPrice, transactionQuantity);
+                yield return new ShopItem(config.item, GetAvailability(config.item), itemPrice, transactionQuantity);
             }
         }
 
         public void SelectFilter(ItemCategory category)
         {
+            currentCategoryFilter = category;
+            //print(category.ToString());
+            
+            OnUpdate?.Invoke();
         }
 
-        public ItemCategory GetCategory() => ItemCategory.NONE;
+        public ItemCategory GetFilter() => currentCategoryFilter;
 
         public void SelectMode(bool isBuying)
         {
-        }
-
-        public bool IsBuying()
-        {
-            return true;
+            IsBuying = isBuying;
+            OnUpdate?.Invoke();
         }
 
         public bool CanTransact()
@@ -100,11 +110,14 @@ namespace RPG.Shop
             if (quantityInTransactionDict.Count == 0)
                 return false;
             
-            // Check if No money to buy transaction
-            if (!HasSufficientFunds())
-                return false;
-            
-            // Check if there's enough inventory space. Lecture: 1.23 & 1.24
+            if (IsBuying)
+            {
+                // Check if No money to buy transaction
+                if (!HasSufficientFunds())
+                    return false;
+                
+                // Check if there's enough inventory space. Lecture: 1.23 & 1.24
+            }
             
             return true;
         }
@@ -145,11 +158,15 @@ namespace RPG.Shop
             {
                 quantityInTransactionDict.Remove(item);
             }
-            else if (quantityInTransactionDict[item] > stockDict[item])
+            else
             {
-                quantityInTransactionDict[item] = stockDict[item];
+                int availability = GetAvailability(item);
+                if (quantityInTransactionDict[item] > availability)
+                {
+                    quantityInTransactionDict[item] = availability;
+                }
             }
-            
+
             OnUpdate?.Invoke();
         }
 
@@ -178,29 +195,85 @@ namespace RPG.Shop
             
             foreach (ShopItem shopItem in GetAllItems())
             {
-                InventoryItemSO inventoryItem = shopItem.InventoryItemData;
-                
-                int quantity = shopItem.GetQuantityInTransaction();
-                int quantityThatCanBeBought = (int)coinPurse.GetBalance() / (int)shopItem.GetPrice();
-                
-                int toAdd = Math.Min(quantity, quantityThatCanBeBought);
-                int notAddedQuantity = inventory.AddItem(inventoryItem, toAdd);
-                int addedQuantity = toAdd - notAddedQuantity;
-                
-                print($"Quantity: {quantity}. Q That can be bought: {quantityThatCanBeBought}. To Add: {toAdd}");
-                print($"To Debit: {addedQuantity * shopItem.GetPrice()}");
-                
-                AddToTransaction(inventoryItem, -addedQuantity); 
-                stockDict[inventoryItem] -= addedQuantity;
-                coinPurse.DebitBalance(addedQuantity * shopItem.GetPrice());
+                if (IsBuying)
+                {
+                    BuyItem(shopItem, coinPurse);
+                }
+                else
+                {
+                    SellItem(shopItem, inventory, coinPurse);
+                }
             }
             
             OnUpdate?.Invoke();
         }
-        
+
+        void BuyItem(ShopItem shopItem, CoinPurse coinPurse)
+        {
+            InventoryItemSO inventoryItem = shopItem.InventoryItemData;
+            InventorySO inventory = activeShopper.Inventory;
+            
+            int quantity = shopItem.GetQuantityInTransaction();
+            int quantityThatCanBeBought = (int)coinPurse.GetBalance() / (int)shopItem.GetPrice();
+
+            int toAdd = Math.Min(quantity, quantityThatCanBeBought);
+            int notAddedQuantity = inventory.AddItem(inventoryItem, toAdd);
+            int addedQuantity = toAdd - notAddedQuantity;
+
+            print($"Quantity: {quantity}. Q That can be bought: {quantityThatCanBeBought}. To Add: {toAdd}");
+            print($"To Debit: {addedQuantity * shopItem.GetPrice()}");
+
+            AddToTransaction(inventoryItem, -addedQuantity);
+            stockDict[inventoryItem] -= addedQuantity;
+            coinPurse.DebitBalance(addedQuantity * shopItem.GetPrice());
+        }
+
+        void SellItem(ShopItem shopItem, InventorySO inventory, CoinPurse coinPurse)
+        {
+            //Do this one by one as this is dependent on the quantity in inventory
+            int quantityToSell = shopItem.GetQuantityInTransaction();
+            
+            AddToTransaction(shopItem.InventoryItemData, -quantityToSell);
+
+            inventory.RemoveItem(shopItem.InventoryItemData, quantityToSell);
+            stockDict[shopItem.InventoryItemData] += quantityToSell;
+            
+            coinPurse.CreditBalance(quantityToSell * shopItem.GetPrice());
+        }
+
         public void SetShopper(Shopper shopper)
         {
             activeShopper = shopper;
+        }
+        
+        private int GetAvailability(InventoryItemSO item)
+        {
+            if(IsBuying)
+                return stockDict[item];
+
+            return GetItemCountInInventory(item);
+        }
+
+        private int GetItemCountInInventory(InventoryItemSO item)
+        {
+            InventorySO inventory = activeShopper.Inventory;
+
+            if (inventory == null)
+                return 0;
+
+            return inventory.GetItemCount(item);
+        }
+
+        float GetItemPrice(ShopItemConfig config)
+        {
+            float itemPrice = config.item.Price;
+            
+            if(IsBuying)
+                itemPrice -= itemPrice * config.buyingDiscountPercentage * 0.01f;
+            else
+                itemPrice = itemPrice * sellingPercentage * 0.01f;
+
+            return itemPrice;
         }
     }
 }

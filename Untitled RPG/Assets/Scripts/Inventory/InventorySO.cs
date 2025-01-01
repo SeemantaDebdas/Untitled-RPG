@@ -23,6 +23,13 @@ namespace RPG.Inventory.Model
             }
         }
 
+        #region Add Item
+
+        public void AddItem(InventoryItem inventoryItem)
+        {
+            AddItem(inventoryItem.itemData, inventoryItem.quantity);
+        }
+
         public int AddItem(InventoryItemSO item, int quantity)
         {
             int remainingQuantity = quantity;
@@ -82,7 +89,7 @@ namespace RPG.Inventory.Model
                     inventoryItemList[i] = inventoryItemList[i].ChangeQuantity(item.MaxStackSize);
                         
                     quantity -= amountPossibleToTake;
-                    break;
+                    break;//may not want to break from here. Get all slots that has this item and fill that. Maybe continue instead of break.
                 }
 
                 inventoryItemList[i] = inventoryItemList[i].ChangeQuantity(inventoryItemList[i].quantity + quantity);
@@ -98,6 +105,43 @@ namespace RPG.Inventory.Model
             
             InformAboutChange();
             return quantity;
+        }
+        
+
+        #endregion
+
+        public int RemoveItem(int itemIndex, int quantityToRemove)
+        {
+            if (inventoryItemList.Count <= itemIndex) 
+                return quantityToRemove;
+            if(inventoryItemList[itemIndex].IsNull) 
+                return quantityToRemove;
+
+            if (inventoryItemList[itemIndex].quantity < quantityToRemove)
+            {
+                inventoryItemList[itemIndex] = InventoryItem.GetEmptyItem();
+                InformAboutChange();
+                
+                return quantityToRemove - inventoryItemList[itemIndex].quantity;
+            }
+            
+            int remainingQuantity = inventoryItemList[itemIndex].quantity - quantityToRemove;
+            inventoryItemList[itemIndex] = inventoryItemList[itemIndex].ChangeQuantity(remainingQuantity);
+            
+            InformAboutChange();
+
+            return 0;
+        }
+
+        public void RemoveItem(InventoryItemSO item, int quantityToRemove)
+        {
+            for (int i = 0; i < inventoryItemList.Count && quantityToRemove > 0; i++)
+            {
+                if(inventoryItemList[i].itemData != item)
+                    continue;
+                
+                quantityToRemove = RemoveItem(i, quantityToRemove);
+            }
         }
 
         public Dictionary<int, InventoryItem> GetCurrentInventoryState()
@@ -120,9 +164,18 @@ namespace RPG.Inventory.Model
             return inventoryItemList[itemIndex];
         }
 
-        public void AddItem(InventoryItem inventoryItem)
+        public int GetItemCount(InventoryItemSO item)
         {
-            AddItem(inventoryItem.itemData, inventoryItem.quantity);
+            int count = 0;
+            foreach (InventoryItem inventoryItem in inventoryItemList)
+            {
+                if (inventoryItem.itemData == item)
+                {
+                    count += inventoryItem.quantity;
+                }
+            }
+
+            return count;
         }
 
         public void SwapItems(int index1, int index2)
@@ -131,7 +184,7 @@ namespace RPG.Inventory.Model
             InformAboutChange();
         }
 
-        private void InformAboutChange()
+        void InformAboutChange()
         {
             OnInventoryUpdated?.Invoke(GetCurrentInventoryState());
         }

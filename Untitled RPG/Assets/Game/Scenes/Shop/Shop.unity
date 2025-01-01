@@ -927,8 +927,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1387202061362959438, guid: ef3aafccbb9364c41a9b571f26b52f28,
         type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387202061362959438, guid: ef3aafccbb9364c41a9b571f26b52f28,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387202061362959438, guid: ef3aafccbb9364c41a9b571f26b52f28,
+        type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.020532735
+      value: -0.000005722046
       objectReference: {fileID: 0}
     - target: {fileID: 1435097122442761413, guid: ef3aafccbb9364c41a9b571f26b52f28,
         type: 3}
@@ -4774,6 +4784,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1232410395}
     m_Modifications:
+    - target: {fileID: 194233080881602479, guid: 655698fa8e09cd442b0b0319625f0afd,
+        type: 3}
+      propertyPath: sellingPercentage
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 194233080881602479, guid: 655698fa8e09cd442b0b0319625f0afd,
         type: 3}
       propertyPath: <Name>k__BackingField

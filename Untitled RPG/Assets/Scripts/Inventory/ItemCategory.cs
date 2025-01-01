@@ -1,4 +1,4 @@
-namespace RPG.Inventory
+namespace RPG.Inventory.Model
 {
     public enum ItemCategory 
     {

@@ -7,6 +7,8 @@ namespace RPG.Inventory.Model
     public class InventoryItemSO : ScriptableObject
     {
         public int ItemID => GetInstanceID();
+        [field: SerializeField]
+        public ItemCategory Category { get; private set; }
         
         [field: SerializeField, TextArea]
         public string Description { get; private set; } = null;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c10050a205f5194d9536b835a8bef69, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  <ItemID>k__BackingField: 
+  <Category>k__BackingField: 2
   <Description>k__BackingField: Basic sword which inflicts 10 damage.
   <ItemImage>k__BackingField: {fileID: 353937071, guid: 22eaacd057029994d8ad85055ee2be08,
     type: 3}

@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c10050a205f5194d9536b835a8bef69, type: 3}
   m_Name: Mage Staff
   m_EditorClassIdentifier: 
-  itemID: 
-  <DisplayName>k__BackingField: Mage Staff
-  description: 
-  <Icon>k__BackingField: {fileID: 21300064, guid: 5721a85c7a977e048b974b03e60ab865,
-    type: 3}
-  stackable: 0
+  <Category>k__BackingField: 2
+  <Description>k__BackingField: 
+  <ItemImage>k__BackingField: {fileID: 0}
+  <IsStackable>k__BackingField: 0
+  <MaxStackSize>k__BackingField: 1
   <Price>k__BackingField: 1000
