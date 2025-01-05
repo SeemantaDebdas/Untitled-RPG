@@ -1,3 +1,4 @@
+using RPG.Camera;
 using RPG.Combat;
 using RPG.Core;
 
@@ -27,6 +28,8 @@ namespace RPG.Control
             thrower.ResetForce();
             animator.SetLayerWeightOverTime(1, 0.25f, rangedWeaponData.AnimationLayer);
             animator.SetLayerWeightOverTime(0, 0.25f, rangedWeaponData.DrawFireAnimationLayer);
+            
+            CameraController.Instance.SetHigherPriority(CameraType.FREE_LOOK);
         }
     }
 }

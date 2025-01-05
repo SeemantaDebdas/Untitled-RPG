@@ -134,8 +134,10 @@ namespace RPG.Inventory.UI
         void InventoryItemUI_OnItemDroppedOn(InventoryItemUI itemUI)
         {
             int index = itemList.IndexOf(itemUI);
-            if (index == -1)
+            if (index == -1 || currentlyDraggedItemIndex == -1)
                 return;
+            
+            //print(currentlyDraggedItemIndex + " " + index);
             
             OnSwapItems?.Invoke(currentlyDraggedItemIndex, index);
             InventoryItemUI_OnItemClicked(itemUI);

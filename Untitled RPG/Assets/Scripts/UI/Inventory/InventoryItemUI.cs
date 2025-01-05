@@ -67,16 +67,19 @@ namespace RPG.Inventory.UI
         {
             if (IsEmpty) return;
             
+            print("On Begin Called");
             OnItemBeginDrag?.Invoke(this);
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            print("On End Called");
             OnItemEndDrag?.Invoke(this);
         }
 
         public void OnDrop(PointerEventData eventData)
         {
+            print("On Drop Called");
             OnItemDroppedOn?.Invoke(this);
         }
 

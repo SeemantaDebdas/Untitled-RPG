@@ -3,8 +3,10 @@ using RPG.Combat;
 using RPG.Core;
 using RPG.Data;
 using System.Collections.Generic;
+using RPG.Camera;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
+using CameraType = UnityEngine.CameraType;
 
 namespace RPG.Control
 {
@@ -49,6 +51,8 @@ namespace RPG.Control
 
             foreach(var aimRig in aimRigs)
                 DOVirtual.Float(0, 1, 0.1f, (v) => aimRig.weight = v);
+            
+            CameraController.Instance.SetHigherPriority(Camera.CameraType.AIM);
         }
 
         public override void Exit()
