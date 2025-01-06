@@ -1749,6 +1749,7 @@ GameObject:
   - component: {fileID: 131651998130969402}
   - component: {fileID: 3043342546280165317}
   - component: {fileID: 5159478039208160608}
+  - component: {fileID: 8867294776387792345}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2228,6 +2229,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryData: {fileID: 11400000, guid: 061cad982b8c4a9458d81d92035f175b, type: 2}
   inventoryUI: {fileID: 0}
+  actionInventoryData: {fileID: 11400000, guid: 4ff81094455df3742a869f2577ad3dce,
+    type: 2}
+  actionInventoryUI: {fileID: 0}
   initialInventoryItemList:
   - quantity: 50
     itemData: {fileID: 11400000, guid: 10e01cdae0be0a74e9c3db7a962acc26, type: 2}
@@ -2246,6 +2250,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingBalance: 400
+--- !u!114 &8867294776387792345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972971377313347014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7ed22d7a9d9ff469dd0882762a37ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialActionItemList: []
+  actionInventoryData: {fileID: 0}
+  actionInventoryUI: {fileID: 0}
 --- !u!1 &7009001920839669846
 GameObject:
   m_ObjectHideFlags: 0

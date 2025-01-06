@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using RPG.Inventory.Model;
 using RPG.Inventory.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace RPG.Inventory
 {
@@ -10,6 +11,10 @@ namespace RPG.Inventory
     {
         [SerializeField] private InventorySO inventoryData = null;
         [SerializeField] private InventoryView inventoryUI = null;
+        
+        [Header("Action Items")] 
+        [SerializeField] private ActionInventorySO actionInventoryData = null;
+        [SerializeField] private ActionInventoryUI actionInventoryUI = null;
 
         [SerializeField] List<InventoryItem> initialInventoryItemList = new();
 
@@ -93,18 +98,73 @@ namespace RPG.Inventory
             
         }
 
-        void InventoryUI_OnStartDragging(int itemIndex)
+        void InventoryUI_OnStartDragging(InventoryItemUI inventoryItemUI)
         {
-            InventoryItem inventoryItem = inventoryData.GetItemAtIndex(itemIndex);
+            InventoryItem inventoryItem;
+            if (inventoryItemUI is ActionItemUI actionItemUI)
+            {
+                int actionItemIndex= actionInventoryUI.ItemList.IndexOf(actionItemUI);
+                inventoryItem = actionInventoryData.InventoryItemList[actionItemIndex];
+            }
+            else
+            {
+                int inventoryItemIndex = inventoryUI.ItemList.IndexOf(inventoryItemUI);
+                inventoryItem = inventoryData.GetItemAtIndex(inventoryItemIndex);
+            }
+
             if (inventoryItem.IsNull)
+            {
+                Debug.LogWarning("Inventory Item is Null");
                 return;
+            }
             
             inventoryUI.CreateDraggedItem(inventoryItem.itemData.ItemImage, inventoryItem.quantity);
         }
 
-        void InventoryUI_OnSwapItems(int index1, int index2)
+        void InventoryUI_OnSwapItems(InventoryItemUI item1, InventoryItemUI item2)
         {
-            inventoryData.SwapItems(index1, index2);
+            // Check if either item is an ActionItem
+            bool isItem1Action = item1 is ActionItemUI;
+            bool isItem2Action = item2 is ActionItemUI;
+
+            if (isItem1Action && isItem2Action)
+            {
+                // Both items are Action Items - handle swapping within the action inventory
+                int actionItemIndex1 = actionInventoryUI.ItemList.IndexOf(item1);
+                int actionItemIndex2 = actionInventoryUI.ItemList.IndexOf(item2);
+
+                actionInventoryData.SwapItems(actionItemIndex1, actionItemIndex2);
+                print("Both items are action items and have been swapped.");
+                return;
+            }
+
+            if (isItem1Action || isItem2Action)
+            {
+                // Handle cross-swapping between Action and Regular Inventory
+                ActionItemUI actionItemUI = isItem1Action ? (ActionItemUI)item1 : (ActionItemUI)item2;
+                InventoryItemUI inventoryItemUI = isItem1Action ? item2 : item1;
+
+                int actionItemIndex = actionInventoryUI.ItemList.IndexOf(actionItemUI);
+                int inventoryItemIndex = inventoryUI.ItemList.IndexOf(inventoryItemUI);
+
+                InventoryItem actionItem = actionInventoryData.GetItemAtIndex(actionItemIndex);
+                InventoryItem inventoryItem = inventoryData.GetItemAtIndex(inventoryItemIndex);
+
+                // Perform the swap
+                actionInventoryData.SetItemData(actionItemIndex, inventoryItem);
+                inventoryData.SetItemData(inventoryItemIndex, actionItem);
+
+                print($"Swapped an action item with a regular item: ActionItemIndex {actionItemIndex}, InventoryItemIndex {inventoryItemIndex}.");
+                return;
+            }
+
+            // Handle regular inventory item swapping
+            inventoryData.SwapItems(
+                inventoryUI.ItemList.IndexOf(item1),
+                inventoryUI.ItemList.IndexOf(item2)
+            );
+
+            print("Swapped two regular inventory items.");
         }
         
         void InventoryUI_OnShowRequest()
