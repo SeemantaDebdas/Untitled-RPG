@@ -141,6 +141,31 @@ namespace RPG.Core
         {
         }
 
+        public void OnAbility1(InputAction.CallbackContext context)
+        {
+            
+        }
+
+        public void OnAbility2(InputAction.CallbackContext context)
+        {
+            
+        }
+
+        public void OnAbility3(InputAction.CallbackContext context)
+        {
+            
+        }
+
+        public void OnAbility4(InputAction.CallbackContext context)
+        {
+            
+        }
+
+        public void OnAbility5(InputAction.CallbackContext context)
+        {
+            
+        }
+
         bool IsPlayerActionMapEnabled()
         {
             return inputAsset.FindActionMap(playerActionMapName).enabled;

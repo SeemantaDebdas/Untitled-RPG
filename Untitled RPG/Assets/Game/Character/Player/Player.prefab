@@ -2262,9 +2262,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7ed22d7a9d9ff469dd0882762a37ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialActionItemList: []
-  actionInventoryData: {fileID: 0}
+  initialActionItemList:
+  - quantity: 1
+    itemData: {fileID: 11400000, guid: 09de67cf158ed0842907a8b4f7edaa0e, type: 2}
+  actionInventoryData: {fileID: 11400000, guid: 4ff81094455df3742a869f2577ad3dce,
+    type: 2}
   actionInventoryUI: {fileID: 0}
+  ability1Action: {fileID: 2931414660110876559, guid: 46942bc09dc02594b8a05133a47185b1,
+    type: 3}
+  ability2Action: {fileID: 1423346010586678507, guid: 46942bc09dc02594b8a05133a47185b1,
+    type: 3}
+  ability3Action: {fileID: -1451641853047136701, guid: 46942bc09dc02594b8a05133a47185b1,
+    type: 3}
+  ability4Action: {fileID: 1700201686106968009, guid: 46942bc09dc02594b8a05133a47185b1,
+    type: 3}
+  ability5Action: {fileID: 2105169851746038888, guid: 46942bc09dc02594b8a05133a47185b1,
+    type: 3}
 --- !u!1 &7009001920839669846
 GameObject:
   m_ObjectHideFlags: 0

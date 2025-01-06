@@ -136,6 +136,51 @@ namespace RPG.Core
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability1"",
+                    ""type"": ""Button"",
+                    ""id"": ""5f5c5607-0bba-4e85-a4c5-9ed02a122b2f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability2"",
+                    ""type"": ""Button"",
+                    ""id"": ""cdcf8806-1c93-4e87-99b5-31eeaa363903"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability3"",
+                    ""type"": ""Button"",
+                    ""id"": ""b24b03c1-35d9-4997-8959-bc9d3f33a8e7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability4"",
+                    ""type"": ""Button"",
+                    ""id"": ""236e0439-dd93-4584-b65d-dfaa8e40b626"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability5"",
+                    ""type"": ""Button"",
+                    ""id"": ""301e9648-84b9-4fa2-bdb7-aa64da3db258"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -422,6 +467,61 @@ namespace RPG.Core
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse"",
                     ""action"": ""InventoryUIToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe35db2c-ccfd-467b-9c7e-4dc16110ea3f"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Ability1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b90e55a9-1ade-4d30-9fbb-cf56596f18a1"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Ability2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fba5f1c4-91d6-4ede-a7f4-38621befd7e9"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Ability3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""601e1ca1-61db-40ae-a269-a10cd3aaca02"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Ability4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d49fd2c-a88f-4ce1-936b-1969f35a9b92"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Ability5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -988,6 +1088,11 @@ namespace RPG.Core
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
             m_Player_QuestUIToggle = m_Player.FindAction("QuestUIToggle", throwIfNotFound: true);
             m_Player_InventoryUIToggle = m_Player.FindAction("InventoryUIToggle", throwIfNotFound: true);
+            m_Player_Ability1 = m_Player.FindAction("Ability1", throwIfNotFound: true);
+            m_Player_Ability2 = m_Player.FindAction("Ability2", throwIfNotFound: true);
+            m_Player_Ability3 = m_Player.FindAction("Ability3", throwIfNotFound: true);
+            m_Player_Ability4 = m_Player.FindAction("Ability4", throwIfNotFound: true);
+            m_Player_Ability5 = m_Player.FindAction("Ability5", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1079,6 +1184,11 @@ namespace RPG.Core
         private readonly InputAction m_Player_Interact;
         private readonly InputAction m_Player_QuestUIToggle;
         private readonly InputAction m_Player_InventoryUIToggle;
+        private readonly InputAction m_Player_Ability1;
+        private readonly InputAction m_Player_Ability2;
+        private readonly InputAction m_Player_Ability3;
+        private readonly InputAction m_Player_Ability4;
+        private readonly InputAction m_Player_Ability5;
         public struct PlayerActions
         {
             private @Control m_Wrapper;
@@ -1095,6 +1205,11 @@ namespace RPG.Core
             public InputAction @Interact => m_Wrapper.m_Player_Interact;
             public InputAction @QuestUIToggle => m_Wrapper.m_Player_QuestUIToggle;
             public InputAction @InventoryUIToggle => m_Wrapper.m_Player_InventoryUIToggle;
+            public InputAction @Ability1 => m_Wrapper.m_Player_Ability1;
+            public InputAction @Ability2 => m_Wrapper.m_Player_Ability2;
+            public InputAction @Ability3 => m_Wrapper.m_Player_Ability3;
+            public InputAction @Ability4 => m_Wrapper.m_Player_Ability4;
+            public InputAction @Ability5 => m_Wrapper.m_Player_Ability5;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1140,6 +1255,21 @@ namespace RPG.Core
                 @InventoryUIToggle.started += instance.OnInventoryUIToggle;
                 @InventoryUIToggle.performed += instance.OnInventoryUIToggle;
                 @InventoryUIToggle.canceled += instance.OnInventoryUIToggle;
+                @Ability1.started += instance.OnAbility1;
+                @Ability1.performed += instance.OnAbility1;
+                @Ability1.canceled += instance.OnAbility1;
+                @Ability2.started += instance.OnAbility2;
+                @Ability2.performed += instance.OnAbility2;
+                @Ability2.canceled += instance.OnAbility2;
+                @Ability3.started += instance.OnAbility3;
+                @Ability3.performed += instance.OnAbility3;
+                @Ability3.canceled += instance.OnAbility3;
+                @Ability4.started += instance.OnAbility4;
+                @Ability4.performed += instance.OnAbility4;
+                @Ability4.canceled += instance.OnAbility4;
+                @Ability5.started += instance.OnAbility5;
+                @Ability5.performed += instance.OnAbility5;
+                @Ability5.canceled += instance.OnAbility5;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1180,6 +1310,21 @@ namespace RPG.Core
                 @InventoryUIToggle.started -= instance.OnInventoryUIToggle;
                 @InventoryUIToggle.performed -= instance.OnInventoryUIToggle;
                 @InventoryUIToggle.canceled -= instance.OnInventoryUIToggle;
+                @Ability1.started -= instance.OnAbility1;
+                @Ability1.performed -= instance.OnAbility1;
+                @Ability1.canceled -= instance.OnAbility1;
+                @Ability2.started -= instance.OnAbility2;
+                @Ability2.performed -= instance.OnAbility2;
+                @Ability2.canceled -= instance.OnAbility2;
+                @Ability3.started -= instance.OnAbility3;
+                @Ability3.performed -= instance.OnAbility3;
+                @Ability3.canceled -= instance.OnAbility3;
+                @Ability4.started -= instance.OnAbility4;
+                @Ability4.performed -= instance.OnAbility4;
+                @Ability4.canceled -= instance.OnAbility4;
+                @Ability5.started -= instance.OnAbility5;
+                @Ability5.performed -= instance.OnAbility5;
+                @Ability5.canceled -= instance.OnAbility5;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1347,6 +1492,11 @@ namespace RPG.Core
             void OnInteract(InputAction.CallbackContext context);
             void OnQuestUIToggle(InputAction.CallbackContext context);
             void OnInventoryUIToggle(InputAction.CallbackContext context);
+            void OnAbility1(InputAction.CallbackContext context);
+            void OnAbility2(InputAction.CallbackContext context);
+            void OnAbility3(InputAction.CallbackContext context);
+            void OnAbility4(InputAction.CallbackContext context);
+            void OnAbility5(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139c0e13bf56ac649b4d0fa640052c14, type: 3}
+  m_Name: Super Mega Splash
+  m_EditorClassIdentifier: 
+  <Category>k__BackingField: 5
+  <Description>k__BackingField: Causes tremedous damage in a radius of 2. Attack
+    while in Jump State to use this ability.
+  <ItemImage>k__BackingField: {fileID: 1982945511, guid: 22eaacd057029994d8ad85055ee2be08,
+    type: 3}
+  <IsStackable>k__BackingField: 0
+  <MaxStackSize>k__BackingField: 1
+  <Price>k__BackingField: 0
+  <IsConsumable>k__BackingField: 0
