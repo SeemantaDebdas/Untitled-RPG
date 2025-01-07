@@ -1750,6 +1750,7 @@ GameObject:
   - component: {fileID: 3043342546280165317}
   - component: {fileID: 5159478039208160608}
   - component: {fileID: 8867294776387792345}
+  - component: {fileID: 8034248361236800583}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2213,8 +2214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158dea8fe4a16b346bfa45cc10feef69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Inventory>k__BackingField: {fileID: 11400000, guid: 061cad982b8c4a9458d81d92035f175b,
-    type: 2}
+  <GridInventory>k__BackingField: {fileID: 0}
 --- !u!114 &3043342546280165317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2227,8 +2227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4ca332f2bf954439fc807c5f3d4cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryData: {fileID: 11400000, guid: 061cad982b8c4a9458d81d92035f175b, type: 2}
-  inventoryUI: {fileID: 0}
+  gridInventoryData: {fileID: 11400000, guid: 061cad982b8c4a9458d81d92035f175b, type: 2}
+  gridInventoryUI: {fileID: 0}
   actionInventoryData: {fileID: 11400000, guid: 4ff81094455df3742a869f2577ad3dce,
     type: 2}
   actionInventoryUI: {fileID: 0}
@@ -2278,6 +2278,21 @@ MonoBehaviour:
     type: 3}
   ability5Action: {fileID: 2105169851746038888, guid: 46942bc09dc02594b8a05133a47185b1,
     type: 3}
+--- !u!114 &8034248361236800583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972971377313347014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8033ff8e2d2e5fd44a00afbaa0063412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridInventoryController: {fileID: 3043342546280165317}
+  actionInventoryController: {fileID: 8867294776387792345}
+  descriptionUI: {fileID: 0}
 --- !u!1 &7009001920839669846
 GameObject:
   m_ObjectHideFlags: 0

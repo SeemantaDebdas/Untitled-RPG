@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: 5457842109668403323}
   - {fileID: 5000521472609743412}
   - {fileID: 835259128679643689}
-  - {fileID: 8467997169737283557}
+  - {fileID: 2434933202269599807}
   defaultView: {fileID: 361732193644827238}
 --- !u!1001 &528043248085585295
 PrefabInstance:
@@ -874,9 +874,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97799492d4274de4181bd206c6bdb1a3, type: 3}
---- !u!114 &8467997169737283557 stripped
+--- !u!114 &2434933202269599807 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -948111049195029910, guid: 97799492d4274de4181bd206c6bdb1a3,
+  m_CorrespondingSourceObject: {fileID: 2781362348822771120, guid: 97799492d4274de4181bd206c6bdb1a3,
     type: 3}
   m_PrefabInstance: {fileID: 528043248085585295}
   m_PrefabAsset: {fileID: 0}

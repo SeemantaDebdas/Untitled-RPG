@@ -2,6 +2,7 @@ using System;
 using RPG.Core;
 using RPG.Inventory.Model;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace RPG.Inventory.Pickup
 {
@@ -9,7 +10,7 @@ namespace RPG.Inventory.Pickup
     {
         [SerializeField] private InventoryItemSO item = null;
         [SerializeField] private int quantity = 1;
-        [SerializeField] InventorySO playerInventory = null;
+        [FormerlySerializedAs("playerInventory")] [SerializeField] GridInventorySO playerGridInventory = null;
 
         private Interactable interactable;
 
@@ -30,7 +31,7 @@ namespace RPG.Inventory.Pickup
 
         private void Interactable_OnInteract(Interactor interactor)
         {
-            playerInventory.AddItem(item, quantity);
+            playerGridInventory.AddItem(item, quantity);
             Destroy(gameObject);
         }
     }

@@ -6,7 +6,7 @@ namespace RPG.Shop
 {
     public class Shopper : MonoBehaviour
     {
-        [field: SerializeField] public InventorySO Inventory { get; private set; }
+        [field: SerializeField] public GridInventorySO GridInventory { get; private set; }
         
         public event Action<Shop> OnActiveShopUpdated;
         private Shop activeShop = null;

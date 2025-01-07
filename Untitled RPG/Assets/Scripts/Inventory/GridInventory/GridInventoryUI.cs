@@ -4,17 +4,18 @@ using UnityEngine;
 
 namespace RPG.Inventory.UI
 {
-    public class ActionInventoryUI : MonoBehaviour
+    public class GridInventoryUI : MonoBehaviour
     {
-        [SerializeField] RectTransform inventoryItemContainer;
         [SerializeField] InventoryItemUI inventoryItemUIPrefab;
-        public List<InventoryItemUI> ItemList { get; private set; } = new();
+        [SerializeField] RectTransform inventoryItemContainer;
         
         public event Action<InventoryItemUI> OnItemSelected, 
             OnItemBeginDrag, 
             OnItemDroppedOn, 
             OnItemEndDrag = delegate { };
-        
+
+        public List<InventoryItemUI> ItemList { get; private set; } = new();
+
         public void Populate(int inventorySize)
         {
             foreach (RectTransform rectTransform in inventoryItemContainer)
@@ -33,10 +34,10 @@ namespace RPG.Inventory.UI
                 itemUI.OnItemDroppedOn += InventoryItemUI_OnItemDroppedOn;
                 itemUI.OnItemEndDrag += InventoryItemUI_OnItemEndDrag;
             }
-
-            //InventoryItemUI.OnItemClicked += InventoryItemUI_OnItemClicked;
+            
+            InventoryItemUI.OnRightMouseButtonClick += InventoryItemUI_OnRightMouseButtonClick;
         }
-        
+
         private void OnDestroy()
         {
             foreach (InventoryItemUI itemUI in ItemList)
@@ -46,6 +47,16 @@ namespace RPG.Inventory.UI
                 itemUI.OnItemDroppedOn -= InventoryItemUI_OnItemDroppedOn;
                 itemUI.OnItemEndDrag -= InventoryItemUI_OnItemEndDrag;
             }
+            
+            InventoryItemUI.OnRightMouseButtonClick -= InventoryItemUI_OnRightMouseButtonClick;
+        }
+
+        public void UpdateItemData(int itemIndex, Sprite itemSprite, int itemQuantity)
+        {
+            if (itemIndex < 0 || itemIndex >= ItemList.Count)
+                return;
+            
+            ItemList[itemIndex].SetData(itemSprite, itemQuantity);
         }
 
         void InventoryItemUI_OnItemClicked(InventoryItemUI itemUI)
@@ -61,10 +72,10 @@ namespace RPG.Inventory.UI
 
         void InventoryItemUI_OnItemBeginDrag(InventoryItemUI itemUI)
         {
-            InventoryItemUI_OnItemClicked(itemUI);
-            //itemUI.Select();
             OnItemBeginDrag?.Invoke(itemUI);
+            
             //Select item that you are dragging. Might change this later 
+            InventoryItemUI_OnItemClicked(itemUI);
         }
         
         void InventoryItemUI_OnItemDroppedOn(InventoryItemUI itemUI)
@@ -83,21 +94,10 @@ namespace RPG.Inventory.UI
             //InventoryItemUI_OnItemClicked(itemUI);
         }
 
-        public void UpdateItemData(int itemIndex, Sprite itemSprite, int itemQuantity)
+        public void ResetSelection()
         {
-            if (itemIndex < 0 || itemIndex >= ItemList.Count)
-                return;
-            
-            ItemList[itemIndex].SetData(itemSprite, itemQuantity);
-        }
-        
-        public void ResetAllItems()
-        {
-            foreach (InventoryItemUI itemUI in ItemList)
-            {
-                itemUI.ResetData();
-                itemUI.Deselect();
-            }
+            //descriptionUI.ResetDescription();
+            DeselectAllItems();
         }
         
         public void DeselectAllItems()
@@ -106,6 +106,15 @@ namespace RPG.Inventory.UI
             {
                 itemUI.Deselect();
             }    
+        }
+
+        public void ResetAllItems()
+        {
+            foreach (InventoryItemUI itemUI in ItemList)
+            {
+                itemUI.ResetData();
+                itemUI.Deselect();
+            }
         }
     }
 }

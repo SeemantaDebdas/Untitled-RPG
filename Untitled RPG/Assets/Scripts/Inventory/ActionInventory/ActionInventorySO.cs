@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 namespace RPG.Inventory.Model
 {
     [CreateAssetMenu(fileName = "New Action Inventory", menuName = "Inventory/ActionInventorySO")]
-    public class ActionInventorySO : InventorySO
+    public class ActionInventorySO : GridInventorySO
     {
     }
 }

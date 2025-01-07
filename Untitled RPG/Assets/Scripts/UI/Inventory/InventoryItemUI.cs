@@ -12,10 +12,9 @@ namespace RPG.Inventory.UI
         [SerializeField] Image itemImage, borderImage;
         [SerializeField] TextMeshProUGUI quantityText;
 
-        public static event Action<InventoryItemUI> OnItemClicked,
-            OnItemDroppedOn,
-            OnItemBeginDrag,
-            OnItemEndDrag,
+        public event Action<InventoryItemUI> OnItemClicked, OnItemBeginDrag, OnItemDroppedOn, OnItemEndDrag;
+        
+        public static event Action<InventoryItemUI> 
             OnRightMouseButtonClick;
 
         private bool IsEmpty => !itemImage.gameObject.activeSelf;

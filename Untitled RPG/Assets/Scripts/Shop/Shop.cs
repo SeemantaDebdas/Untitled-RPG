@@ -184,10 +184,10 @@ namespace RPG.Shop
                 return;
             }
 
-            InventorySO inventory = activeShopper.Inventory;
+            GridInventorySO gridInventory = activeShopper.GridInventory;
             CoinPurse coinPurse = activeShopper.GetComponent<CoinPurse>();
 
-            if (inventory == null || coinPurse == null)
+            if (gridInventory == null || coinPurse == null)
             {
                 Debug.LogWarning("No inventory or purse set. Please set inventory or purse.");
                 return;
@@ -201,7 +201,7 @@ namespace RPG.Shop
                 }
                 else
                 {
-                    SellItem(shopItem, inventory, coinPurse);
+                    SellItem(shopItem, gridInventory, coinPurse);
                 }
             }
             
@@ -211,13 +211,13 @@ namespace RPG.Shop
         void BuyItem(ShopItem shopItem, CoinPurse coinPurse)
         {
             InventoryItemSO inventoryItem = shopItem.InventoryItemData;
-            InventorySO inventory = activeShopper.Inventory;
+            GridInventorySO gridInventory = activeShopper.GridInventory;
             
             int quantity = shopItem.GetQuantityInTransaction();
             int quantityThatCanBeBought = (int)coinPurse.GetBalance() / (int)shopItem.GetPrice();
 
             int toAdd = Math.Min(quantity, quantityThatCanBeBought);
-            int notAddedQuantity = inventory.AddItem(inventoryItem, toAdd);
+            int notAddedQuantity = gridInventory.AddItem(inventoryItem, toAdd);
             int addedQuantity = toAdd - notAddedQuantity;
 
             print($"Quantity: {quantity}. Q That can be bought: {quantityThatCanBeBought}. To Add: {toAdd}");
@@ -228,14 +228,14 @@ namespace RPG.Shop
             coinPurse.DebitBalance(addedQuantity * shopItem.GetPrice());
         }
 
-        void SellItem(ShopItem shopItem, InventorySO inventory, CoinPurse coinPurse)
+        void SellItem(ShopItem shopItem, GridInventorySO gridInventory, CoinPurse coinPurse)
         {
             //Do this one by one as this is dependent on the quantity in inventory
             int quantityToSell = shopItem.GetQuantityInTransaction();
             
             AddToTransaction(shopItem.InventoryItemData, -quantityToSell);
 
-            inventory.RemoveItem(shopItem.InventoryItemData, quantityToSell);
+            gridInventory.RemoveItem(shopItem.InventoryItemData, quantityToSell);
             stockDict[shopItem.InventoryItemData] += quantityToSell;
             
             coinPurse.CreditBalance(quantityToSell * shopItem.GetPrice());
@@ -256,12 +256,12 @@ namespace RPG.Shop
 
         private int GetItemCountInInventory(InventoryItemSO item)
         {
-            InventorySO inventory = activeShopper.Inventory;
+            GridInventorySO gridInventory = activeShopper.GridInventory;
 
-            if (inventory == null)
+            if (gridInventory == null)
                 return 0;
 
-            return inventory.GetItemCount(item);
+            return gridInventory.GetItemCount(item);
         }
 
         float GetItemPrice(ShopItemConfig config)

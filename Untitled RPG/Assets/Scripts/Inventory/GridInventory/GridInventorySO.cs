@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 namespace RPG.Inventory.Model
 {
     [CreateAssetMenu(fileName = "Inventory", menuName = "Inventory/InventorySO")]
-    public class InventorySO : ScriptableObject
+    public class GridInventorySO : ScriptableObject
     {
         [field: SerializeField] public List<InventoryItem> InventoryItemList { get; private set; } = new();
         [field: SerializeField] public int InventorySize { get; private set; } = 10;
@@ -151,6 +151,14 @@ namespace RPG.Inventory.Model
             InformAboutChange();
         }
 
+
+        public void SetItemData(InventoryItem item, InventoryItem data)
+        {
+            int index = InventoryItemList.IndexOf(item);
+            Debug.Log(index);
+            SetItemData(index, data);
+        }
+
         public Dictionary<int, InventoryItem> GetCurrentInventoryState()
         {
             Dictionary<int, InventoryItem> inventoryState = new();
@@ -191,6 +199,16 @@ namespace RPG.Inventory.Model
             InformAboutChange();
         }
 
+        public void SwapItems(InventoryItem item1, InventoryItem item2)
+        {
+            int index1 = InventoryItemList.IndexOf(item1);
+            int index2 = InventoryItemList.IndexOf(item2);
+            
+            Debug.Log("Swapping items: " +index1 +" "+ index2 );
+            
+            SwapItems(index1, index2);
+        }
+
         void InformAboutChange()
         {
             OnInventoryUpdated?.Invoke(GetCurrentInventoryState());
@@ -200,10 +218,12 @@ namespace RPG.Inventory.Model
         {
             return !InventoryItemList.Any(item => item.IsNull);
         }
+
+        public bool HasItem(InventoryItem item) => InventoryItemList.IndexOf(item) != -1;
     }
 
     [System.Serializable]
-    public struct InventoryItem
+    public struct InventoryItem : IEquatable<InventoryItem>
     {
         public int quantity;
         public InventoryItemSO itemData;
@@ -232,6 +252,21 @@ namespace RPG.Inventory.Model
                 itemData = null,
                 quantity = 0
             };
+        }
+
+        public bool Equals(InventoryItem other)
+        {
+            return quantity == other.quantity && Equals(itemData, other.itemData);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is InventoryItem other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(quantity, itemData);
         }
     }
 }
