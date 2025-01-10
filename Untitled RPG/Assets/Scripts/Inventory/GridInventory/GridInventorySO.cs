@@ -20,7 +20,7 @@ namespace RPG.Inventory.Model
             
             for (int i = 0; i < InventorySize; i++)
             {
-                InventoryItemList.Add(InventoryItem.GetEmptyItem());
+                InventoryItemList.Add(new InventoryItem(i, null, 0));
             }
         }
 
@@ -53,13 +53,12 @@ namespace RPG.Inventory.Model
 
         bool AddItemToFirstEmptySlot(InventoryItemSO item, int itemQuantity)
         {
-            InventoryItem newItem = new(item, itemQuantity);
-
             for (int i = 0; i < InventorySize; i++)
             {
                 if (InventoryItemList[i].IsNull)
                 {
-                    InventoryItemList[i] = newItem;
+                    Debug.Log("Adding item to empty slot");
+                    InventoryItemList[i] = new(i, item, itemQuantity);
                     return true;
                 }
             }
@@ -87,13 +86,13 @@ namespace RPG.Inventory.Model
                 if (quantity > amountPossibleToTake)
                 {
                     //make the item take full stack size. 
-                    InventoryItemList[i] = InventoryItemList[i].ChangeQuantity(item.MaxStackSize);
+                    InventoryItemList[i].SetQuantity(item.MaxStackSize);
                         
                     quantity -= amountPossibleToTake;
                     break;//may not want to break from here. Get all slots that has this item and fill that. Maybe continue instead of break.
                 }
 
-                InventoryItemList[i] = InventoryItemList[i].ChangeQuantity(InventoryItemList[i].quantity + quantity);
+                InventoryItemList[i].SetQuantity(InventoryItemList[i].quantity + quantity);
                 InformAboutChange();
                 return 0;
             }
@@ -120,14 +119,14 @@ namespace RPG.Inventory.Model
 
             if (InventoryItemList[itemIndex].quantity < quantityToRemove)
             {
-                InventoryItemList[itemIndex] = InventoryItem.GetEmptyItem();
+                InventoryItemList[itemIndex] = new InventoryItem();
                 InformAboutChange();
                 
                 return quantityToRemove - InventoryItemList[itemIndex].quantity;
             }
             
             int remainingQuantity = InventoryItemList[itemIndex].quantity - quantityToRemove;
-            InventoryItemList[itemIndex] = InventoryItemList[itemIndex].ChangeQuantity(remainingQuantity);
+            InventoryItemList[itemIndex].SetQuantity(remainingQuantity);
             
             InformAboutChange();
 
@@ -154,8 +153,7 @@ namespace RPG.Inventory.Model
 
         public void SetItemData(InventoryItem item, InventoryItem data)
         {
-            int index = InventoryItemList.IndexOf(item);
-            Debug.Log(index);
+            int index = item.index;
             SetItemData(index, data);
         }
 
@@ -196,77 +194,31 @@ namespace RPG.Inventory.Model
         public void SwapItems(int index1, int index2)
         {
             (InventoryItemList[index1], InventoryItemList[index2]) = (InventoryItemList[index2], InventoryItemList[index1]);
+            
+            InventoryItemList[index1].index = index1;
+            InventoryItemList[index2].index = index2;
+            
             InformAboutChange();
         }
 
         public void SwapItems(InventoryItem item1, InventoryItem item2)
         {
-            int index1 = InventoryItemList.IndexOf(item1);
-            int index2 = InventoryItemList.IndexOf(item2);
-            
-            Debug.Log("Swapping items: " +index1 +" "+ index2 );
-            
-            SwapItems(index1, index2);
+            SwapItems(item1.index, item2.index);
         }
 
         void InformAboutChange()
         {
             OnInventoryUpdated?.Invoke(GetCurrentInventoryState());
         }
-        
-        bool IsInventoryFull()
+
+        public bool HasItem(InventoryItem item)
         {
-            return !InventoryItemList.Any(item => item.IsNull);
-        }
-
-        public bool HasItem(InventoryItem item) => InventoryItemList.IndexOf(item) != -1;
-    }
-
-    [System.Serializable]
-    public struct InventoryItem : IEquatable<InventoryItem>
-    {
-        public int quantity;
-        public InventoryItemSO itemData;
-
-        public bool IsNull => itemData == null;
-
-        public InventoryItem(InventoryItemSO itemData, int quantity)
-        {
-            this.itemData = itemData;
-            this.quantity = quantity;
-        }
-        
-        public InventoryItem ChangeQuantity(int newQuantity)
-        {
-            return new InventoryItem
-            {
-                itemData = this.itemData,
-                quantity = newQuantity
-            };
-        }
-
-        public static InventoryItem GetEmptyItem()
-        {
-            return new InventoryItem
-            {
-                itemData = null,
-                quantity = 0
-            };
-        }
-
-        public bool Equals(InventoryItem other)
-        {
-            return quantity == other.quantity && Equals(itemData, other.itemData);
-        }
-
-        public override bool Equals(object obj)
-        {
-            return obj is InventoryItem other && Equals(other);
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(quantity, itemData);
+            //InventoryItemList.IndexOf(item) != -1;
+            bool hasItem = InventoryItemList.Contains(item);
+            
+            Debug.Log(hasItem);
+            
+            return hasItem;
         }
     }
 }

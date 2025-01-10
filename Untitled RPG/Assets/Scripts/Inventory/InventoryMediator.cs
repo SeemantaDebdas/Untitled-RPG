@@ -55,21 +55,32 @@ namespace RPG.Inventory
         void InventoryController_OnItemBeginDrag(InventoryItem item)
         {
             draggedItem = item;
-            mouseFollower.SetData(item.itemData.ItemImage, item.quantity);
             mouseFollower.Enable();
+            mouseFollower.SetData(item.itemData.ItemImage, item.quantity);
         }
         
         void GridInventoryController_OnItemDroppedOn(InventoryItem itemDroppedOn)
         {
-            if (itemDroppedOn.itemData != null && gridInventoryController.HasItem(draggedItem))
+            // if (gridInventoryController.HasItem(draggedItem))
+            // {
+            //     if (!itemDroppedOn.IsNull)
+            //     {
+            //         gridInventoryController.SwapItems(draggedItem, itemDroppedOn);
+            //     }
+            //     else
+            //     {
+            //         print($"Item Dropped: {itemDroppedOn.index}/Dragged Item: {draggedItem.index}");
+            //         var tempData = itemDroppedOn;
+            //         gridInventoryController.SetItemData(itemDroppedOn, draggedItem);
+            //         gridInventoryController.SetItemData(draggedItem, tempData);
+            //     }
+            // }
+            if (!gridInventoryController.HasItem(draggedItem))
             {
-                gridInventoryController.SwapItems(draggedItem, itemDroppedOn);
+                return;
             }
-            else if(itemDroppedOn.IsNull)
-            {
-                actionInventoryController.SetItemData(draggedItem, itemDroppedOn);
-                gridInventoryController.SetItemData(itemDroppedOn, draggedItem);
-            }
+            
+            gridInventoryController.SwapItems(draggedItem, itemDroppedOn);
         }
         
         void ActionInventoryController_OnItemDroppedOn(InventoryItem itemDroppedOn)
@@ -88,7 +99,7 @@ namespace RPG.Inventory
         void InventoryController_OnItemEndDrag(InventoryItem item)
         {
             print("On Item End Drag");
-            draggedItem = new InventoryItem();
+            draggedItem = null;
             mouseFollower.Disable();
         }
     }
