@@ -61,7 +61,6 @@ namespace RPG.Inventory.UI
 
         void InventoryItemUI_OnItemClicked(InventoryItemUI itemUI)
         {
-            itemUI.Select();
             OnItemSelected?.Invoke(itemUI);
         }
 

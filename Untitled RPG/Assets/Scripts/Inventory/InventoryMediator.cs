@@ -61,23 +61,17 @@ namespace RPG.Inventory
         
         void GridInventoryController_OnItemDroppedOn(InventoryItem itemDroppedOn)
         {
-            // if (gridInventoryController.HasItem(draggedItem))
-            // {
-            //     if (!itemDroppedOn.IsNull)
-            //     {
-            //         gridInventoryController.SwapItems(draggedItem, itemDroppedOn);
-            //     }
-            //     else
-            //     {
-            //         print($"Item Dropped: {itemDroppedOn.index}/Dragged Item: {draggedItem.index}");
-            //         var tempData = itemDroppedOn;
-            //         gridInventoryController.SetItemData(itemDroppedOn, draggedItem);
-            //         gridInventoryController.SetItemData(draggedItem, tempData);
-            //     }
-            // }
             if (!gridInventoryController.HasItem(draggedItem))
             {
-                return;
+                //dragged item belongs to action inventory
+                if (itemDroppedOn.IsNull || itemDroppedOn.itemData is ActionItemSO)
+                {
+                    gridInventoryController.SetItemData(itemDroppedOn, new(draggedItem));
+                    actionInventoryController.SetItemData(draggedItem, new(itemDroppedOn));
+                    
+                    return;
+                }
+
             }
             
             gridInventoryController.SwapItems(draggedItem, itemDroppedOn);
@@ -85,20 +79,23 @@ namespace RPG.Inventory
         
         void ActionInventoryController_OnItemDroppedOn(InventoryItem itemDroppedOn)
         {
-            if (itemDroppedOn.itemData != null && actionInventoryController.HasItem(draggedItem))
+            if (!actionInventoryController.HasItem(draggedItem))
             {
-                actionInventoryController.SwapItems(draggedItem, itemDroppedOn);
+                //dragged item belongs to grid inventory
+                if (draggedItem.itemData is ActionItemSO)
+                {
+                    actionInventoryController.SetItemData(itemDroppedOn, new(draggedItem));
+                    gridInventoryController.SetItemData(draggedItem, new(itemDroppedOn));
+                    
+                    return;
+                }
             }
-            else if(draggedItem.itemData is ActionItemSO) //since action inventory can accept only action items
-            {
-                gridInventoryController.SetItemData(draggedItem, itemDroppedOn);
-                actionInventoryController.SetItemData(itemDroppedOn, draggedItem);
-            }
+            
+            actionInventoryController.SwapItems(draggedItem, itemDroppedOn);
         }
         
         void InventoryController_OnItemEndDrag(InventoryItem item)
         {
-            print("On Item End Drag");
             draggedItem = null;
             mouseFollower.Disable();
         }

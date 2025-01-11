@@ -18,6 +18,13 @@ namespace RPG.Inventory.Model
             this.quantity = 0;
         }
 
+        public InventoryItem(InventoryItem copyItem)
+        {
+            this.index = copyItem.index;
+            this.itemData = copyItem.itemData;
+            this.quantity = copyItem.quantity;
+        }
+
         public InventoryItem(int index, InventoryItemSO itemData, int quantity)
         {
             this.index = index;

@@ -146,7 +146,13 @@ namespace RPG.Inventory.Model
 
         public void SetItemData(int index, InventoryItem data)
         {
+            if(this is ActionInventorySO)
+                Debug.Log($"Item Index: {index}/ Data Index: {data.index}");
+            
             InventoryItemList[index] = data;
+            InventoryItemList[index].index = index;
+            
+            //InventoryItemList[index].index = data.index;
             InformAboutChange();
         }
 
