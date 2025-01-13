@@ -21,3 +21,4 @@ MonoBehaviour:
   <MaxStackSize>k__BackingField: 1
   <Price>k__BackingField: 0
   <IsConsumable>k__BackingField: 0
+  targetingStrategy: {fileID: 11400000, guid: 2743659196fcbac4d8a8eadf213a57bc, type: 2}

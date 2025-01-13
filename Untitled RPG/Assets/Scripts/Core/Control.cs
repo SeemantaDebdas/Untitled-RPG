@@ -78,9 +78,9 @@ namespace RPG.Core
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""35cab85a-4559-4d2c-9ed1-aec8d9f0dbba"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.25)"",
                     ""initialStateCheck"": true
                 },
                 {
