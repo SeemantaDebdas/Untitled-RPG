@@ -25,7 +25,7 @@ namespace RPG.Inventory.UI
             Deselect();
         }
 
-        public void ResetData()
+        public virtual void ResetData()
         {
             itemImage.gameObject.SetActive(false);
             quantityText.text = "";

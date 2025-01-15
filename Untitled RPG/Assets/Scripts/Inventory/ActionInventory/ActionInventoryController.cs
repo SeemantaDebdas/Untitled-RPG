@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using RPG.Ability;
 using RPG.Inventory.Model;
 using RPG.Inventory.UI;
 using UnityEngine;
@@ -10,8 +11,9 @@ namespace RPG.Inventory
     public class ActionInventoryController : MonoBehaviour
     {
         [SerializeField] List<InventoryItem> initialActionItemList = new();
-        [SerializeField] private ActionInventorySO actionInventoryData;
-        [SerializeField] private ActionInventoryUI actionInventoryUI;
+        [SerializeField] private ActionInventorySO inventoryData;
+        [SerializeField] private ActionInventoryUI inventoryUI;
+        [SerializeField] private ActionInventoryUI hudInventoryUI;
         
         [Header("Inputs")]
         [SerializeField] InputActionReference ability1Action;
@@ -22,6 +24,13 @@ namespace RPG.Inventory
 
         public event Action<InventoryItem> OnItemClicked, OnItemBeginDrag, OnItemDroppedOn, OnItemEndDrag;
         
+        AbilityCooldownTimeHandler abilityCooldownTimeHandler;
+
+        private void Awake()
+        {
+            abilityCooldownTimeHandler = GetComponent<AbilityCooldownTimeHandler>();
+        }
+
         private void Start()
         {
             InitializeUI();
@@ -34,11 +43,13 @@ namespace RPG.Inventory
             ability3Action.action.performed += _ => UseAction(3);
             ability4Action.action.performed += _ => UseAction(4);
             ability5Action.action.performed += _ => UseAction(5);
+
+            abilityCooldownTimeHandler.OnCooldownTimeChanged += AbilityCooldownTimeHandler_OnCooldownTimeChanged;
         }
 
         private void InitializeData()
         {
-            actionInventoryData.Initialize();
+            inventoryData.Initialize();
             
             //Populate Inventory List with initial elements
             foreach (InventoryItem item in initialActionItemList)
@@ -48,36 +59,53 @@ namespace RPG.Inventory
                 
                 Debug.Log(item.itemData.DisplayName);
 
-                actionInventoryData.AddItem(item);
+                inventoryData.AddItem(item);
             }
 
-            actionInventoryData.OnInventoryUpdated += GridInventoryData_OnInventoryUpdated;
+            inventoryData.OnInventoryUpdated += InventoryData_OnInventoryUpdated;
         }
         
         private void InitializeUI()
         {
-            actionInventoryUI.Populate(actionInventoryData.InventorySize);
+            inventoryUI.Populate(inventoryData.InventorySize);
+            hudInventoryUI.Populate(inventoryData.InventorySize);
 
-            actionInventoryUI.OnItemSelected += InventoryUI_OnItemSelected;
-            actionInventoryUI.OnItemBeginDrag += InventoryUI_OnItemBeginDrag;
-            actionInventoryUI.OnItemDroppedOn += InventoryUI_OnItemDroppedOn;
-            actionInventoryUI.OnItemEndDrag += InventoryUI_OnItemEndDrag;
+            inventoryUI.OnItemSelected += InventoryUI_OnItemSelected;
+            inventoryUI.OnItemBeginDrag += InventoryUI_OnItemBeginDrag;
+            inventoryUI.OnItemDroppedOn += InventoryUI_OnItemDroppedOn;
+            inventoryUI.OnItemEndDrag += InventoryUI_OnItemEndDrag;
         }
         
         private void OnDestroy()
         {
             //DATA EVENTS
-            actionInventoryData.OnInventoryUpdated -= GridInventoryData_OnInventoryUpdated;
+            inventoryData.OnInventoryUpdated -= InventoryData_OnInventoryUpdated;
             
             //UI EVENTS
-            actionInventoryUI.OnItemSelected -= InventoryUI_OnItemSelected;
+            inventoryUI.OnItemSelected -= InventoryUI_OnItemSelected;
             
                         
-            actionInventoryUI.OnItemBeginDrag -= InventoryUI_OnItemBeginDrag;
-            actionInventoryUI.OnItemDroppedOn -= InventoryUI_OnItemDroppedOn;
-            actionInventoryUI.OnItemEndDrag -= InventoryUI_OnItemEndDrag;
+            inventoryUI.OnItemBeginDrag -= InventoryUI_OnItemBeginDrag;
+            inventoryUI.OnItemDroppedOn -= InventoryUI_OnItemDroppedOn;
+            inventoryUI.OnItemEndDrag -= InventoryUI_OnItemEndDrag;
+            
+            abilityCooldownTimeHandler.OnCooldownTimeChanged -= AbilityCooldownTimeHandler_OnCooldownTimeChanged;
 
         }
+
+        void AbilityCooldownTimeHandler_OnCooldownTimeChanged(InventoryItem item, float time)
+        {
+            ActionItemUI actionItemUI = hudInventoryUI.ItemList[item.index] as ActionItemUI;
+
+            AbilitySO abilityData = (item.itemData as AbilitySO);
+            float fillAmount = time / abilityData.CooldownTime;
+            
+            //print($"Item name: {item.itemData.DisplayName} / Fill: {fillAmount}");
+            
+            actionItemUI.SetCooldownImageFillAmount(fillAmount);
+        }
+
+        #region Inventory UI Events
 
         void InventoryUI_OnItemEndDrag(InventoryItemUI itemUI)
         {
@@ -119,54 +147,66 @@ namespace RPG.Inventory
             OnItemBeginDrag?.Invoke(inventoryItem);
         }
         
+        #endregion
         
         InventoryItem GetItemFromItemUI(InventoryItemUI itemUI)
         {
-            int inventoryItemIndex = actionInventoryUI.ItemList.IndexOf(itemUI);
+            int inventoryItemIndex = inventoryUI.ItemList.IndexOf(itemUI);
             
             if(inventoryItemIndex == -1)
                 return new InventoryItem();
                 
-            var inventoryItem = actionInventoryData.GetItemAtIndex(inventoryItemIndex);
+            var inventoryItem = inventoryData.GetItemAtIndex(inventoryItemIndex);
             
             return inventoryItem;
         }
 
         void UpdateInventoryItems()
         {
-            foreach (var dictItem in actionInventoryData.GetCurrentInventoryState())
+            foreach (var dictItem in inventoryData.GetCurrentInventoryState())
             {
-                actionInventoryUI.UpdateItemData(dictItem.Key, dictItem.Value.itemData.ItemImage, dictItem.Value.quantity);
+                inventoryUI.UpdateItemData(dictItem.Key, dictItem.Value.itemData.ItemImage, dictItem.Value.quantity);
+                hudInventoryUI.UpdateItemData(dictItem.Key, dictItem.Value.itemData.ItemImage, dictItem.Value.quantity);
             }
         }
         
-        void GridInventoryData_OnInventoryUpdated(Dictionary<int, InventoryItem> inventoryState)
+        void InventoryData_OnInventoryUpdated(Dictionary<int, InventoryItem> inventoryState)
         {
-            actionInventoryUI.ResetAllItems();
+            inventoryUI.ResetAllItems();
+            hudInventoryUI.ResetAllItems();
             UpdateInventoryItems();
         }
 
         void UseAction(int actionId)
         {
-            InventoryItemSO itemData = actionInventoryData.InventoryItemList[actionId - 1].itemData;
-
-            if (itemData == null)
+            InventoryItem item = inventoryData.InventoryItemList[actionId - 1];
+            
+            if (item.IsNull)
             {
                 print("Item Data not found");
                 return;
             }
             
-            ActionItemSO actionItemData = itemData as ActionItemSO;
+            AbilitySO abilityItemData = item.itemData as AbilitySO;
 
-            if (actionItemData == null)
+            if (abilityItemData == null)
             {
                 print("Action Item Data not found");
                 return;
             }
+    
+            // Check cooldown or availability
+            if (abilityCooldownTimeHandler == null || abilityCooldownTimeHandler.GetTimeRemainingBeforeUse(item) > 0f)
+                return;
+
+            if (!abilityItemData.TryUse(gameObject))
+            {
+                return;
+            }
             
-            actionItemData.Use(gameObject);
+            abilityCooldownTimeHandler.StartCooldown(item, abilityItemData.CooldownTime);
             
-            if (actionItemData.IsConsumable)
+            if (abilityItemData.IsConsumable)
             {
                 //remove from actionInventoryData
             }
@@ -174,22 +214,22 @@ namespace RPG.Inventory
 
         public void DeselectAllItems()
         {
-            actionInventoryUI.DeselectAllItems();
+            inventoryUI.DeselectAllItems();
         }
         
         public void SetItemData(InventoryItem item, InventoryItem data)
         {
-            actionInventoryData.SetItemData(item, data);
+            this.inventoryData.SetItemData(item, data);
         }
         
         public bool HasItem(InventoryItem item)
         {
-            return actionInventoryData.HasItem(item);
+            return inventoryData.HasItem(item);
         }
 
         public void SwapItems(InventoryItem item1, InventoryItem item2)
         {
-            actionInventoryData.SwapItems(item1, item2);
+            inventoryData.SwapItems(item1, item2);
         }
     }
 }

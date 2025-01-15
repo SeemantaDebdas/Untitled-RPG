@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RPG.Quest
 {
-    [CreateAssetMenu(fileName = "Quest", menuName = "Quest")]
+    [CreateAssetMenu(fileName = "Quest", menuName = "Debdas/Quest")]
     public class QuestSO : ScriptableObject
     {
         [System.Serializable]

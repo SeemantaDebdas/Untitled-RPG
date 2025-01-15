@@ -15,6 +15,7 @@ namespace RPG.Core
         
         public Action<DamageData> OnDamage { get; set; }
         public Action<DamageData> OnDeath { get; set; }
+        public Action<int> OnHeal { get; private set; }
 
         public float CurrentHealth { get; private set; }
         
@@ -48,6 +49,16 @@ namespace RPG.Core
 
             onDamage?.Invoke(damageData);
             OnDamage?.Invoke(damageData);
+        }
+
+        public void Heal(int amount)
+        {
+            CurrentHealth += amount;
+            
+            if(CurrentHealth > MaxHealth)
+                CurrentHealth = MaxHealth;
+            
+            OnHeal?.Invoke(amount);
         }
     }
 }

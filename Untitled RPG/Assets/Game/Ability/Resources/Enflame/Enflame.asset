@@ -10,15 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 139c0e13bf56ac649b4d0fa640052c14, type: 3}
-  m_Name: Super Mega Splash
+  m_Name: Enflame
   m_EditorClassIdentifier: 
   <Category>k__BackingField: 5
-  <Description>k__BackingField: Causes tremedous damage in a radius of 2. Attack
-    while in Jump State to use this ability.
+  <Description>k__BackingField: Sets everything in a certain radius to engulf in
+    flame dealing tremendous damage!
   <ItemImage>k__BackingField: {fileID: 1982945511, guid: 22eaacd057029994d8ad85055ee2be08,
     type: 3}
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
   <Price>k__BackingField: 0
   <IsConsumable>k__BackingField: 0
-  targetingStrategy: {fileID: 11400000, guid: 2743659196fcbac4d8a8eadf213a57bc, type: 2}
+  <CooldownTime>k__BackingField: 5
+  targetingStrategy: {fileID: 11400000, guid: 1d97db17cf1306e42a456042de3ac962, type: 2}
+  filterStrategyList:
+  - {fileID: 11400000, guid: 7d9ed3d50c828684888ef67896d7d871, type: 2}
+  effectStrategyList:
+  - {fileID: 11400000, guid: eaa1110a259487341979fa931e2f8171, type: 2}
+  - {fileID: 11400000, guid: e7ddee8fd57c6b84cba665835c9cb64d, type: 2}

@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 namespace RPG.Inventory.Model
 {
-    [CreateAssetMenu(fileName = "Inventory", menuName = "Inventory/InventorySO")]
+    [CreateAssetMenu(fileName = "Inventory", menuName = "Debdas/Inventory/InventorySO")]
     public class GridInventorySO : ScriptableObject
     {
         [field: SerializeField] public List<InventoryItem> InventoryItemList { get; private set; } = new();

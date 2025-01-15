@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RPG.Core
 {
-    [CreateAssetMenu(fileName = "NewScriptableEvent", menuName = "Variables/ScriptableEvent")]
+    [CreateAssetMenu(fileName = "NewScriptableEvent", menuName = "Debdas/Variables/ScriptableEvent")]
     public class ScriptableEvent : ScriptableObject
     {
         readonly List<ScriptableEventListener> listeners = new List<ScriptableEventListener>();
