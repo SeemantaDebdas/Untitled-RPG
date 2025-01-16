@@ -2332,6 +2332,11 @@ PrefabInstance:
       propertyPath: m_Data.m_SourceObjects.m_Item0.transform
       value: 
       objectReference: {fileID: 307588065492200719}
+    - target: {fileID: 4451577744625308769, guid: 712dbe317199a3843ad520b32bd512cc,
+        type: 3}
+      propertyPath: manaView
+      value: 
+      objectReference: {fileID: 2360630725461093353}
     - target: {fileID: 6972971377313347014, guid: 712dbe317199a3843ad520b32bd512cc,
         type: 3}
       propertyPath: m_Name
@@ -5541,6 +5546,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 199324fa097aaef4da76e6c73ac43e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2360630725461093353 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6293163725743149085, guid: 535cb83f3fe14fd4ab709e1b01cf0325,
+    type: 3}
+  m_PrefabInstance: {fileID: 8617473183008717812}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a42a23ce4f9ed24abde69beacbef2f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2471191961133909291 stripped

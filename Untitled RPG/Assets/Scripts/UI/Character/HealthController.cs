@@ -4,19 +4,18 @@ using UnityEngine;
 
 namespace RPG.UI
 {
-    public class HealthPresenter : MonoBehaviour
+    public class HealthController : MonoBehaviour
     {
         [SerializeField] private MMProgressBar healthView;
         [SerializeField] private Health healthModel;
 
         private void OnEnable()
         {
-            healthModel.OnDamage += (data => UpdateView());
-            healthModel.OnDeath += (data =>
-                    {
-                        gameObject.SetActive(false);
-                    }
-                    );
+            healthModel.OnDamage += _ => UpdateView();
+            healthModel.OnDeath += _ =>
+            {
+                gameObject.SetActive(false);
+            };
         }
 
         private void Start()

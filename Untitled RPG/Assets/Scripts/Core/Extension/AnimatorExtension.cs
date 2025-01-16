@@ -3,7 +3,6 @@ using MEC;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace RPG.Core
 {
@@ -27,14 +26,13 @@ namespace RPG.Core
             {
                 return nextStateInfo.normalizedTime;
             }
-            else if (!animator.IsInTransition(layer) && currentStateInfo.IsTag(tag))
+
+            if (!animator.IsInTransition(layer) && currentStateInfo.IsTag(tag))
             {
                 return currentStateInfo.normalizedTime;
             }
-            else
-            {
-                return 0;
-            }
+
+            return 0;
         }
 
         private static IEnumerator<float> TrackAnimation(Animator animator, string animationName, int layer, float triggerTime, Action onAnimationEnd)

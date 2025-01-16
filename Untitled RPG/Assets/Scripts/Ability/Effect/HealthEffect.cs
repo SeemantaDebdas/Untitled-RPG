@@ -26,6 +26,8 @@ namespace RPG.Ability.Effect
                     }
                 }
             }
+            
+            onFinished?.Invoke();
         }
     }
 }

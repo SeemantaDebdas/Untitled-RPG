@@ -22,9 +22,13 @@ MonoBehaviour:
   <Price>k__BackingField: 0
   <IsConsumable>k__BackingField: 0
   <CooldownTime>k__BackingField: 5
+  <ManaCost>k__BackingField: 20
+  onAbiltyStarted: {fileID: 11400000, guid: 7cf20231312bd934e986bddd7d7c3bed, type: 2}
+  onAbiltyFinished: {fileID: 11400000, guid: 046cca4ffa32e2e47b2f2eca3a6dd336, type: 2}
   targetingStrategy: {fileID: 11400000, guid: 1d97db17cf1306e42a456042de3ac962, type: 2}
   filterStrategyList:
   - {fileID: 11400000, guid: 7d9ed3d50c828684888ef67896d7d871, type: 2}
   effectStrategyList:
   - {fileID: 11400000, guid: eaa1110a259487341979fa931e2f8171, type: 2}
   - {fileID: 11400000, guid: e7ddee8fd57c6b84cba665835c9cb64d, type: 2}
+  - {fileID: 11400000, guid: 6b5a385153c7c9f40971db8d86fe5e57, type: 2}

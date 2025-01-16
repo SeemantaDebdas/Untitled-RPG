@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using RPG.Core;
 using RPG.Inventory.Model;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace RPG.Ability
 {
     [CreateAssetMenu(fileName = "New Ability", menuName = "Debdas/Abilities/Ability")]
     public class AbilitySO : ActionItemSO
     {
-        [Header("Ability Settings")]
+        [field: Header("Ability Settings")]
         [field: SerializeField] public float CooldownTime { get; private set; } = 0f;
+        [field: SerializeField] public int ManaCost { get; private set; } = 0;
+        
+        [Header("Ability Events")]
+        [SerializeField] ScriptableEvent onAbiltyStarted = null;
+        [SerializeField] ScriptableEvent onAbiltyFinished = null;
 
         [Header("Strategies")]
         [SerializeField] TargetingStrategy targetingStrategy;
@@ -34,20 +39,36 @@ namespace RPG.Ability
 
         private bool OnTargetsAcquired(AbilityData data)
         {
-            // Apply filtering
             foreach (FilterStrategy filterStrategy in filterStrategyList)
             {
                 data.SetTargets(filterStrategy.Filter(data.GetTargets()));
             }
+            
+            if (!data.GetTargets().Any()) 
+                return false;
+            
+            Debug.Log("Ability Stated");
+            onAbiltyStarted.Raise(data.GetUser().transform, this);
 
-            // Apply effects
+            // Track effect completion
+            int remainingEffects = effectStrategyList.Count;
+
             foreach (EffectStrategy effectStrategy in effectStrategyList)
             {
-                effectStrategy.StartEffect(data);
+                effectStrategy.StartEffect(data, () =>
+                {
+                    remainingEffects--;
+
+                    // Check if all effects are finished
+                    if (remainingEffects == 0)
+                    {
+                        Debug.Log("Ability Ended");
+                        onAbiltyFinished.Raise(data.GetUser().transform, this);
+                    }
+                });
             }
 
-            // Indicate success
-            return data.GetTargets().Count() > 0;
+            return true;
         }
     }
 }

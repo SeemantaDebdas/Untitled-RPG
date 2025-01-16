@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using RPG.Ability;
+using RPG.Core;
 using RPG.Inventory.Model;
 using RPG.Inventory.UI;
 using UnityEngine;
@@ -25,10 +26,12 @@ namespace RPG.Inventory
         public event Action<InventoryItem> OnItemClicked, OnItemBeginDrag, OnItemDroppedOn, OnItemEndDrag;
         
         AbilityCooldownTimeHandler abilityCooldownTimeHandler;
+        private Mana mana;
 
         private void Awake()
         {
             abilityCooldownTimeHandler = GetComponent<AbilityCooldownTimeHandler>();
+            mana = GetComponent<Mana>();
         }
 
         private void Start()
@@ -199,11 +202,13 @@ namespace RPG.Inventory
             if (abilityCooldownTimeHandler == null || abilityCooldownTimeHandler.GetTimeRemainingBeforeUse(item) > 0f)
                 return;
 
-            if (!abilityItemData.TryUse(gameObject))
-            {
+            if (mana.CurrentMana < abilityItemData.ManaCost)
                 return;
-            }
+
+            if (!abilityItemData.TryUse(gameObject))
+                return;
             
+            mana.UseMana(abilityItemData.ManaCost);
             abilityCooldownTimeHandler.StartCooldown(item, abilityItemData.CooldownTime);
             
             if (abilityItemData.IsConsumable)
