@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6884c607bb3572468986f163fa7cdc9, type: 3}
-  m_Name: Enflame Delayed Effect
+  m_Script: {fileID: 11500000, guid: 7194ce1324181c8419fb954d41e9e196, type: 3}
+  m_Name: Enflame Spawn Pentagram At Targets Effect
   m_EditorClassIdentifier: 
-  delay: 1.9
-  effectStrategyList:
-  - {fileID: 11400000, guid: 21b55566c80e54d43946b98f9aefc6ae, type: 2}
-  - {fileID: 11400000, guid: eaa1110a259487341979fa931e2f8171, type: 2}
+  prefabToSpawn: {fileID: 1435099067910633718, guid: 2e1d94e7589038e4a8c1808491dc37ae,
+    type: 3}

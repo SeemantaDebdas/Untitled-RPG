@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8235833c464a95943ba64d17d11d79d2, type: 3}
   m_Name: Enflame Targeting
   m_EditorClassIdentifier: 
-  areaRadius: 2
+  areaRadius: 3
   layers:
     serializedVersion: 2
     m_Bits: 1
