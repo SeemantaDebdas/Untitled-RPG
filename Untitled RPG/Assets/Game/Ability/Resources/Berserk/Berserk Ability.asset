@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139c0e13bf56ac649b4d0fa640052c14, type: 3}
+  m_Name: Berserk Ability
+  m_EditorClassIdentifier: 
+  <Category>k__BackingField: 5
+  <Description>k__BackingField: 
+  <ItemImage>k__BackingField: {fileID: 1988796302, guid: 22eaacd057029994d8ad85055ee2be08,
+    type: 3}
+  <IsStackable>k__BackingField: 0
+  <MaxStackSize>k__BackingField: 1
+  <Price>k__BackingField: 50
+  <IsConsumable>k__BackingField: 0
+  <CooldownTime>k__BackingField: 5
+  <ManaCost>k__BackingField: 20
+  <AbilityDuration>k__BackingField: 5
+  onAbilityStarted: {fileID: 11400000, guid: 7cf20231312bd934e986bddd7d7c3bed, type: 2}
+  onAbilityInitiated: {fileID: 11400000, guid: f83374748a7b1ec4d9d6ff7fc8c888c7, type: 2}
+  onAbilityFinished: {fileID: 11400000, guid: 046cca4ffa32e2e47b2f2eca3a6dd336, type: 2}
+  targetingStrategy: {fileID: 11400000, guid: 98927c9808f276c429ed6adbb5dd4be7, type: 2}
+  filterList: []
+  stateDependentEffectList:
+  - {fileID: 11400000, guid: 3d353d9760d18b3499d67d7cc8ad1e33, type: 2}
+  stateIndependentEffectList:
+  - {fileID: 11400000, guid: 1b71d7c4003f843488a1278e4ab80ecb, type: 2}
+  - {fileID: 11400000, guid: 3a6a168919c7c514fa2ec7b0d48a56e1, type: 2}

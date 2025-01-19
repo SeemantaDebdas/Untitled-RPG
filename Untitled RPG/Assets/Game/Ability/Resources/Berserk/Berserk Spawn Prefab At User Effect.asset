@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f35f35978d529f547ae70def838b5083, type: 3}
-  m_Name: Enflame Summon Ring Effect
+  m_Name: Berserk Spawn Prefab At User Effect
   m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 3167335955874508666, guid: fa3f94881f420794eb0a451a5166ed14,
+  prefabToSpawn: {fileID: 7998420557982157155, guid: 392c15e5c79c7954580be88dbf1299ab,
     type: 3}
-  destroyAfterSeconds: 2
+  destroyAfterSeconds: -1

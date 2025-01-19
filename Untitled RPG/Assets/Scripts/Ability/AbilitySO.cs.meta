@@ -1,2 +1,18 @@
 fileFormatVersion: 2
 guid: 139c0e13bf56ac649b4d0fa640052c14
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - <ItemImage>k__BackingField: {instanceID: 0}
+  - onAbilityStarted: {fileID: 11400000, guid: 7cf20231312bd934e986bddd7d7c3bed, type: 2}
+  - onAbilityInitiated: {fileID: 11400000, guid: 7cf20231312bd934e986bddd7d7c3bed,
+      type: 2}
+  - onAbilityFinished: {fileID: 11400000, guid: 046cca4ffa32e2e47b2f2eca3a6dd336,
+      type: 2}
+  - targetingStrategy: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

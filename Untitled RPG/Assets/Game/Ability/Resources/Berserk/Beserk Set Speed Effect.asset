@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8235833c464a95943ba64d17d11d79d2, type: 3}
-  m_Name: Enflame Targeting
+  m_Script: {fileID: 11500000, guid: a957b97b605f80047964ef431f0d8685, type: 3}
+  m_Name: Beserk Set Speed Effect
   m_EditorClassIdentifier: 
-  areaRadius: 3
-  layers:
-    serializedVersion: 2
-    m_Bits: 1
+  variable: {fileID: 11400000, guid: 4f14c8b704ffa80409dbed89b300c77c, type: 2}
+  newValue: 20

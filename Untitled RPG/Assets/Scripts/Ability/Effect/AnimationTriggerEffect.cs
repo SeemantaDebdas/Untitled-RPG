@@ -24,9 +24,13 @@ namespace RPG.Ability
             
             animator.PlayAnimation(animationName, 0.1f, layer, () =>
                 {
-                    animator.SetLayerWeight(layer, 0);
+                    DOVirtual.Float(1, 0, 0.1f, v =>
+                    {
+                        animator.SetLayerWeight(layer, v);
+                    });
+                    
                     onFinished?.Invoke();
-                } 
+                }, 0.8f
             );
         }
     }

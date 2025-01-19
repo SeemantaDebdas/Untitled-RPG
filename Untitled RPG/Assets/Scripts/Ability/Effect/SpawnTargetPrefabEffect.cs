@@ -9,7 +9,7 @@ namespace RPG.Ability.Effect
         [SerializeField] private GameObject prefabToSpawn = null;
         public override void StartEffect(AbilityData data, Action onFinished = null)
         {
-            GameObject spawnedPrefab = Instantiate(prefabToSpawn, data.GetTargetedPosition(), prefabToSpawn.transform.rotation);
+           //GameObject spawnedPrefab = Instantiate(prefabToSpawn, data.GetTargetedPosition(), prefabToSpawn.transform.rotation);
             onFinished?.Invoke();
         }
     }

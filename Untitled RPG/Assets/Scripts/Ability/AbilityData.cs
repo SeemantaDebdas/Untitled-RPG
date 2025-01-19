@@ -7,11 +7,12 @@ namespace RPG.Ability
     {
         private GameObject user;
         private IEnumerable<GameObject> targets;
-        private Vector3 targetedPosition;
+        private float abilityDuration;
 
-        public AbilityData(GameObject user)
+        public AbilityData(GameObject user, float abilityDuration)
         {
             SetUser(user);
+            SetAbilityDuration(abilityDuration);
         }
         
         public GameObject GetUser() => user;
@@ -20,7 +21,7 @@ namespace RPG.Ability
         public IEnumerable<GameObject> GetTargets() => targets;
         public void SetTargets(IEnumerable<GameObject> targets) => this.targets = targets;
         
-        public Vector3 GetTargetedPosition() => targetedPosition;
-        public void SetTargetedPosition(Vector3 targetedPosition) => this.targetedPosition = targetedPosition;
+        public float GetAbilityDuration() => abilityDuration;
+        public void SetAbilityDuration(float abilityDuration) => this.abilityDuration = abilityDuration;
     }
 }

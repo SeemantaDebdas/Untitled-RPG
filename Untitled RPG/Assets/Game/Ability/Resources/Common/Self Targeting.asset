@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f35f35978d529f547ae70def838b5083, type: 3}
-  m_Name: Enflame Summon Ring Effect
+  m_Script: {fileID: 11500000, guid: af258863a50e7c14d910d87023ccac7e, type: 3}
+  m_Name: Self Targeting
   m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 3167335955874508666, guid: fa3f94881f420794eb0a451a5166ed14,
-    type: 3}
-  destroyAfterSeconds: 2

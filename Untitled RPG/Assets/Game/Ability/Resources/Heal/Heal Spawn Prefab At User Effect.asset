@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f35f35978d529f547ae70def838b5083, type: 3}
-  m_Name: Enflame Summon Ring Effect
+  m_Name: Heal Spawn Prefab At User Effect
   m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 3167335955874508666, guid: fa3f94881f420794eb0a451a5166ed14,
+  prefabToSpawn: {fileID: 8672395436211026381, guid: e5f064b034a75b34bb4fdb5d67f8577b,
     type: 3}
-  destroyAfterSeconds: 2

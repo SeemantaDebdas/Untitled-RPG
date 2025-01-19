@@ -18,7 +18,7 @@ namespace RPG.Core
 
         public void SetValue(T value, UnityEngine.Object caller)
         {
-            if(caller is IListValueSetter<T> setter)
+            if(caller is IValueSetter<T> setter)
             {
                 this.value = value;
                 OnValueChanged?.Invoke(value);

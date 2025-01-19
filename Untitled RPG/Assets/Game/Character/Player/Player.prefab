@@ -515,7 +515,7 @@ MonoBehaviour:
     <ToState>k__BackingField: {fileID: 3832755774957263320}
   walkBaseSpeed: 1.17
   walkRotationSpeed: 6
-  runBaseSpeed: 3.61
+  runFloat: {fileID: 11400000, guid: 4f14c8b704ffa80409dbed89b300c77c, type: 2}
   runRotationSpeed: 6
 --- !u!1 &3583756538975784938
 GameObject:
@@ -2416,6 +2416,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxMana>k__BackingField: 100
+  regenDelay: 2
+  regenRate: 5
 --- !u!114 &4451577744625308769
 MonoBehaviour:
   m_ObjectHideFlags: 0

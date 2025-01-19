@@ -10,8 +10,8 @@ namespace RPG.Control
         [SerializeField] float walkBaseSpeed = 1f;
         [SerializeField] float walkRotationSpeed = 6f;
 
-        [Header("RUN")]
-        [SerializeField] float runBaseSpeed = 1f;
+        [Header("RUN")] 
+        [SerializeField] ScriptableFloat runFloat;
         [SerializeField] float runRotationSpeed = 6f;
 
         float baseSpeed, rotationSpeed;
@@ -20,13 +20,21 @@ namespace RPG.Control
         public override void Enter()
         {
             base.Enter();
+            runFloat.OnValueChanged += _ => EvaluateMoveAndRotationSpeed();
             EvaluateMoveAndRotationSpeed();
 
             animator.PlayAnimation(animationName);
         }
 
+        public override void Exit()
+        {
+            base.Exit();
+            runFloat.OnValueChanged -= _ => EvaluateMoveAndRotationSpeed();
+        }
+
         public override void Tick()
         {
+            //print(runFloat.Value);
             HandleMovement(baseSpeed);
             FaceDirection(CalculateDirection(), rotationSpeed);
             
@@ -54,9 +62,9 @@ namespace RPG.Control
                 return true;
             }
             
-            if(!InputReader.ShouldWalk && baseSpeed != runBaseSpeed)
+            if(!InputReader.ShouldWalk && baseSpeed != runFloat.Value)
             {
-                baseSpeed = runBaseSpeed;
+                baseSpeed = runFloat.Value;
                 rotationSpeed = runRotationSpeed;
                 animationName = CharacterAnimationData.Instance.Locomotion.Run;
 

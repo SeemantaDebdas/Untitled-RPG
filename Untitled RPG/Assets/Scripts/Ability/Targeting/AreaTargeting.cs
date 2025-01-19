@@ -13,7 +13,7 @@ namespace RPG.Ability.Targeting
         {
             IEnumerable<GameObject> objectsInArea = GetObjectsInArea(data.GetUser());
             data.SetTargets(objectsInArea);
-            data.SetTargetedPosition(data.GetUser().transform.position);
+            //data.SetTargetedPosition(data.GetUser().transform.position);
             onTargetingFinished?.Invoke();
         }
 
