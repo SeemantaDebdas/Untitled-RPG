@@ -4,9 +4,10 @@ namespace RPG.Control
     {
         public override void Enter()
         {
-            attack = weaponHandler.GetHeavyAttack();
-            
+            //attack = weaponHandler.GetHeavyAttack();
             base.Enter();
+            
+            combatHandler.PerformAttack(true);
         }
     }
 }

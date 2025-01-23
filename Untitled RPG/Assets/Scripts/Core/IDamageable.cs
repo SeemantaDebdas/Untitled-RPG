@@ -4,18 +4,20 @@ namespace RPG.Core
 {
     public struct DamageData
     {
-        public Transform instigator;
-        public int damage;
-        public Vector3 attackDirection;
+        public Transform Instigator { get; private set; }
+        public int Damage { get; private set; }
+        public Vector3 AttackDirection{ get; private set; }
+        public Vector3 HitPoint { get; private set; }
 
-        public DamageData(Transform instigator, int damage, Vector3 attackDirection)
+        public DamageData(Transform instigator, int damage, Vector3 attackDirection, Vector3 hitPoint)
         {
-            this.instigator = instigator;
-            this.damage = damage;
-            this.attackDirection = attackDirection;
+            Instigator = instigator;
+            Damage = damage;
+            AttackDirection = attackDirection;
+            HitPoint = hitPoint;
         }
 
-        public bool IsNull =>  damage == 0 && attackDirection == Vector3.zero;
+        public bool IsNull =>  Damage == 0 && AttackDirection == Vector3.zero;
     }
 
     public interface IDamageable 

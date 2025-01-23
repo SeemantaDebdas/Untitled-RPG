@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RPG.Combat
+namespace RPG.Combat.Rework
 {
     public class ProjectileThrower : MonoBehaviour
     {

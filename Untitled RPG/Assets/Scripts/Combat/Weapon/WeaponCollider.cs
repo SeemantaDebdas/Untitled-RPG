@@ -55,7 +55,7 @@ namespace RPG.Combat
             damageables.Add(damageable);
 
 
-            DamageData damageData = new(combatHandler.transform, 10, attackDirection);
+            DamageData damageData = new(combatHandler.transform, 10, attackDirection, Vector3.zero);
             combatHandler.HandleHit(damageable, damageData);
 
             onDamageDealt?.Invoke(other.ClosestPoint(transform.position));

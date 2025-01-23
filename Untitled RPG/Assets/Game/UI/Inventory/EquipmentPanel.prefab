@@ -102,6 +102,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2287631850954020706, guid: 825a70a47032ab149a59c3684b6e52ab,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2287631850954020706, guid: 825a70a47032ab149a59c3684b6e52ab,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2287631850954020706, guid: 825a70a47032ab149a59c3684b6e52ab,
+        type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -118,6 +128,11 @@ PrefabInstance:
     - target: {fileID: 2785226551825298160, guid: 825a70a47032ab149a59c3684b6e52ab,
         type: 3}
       propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785226551825298160, guid: 825a70a47032ab149a59c3684b6e52ab,
+        type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2785226551825298160, guid: 825a70a47032ab149a59c3684b6e52ab,
@@ -143,6 +158,11 @@ PrefabInstance:
     - target: {fileID: 3113466370731348097, guid: 825a70a47032ab149a59c3684b6e52ab,
         type: 3}
       propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113466370731348097, guid: 825a70a47032ab149a59c3684b6e52ab,
+        type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3113466370731348097, guid: 825a70a47032ab149a59c3684b6e52ab,
@@ -382,7 +402,7 @@ PrefabInstance:
     - target: {fileID: 1803835324463693641, guid: ff8c82be805198e41a225ef74421d422,
         type: 3}
       propertyPath: m_Name
-      value: Panel
+      value: EquipmentSlotPanel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

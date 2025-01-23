@@ -20,17 +20,17 @@ namespace RPG.Control
         {
             base.Enter();
 
-            agent.enabled = false;
+            //agent.enabled = false;
 
-            animator.SetLayerWeightOverTime(1, layer: 5);
-            animator.PlayAnimation(GetHurtAnimation(), 0.1f, layer: 5);
-
+            //animator.SetLayerWeightOverTime(1, layer: 5);
+            //animator.PlayAnimation(GetHurtAnimation(), 0.1f, layer: 5);
+            animator.PlayAnimation("Hurt", 0.1f, layer: 5);
             //Debug.Log($"Attack Direction: {damageData.attackDirection} /n Damage Data: {damageData.damage}");
 
-            physicsHandler.AddForce(GetDamageForce());
+            //physicsHandler.AddForce(GetDamageForce());
 
             onEnter?.Invoke();
-            onHurt?.Invoke(damageData.damage);
+            onHurt?.Invoke(damageData.Damage);
             //Debug.Break();
         }
 
@@ -38,20 +38,20 @@ namespace RPG.Control
         { 
             base.Exit();
 
-            agent.enabled = true;
-            animator.SetLayerWeightOverTime(0, layer: 5);
+            //agent.enabled = true;
+            //animator.SetLayerWeightOverTime(0, layer: 5);
         }
 
         public override void Tick()
         {
             base.Tick();
 
-            Move();
+            //Move();
         }
         
         string GetHurtAnimation()
         {
-            float angle = Vector3.Angle(context.Transform.forward, damageData.attackDirection);
+            float angle = Vector3.Angle(context.Transform.forward, damageData.AttackDirection);
             Debug.Log("Hurt angle: " + angle);
 
             string hurtAnimation;
@@ -77,8 +77,8 @@ namespace RPG.Control
 
         Vector3 GetDamageForce()
         {
-            Vector3 dirFromAttacker = (context.Transform.position - damageData.instigator.position).normalized;
-            return dirFromAttacker * (damageData.damage * hurtForceDampMultiplier);
+            Vector3 dirFromAttacker = (context.Transform.position - damageData.Instigator.position).normalized;
+            return dirFromAttacker * (damageData.Damage * hurtForceDampMultiplier);
         }
         
     }

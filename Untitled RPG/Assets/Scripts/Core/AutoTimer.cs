@@ -7,20 +7,39 @@ namespace RPG.Core
 {
     public class AutoTimer
     {
-        float seconds = 0;
-        readonly Action onTimerEnd = null;
+        Action onTimerEnd = null;
         public float RemainingSeconds { get; private set; }
         CoroutineHandle handle;
+        public AutoTimer(){}
 
         public AutoTimer(float seconds, Action onTimerEnd)
         {
-            this.seconds = seconds;
+            RemainingSeconds = seconds;
             this.onTimerEnd = onTimerEnd;
+            
+            StopTimer();
+            StartTimer();
+        }
 
-            handle = Timing.RunCoroutine(Tick());
+        public void SetTime(float seconds, Action onTimerEnd = default)
+        {
+            RemainingSeconds = seconds;
+            this.onTimerEnd = onTimerEnd;
+        }
+
+        public void SetTimeAndStartTimer(float seconds, Action onTimerEnd = default)
+        {
+            StopTimer();
+            SetTime(seconds, onTimerEnd);
+            StartTimer();
         }
 
         public bool IsOver() => RemainingSeconds <= 0;
+
+        public void StartTimer()
+        {
+            handle = Timing.RunCoroutine(Tick());
+        }
 
         public void StopTimer()
         {
@@ -29,13 +48,12 @@ namespace RPG.Core
                 Timing.KillCoroutines(handle); // Stop the current coroutine if it is running
             }
         }
-
+        
         IEnumerator<float> Tick()
         {
-            while (seconds > 0)
+            while (RemainingSeconds > 0)
             {
-                seconds -= Time.deltaTime;
-                RemainingSeconds = seconds;
+                RemainingSeconds -= Time.deltaTime;
 
                 yield return Timing.WaitForOneFrame;
             }

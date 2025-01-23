@@ -65,14 +65,14 @@ namespace RPG.Control
 
         protected virtual void InputReader_OnAttackCancelled()
         {
-            if(weaponHandler.CurrentWeapon.IsSheathed) 
-                weaponHandler.PlayCurrentWeaponUnsheathAnimation();
+            // if(weaponHandler.CurrentWeapon.IsSheathed) 
+            //     weaponHandler.PlayCurrentWeaponUnsheathAnimation();
         }
 
         protected virtual void InputReader_OnHolsterPerformed()
         {
-            if(!weaponHandler.CurrentWeapon.IsSheathed)
-                weaponHandler.PlayCurrentWeaponSheathAnimation();
+            // if(!weaponHandler.CurrentWeapon.IsSheathed)
+            //     weaponHandler.PlayCurrentWeaponSheathAnimation();
         }
 
         #region ROTATION

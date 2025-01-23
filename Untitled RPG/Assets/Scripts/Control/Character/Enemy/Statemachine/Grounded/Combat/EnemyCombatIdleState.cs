@@ -16,12 +16,12 @@ namespace RPG.Control
 
             animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Strafe);
 
-            AddItem(combatHandler);
+            //AddItem(combatHandler);
 
             if (attackFOV.GetClosestTarget() != null)
             {
-                if (weaponHandler.CurrentWeapon.IsSheathed)
-                    weaponHandler.PlayCurrentWeaponUnsheathAnimation();
+                //if (weaponHandler.CurrentWeapon.IsSheathed)
+                    //weaponHandler.PlayCurrentWeaponUnsheathAnimation();
             }
 
             agent.ResetPath();

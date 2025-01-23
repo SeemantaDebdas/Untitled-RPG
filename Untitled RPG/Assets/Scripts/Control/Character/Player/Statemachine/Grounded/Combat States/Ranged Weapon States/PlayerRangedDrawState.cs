@@ -1,12 +1,11 @@
 using DG.Tweening;
-using RPG.Combat;
+using RPG.Combat.Rework;
 using RPG.Core;
 using RPG.Data;
 using System.Collections.Generic;
 using RPG.Camera;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
-using CameraType = UnityEngine.CameraType;
 
 namespace RPG.Control
 {
@@ -23,7 +22,7 @@ namespace RPG.Control
         [Header("RIGS")]
         [SerializeField] List<MultiAimConstraint> aimRigs;
 
-        RangedWeaponSO rangedWeaponData;
+        //RangedWeaponSO rangedWeaponData;
         TrajectoryPredictor trajectory;
         ProjectileThrower thrower;
 
@@ -38,14 +37,14 @@ namespace RPG.Control
 
             thrower = GetComponentInParent<ProjectileThrower>();
 
-            rangedWeaponData = weaponHandler.CurrentWeapon.WeaponData as RangedWeaponSO;
+            //rangedWeaponData = weaponHandler.CurrentWeapon.WeaponData as RangedWeaponSO;
 
 
             //This can be passed on to scriptable object, weaponSO by a function. Maybe SetWeaponLayerWeight(Animator animator)...
-            animator.SetLayerWeightOverTime(0, 0.1f, rangedWeaponData.AnimationLayer);
-            animator.SetLayerWeightOverTime(1, 0.1f, rangedWeaponData.DrawFireAnimationLayer);
-            animator.PlayAnimation(rangedWeaponData.DrawAnimation, 0.1f, rangedWeaponData.DrawFireAnimationLayer);
-            animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Strafe);
+            // animator.SetLayerWeightOverTime(0, 0.1f, rangedWeaponData.AnimationLayer);
+            // animator.SetLayerWeightOverTime(1, 0.1f, rangedWeaponData.DrawFireAnimationLayer);
+            // animator.PlayAnimation(rangedWeaponData.DrawAnimation, 0.1f, rangedWeaponData.DrawFireAnimationLayer);
+            // animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Strafe);
             
             trajectory.EnableVisual();
 
@@ -118,13 +117,13 @@ namespace RPG.Control
             Weapon currentWeaponInstance = weaponHandler.CurrentWeapon;
 
             ProjectileProperties properties = new ProjectileProperties();
-            Rigidbody projectile = rangedWeaponData.Projectile.GetComponent<Rigidbody>();
-
-            properties.direction = currentWeaponInstance.ShootPoint.forward;
-            properties.initialPosition = currentWeaponInstance.ShootPoint.position;
-            properties.initialSpeed = currentForce;
-            properties.mass = projectile.mass;
-            properties.drag = projectile.linearDamping;
+            // Rigidbody projectile = rangedWeaponData.Projectile.GetComponent<Rigidbody>();
+            //
+            // properties.direction = currentWeaponInstance.ShootPoint.forward;
+            // properties.initialPosition = currentWeaponInstance.ShootPoint.position;
+            // properties.initialSpeed = currentForce;
+            // properties.mass = projectile.mass;
+            // properties.drag = projectile.linearDamping;
 
             return properties;
         }

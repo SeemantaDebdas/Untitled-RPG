@@ -25,10 +25,10 @@ namespace RPG.Core
         {
             CharacterContext characterContext = context as CharacterContext;
 
-            int layer = characterContext.WeaponHandler.CurrentWeapon.WeaponData.AnimationLayer;
-
-            if (characterContext.Animator.GetNormalizedTime(animationTag, layer) > normalizedTimeThreshold)
-                return true;
+            // int layer = characterContext.WeaponHandler.CurrentWeapon.WeaponData.AnimationLayer;
+            //
+            // if (characterContext.Animator.GetNormalizedTime(animationTag, layer) > normalizedTimeThreshold)
+            //     return true;
 
             return false;
         }

@@ -39,8 +39,8 @@ namespace RPG.Control
 
         Vector3 GetDamageForce()
         {
-            Vector3 dirFromAttacker = (context.Transform.position - damageData.instigator.position).normalized;
-            return dirFromAttacker * (damageData.damage * hurtForceDampMultiplier);
+            Vector3 dirFromAttacker = (context.Transform.position - damageData.Instigator.position).normalized;
+            return dirFromAttacker * (damageData.Damage * hurtForceDampMultiplier);
         }
     }
 }

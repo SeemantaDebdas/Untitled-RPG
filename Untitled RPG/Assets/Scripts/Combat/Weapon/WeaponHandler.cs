@@ -30,7 +30,7 @@ namespace RPG.Combat
 
         public bool IsSheathed  => CurrentWeapon.IsSheathed; 
         
-        public AttackSO CurrentAttack { get; private set; }
+        public AttackData CurrentAttack { get; private set; }
 
         int currentLightAttackIndex = -1, currentHeavyAttackIndex = -1;
         AutoTimer timeBetweenAttacksCounter;
@@ -69,7 +69,7 @@ namespace RPG.Combat
 
         #region ATTACK LOGIC
 
-        public AttackSO GetLightAttack()
+        public AttackData GetLightAttack()
         {
             WeaponSO currentWeaponData = CurrentWeapon.WeaponData;
             //Debug.Log("Get Light Attack Called");
@@ -80,12 +80,12 @@ namespace RPG.Combat
             ResetTimer();
             ResetColliderData(currentWeaponData);
 
-            SetColliderState(CurrentWeapon, CurrentAttack.ColliderEnableTime, CurrentAttack.ColliderDisableTime);
+            SetColliderState(CurrentWeapon, CurrentAttack.ImpactStartTime, CurrentAttack.ImpactEndTime);
             return CurrentAttack;
         }
 
 
-        public AttackSO GetHeavyAttack()
+        public AttackData GetHeavyAttack()
         {
             WeaponSO currentWeaponData = CurrentWeapon.WeaponData;
 

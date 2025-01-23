@@ -21,8 +21,8 @@ namespace RPG.Control
 
             agent.SetDestination(path.GetCurrentWaypoint());
 
-            if (!weaponHandler.CurrentWeapon.IsSheathed)
-                weaponHandler.PlayCurrentWeaponSheathAnimation();
+            // if (!weaponHandler.CurrentWeapon.IsSheathed)
+            //     weaponHandler.PlayCurrentWeaponSheathAnimation();
 
         }
 

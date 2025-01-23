@@ -87,7 +87,7 @@ namespace RPG.Core
                     ""name"": ""Holster"",
                     ""type"": ""Button"",
                     ""id"": ""6cbe4913-f17f-4586-a8ca-f9884c84f4a3"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -377,7 +377,7 @@ namespace RPG.Core
                     ""path"": ""<Keyboard>/leftAlt"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard & Mouse"",
                     ""action"": ""Holster"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

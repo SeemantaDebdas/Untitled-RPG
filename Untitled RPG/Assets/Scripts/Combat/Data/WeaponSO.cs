@@ -11,8 +11,8 @@ namespace RPG.Combat
     {
         [field: SerializeField] public Weapon WeaponPrefab { get; private set; }
         [field: SerializeField] public int AnimationLayer { get; private set; } = 0;
-        [field: SerializeField] public List<AttackSO> LightAttackList { get; private set; } 
-        [field: SerializeField] public List<AttackSO> HeavyAttackList { get; private set; }
+        [field: SerializeField] public List<AttackData> LightAttackList { get; private set; } 
+        [field: SerializeField] public List<AttackData> HeavyAttackList { get; private set; }
         [field: SerializeField] public WeaponUnsheathLocation WeaponUnsheathLocation { get; private set; }
 
         [Header("SFX")]

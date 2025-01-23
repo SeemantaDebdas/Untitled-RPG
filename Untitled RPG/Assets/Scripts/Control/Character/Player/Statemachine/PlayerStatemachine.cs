@@ -1,7 +1,7 @@
 using RPG.Data;
 using RPG.Core;
 using UnityEngine;
-using RPG.Combat;
+using RPG.Combat.Rework;
 using RPG.DialogueSystem;
 using RPG.Quest;
 

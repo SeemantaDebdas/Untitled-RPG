@@ -5,8 +5,9 @@ namespace RPG.Control
 
         public override void Enter()
         {
-            attack = weaponHandler.GetLightAttack();
             base.Enter();
+
+            combatHandler.PerformAttack(false);
 
 
             //AudioManager.Instance.PlayOneShot(weaponHandler.CurrentWeapon.swooshSound, context.Transform.position);

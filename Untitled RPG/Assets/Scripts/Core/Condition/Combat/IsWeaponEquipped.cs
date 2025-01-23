@@ -20,7 +20,7 @@ namespace RPG.Core
         {
             CharacterContext characterContext = (CharacterContext)context;
 
-            return !characterContext.WeaponHandler.IsSheathed;
+            return !characterContext.WeaponHandler.IsCurrentWeaponSheathed();
         }
     }
 }

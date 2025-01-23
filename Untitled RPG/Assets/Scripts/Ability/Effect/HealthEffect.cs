@@ -18,7 +18,7 @@ namespace RPG.Ability.Effect
                     if (healthChange < 0)
                     {
                         //negating the health change since Damage also subtracts from current health
-                        health.Damage(new(data.GetUser().transform, -healthChange, Vector3.up));
+                        health.Damage(new(data.GetUser().transform, -healthChange, Vector3.up, target.transform.position));
                     }
                     else
                     {

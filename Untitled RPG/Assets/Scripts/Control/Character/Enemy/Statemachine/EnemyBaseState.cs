@@ -30,7 +30,7 @@ namespace RPG.Control
             attackFOV = context.AttackFOV;
             avoidanceFOV = context.AvoidanceFOV;
 
-            Debug.Assert(weaponHandler != null, "weaponHandler is null");
+            //Debug.Assert(weaponHandler != null, "weaponHandler is null");
         }
 
         public override void Enter()

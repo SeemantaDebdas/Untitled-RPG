@@ -37,7 +37,7 @@ namespace RPG.Core
                 return;
 
             invulnerabilityTimer = 0;
-            CurrentHealth -= damageData.damage;
+            CurrentHealth -= damageData.Damage;
 
             if (CurrentHealth <= 0)
             {

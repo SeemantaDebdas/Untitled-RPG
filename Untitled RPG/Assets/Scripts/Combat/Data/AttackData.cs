@@ -10,8 +10,8 @@ namespace RPG.Combat
         public float VFXTime;
     }
 
-    [CreateAssetMenu(fileName = "New Attack", menuName = "Combat/Attack")]
-    public class AttackSO : ScriptableObject
+    [CreateAssetMenu(fileName = "New Attack", menuName = "Debdas/Combat/Attack")]
+    public class AttackData : ScriptableObject
     {
         [field: SerializeField] public string AnimationName { get; private set; }
         [field: SerializeField] public float ComboTime { get ; private set; }
@@ -19,7 +19,7 @@ namespace RPG.Combat
         [field: SerializeField] public List<VFXData> VFXDataList { get; private set; }
 
         [field: Header("COLLIDER")]
-        [field: SerializeField] public float ColliderEnableTime { get; private set; }
-        [field: SerializeField] public float ColliderDisableTime { get; private set; }  
+        [field: SerializeField] public float ImpactStartTime { get; private set; }
+        [field: SerializeField] public float ImpactEndTime { get; private set; }  
     }
 }

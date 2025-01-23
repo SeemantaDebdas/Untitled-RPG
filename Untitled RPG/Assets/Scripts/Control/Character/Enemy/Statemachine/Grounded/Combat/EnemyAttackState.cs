@@ -73,7 +73,7 @@ namespace RPG.Control
             else if(!isAttacking)
             {
                 isAttacking = true;
-                animator.PlayAnimation(weaponHandler.GetLightAttack().AnimationName, 0.1f, 4);
+                //animator.PlayAnimation(weaponHandler.GetLightAttack().AnimationName, 0.1f, 4);
             }
         }
 

@@ -34,8 +34,9 @@ namespace RPG.Combat
 
             if (other.TryGetComponent(out IDamageable damageable))
             {
+                Vector3 hitPoint = other.ClosestPoint(transform.position);
                 Vector3 directionOfAttack = (other.transform.position - other.ClosestPoint(transform.position)).normalized;
-                damageable.Damage(new(transform, 10, directionOfAttack));
+                damageable.Damage(new(transform, 10, directionOfAttack, hitPoint));
             }
             
             Destroy(gameObject);

@@ -21,8 +21,8 @@ namespace RPG.Core
         {
             if(context is CharacterContext characterContext)
             {
-                if (characterContext.WeaponHandler.CurrentWeapon.WeaponData is RangedWeaponSO)
-                    return true;
+                // if (characterContext.WeaponHandler.CurrentWeapon.WeaponData is RangedWeaponSO)
+                //     return true;
             }
 
             return false;

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b17e59e15e80e448f82939a8d279ec, type: 3}
   m_Name: Animation_Sheath
   m_EditorClassIdentifier: 
-  value: SheathWeapon
+  value: Sheath
