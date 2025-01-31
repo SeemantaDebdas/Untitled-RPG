@@ -14,12 +14,13 @@ namespace RPG.Combat.Rework
 
         [Header("Weapon Collision Points")] 
         [SerializeField] List<Transform> collisionPoints = new();
-        
+
         [Header("Attacks")] 
-        [SerializeField] List<AttackData> attackList = new();
+        [SerializeField] private List<AttackData> attackList;
 
         private List<IDamageable> alreadyDamagedList = new();
         private List<Vector3> collisionPointsLastFrame = new();
+        private RaycastHit[] hitArray = new RaycastHit[32];
 
         private IEnumerator colliderCoroutine = null;
 
@@ -62,8 +63,8 @@ namespace RPG.Combat.Rework
             if (timeSinceLastAttack.IsOver())
                 return false;
 
-            if (weaponCollider.enabled)
-                return false;
+            // if (weaponCollider.enabled)
+            //     return false;
 
             return true;
         }
@@ -97,30 +98,39 @@ namespace RPG.Combat.Rework
             {
                 for (int i = 0; i < collisionPoints.Count; i++)
                 {
-                    Vector3 dirFromCurrentToPreviousPosition = collisionPointsLastFrame[i] - collisionPoints[i].position;
-                    dirFromCurrentToPreviousPosition.Normalize();
+                    Vector3 dirPrevToCurr = collisionPoints[i].position - collisionPointsLastFrame[i];
+                    dirPrevToCurr.Normalize();
                     collisionPointsLastFrame[i] = collisionPoints[i].position;
                     
-                    Debug.DrawRay(collisionPoints[i].position, dirFromCurrentToPreviousPosition, Color.red, 4);
+                    Debug.DrawRay(collisionPoints[i].position, dirPrevToCurr, Color.red, 0.5f);
 
-                    if (!Physics.Raycast(collisionPoints[i].position, dirFromCurrentToPreviousPosition,
-                            out RaycastHit hitInfo, dirFromCurrentToPreviousPosition.magnitude))
-                        continue;
+                    // if (!Physics.Raycast(collisionPoints[i].position, dirPrevToCurr,
+                    //         out RaycastHit hitInfo, dirPrevToCurr.magnitude))
+                    //     continue;
                     
-                    GameObject hitObject = hitInfo.collider.gameObject;
-                    
-                    if (!hitObject.TryGetComponent(out IDamageable damageable))
-                        continue;
-                    
-                    if (alreadyDamagedList.Contains(damageable))
-                        continue;
-            
-                    alreadyDamagedList.Add(damageable);
+                    int hits = Physics.SphereCastNonAlloc(collisionPoints[i].position, 
+                        0.5f, dirPrevToCurr, 
+                        hitArray, 
+                        dirPrevToCurr.magnitude);
 
-                    Vector3 hitPoint = hitInfo.point;
-                    Vector3 hitDirection = (hitObject.transform.position - hitInfo.point).normalized;
-            
-                    damageable.Damage(new(transform, damage, hitDirection, hitPoint));
+                    TryDamageColliders(hitArray, hits);
+                    
+                    // Debug.Log(hitArray[0].collider.name);
+                    //
+                    // GameObject hitObject = hitInfo.collider.gameObject;
+                    //
+                    // if (!hitObject.TryGetComponent(out IDamageable damageable))
+                    //     continue;
+                    //
+                    // if (alreadyDamagedList.Contains(damageable))
+                    //     continue;
+                    //
+                    // alreadyDamagedList.Add(damageable);
+                    //
+                    // Vector3 hitPoint = hitInfo.point;
+                    // Vector3 hitDirection = (hitObject.transform.position - hitInfo.point).normalized;
+                    //
+                    // damageable.Damage(new(transform, damage, hitDirection, hitPoint));
                 }
         
                 yield return null;
@@ -129,6 +139,29 @@ namespace RPG.Combat.Rework
             //yield return new WaitUntil(() => animator.GetNormalizedTime("Attack", layer: 4) > currentAttack.ImpactEndTime);
             colliderCoroutine = null;
             alreadyDamagedList.Clear();
+        }
+
+        void TryDamageColliders(RaycastHit[] hits, int hitCount)
+        {
+            for (int i = 0; i < hitCount; i++)
+            {
+                RaycastHit hitInfo = hits[i];
+                
+                GameObject hitObject = hitInfo.collider.gameObject;
+                    
+                if (!hitObject.TryGetComponent(out IDamageable damageable))
+                    continue;
+                    
+                if (alreadyDamagedList.Contains(damageable))
+                    continue;
+            
+                alreadyDamagedList.Add(damageable);
+
+                Vector3 hitPoint = hitInfo.point;
+                Vector3 hitDirection = (hitObject.transform.position - hitInfo.point).normalized;
+            
+                damageable.Damage(new(transform, damage, hitDirection, hitPoint));
+            }
         }
 
         // private void OnTriggerEnter(Collider other)

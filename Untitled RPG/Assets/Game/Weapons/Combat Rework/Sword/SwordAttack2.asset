@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cba6ae32a8550b489c0c3424aabb425, type: 3}
-  m_Name: SwordAttack3
+  m_Script: {fileID: 11500000, guid: 58404bfdcd117bc4fa03ce5765eb353c, type: 3}
+  m_Name: SwordAttack2
   m_EditorClassIdentifier: 
-  <AnimationName>k__BackingField: Light Attack 3
+  <AnimationName>k__BackingField: Light Attack 2
   <ComboTime>k__BackingField: 0
   <Force>k__BackingField: 0
   <VFXDataList>k__BackingField: []
   <ImpactStartTime>k__BackingField: 0.3
-  <ImpactEndTime>k__BackingField: 0.55
+  <ImpactEndTime>k__BackingField: 0.5

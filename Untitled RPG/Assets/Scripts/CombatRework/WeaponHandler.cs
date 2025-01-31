@@ -1,21 +1,28 @@
 using System;
 using KevinIglesias;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace RPG.Combat.Rework
 {
     public class WeaponHandler : MonoBehaviour
     {
+        [SerializeField] UnarmedWeapon unarmedWeapon; 
         [SerializeField] private Weapon defaultWeapon = null;
         private SheathComponentScript sheathScript = null;
 
         public Weapon CurrentWeapon {get; private set; }
+        private Animator animator = null;
 
         private void Awake()
         {
-            EquipWeapon(defaultWeapon);
             sheathScript = GetComponent<SheathComponentScript>();
+            animator = GetComponent<Animator>();
+            
+            if (defaultWeapon == null)
+            {
+                defaultWeapon = unarmedWeapon;
+            }
+            EquipWeapon(defaultWeapon);
         }
 
         public void EquipWeapon(Weapon newWeapon)
@@ -26,27 +33,7 @@ namespace RPG.Combat.Rework
             }
 
             CurrentWeapon = newWeapon;
-            CurrentWeapon.Initialize(
-                newWeapon.WeaponName,
-                newWeapon.BaseDamage,
-                newWeapon.Range,
-                newWeapon.CanParry,
-                GetComponent<Animator>()
-            );
-
-            CurrentWeapon.Sheath(); 
-        }
-
-        public void UnsheathWeapon()
-        {
-            CurrentWeapon?.Unsheath();
-            //playing the animation should unsheath the weapon automatically beacuse of sheath unsheath script
-        }
-
-        public void SheathWeapon()
-        {
-            CurrentWeapon?.Sheath();
-            //playing the animation should unsheath the weapon automatically beacuse of sheath unsheath script
+            CurrentWeapon.Initialize(newWeapon.name, newWeapon.BaseDamage, newWeapon.Range, newWeapon.CanParry, animator);
         }
 
         public bool IsCurrentWeaponSheathed()
@@ -67,6 +54,12 @@ namespace RPG.Combat.Rework
 
         public bool CanCombo()
         {
+            if (CurrentWeapon == null)
+            {
+                Debug.LogError("Current Weapon is Null");
+                return false;   
+            }
+            
             return CurrentWeapon.CanCombo();
         }
     }

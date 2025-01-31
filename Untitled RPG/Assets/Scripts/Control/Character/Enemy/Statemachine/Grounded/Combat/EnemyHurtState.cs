@@ -24,7 +24,7 @@ namespace RPG.Control
 
             //animator.SetLayerWeightOverTime(1, layer: 5);
             //animator.PlayAnimation(GetHurtAnimation(), 0.1f, layer: 5);
-            animator.PlayAnimation("Hurt", 0.1f, layer: 5);
+            animator.PlayAnimation("Hurt", 0.1f, layer: 6);
             //Debug.Log($"Attack Direction: {damageData.attackDirection} /n Damage Data: {damageData.damage}");
 
             //physicsHandler.AddForce(GetDamageForce());

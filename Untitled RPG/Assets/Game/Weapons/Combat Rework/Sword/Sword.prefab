@@ -92,9 +92,9 @@ MonoBehaviour:
   - {fileID: 2307338418896500168}
   - {fileID: 8792026163258745623}
   attackList:
-  - {fileID: 11400000, guid: f4144358cb3723c4db0e431971462056, type: 2}
-  - {fileID: 11400000, guid: 9760528a4bb6c5f4485ef6fa0192a009, type: 2}
-  - {fileID: 11400000, guid: 7a7218b078b80d044b2084971b2c9a79, type: 2}
+  - {fileID: 11400000, guid: fb98d2d3382b5a145a18a7f979acf556, type: 2}
+  - {fileID: 11400000, guid: 90ab912bc5b84e94d98080bae4c1e213, type: 2}
+  - {fileID: 11400000, guid: 34d6aa44a7f96bb45b1de894bd4cb903, type: 2}
 --- !u!65 &6427951522462475316
 BoxCollider:
   m_ObjectHideFlags: 0

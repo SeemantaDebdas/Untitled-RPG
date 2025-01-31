@@ -44,6 +44,12 @@ namespace RPG.Control
         {
             Vector3 calculateStartPos = transform.position;
 
+            if (agent == null)
+            {
+                Debug.LogWarning("No agent found");
+                return Vector3.zero;
+            }
+            
             if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, controller.height * 2, NavMesh.AllAreas))
             {
                 calculateStartPos = hit.position;
@@ -80,7 +86,7 @@ namespace RPG.Control
             }
             else
             {
-                Debug.LogWarning("Agent has no valid path. Still calculating or destination not set.");
+                //Debug.LogWarning("Agent has no valid path. Still calculating or destination not set.");
             }
 
 

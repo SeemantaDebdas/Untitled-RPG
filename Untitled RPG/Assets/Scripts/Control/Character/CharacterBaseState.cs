@@ -36,6 +36,12 @@ namespace RPG.Control
         {
             float movementSpeed = GetMovementSpeed(baseSpeed);
 
+            if (controller == null)
+            {
+                Debug.LogWarning("Character Controller cannot be initialized");
+                return;
+            }
+            
             Move(movementSpeed * CalculateDirection());
         }
 

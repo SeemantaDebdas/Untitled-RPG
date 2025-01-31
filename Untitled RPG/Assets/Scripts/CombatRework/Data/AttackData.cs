@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Combat
+namespace RPG.Combat.Rework
 {
     [System.Serializable]
     public struct VFXData
@@ -10,7 +10,7 @@ namespace RPG.Combat
         public float VFXTime;
     }
 
-    //[CreateAssetMenu(fileName = "New Attack", menuName = "Debdas/Combat/Attack")]
+    [CreateAssetMenu(fileName = "New Attack", menuName = "Debdas/Combat/Attack")]
     public class AttackData : ScriptableObject
     {
         [field: SerializeField] public string AnimationName { get; private set; }

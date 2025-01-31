@@ -19,7 +19,7 @@ namespace RPG.Core
 
         [Header("FILTERING")]
         [SerializeField] LayerMask targetLayer;
-        [SerializeField] ScriptableString ignoreTag;
+        [SerializeField] ScriptableString ignoreTag, targetTag;
         [SerializeField] Transform selfTransform;
 
         [Header("GIZMO")]
@@ -100,6 +100,9 @@ namespace RPG.Core
                     continue;
 
                 if (ignoreTag != null && target.CompareTag(ignoreTag.Value))
+                    continue;
+
+                if (targetTag != null && !target.CompareTag(targetTag.Value))
                     continue;
 
                 validTargets.Add(target);

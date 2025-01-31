@@ -6,6 +6,7 @@ namespace RPG.Core
     [CreateAssetMenu(fileName = "IsWithinAttackRadius", menuName = "Condition/NPC/Is Within Attack Radius", order = 1)]
     public class IsWithinAttackRadius : ConditionSO
     {
+        [SerializeField] private float attackRangeOffset = 2.5f;
         public override void Initialize(Context context)
         {
 
@@ -18,7 +19,11 @@ namespace RPG.Core
 
         protected override bool ProcessCondition(Context context)
         {
-            return (context as EnemyContext).AttackFOV.GetClosestTarget() != null;
+            FieldOfView fieldOfView = (context as EnemyContext).ChaseFOV;
+            Transform closestTarget = fieldOfView.GetClosestTarget();
+            float distance = Vector3.Distance(closestTarget.position, context.Transform.position);
+
+            return distance < fieldOfView.Radius - attackRangeOffset;
         }
     }
 }
