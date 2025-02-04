@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UnarmedAttack3
   m_EditorClassIdentifier: 
   <AnimationName>k__BackingField: Light Attack 3
-  <ComboTime>k__BackingField: 0
+  <ComboTime>k__BackingField: 0.8
   <Force>k__BackingField: 15
   <VFXDataList>k__BackingField: []
   <ImpactStartTime>k__BackingField: 0.29

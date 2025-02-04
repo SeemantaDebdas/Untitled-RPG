@@ -31,6 +31,8 @@ namespace RPG.Combat.Rework
 
         private int currentAttackIndex = 0;
         private AutoTimer timeSinceLastAttack;
+        
+        bool canCombo = false;
 
         private void Start()
         {
@@ -87,10 +89,16 @@ namespace RPG.Combat.Rework
             currentAttackIndex = CanCombo() ? (currentAttackIndex + 1) % attackList.Count : 0;
             
             UnarmedAttackData currentAttack = attackList[currentAttackIndex];
+            canCombo = false;
 
             // Play the specific animation for this attack
             animator.PlayAnimation(currentAttack.AnimationName, 0.01f, animationLayer);
 
+            if (colliderCoroutine != null)
+            {
+                StopCoroutine(colliderCoroutine); // ✅ Prevent duplicate coroutines
+            }
+            
             colliderCoroutine = ActivateColliders(currentAttack);
             StartCoroutine(colliderCoroutine);
 
@@ -99,14 +107,15 @@ namespace RPG.Combat.Rework
 
         public override bool CanCombo()
         {
-            return !timeSinceLastAttack.IsOver();
+            return !timeSinceLastAttack.IsOver() && canCombo;
         }
 
         private IEnumerator ActivateColliders(UnarmedAttackData attackData)
         {
             yield return new WaitForEndOfFrame(); // Allow animation transition
             
-            yield return new WaitUntil(() => animator.GetNormalizedTime("Attack", layer: animationLayer) > attackData.ImpactStartTime);
+            yield return new WaitUntil(() => 
+                animator.GetNormalizedTime("Attack", layer: animationLayer) > attackData.ImpactStartTime);
 
             Transform attackPoint = attackPointDictionary[attackData.attackPoint];
 
@@ -121,6 +130,11 @@ namespace RPG.Combat.Rework
             
             colliderCoroutine = null;
             alreadyDamagedList.Clear();
+
+            yield return new WaitUntil(() =>
+                animator.GetNormalizedTime("Attack", layer: animationLayer) >= attackData.ComboTime);
+
+            canCombo = true;
         }
 
         private void TryDamageColliders(Collider[] hits, int hitCount)
@@ -131,6 +145,12 @@ namespace RPG.Combat.Rework
             
                 if (!hitObject.TryGetComponent(out IDamageable damageable))
                     continue;
+
+                if (damageable.transform.root == transform.root)
+                {
+                    //Debug.Log("Trying to damage same damageable object!");
+                    continue;
+                }
             
                 if (alreadyDamagedList.Contains(damageable))
                     continue;

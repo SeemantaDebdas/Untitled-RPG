@@ -24,14 +24,14 @@ namespace RPG.Control
 
             if(enemiesInAttackList != null )
             {
-                AddItem(statemachine);
+                enemiesInAttackList.AddItem(statemachine, this);
             }
 
-            animator.SetFloatValueOverTime(CharacterAnimationData.Instance.Locomotion.MoveX, 0);
+            //animator.SetFloatValueOverTime(CharacterAnimationData.Instance.Locomotion.MoveX, 0);
 
             isAttacking = false;
 
-            animator.SetLayerWeightOverTime(1, layer: 4);
+            //animator.SetLayerWeightOverTime(1, layer: 4);
         }
 
         public override void Exit()
@@ -40,7 +40,7 @@ namespace RPG.Control
 
             if (enemiesInAttackList != null)
             {
-                RemoveItem(statemachine);
+                enemiesInAttackList.RemoveItem(statemachine, this);
             }
 
             animator.SetLayerWeightOverTime(0, layer: 4);
@@ -52,15 +52,15 @@ namespace RPG.Control
         {
             if (EvaluateTransitions())
             {
-                Debug.Log("Coniditons not met", context.Transform);
+                Debug.Log("Conditions not met", context.Transform);
                 return;
             }
 
-            Transform closestTarget = attackFOV.GetClosestTarget();
+            Transform closestTarget = chaseFov.GetClosestTarget();
 
             float distanceToEnemy = Vector3.Distance(context.Transform.position, closestTarget.position);
 
-            if(distanceToEnemy > 1.5f)
+            if(distanceToEnemy > 1f)
             {
                 //Move closer to attack
                 agent.SetDestination(closestTarget.position);
@@ -68,33 +68,20 @@ namespace RPG.Control
                 HandleMovement(speed * speedMultiplier);
                 FaceDirection(CalculateDirection(), rotationSpeed);
 
-                animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveY, controller.velocity.magnitude);
+                //animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveY, controller.velocity.magnitude);
+                Vector3 localVelocity = context.Transform.InverseTransformDirection(controller.velocity);
+                float localVelocityX = Mathf.Abs(localVelocity.x) < 0.15f ? 0 : localVelocity.x;
+                float localVelocityZ = Mathf.Abs(localVelocity.z) < 0.15f ? 0 : localVelocity.z;
+        
+                animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveX, localVelocityX, 0.25f, Time.deltaTime);
+                animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveY, localVelocityZ, 0.25f, Time.deltaTime);
             }
             else if(!isAttacking)
             {
                 isAttacking = true;
+                combatHandler.PerformAttack(false);
                 //animator.PlayAnimation(weaponHandler.GetLightAttack().AnimationName, 0.1f, 4);
             }
         }
-
-        #region Scriptable List Operations
-
-        public void AddItem(IStatemachine item)
-        {
-            enemiesInAttackList.AddItem(item, this);
-        }
-
-        public void ClearEnumerable(){}
-
-        public void RemoveItem(IStatemachine item)
-        {
-            enemiesInAttackList.RemoveItem(item, this);
-        }
-
-        public void SetValue(IStatemachine value){}
-
-        #endregion
-
-
     }
 }

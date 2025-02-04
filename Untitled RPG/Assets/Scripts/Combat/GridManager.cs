@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace RPG.Combat
+namespace RPG.Combat.Rework
 {
     public class GridManager : MonoBehaviour
     {

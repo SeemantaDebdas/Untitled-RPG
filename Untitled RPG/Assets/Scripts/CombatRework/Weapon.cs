@@ -1,9 +1,11 @@
+using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Combat.Rework
 {
     public abstract class Weapon : MonoBehaviour
     {
+        [field: SerializeField] public int AnimationLayer { get; private set; } = 4;
         public string WeaponName { get; private set; }
         public float BaseDamage { get; private set; }
         public float Range { get; private set; }
@@ -38,6 +40,13 @@ namespace RPG.Combat.Rework
         public abstract void Unequip();
         public abstract void Attack(bool isHeavy);
         public abstract bool CanCombo();
+
+        public bool HasCurrentAttackFinished()
+        {
+            float normalizeTime = animator.GetNormalizedTime("Attack", AnimationLayer);
+
+            return normalizeTime > 0.9f;
+        }
     }
 
 }

@@ -762,6 +762,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3590274491115200143}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1622406784087513403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9095532542649573637}
+  - component: {fileID: 4533250314928992351}
+  m_Layer: 0
+  m_Name: HurtState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9095532542649573637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622406784087513403}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5643395339329463738}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4533250314928992351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622406784087513403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68ee4236e0de44b4881c8077e5040c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 0}
+  transitionList:
+  - Name: 'Idle State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 866a8520df29de04b8ff80c5b7120adc, type: 2}
+    <ToState>k__BackingField: {fileID: 6305809296959556292}
+  hurtLayer: 6
+  hurtForceDampMultiplier: 0.5
+  onEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onHurt:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1667140275074611652
 GameObject:
   m_ObjectHideFlags: 0
@@ -3289,6 +3347,7 @@ Transform:
   - {fileID: 3528319354835044557}
   - {fileID: 3925337369038901365}
   - {fileID: 6119288985636786314}
+  - {fileID: 9095532542649573637}
   m_Father: {fileID: 5301069349421547800}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5842775293085830975
@@ -3722,7 +3781,7 @@ MonoBehaviour:
     <ToState>k__BackingField: {fileID: 7854313682881161389}
   - Name: 'Idle State '
     <ConditionList>k__BackingField:
-    - {fileID: 11400000, guid: 9df625441089e654098bdb6c65ae2493, type: 2}
+    - {fileID: 11400000, guid: 322d396aab5e80b48b67017b48621f05, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
   rotationSpeed: 100
 --- !u!1 &6603639611939421783
@@ -4052,6 +4111,7 @@ GameObject:
   - component: {fileID: 9141867361568895932}
   - component: {fileID: 2893740470926580792}
   - component: {fileID: 8039570906702264589}
+  - component: {fileID: 8716139117235223576}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4139,6 +4199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 6305809296959556292}
+  hurtState: {fileID: 4533250314928992351}
 --- !u!114 &6482055070074128622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4735,6 +4796,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponHandler: {fileID: 9141867361568895932}
+  onAttack:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8039570906702264589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4747,6 +4811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5098fffff701f45b03ff7bfcb503ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <AnimationLayer>k__BackingField: 5
   damage: 10
   hitLayers:
     serializedVersion: 2
@@ -4760,6 +4825,26 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cc2fc1d4f0a1af344908bc2427b04dfe, type: 2}
   - {fileID: 11400000, guid: 7f4ebe0a7b7391d448689329b5ceac85, type: 2}
   - {fileID: 11400000, guid: ac88ade5633e0004b9a57318b4aa836e, type: 2}
+--- !u!114 &8716139117235223576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972971377313347014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462b31fccad42ba46a5ca0d60d41a7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MaxHealth>k__BackingField: 500
+  invulnerabilityTime: 0
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7009001920839669846
 GameObject:
   m_ObjectHideFlags: 0

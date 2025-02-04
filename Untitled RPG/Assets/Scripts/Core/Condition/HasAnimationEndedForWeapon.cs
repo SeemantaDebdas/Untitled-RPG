@@ -9,8 +9,6 @@ namespace RPG.Core
     [CreateAssetMenu(fileName = "HasAnimationEndedForWeapon", menuName = "Condition/Animation/Has Animation Ended For Weapon", order = 1)]
     public class HasAnimationEndedForWeapon : ConditionSO
     {
-        [SerializeField] string animationTag = "";
-        [SerializeField] float normalizedTimeThreshold = 0.9f;
         public override void Initialize(Context context)
         {
 
@@ -25,12 +23,7 @@ namespace RPG.Core
         {
             CharacterContext characterContext = context as CharacterContext;
 
-            // int layer = characterContext.WeaponHandler.CurrentWeapon.WeaponData.AnimationLayer;
-            //
-            // if (characterContext.Animator.GetNormalizedTime(animationTag, layer) > normalizedTimeThreshold)
-            //     return true;
-
-            return false;
+            return characterContext.WeaponHandler.HasCurrentAttackFinished();
         }
     }
 }

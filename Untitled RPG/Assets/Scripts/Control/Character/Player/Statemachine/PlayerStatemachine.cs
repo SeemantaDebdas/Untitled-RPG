@@ -1,3 +1,4 @@
+using System;
 using RPG.Data;
 using RPG.Core;
 using UnityEngine;
@@ -10,13 +11,14 @@ namespace RPG.Control
     public class PlayerStatemachine : Statemachine, IContextProvider
     {
         PlayerContext playerContext;
+        [SerializeField] private CharacterHurtState hurtState;
         public override Context Context
         {
             get
             {
                 if (playerContext != null)
                     return playerContext;
-
+                
                 playerContext = new PlayerContext
                 {
                     Transform = transform,
@@ -32,6 +34,7 @@ namespace RPG.Control
                     CombatHandler = GetComponent<CombatHandler>(),
                     PlayerConversant = GetComponent<PlayerConversant>(),
                     QuestList = GetComponent<QuestList>(),
+                    Health = GetComponent<Health>(),
                 };
 
                 return playerContext;
@@ -41,6 +44,24 @@ namespace RPG.Control
         private void Start()
         {
             SwitchState(initialState);
+        }
+
+        private void OnEnable()
+        {
+            PlayerContext context = GetContext() as PlayerContext;
+            context.Health.OnDamage += Health_OnDamage;
+        }
+
+        private void OnDisable()
+        {
+            PlayerContext context = GetContext() as PlayerContext;
+            context.Health.OnDamage -= Health_OnDamage;
+        }
+
+        private void Health_OnDamage(DamageData damageData)
+        {
+            hurtState.SetDamageData(damageData);
+            SwitchState(hurtState);
         }
 
         public Context GetContext() => Context;

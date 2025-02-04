@@ -2,7 +2,7 @@ using RPG.Control;
 using RPG.Core;
 using UnityEngine;
 
-namespace RPG.Combat
+namespace RPG.Combat.Rework
 {
     public class EnemyGroupAttackManager : MonoBehaviour
     {
@@ -22,7 +22,6 @@ namespace RPG.Combat
             //choose the enemy that has been the longest in enemiesInCombatList
             if (enemiesInCombatQueue.Value.Count == 0)
                 return;
-
 
             CombatHandler enemy = enemiesInCombatQueue.FirstElement;
 

@@ -5,7 +5,6 @@ namespace RPG.Core
 {
     public interface IValueSetter<T>
     {
-        void SetValue(T value);
     }
 
     public abstract class ScriptableVariable<T> : ScriptableObject

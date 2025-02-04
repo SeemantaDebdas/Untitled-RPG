@@ -27,6 +27,8 @@ namespace RPG.Combat.Rework
         int currentAttackIndex = 0;
 
         AutoTimer timeSinceLastAttack;
+
+        private bool isAttacking = false;
         
         private void Start()
         {
@@ -46,43 +48,28 @@ namespace RPG.Combat.Rework
 
         public override void Attack(bool isHeavy)
         {
+            isAttacking = true;
             //Debug.Break();
             currentAttackIndex = CanCombo() ? (currentAttackIndex + 1) % attackList.Count : 0;
             
             //animator.PlayAnimation(isHeavy ? "HeavyAttack" : "Light Attack", 0.1f, 4);
-            animator.PlayAnimation(attackList[currentAttackIndex].AnimationName, 0.01f, 4);
+            animator.PlayAnimation(attackList[currentAttackIndex].AnimationName, 0.01f, AnimationLayer);
 
+            if (colliderCoroutine != null)
+            {
+                StopCoroutine(colliderCoroutine); // ✅ Prevent duplicate coroutines
+            }
+            
             colliderCoroutine = SweepColliderPoints();
             StartCoroutine(colliderCoroutine);
 
-            timeSinceLastAttack.SetTimeAndStartTimer(2f, () => { });
+            timeSinceLastAttack.SetTimeAndStartTimer(2f, () => {});
         }
 
         public override bool CanCombo()
         {
-            if (timeSinceLastAttack.IsOver())
-                return false;
-
-            // if (weaponCollider.enabled)
-            //     return false;
-
-            return true;
+            return !timeSinceLastAttack.IsOver() && isAttacking;
         }
-
-        IEnumerator EnableAndDisableCollider()
-        {
-            AttackData currentAttack = attackList[currentAttackIndex];
-            
-            yield return new WaitUntil(() => animator.GetNormalizedTime("Attack", layer: 4) > currentAttack.ImpactStartTime);
-            weaponCollider.enabled = true;
-
-            yield return new WaitUntil(() => animator.GetNormalizedTime("Attack", layer: 4) > currentAttack.ImpactEndTime);
-            weaponCollider.enabled = false;
-
-            colliderCoroutine = null;
-            alreadyDamagedList.Clear();
-        }
-        
 
         IEnumerator SweepColliderPoints()
         {
@@ -91,7 +78,7 @@ namespace RPG.Combat.Rework
             AttackData currentAttack = attackList[currentAttackIndex];
             collisionPointsLastFrame = collisionPoints.Select(point => point.position).ToList();
             
-            yield return new WaitUntil(() => animator.GetNormalizedTime("Attack", layer: 4) > currentAttack.ImpactStartTime);
+            yield return new WaitUntil(() => animator.GetNormalizedTime("Attack", layer: AnimationLayer) > currentAttack.ImpactStartTime);
         
         
             while (animator.GetNormalizedTime("Attack", layer: 4) <= currentAttack.ImpactEndTime)
@@ -103,10 +90,6 @@ namespace RPG.Combat.Rework
                     collisionPointsLastFrame[i] = collisionPoints[i].position;
                     
                     Debug.DrawRay(collisionPoints[i].position, dirPrevToCurr, Color.red, 0.5f);
-
-                    // if (!Physics.Raycast(collisionPoints[i].position, dirPrevToCurr,
-                    //         out RaycastHit hitInfo, dirPrevToCurr.magnitude))
-                    //     continue;
                     
                     int hits = Physics.SphereCastNonAlloc(collisionPoints[i].position, 
                         0.5f, dirPrevToCurr, 
@@ -114,29 +97,12 @@ namespace RPG.Combat.Rework
                         dirPrevToCurr.magnitude);
 
                     TryDamageColliders(hitArray, hits);
-                    
-                    // Debug.Log(hitArray[0].collider.name);
-                    //
-                    // GameObject hitObject = hitInfo.collider.gameObject;
-                    //
-                    // if (!hitObject.TryGetComponent(out IDamageable damageable))
-                    //     continue;
-                    //
-                    // if (alreadyDamagedList.Contains(damageable))
-                    //     continue;
-                    //
-                    // alreadyDamagedList.Add(damageable);
-                    //
-                    // Vector3 hitPoint = hitInfo.point;
-                    // Vector3 hitDirection = (hitObject.transform.position - hitInfo.point).normalized;
-                    //
-                    // damageable.Damage(new(transform, damage, hitDirection, hitPoint));
                 }
         
                 yield return null;
             }
             
-            //yield return new WaitUntil(() => animator.GetNormalizedTime("Attack", layer: 4) > currentAttack.ImpactEndTime);
+            isAttacking = false; 
             colliderCoroutine = null;
             alreadyDamagedList.Clear();
         }
@@ -163,24 +129,6 @@ namespace RPG.Combat.Rework
                 damageable.Damage(new(transform, damage, hitDirection, hitPoint));
             }
         }
-
-        // private void OnTriggerEnter(Collider other)
-        // {
-        //     Debug.Log(attackList[currentAttackIndex].AnimationName + " " + other.name);
-        //     
-        //     if (other.TryGetComponent(out IDamageable damageable))
-        //     {
-        //         if (alreadyDamagedList.Contains(damageable))
-        //             return;
-        //         
-        //         alreadyDamagedList.Add(damageable);
-        //         
-        //         Vector3 hitPoint = other.ClosestPoint(transform.position);
-        //         Vector3 hitDirection = (other.transform.position - transform.position).normalized;
-        //         
-        //         damageable.Damage(new(transform, damage, hitDirection, hitPoint));
-        //     }
-        // }
     }
 
 }

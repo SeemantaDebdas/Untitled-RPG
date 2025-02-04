@@ -1,4 +1,4 @@
-using RPG.Combat;
+using RPG.Combat.Rework;
 using RPG.Core;
 using RPG.Data;
 using UnityEngine;
@@ -29,6 +29,7 @@ namespace RPG.Control
             gridManager = closestTarget.GetComponent<GridManager>();
 
             slot = gridManager.RequestGridPosition(context.Transform, 1);
+            enemiesInCombatQueue.AddItem(combatHandler, this);
             
             agent.ResetPath();
         }
@@ -88,7 +89,7 @@ namespace RPG.Control
 
         public void AddItem(CombatHandler item)
         {
-            enemiesInCombatQueue.AddItem(item, this);
+
         }
 
         public void ClearEnumerable()

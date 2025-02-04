@@ -62,5 +62,10 @@ namespace RPG.Combat.Rework
             
             return CurrentWeapon.CanCombo();
         }
+
+        public bool HasCurrentAttackFinished()
+        {
+            return CurrentWeapon.HasCurrentAttackFinished();
+        }
     }
 }

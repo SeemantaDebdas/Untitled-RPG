@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace RPG.Combat.Rework
 {
     public class CombatHandler : MonoBehaviour
     {
         [SerializeField] private WeaponHandler weaponHandler;
+        [SerializeField] private UnityEvent onAttack;
 
         public void PerformAttack(bool isHeavy)
         {
@@ -15,6 +17,11 @@ namespace RPG.Combat.Rework
         public bool CanCombo()
         {
             return weaponHandler.CanCombo();
+        }
+        
+        public void Attack()
+        {
+            onAttack?.Invoke();
         }
     }
 }

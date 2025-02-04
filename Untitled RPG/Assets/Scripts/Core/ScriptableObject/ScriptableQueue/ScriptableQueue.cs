@@ -6,7 +6,6 @@ namespace RPG.Core
 {
     public interface IQueueValueSetter<T> : IEnumerableValueSetter<T>
     {
-        void RemoveItem();
     }
 
     //probably have a base state for IEnumerables. list, queue, stack...

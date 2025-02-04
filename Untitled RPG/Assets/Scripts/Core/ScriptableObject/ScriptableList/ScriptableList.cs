@@ -6,7 +6,6 @@ namespace RPG.Core
 {
     public interface IListValueSetter<T> : IEnumerableValueSetter<T>
     {
-        void RemoveItem(T item);
     }
 
     public abstract class ScriptableList<T> : ScriptableVariable<List<T>>
@@ -50,7 +49,7 @@ namespace RPG.Core
                 Debug.LogWarning($"{caller.name} is not authorized to modify this list!");
             }
 
-            Debug.Log(value.Count);
+            //Debug.Log(value.Count);
         }
 
         public void ClearList(UnityEngine.Object caller)
