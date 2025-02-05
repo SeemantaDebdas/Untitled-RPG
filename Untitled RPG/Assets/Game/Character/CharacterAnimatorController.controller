@@ -498,19 +498,22 @@ AnimatorStateMachine:
     m_Position: {x: 390, y: 630, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -638248493576191606}
-    m_Position: {x: 610, y: 180, z: 0}
+    m_Position: {x: 840, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8519154542035563957}
     m_Position: {x: 390, y: 780, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6095539645472253238}
-    m_Position: {x: 610, y: 250, z: 0}
+    m_Position: {x: 610, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1054844756610947809}
     m_Position: {x: 390, y: 870, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -240030213543416604}
     m_Position: {x: 390, y: 940, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -4129028052926860948}
+    m_Position: {x: 840, y: 240, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: -9122432847257241882}
@@ -631,6 +634,102 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!206 &-6603609540039514599
+BlendTree:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Blend Tree
+  m_Childs:
+  - serializedVersion: 2
+    m_Motion: {fileID: 1827226128182048838, guid: 403dc55e09158824694017f9a6622be5,
+      type: 3}
+    m_Threshold: 0
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: moveX
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7296984627442460292, guid: 67e0ef5b0928ddd40a67cc456777530a,
+      type: 3}
+    m_Threshold: 0.0625
+    m_Position: {x: 0, y: 1}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: moveX
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7296984627442460292, guid: 67e0ef5b0928ddd40a67cc456777530a,
+      type: 3}
+    m_Threshold: 0.125
+    m_Position: {x: 0, y: -1}
+    m_TimeScale: -1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: moveX
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7296984627442460292, guid: b157d6c9915bf2f4bb1dfd7f4127ab2f,
+      type: 3}
+    m_Threshold: 0.1875
+    m_Position: {x: -1, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: moveX
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7296984627442460292, guid: b157d6c9915bf2f4bb1dfd7f4127ab2f,
+      type: 3}
+    m_Threshold: 0.25
+    m_Position: {x: 1, y: 0}
+    m_TimeScale: -1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: moveX
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7296984627442460292, guid: c36f332713b16954890194dd4f97b9f0,
+      type: 3}
+    m_Threshold: 0.3125
+    m_Position: {x: 0.7, y: 0.7}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: moveX
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7296984627442460292, guid: c3cbf1ded76d5fd4986a0e2f56a794d0,
+      type: 3}
+    m_Threshold: 0.375
+    m_Position: {x: -0.7, y: 0.7}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: moveX
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7296984627442460292, guid: 1745dccdfe534c74bb39c2c86ad36052,
+      type: 3}
+    m_Threshold: 0.4375
+    m_Position: {x: 0.7, y: -0.7}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: moveX
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7296984627442460292, guid: 7c8f9c5eaaab87b488b9ea92bbd3d790,
+      type: 3}
+    m_Threshold: 0.5
+    m_Position: {x: -0.7, y: -0.7}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: moveX
+    m_Mirror: 0
+  m_BlendParameter: moveX
+  m_BlendParameterY: moveY
+  m_MinThreshold: 0
+  m_MaxThreshold: 0.5
+  m_UseAutomaticThresholds: 1
+  m_NormalizedBlendValues: 0
+  m_BlendType: 2
 --- !u!1102 &-6203647067243505562
 AnimatorState:
   serializedVersion: 6
@@ -928,6 +1027,32 @@ MonoBehaviour:
       Path: event:/Weapon/Sword/SwordSwoosh
     normalizedTimeThreshold: 0.3
     hasPlayed: 0
+--- !u!1102 &-4129028052926860948
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Strafe_Walk
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 1
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: -6603609540039514599}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &-3997666825371260422
 AnimatorState:
   serializedVersion: 6
@@ -1569,7 +1694,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Strafe
+  m_Name: Strafe_Run
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

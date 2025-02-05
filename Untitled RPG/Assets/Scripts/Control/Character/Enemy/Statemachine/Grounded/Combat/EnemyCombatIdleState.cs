@@ -21,9 +21,9 @@ namespace RPG.Control
         {
             base.Enter();
 
-            animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Strafe);
+            animator.PlayAnimation("Strafe_Walk");
             
-            Debug.Log("Entered Enemy Combat Idle State");
+            //Debug.Log("Entered Enemy Combat Idle State");
 
             Transform closestTarget = chaseFov.GetClosestTarget();
             enemyGridManager = closestTarget.GetComponent<EnemyGridManager>();

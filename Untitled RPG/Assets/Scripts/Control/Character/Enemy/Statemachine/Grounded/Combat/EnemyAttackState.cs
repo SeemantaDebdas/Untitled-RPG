@@ -21,6 +21,8 @@ namespace RPG.Control
             //agent.ResetPath();
             //
             //Debug.Log("Entered Enemy Attack State", context.Transform);
+            
+            animator.PlayAnimation("Strafe_Run");
 
             if(enemiesInAttackList != null )
             {

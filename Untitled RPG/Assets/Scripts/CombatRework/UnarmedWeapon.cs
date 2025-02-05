@@ -85,9 +85,9 @@ namespace RPG.Combat.Rework
             transform.LookAt(closestTarget);
             //animator.applyRootMotion = true;
 
-            Vector3 matchPosition = closestTarget.position + (transform.position - closestTarget.position).normalized * 1f;
-            animator.CustomMatchTarget(matchPosition, Quaternion.identity, AvatarTarget.Root, 
-                new MatchTargetWeightMask(new(1, 0, 1), 0), 0.11f, attackList[currentAttackIndex].ImpactStartTime);
+            //Vector3 matchPosition = closestTarget.position + (transform.position - closestTarget.position).normalized * 0.75f;
+            //animator.CustomMatchTarget(matchPosition, Quaternion.identity, AvatarTarget.Root, 
+                //new MatchTargetWeightMask(new(1, 0, 1), 0), 0.11f, attackList[currentAttackIndex].ImpactStartTime);
             
             ExecuteAttack();
         }
@@ -187,10 +187,10 @@ namespace RPG.Combat.Rework
 
             float impactStartTime = attackData.ImpactStartTime; // Get normalized time for impact
             float animationDuration = animator.GetCurrentAnimatorStateInfo(animationLayer).length;
-            float moveDuration = impactStartTime * animationDuration; // Convert normalized time to seconds
+            float moveDuration = impactStartTime * animationDuration - 0.1f; // Convert normalized time to seconds
             
             // Calculate the position 1 unit away from the target, facing the enemy
-            Vector3 targetPosition = attackTarget.position + (transform.position - attackTarget.position).normalized * 1f;
+            Vector3 targetPosition = attackTarget.position + (transform.position - attackTarget.position).normalized * 0.75f;
 
             // Stop any existing movement
             moveTween?.Kill();
