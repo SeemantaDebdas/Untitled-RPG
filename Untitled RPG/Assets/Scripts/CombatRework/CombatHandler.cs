@@ -23,5 +23,10 @@ namespace RPG.Combat.Rework
         {
             onAttack?.Invoke();
         }
+
+        public void PerformAttackTowardsTarget(Transform closestTarget)
+        {
+            weaponHandler.PerformAttackTowardsTarget(closestTarget);
+        }
     }
 }

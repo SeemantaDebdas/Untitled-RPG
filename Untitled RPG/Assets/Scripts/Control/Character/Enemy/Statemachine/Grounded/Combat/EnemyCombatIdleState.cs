@@ -12,10 +12,10 @@ namespace RPG.Control
         [SerializeField] float speed = 1.876f;
         [SerializeField] float speedMultiplier = 0.75f;
         
-        private GridManager gridManager = null;
+        private EnemyGridManager enemyGridManager = null;
 
         //Vector3 localGridPosition = Vector3.zero;
-        GridManager.GridSlot slot = null;
+        EnemyGridManager.GridSlot slot = null;
         
         public override void Enter()
         {
@@ -26,10 +26,12 @@ namespace RPG.Control
             Debug.Log("Entered Enemy Combat Idle State");
 
             Transform closestTarget = chaseFov.GetClosestTarget();
-            gridManager = closestTarget.GetComponent<GridManager>();
+            enemyGridManager = closestTarget.GetComponent<EnemyGridManager>();
 
-            slot = gridManager.RequestGridPosition(context.Transform, 1);
+            slot = enemyGridManager.RequestGridPosition(context.Transform, 1);
             enemiesInCombatQueue.AddItem(combatHandler, this);
+            
+            fieldOfView.SetAngle(360f);
             
             agent.ResetPath();
         }
@@ -38,7 +40,7 @@ namespace RPG.Control
         {
             base.Exit();
             
-            gridManager.UnoccupyGridPositionForEnemy(context.Transform, 1);
+            enemyGridManager.UnoccupyGridPositionForEnemy(context.Transform, 1);
         }
 
         public override void Tick()

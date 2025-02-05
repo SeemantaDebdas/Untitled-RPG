@@ -32,7 +32,7 @@ namespace RPG.Core
         { 
             if(!walkAudioInstance.isValid())
             {
-                Debug.Log("Walk audio instance not created. Creating.");
+                //Debug.Log("Walk audio instance not created. Creating.");
                 walkAudioInstance = AudioManager.Instance.CreateEventInstance(footstepAudio);
             }
 
@@ -46,7 +46,7 @@ namespace RPG.Core
         {
             if (!runAudioInstance.isValid())
             {
-                Debug.Log("Run audio instance not created. Creating.");
+                //Debug.Log("Run audio instance not created. Creating.");
                 runAudioInstance = AudioManager.Instance.CreateEventInstance(footstepAudio);
             }
 

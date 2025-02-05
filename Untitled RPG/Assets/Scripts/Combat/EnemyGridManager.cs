@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 namespace RPG.Combat.Rework
 {
-    public class GridManager : MonoBehaviour
+    public class EnemyGridManager : MonoBehaviour
     {
         public class GridSlot
         {

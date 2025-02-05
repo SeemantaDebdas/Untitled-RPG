@@ -20,7 +20,7 @@ namespace RPG.Control
 
             //agent.ResetPath();
             //
-            Debug.Log("Entered Enemy Attack State", context.Transform);
+            //Debug.Log("Entered Enemy Attack State", context.Transform);
 
             if(enemiesInAttackList != null )
             {
@@ -52,7 +52,7 @@ namespace RPG.Control
         {
             if (EvaluateTransitions())
             {
-                Debug.Log("Conditions not met", context.Transform);
+                //Debug.Log("Conditions not met", context.Transform);
                 return;
             }
 

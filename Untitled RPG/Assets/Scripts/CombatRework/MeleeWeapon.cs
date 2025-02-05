@@ -66,6 +66,10 @@ namespace RPG.Combat.Rework
             timeSinceLastAttack.SetTimeAndStartTimer(2f, () => {});
         }
 
+        public override void PerformAttackTowardsTarget(Transform closestTarget)
+        {
+        }
+
         public override bool CanCombo()
         {
             return !timeSinceLastAttack.IsOver() && isAttacking;

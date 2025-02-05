@@ -67,5 +67,10 @@ namespace RPG.Combat.Rework
         {
             return CurrentWeapon.HasCurrentAttackFinished();
         }
+
+        public void PerformAttackTowardsTarget(Transform closestTarget)
+        {
+            CurrentWeapon?.PerformAttackTowardsTarget(closestTarget);
+        }
     }
 }

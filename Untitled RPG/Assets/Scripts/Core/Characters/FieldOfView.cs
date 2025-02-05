@@ -38,6 +38,8 @@ namespace RPG.Core
         {
             angle = defaultAngle; 
             
+            scanArray = new Collider[scanCapacity];
+            
             if(startOnAwake)
                 Timing.RunCoroutine(ScanRoutine());
         }
@@ -78,9 +80,6 @@ namespace RPG.Core
 
             int scanCount = Physics.OverlapSphereNonAlloc(transform.position, Radius, scanArray, targetLayer, QueryTriggerInteraction.Ignore);
             ObjectsInRange = scanArray.Where(obj => obj != null).ToList();
-            
-            if (scanCount == 0)
-                return;
 
             for (int i = 0; i < scanCount; i++)
             {
@@ -92,6 +91,12 @@ namespace RPG.Core
                 if (selfTransform != null && target == selfTransform)
                     continue;
 
+                if (ignoreTag != null && target.CompareTag(ignoreTag.Value))
+                    continue;
+
+                if (targetTag != null && !target.CompareTag(targetTag.Value))
+                    continue;
+                
                 Vector3 directionToTarget = target.position - transform.position;
 
                 float angleToTarget = Vector3.Angle(transform.forward, directionToTarget.normalized);
@@ -99,16 +104,9 @@ namespace RPG.Core
                 if (angleToTarget > angle / 2)
                     continue;
 
-                if (ignoreTag != null && target.CompareTag(ignoreTag.Value))
-                    continue;
-
-                if (targetTag != null && !target.CompareTag(targetTag.Value))
-                    continue;
-
                 validTargets.Add(target);
 
                 OnValidTargetsModified?.Invoke();
-                //Debug.Log(target.name + ": Angle Satisfied");
             }
 
             if (validTargets.Count == 0)

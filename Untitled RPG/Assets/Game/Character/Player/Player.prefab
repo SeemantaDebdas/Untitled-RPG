@@ -4137,6 +4137,7 @@ Transform:
   - {fileID: 5901911892027199899}
   - {fileID: 7842848265068137668}
   - {fileID: 3588484686836895905}
+  - {fileID: 6694262120571883230}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &1722519359568858436
@@ -4465,7 +4466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e4c57b9621ede142b48959c6177eafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldOfView: {fileID: 9030517790649169104}
+  fieldOfView: {fileID: 5755634899888008067}
   interactionAction: {fileID: 7586792032747686036, guid: 46942bc09dc02594b8a05133a47185b1,
     type: 3}
 --- !u!114 &9030517790649169104
@@ -4481,7 +4482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startOnAwake: 1
-  <Radius>k__BackingField: 5
+  <Radius>k__BackingField: 10
   defaultAngle: 90
   scanCapacity: 20
   delayBetweenScans: 0.2
@@ -4489,7 +4490,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   ignoreTag: {fileID: 11400000, guid: 8d43769e02d2d904d83526e324a0e266, type: 2}
-  targetTag: {fileID: 0}
+  targetTag: {fileID: 11400000, guid: 7f9cf35ecea64ee4ead16881e41df1e4, type: 2}
   selfTransform: {fileID: 2769771741359129722}
   gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 0}
 --- !u!114 &8586906149063584143
@@ -5521,6 +5522,62 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 9df625441089e654098bdb6c65ae2493, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
   rotationSpeed: 90
+--- !u!1 &8374260573046601416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6694262120571883230}
+  - component: {fileID: 5755634899888008067}
+  m_Layer: 0
+  m_Name: InteractorFOV
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6694262120571883230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8374260573046601416}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2769771741359129722}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5755634899888008067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8374260573046601416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581a2b68adfcab2458faf29e0460c7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startOnAwake: 1
+  <Radius>k__BackingField: 5
+  defaultAngle: 90
+  scanCapacity: 20
+  delayBetweenScans: 0.2
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  ignoreTag: {fileID: 11400000, guid: 8d43769e02d2d904d83526e324a0e266, type: 2}
+  targetTag: {fileID: 0}
+  selfTransform: {fileID: 2769771741359129722}
+  gizmoColor: {r: 0.015686274, g: 0.82356364, b: 1, a: 1}
 --- !u!1 &8384258638069176302
 GameObject:
   m_ObjectHideFlags: 0

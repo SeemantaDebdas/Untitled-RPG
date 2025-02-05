@@ -10,7 +10,7 @@ namespace RPG.Core
         public override void Initialize(Context context)
         { 
             int value = Random.Range(0, 2);
-            Debug.Log(value);
+            //Debug.Log(value);
             shouldCombo = value == 1;
         }
 
@@ -24,7 +24,7 @@ namespace RPG.Core
 
             bool canCombo = characterContext.CombatHandler.CanCombo();
             
-            Debug.Log(canCombo);
+            //Debug.Log(canCombo);
             
             return canCombo;
         }

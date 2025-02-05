@@ -39,6 +39,7 @@ namespace RPG.Combat.Rework
         public abstract void Equip();
         public abstract void Unequip();
         public abstract void Attack(bool isHeavy);
+        public abstract void PerformAttackTowardsTarget(Transform closestTarget);
         public abstract bool CanCombo();
 
         public bool HasCurrentAttackFinished()
@@ -47,6 +48,7 @@ namespace RPG.Combat.Rework
 
             return normalizeTime > 0.9f;
         }
+
     }
 
 }
