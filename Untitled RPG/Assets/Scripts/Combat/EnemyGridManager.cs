@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -98,6 +99,10 @@ namespace RPG.Combat.Rework
             }
         }
 
+        public List<Transform> GetEnemiesInGrid()
+        {
+            return gridSlotStatusDict.Keys.ToList();
+        }
 
         public GridSlot RequestGridPosition(Transform enemy, int enemyGridWeight)
         {

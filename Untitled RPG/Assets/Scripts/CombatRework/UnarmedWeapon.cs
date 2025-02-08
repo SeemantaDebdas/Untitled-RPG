@@ -21,9 +21,11 @@ namespace RPG.Combat.Rework
         [SerializeField] private Transform rightFoot;
 
         private Dictionary<AttackPoint, Transform> attackPointDictionary;
-        
+
         [Header("Attacks")] 
-        [SerializeField] private List<UnarmedAttackData> attackList = new();
+        [SerializeField] private float farAttackThreshold = 2f;
+        [SerializeField] private AttackCombo closeAttackCombo;
+        [SerializeField] private AttackCombo farAttackCombo;
 
         private List<IDamageable> alreadyDamagedList = new();
         private Collider[] hitArray = new Collider[32];
@@ -32,6 +34,7 @@ namespace RPG.Combat.Rework
         private int currentAttackIndex = 0;
         private AutoTimer timeSinceLastAttack;
         private bool canCombo = false;
+        private bool lastAttackWasCloseAttack = true;
 
         private Transform attackTarget = null;
         
@@ -83,24 +86,36 @@ namespace RPG.Combat.Rework
         {
             attackTarget = closestTarget;
             transform.LookAt(closestTarget);
-            //animator.applyRootMotion = true;
-
-            //Vector3 matchPosition = closestTarget.position + (transform.position - closestTarget.position).normalized * 0.75f;
-            //animator.CustomMatchTarget(matchPosition, Quaternion.identity, AvatarTarget.Root, 
-                //new MatchTargetWeightMask(new(1, 0, 1), 0), 0.11f, attackList[currentAttackIndex].ImpactStartTime);
             
             ExecuteAttack();
         }
 
         private void ExecuteAttack()
         {
-            currentAttackIndex = CanCombo() ? (currentAttackIndex + 1) % attackList.Count : 0;
-            UnarmedAttackData currentAttack = attackList[currentAttackIndex];
+            var currentAttack = GetAttackData();
             canCombo = false;
             
             animator.PlayAnimation(currentAttack.AnimationName, 0.01f, animationLayer);
             RestartColliderCoroutine(currentAttack);
             timeSinceLastAttack.SetTimeAndStartTimer(2f, () => { });
+        }
+
+        private UnarmedAttackData GetAttackData()
+        {
+            AttackCombo attackCombo = closeAttackCombo;
+            
+            if (attackTarget != null)
+            {
+                float distance = Vector3.Distance(attackTarget.position, transform.position);
+                attackCombo = distance <= farAttackThreshold && farAttackCombo.HasAttacks() 
+                    ? closeAttackCombo : farAttackCombo;    
+            }
+
+            UnarmedAttackData currentAttack = CanCombo()
+                ? attackCombo.GetNextAttack() as UnarmedAttackData
+                : attackCombo.ResetCombo() as UnarmedAttackData;
+            
+            return currentAttack;
         }
 
         private void RestartColliderCoroutine(UnarmedAttackData attackData)
@@ -190,7 +205,7 @@ namespace RPG.Combat.Rework
             float moveDuration = impactStartTime * animationDuration - 0.1f; // Convert normalized time to seconds
             
             // Calculate the position 1 unit away from the target, facing the enemy
-            Vector3 targetPosition = attackTarget.position + (transform.position - attackTarget.position).normalized * 0.75f;
+            Vector3 targetPosition = attackTarget.position + (transform.position - attackTarget.position).normalized * attackData.DistanceFromTarget;
 
             // Stop any existing movement
             moveTween?.Kill();

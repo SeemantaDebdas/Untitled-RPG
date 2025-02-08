@@ -16,6 +16,7 @@ namespace RPG.Combat.Rework
         [field: SerializeField] public string AnimationName { get; private set; }
         [field: SerializeField] public float ComboTime { get ; private set; }
         [field: SerializeField] public float Force { get; private set; }
+        [field: SerializeField] public float DistanceFromTarget { get; private set; } = 0.75f;
         [field: SerializeField] public List<VFXData> VFXDataList { get; private set; }
 
         [field: Header("COLLIDER")]

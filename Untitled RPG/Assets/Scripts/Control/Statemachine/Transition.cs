@@ -37,6 +37,7 @@ namespace RPG.Control
         {
             isConditionInitialized = false;
 
+            //Debug.Log("Resetting transition");
             foreach (ConditionSO condition in ConditionList)
             {
                 condition.Reset();

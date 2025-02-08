@@ -35,6 +35,7 @@ namespace RPG.Control
                     PlayerConversant = GetComponent<PlayerConversant>(),
                     QuestList = GetComponent<QuestList>(),
                     Health = GetComponent<Health>(),
+                    TargetHandler = GetComponent<TargetHandler>(),
                 };
 
                 return playerContext;
@@ -48,13 +49,13 @@ namespace RPG.Control
 
         private void OnEnable()
         {
-            PlayerContext context = GetContext() as PlayerContext;
+            PlayerContext context = Context as PlayerContext;
             context.Health.OnDamage += Health_OnDamage;
         }
 
         private void OnDisable()
         {
-            PlayerContext context = GetContext() as PlayerContext;
+            PlayerContext context = Context as PlayerContext;
             context.Health.OnDamage -= Health_OnDamage;
         }
 

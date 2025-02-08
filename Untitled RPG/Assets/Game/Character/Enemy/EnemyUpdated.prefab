@@ -540,10 +540,11 @@ MonoBehaviour:
   rightFist: {fileID: 4641143291395269333}
   leftFoot: {fileID: 4645202429161886997}
   rightFoot: {fileID: 4645147460500870275}
-  attackList:
-  - {fileID: 11400000, guid: cc2fc1d4f0a1af344908bc2427b04dfe, type: 2}
-  - {fileID: 11400000, guid: 7f4ebe0a7b7391d448689329b5ceac85, type: 2}
-  - {fileID: 11400000, guid: ac88ade5633e0004b9a57318b4aa836e, type: 2}
+  closeAttackCombo:
+    attackList:
+    - {fileID: 11400000, guid: cc2fc1d4f0a1af344908bc2427b04dfe, type: 2}
+    - {fileID: 11400000, guid: 7f4ebe0a7b7391d448689329b5ceac85, type: 2}
+    - {fileID: 11400000, guid: ac88ade5633e0004b9a57318b4aa836e, type: 2}
 --- !u!1 &6221756699491564090
 GameObject:
   m_ObjectHideFlags: 0

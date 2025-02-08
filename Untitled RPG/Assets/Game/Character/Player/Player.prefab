@@ -4112,6 +4112,7 @@ GameObject:
   - component: {fileID: 2893740470926580792}
   - component: {fileID: 8039570906702264589}
   - component: {fileID: 8716139117235223576}
+  - component: {fileID: 1751040172926218129}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4492,7 +4493,7 @@ MonoBehaviour:
   ignoreTag: {fileID: 11400000, guid: 8d43769e02d2d904d83526e324a0e266, type: 2}
   targetTag: {fileID: 11400000, guid: 7f9cf35ecea64ee4ead16881e41df1e4, type: 2}
   selfTransform: {fileID: 2769771741359129722}
-  gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 0}
+  gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.54509807}
 --- !u!114 &8586906149063584143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4822,10 +4823,17 @@ MonoBehaviour:
   rightFist: {fileID: 3590476197832730107}
   leftFoot: {fileID: 3588362297186390257}
   rightFoot: {fileID: 3588321660501959311}
-  attackList:
-  - {fileID: 11400000, guid: cc2fc1d4f0a1af344908bc2427b04dfe, type: 2}
-  - {fileID: 11400000, guid: 7f4ebe0a7b7391d448689329b5ceac85, type: 2}
-  - {fileID: 11400000, guid: ac88ade5633e0004b9a57318b4aa836e, type: 2}
+  farAttackThreshold: 2
+  closeAttackCombo:
+    attackList:
+    - {fileID: 11400000, guid: cc2fc1d4f0a1af344908bc2427b04dfe, type: 2}
+    - {fileID: 11400000, guid: 7f4ebe0a7b7391d448689329b5ceac85, type: 2}
+    - {fileID: 11400000, guid: ac88ade5633e0004b9a57318b4aa836e, type: 2}
+  farAttackCombo:
+    attackList:
+    - {fileID: 11400000, guid: e27f492133a2f8a468a919921257a2b0, type: 2}
+    - {fileID: 11400000, guid: da282bcf9ee5b414586a3476769b3238, type: 2}
+    - {fileID: 11400000, guid: c15f73940e6e11b42841d46bd6dc6ee0, type: 2}
 --- !u!114 &8716139117235223576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4846,6 +4854,19 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1751040172926218129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972971377313347014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e377f3524e2084d9e72f17b9503823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugSphere: {fileID: 0}
 --- !u!1 &7009001920839669846
 GameObject:
   m_ObjectHideFlags: 0
@@ -5577,7 +5598,7 @@ MonoBehaviour:
   ignoreTag: {fileID: 11400000, guid: 8d43769e02d2d904d83526e324a0e266, type: 2}
   targetTag: {fileID: 0}
   selfTransform: {fileID: 2769771741359129722}
-  gizmoColor: {r: 0.015686274, g: 0.82356364, b: 1, a: 1}
+  gizmoColor: {r: 0.015686274, g: 0.82356364, b: 1, a: 0}
 --- !u!1 &8384258638069176302
 GameObject:
   m_ObjectHideFlags: 0

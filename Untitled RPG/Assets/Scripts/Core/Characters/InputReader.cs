@@ -9,6 +9,15 @@ namespace RPG.Core
         [SerializeField] InputActionAsset inputAsset;
         public event Action OnJumpEvent;
         public Vector2 MoveInput { get; private set; }
+
+        public Vector3 MoveInput3
+        {
+            get
+            {
+                return new Vector3(MoveInput.x, 0, MoveInput.y);
+            }
+        }
+
         public event Action OnMovePerformed, OnMoveCancelled;
 
         public event Action OnWalkTogglePerformed;

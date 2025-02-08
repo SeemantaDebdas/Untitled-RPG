@@ -80,7 +80,7 @@ namespace RPG.Core
                     ""id"": ""35cab85a-4559-4d2c-9ed1-aec8d9f0dbba"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=0.25)"",
+                    ""interactions"": ""Hold(duration=0.3)"",
                     ""initialStateCheck"": true
                 },
                 {

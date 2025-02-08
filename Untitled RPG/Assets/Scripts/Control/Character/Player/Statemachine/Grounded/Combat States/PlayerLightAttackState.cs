@@ -10,7 +10,7 @@ namespace RPG.Control
         {
             base.Enter();
 
-            Transform closestTarget = fieldOfView.GetClosestTarget();
+            Transform closestTarget = GetClosestTarget();
 
             if (closestTarget == null)
             {
@@ -25,11 +25,12 @@ namespace RPG.Control
             //AudioManager.Instance.PlayOneShot(weaponHandler.CurrentWeapon.swooshSound, context.Transform.position);
         }
 
-        public override void Tick()
+        private Transform GetClosestTarget()
         {
-            base.Tick();
+            if(context.TargetHandler.Target == null)
+                return fieldOfView.GetClosestTarget();
             
-            
+            return context.TargetHandler.Target;
         }
     }
 }
