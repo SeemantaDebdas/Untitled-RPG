@@ -29,7 +29,7 @@ namespace RPG.Control
             if (hasInput)
             {
                 HandleMovement(speed);
-                FaceDirection(CalculateDirection(), rotationSpeed);
+                FaceMovementDirection(CalculateDirection(), rotationSpeed);
             }
             else
             {

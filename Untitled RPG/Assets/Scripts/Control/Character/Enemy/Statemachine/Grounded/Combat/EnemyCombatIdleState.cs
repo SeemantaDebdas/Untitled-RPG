@@ -70,7 +70,7 @@ namespace RPG.Control
                 animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveY, localVelocityZ, 0.25f, Time.deltaTime);
             }
 
-            FaceDirection(CalculateDirectionToTarget(), rotationSpeed);
+            FaceMovementDirection(CalculateDirectionToTarget(), rotationSpeed);
         }
 
 

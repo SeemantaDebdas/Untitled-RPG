@@ -4,6 +4,7 @@ using System.Linq;
 using DG.Tweening;
 using RPG.Core;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace RPG.Combat.Rework
 {
@@ -26,11 +27,12 @@ namespace RPG.Combat.Rework
         [SerializeField] private float farAttackThreshold = 2f;
         [SerializeField] private AttackCombo closeAttackCombo;
         [SerializeField] private AttackCombo farAttackCombo;
+        [SerializeField] private UnarmedAttackData counterAttackData;
 
         private List<IDamageable> alreadyDamagedList = new();
         private Collider[] hitArray = new Collider[32];
 
-        private IEnumerator colliderCoroutine = null;
+        private IEnumerator colliderCoroutine, notifyAttackToTargetCoroutine = null;
         private int currentAttackIndex = 0;
         private AutoTimer timeSinceLastAttack;
         private bool canCombo = false;
@@ -79,24 +81,60 @@ namespace RPG.Combat.Rework
         
         public override void Attack(bool isHeavy)
         {
-            ExecuteAttack();
-        }
-
-        public override void PerformAttackTowardsTarget(Transform closestTarget)
-        {
-            attackTarget = closestTarget;
-            transform.LookAt(closestTarget);
-            
-            ExecuteAttack();
-        }
-
-        private void ExecuteAttack()
-        {
             var currentAttack = GetAttackData();
+            ExecuteAttack(currentAttack);
+        }
+
+        public override void Attack(CombatHandler target)
+        {
+            attackTarget = target.transform;
+            
+            var currentAttack = GetAttackData();
+            transform.LookAt(attackTarget);
+            
+            ExecuteAttack(currentAttack);
+
+            notifyAttackToTargetCoroutine = NotifyAttackToTarget(target, currentAttack);
+            StartCoroutine(notifyAttackToTargetCoroutine);
+        }
+
+        public override void CounterAttack(CombatHandler target)
+        {
+            attackTarget = target.transform;
+            transform.LookAt(attackTarget);
+            
+            ExecuteAttack(counterAttackData);
+
+            notifyAttackToTargetCoroutine = NotifyAttackToTarget(target, counterAttackData);
+            StartCoroutine(notifyAttackToTargetCoroutine);
+        }
+
+        private IEnumerator NotifyAttackToTarget(CombatHandler target, UnarmedAttackData currentAttack)
+        {
+            yield return null;
+            
+            Transform weaponHolder = transform.root;
+            
+            float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
+            float timeTillImpact = Time.time + (animationLength * currentAttack.ImpactStartTime);
+            
+            target.NotifyAttack(weaponHolder, currentAttack, timeTillImpact);
+        }
+
+        // public override void SnapAttack(Transform closestTarget)
+        // {
+        //     attackTarget = closestTarget;
+        //     transform.LookAt(closestTarget);
+        //     
+        //     ExecuteAttack(GetAttackData());
+        // }
+
+        private void ExecuteAttack(UnarmedAttackData attackData)
+        {
             canCombo = false;
             
-            animator.PlayAnimation(currentAttack.AnimationName, 0.01f, animationLayer);
-            RestartColliderCoroutine(currentAttack);
+            animator.PlayAnimation(attackData.AnimationName, 0.01f, animationLayer);
+            RestartColliderCoroutine(attackData);
             timeSinceLastAttack.SetTimeAndStartTimer(2f, () => { });
         }
 
@@ -107,8 +145,8 @@ namespace RPG.Combat.Rework
             if (attackTarget != null)
             {
                 float distance = Vector3.Distance(attackTarget.position, transform.position);
-                attackCombo = distance <= farAttackThreshold && farAttackCombo.HasAttacks() 
-                    ? closeAttackCombo : farAttackCombo;    
+                if (distance >= farAttackThreshold && farAttackCombo.HasAttacks())
+                    attackCombo = farAttackCombo;
             }
 
             UnarmedAttackData currentAttack = CanCombo()

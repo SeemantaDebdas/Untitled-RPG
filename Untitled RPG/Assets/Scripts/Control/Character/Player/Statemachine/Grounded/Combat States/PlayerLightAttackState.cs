@@ -1,3 +1,4 @@
+using RPG.Combat.Rework;
 using RPG.Core;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace RPG.Control
         {
             base.Enter();
 
-            Transform closestTarget = GetClosestTarget();
+            CombatHandler closestTarget = context.TargetHandler.Target;
 
             if (closestTarget == null)
             {
@@ -23,14 +24,6 @@ namespace RPG.Control
             }
             
             //AudioManager.Instance.PlayOneShot(weaponHandler.CurrentWeapon.swooshSound, context.Transform.position);
-        }
-
-        private Transform GetClosestTarget()
-        {
-            if(context.TargetHandler.Target == null)
-                return fieldOfView.GetClosestTarget();
-            
-            return context.TargetHandler.Target;
         }
     }
 }

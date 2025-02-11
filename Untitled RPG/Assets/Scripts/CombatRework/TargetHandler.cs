@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using RPG.Core;
 using UnityEngine;
 
@@ -9,8 +10,13 @@ namespace RPG.Combat.Rework
         private InputReader inputReader;
 
         [SerializeField] private Transform debugSphere = null;
+        [SerializeField] private ScriptableEnemyList attackingEnemiesList = null;
+        [SerializeField] private float targetDetectionRadius = 5f;
+        [SerializeField] private LayerMask detectionLayer;
+        
+        Collider[] detectionResultArray = new Collider[20];
 
-        public Transform Target { get; private set; }
+        public CombatHandler Target { get; private set; }
 
         private void Awake()
         {
@@ -23,26 +29,43 @@ namespace RPG.Combat.Rework
             Target = GetEnemyInInputDirection();
         }
 
-        public Transform GetEnemyInInputDirection()
+        public CombatHandler GetEnemyInInputDirection()
         {
-            if (inputReader.MoveInput3 == Vector3.zero)
+            Vector3 targetDirection = transform.forward;
+            
+            if (inputReader.MoveInput3 != Vector3.zero)
             {
-                return null;
+                Vector3 globalInputDirection = UnityEngine.Camera.main.transform.TransformDirection(inputReader.MoveInput3);
+                globalInputDirection.y = 0;
+                globalInputDirection.Normalize();
+                
+                targetDirection = globalInputDirection;
             }
             
-            Vector3 globalInputDirection = UnityEngine.Camera.main.transform.TransformDirection(inputReader.MoveInput3);
-            globalInputDirection.y = 0;
-            globalInputDirection.Normalize();
-
-            float smallestAngle = 360f;
-            Transform nearestEnemy = null;
-            foreach (Transform enemy in enemyGridManager.GetEnemiesInGrid())
+            int hits = Physics.OverlapSphereNonAlloc(transform.position, targetDetectionRadius, detectionResultArray, detectionLayer);
+            
+            List<CombatHandler> enemyList = new List<CombatHandler>(); 
+            for (int i = 0; i < hits; i++)
             {
-                Vector3 dirToEnemy = enemy.position - transform.position;
+                Transform detectedElement = detectionResultArray[i].transform;
+                if (!detectedElement.TryGetComponent(out CombatHandler combatHandler))
+                    continue;
+
+                if (detectedElement.transform == transform)
+                    continue;
+                
+                enemyList.Add(combatHandler);
+            }
+            
+            float smallestAngle = 360f;
+            CombatHandler nearestEnemy = null;
+            foreach (CombatHandler enemy in enemyList)
+            {
+                Vector3 dirToEnemy = enemy.transform.position - transform.position;
                 dirToEnemy.y = 0;
                 dirToEnemy.Normalize();
                 
-                float angle = Vector3.Angle(dirToEnemy, globalInputDirection);
+                float angle = Vector3.Angle(dirToEnemy, targetDirection);
 
                 if (angle < smallestAngle)
                 {

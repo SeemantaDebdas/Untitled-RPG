@@ -127,7 +127,7 @@ MonoBehaviour:
   enemiesInCombatQueue: {fileID: 11400000, guid: 9327401d5771fe3409106b9b3fc252a0,
     type: 2}
   rotationSpeed: 6
-  speed: 2.9
+  speed: 1.8
   speedMultiplier: 1
 --- !u!1 &4862332937841720979
 GameObject:
@@ -179,7 +179,7 @@ MonoBehaviour:
     <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 866a8520df29de04b8ff80c5b7120adc, type: 2}
     <ToState>k__BackingField: {fileID: 4332269095495029081}
-  hurtForceDampMultiplier: 0.5
+  hurtForceDampMultiplier: 0.25
   onEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -540,11 +540,14 @@ MonoBehaviour:
   rightFist: {fileID: 4641143291395269333}
   leftFoot: {fileID: 4645202429161886997}
   rightFoot: {fileID: 4645147460500870275}
+  farAttackThreshold: 2
   closeAttackCombo:
     attackList:
-    - {fileID: 11400000, guid: cc2fc1d4f0a1af344908bc2427b04dfe, type: 2}
-    - {fileID: 11400000, guid: 7f4ebe0a7b7391d448689329b5ceac85, type: 2}
-    - {fileID: 11400000, guid: ac88ade5633e0004b9a57318b4aa836e, type: 2}
+    - {fileID: 11400000, guid: 370658c8d632f5c4b97f55e7d38cd61f, type: 2}
+    - {fileID: 11400000, guid: 6b9dbb17a4e026d4483648691b7a6527, type: 2}
+    - {fileID: 11400000, guid: f25a7c799b7c9764dadda57282856dd1, type: 2}
+  farAttackCombo:
+    attackList: []
 --- !u!1 &6221756699491564090
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +662,7 @@ MonoBehaviour:
   speed: 2.9
   speedMultiplier: 1
   rotationSpeed: 6
-  enemiesInAttackList: {fileID: 11400000, guid: 94a17ac9394427d4e9231606716b035d,
+  enemiesInAttackList: {fileID: 11400000, guid: 5daf13c4104e3e3488dfa05231d8f535,
     type: 2}
 --- !u!1001 &4645947016509743295
 PrefabInstance:

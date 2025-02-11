@@ -66,7 +66,11 @@ namespace RPG.Combat.Rework
             timeSinceLastAttack.SetTimeAndStartTimer(2f, () => {});
         }
 
-        public override void PerformAttackTowardsTarget(Transform closestTarget)
+        public override void Attack(CombatHandler target)
+        {
+        }
+
+        public override void CounterAttack(CombatHandler target)
         {
         }
 

@@ -1,11 +1,11 @@
-using RPG.Combat;
+using RPG.Combat.Rework;
 using RPG.Core;
 using RPG.Data;
 using UnityEngine;
 
 namespace RPG.Control
 {
-    public class EnemyAttackState : EnemyBaseState, IListValueSetter<IStatemachine>
+    public class EnemyAttackState : EnemyBaseState, IListValueSetter<Transform>
     {
         [SerializeField] float speed = 1.876f;
         [SerializeField] float speedMultiplier = 0.75f;
@@ -26,7 +26,7 @@ namespace RPG.Control
 
             if(enemiesInAttackList != null )
             {
-                enemiesInAttackList.AddItem(statemachine, this);
+                enemiesInAttackList.AddItem(context.Transform, this);
             }
 
             //animator.SetFloatValueOverTime(CharacterAnimationData.Instance.Locomotion.MoveX, 0);
@@ -42,7 +42,7 @@ namespace RPG.Control
 
             if (enemiesInAttackList != null)
             {
-                enemiesInAttackList.RemoveItem(statemachine, this);
+                enemiesInAttackList.RemoveItem(context.Transform, this);
             }
 
             animator.SetLayerWeightOverTime(0, layer: 4);
@@ -62,13 +62,16 @@ namespace RPG.Control
 
             float distanceToEnemy = Vector3.Distance(context.Transform.position, closestTarget.position);
 
+            if (isAttacking)
+                return;
+            
             if(distanceToEnemy > 1f)
             {
                 //Move closer to attack
                 agent.SetDestination(closestTarget.position);
 
                 HandleMovement(speed * speedMultiplier);
-                FaceDirection(CalculateDirection(), rotationSpeed);
+                FaceMovementDirection(CalculateDirection(), rotationSpeed);
 
                 //animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveY, controller.velocity.magnitude);
                 Vector3 localVelocity = context.Transform.InverseTransformDirection(controller.velocity);
@@ -78,10 +81,12 @@ namespace RPG.Control
                 animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveX, localVelocityX, 0.25f, Time.deltaTime);
                 animator.SetFloat(CharacterAnimationData.Instance.Locomotion.MoveY, localVelocityZ, 0.25f, Time.deltaTime);
             }
-            else if(!isAttacking)
+            else
             {
                 isAttacking = true;
-                combatHandler.PerformAttack(false);
+                agent.ResetPath();
+                combatHandler.PerformAttack(closestTarget.GetComponent<CombatHandler>());
+                //closestTarget.GetComponent<RPG.Combat.Rework.CombatHandler>().NotifyAttack();
                 //animator.PlayAnimation(weaponHandler.GetLightAttack().AnimationName, 0.1f, 4);
             }
         }

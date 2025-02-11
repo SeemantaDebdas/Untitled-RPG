@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesInCombatQueue: {fileID: 11400000, guid: 9327401d5771fe3409106b9b3fc252a0,
     type: 2}
-  enemiesInAttackList: {fileID: 11400000, guid: 94a17ac9394427d4e9231606716b035d,
+  enemiesInAttackList: {fileID: 11400000, guid: 5daf13c4104e3e3488dfa05231d8f535,
     type: 2}
   notInAttackTimeRange: {x: 2, y: 4}

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Close_UnarmedAttack1
   m_EditorClassIdentifier: 
   <AnimationName>k__BackingField: CloseAttack1
-  <ComboTime>k__BackingField: 0.8
+  <ComboTime>k__BackingField: 0.7
   <Force>k__BackingField: 5
+  <DistanceFromTarget>k__BackingField: 0.75
   <VFXDataList>k__BackingField: []
   <ImpactStartTime>k__BackingField: 0.29
   <ImpactEndTime>k__BackingField: 0.4

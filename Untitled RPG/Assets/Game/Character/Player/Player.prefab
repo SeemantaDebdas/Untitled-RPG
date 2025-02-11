@@ -2821,6 +2821,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 86890a0b5d62c09488c7b0aff443e2c1, type: 2}
     - {fileID: 11400000, guid: c1d86d54c8c906045a316e95d72c84fb, type: 2}
     <ToState>k__BackingField: {fileID: 7996950414039419898}
+  - Name: 'Counter State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 0d6673c0fdc369246ba17679f41a9135, type: 2}
+    - {fileID: 11400000, guid: 80062802c8833af4ba21bf85c013f354, type: 2}
+    <ToState>k__BackingField: {fileID: 7125435598677528182}
   - Name: 'Light Attack State '
     <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 0eb9ce1612fec1d4284ae1146cd4cf77, type: 2}
@@ -3282,6 +3287,53 @@ MonoBehaviour:
   maxPoints: 30
   increment: 0.025
   rayOverlap: 1.1
+--- !u!1 &5414044318799864934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4622747399537345084}
+  - component: {fileID: 7125435598677528182}
+  m_Layer: 0
+  m_Name: Counter State
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4622747399537345084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5414044318799864934}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8073047470637826516}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7125435598677528182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5414044318799864934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481b6ac0ee77da847bf80adff6851d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 0}
+  transitionList: []
+  parryNominalImpactNormalized: 0.25
 --- !u!1 &5713541182861287888
 GameObject:
   m_ObjectHideFlags: 0
@@ -4867,6 +4919,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugSphere: {fileID: 0}
+  attackingEnemiesList: {fileID: 11400000, guid: 5daf13c4104e3e3488dfa05231d8f535,
+    type: 2}
 --- !u!1 &7009001920839669846
 GameObject:
   m_ObjectHideFlags: 0
@@ -5007,6 +5061,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4468845100672894687}
+  - {fileID: 4622747399537345084}
   - {fileID: 2769750482654836314}
   - {fileID: 6460266772038196597}
   m_Father: {fileID: 3528319354835044557}

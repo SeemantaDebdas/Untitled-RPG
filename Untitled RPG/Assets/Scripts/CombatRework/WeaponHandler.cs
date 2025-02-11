@@ -51,6 +51,14 @@ namespace RPG.Combat.Rework
                 CurrentWeapon.Attack(isHeavy);
             }
         }
+        
+        public void Attack(CombatHandler target)
+        {
+            if (CurrentWeapon != null)
+            {
+                CurrentWeapon.Attack(target);
+            }
+        }
 
         public bool CanCombo()
         {
@@ -68,9 +76,14 @@ namespace RPG.Combat.Rework
             return CurrentWeapon.HasCurrentAttackFinished();
         }
 
-        public void PerformAttackTowardsTarget(Transform closestTarget)
+        public void PerformAttackTowardsTarget(CombatHandler combatHandler)
         {
-            CurrentWeapon?.PerformAttackTowardsTarget(closestTarget);
+            CurrentWeapon?.Attack(combatHandler);
+        }
+
+        public void CounterAttack(CombatHandler target)
+        {
+            CurrentWeapon?.CounterAttack(target);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace RPG.Control
         {
             //print(runFloat.Value);
             HandleMovement(baseSpeed);
-            FaceDirection(CalculateDirection(), rotationSpeed);
+            FaceMovementDirection(CalculateDirection(), rotationSpeed);
             
             base.Tick();
         }

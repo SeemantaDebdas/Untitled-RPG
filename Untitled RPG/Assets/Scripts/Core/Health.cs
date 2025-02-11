@@ -20,6 +20,12 @@ namespace RPG.Core
         public float CurrentHealth { get; private set; }
         
         public bool IsDead => CurrentHealth <= 0;
+        
+        public void EnableInvulnerability() => isInvulnerable = true;
+        
+        public void DisableInvulnerability() => isInvulnerable = false;
+        
+        bool isInvulnerable  = false;
 
         private void Awake()
         {
@@ -33,6 +39,9 @@ namespace RPG.Core
 
         public void Damage(DamageData damageData)
         {
+            if (isInvulnerable)
+                return;
+            
             if (invulnerabilityTimer < invulnerabilityTime)
                 return;
 

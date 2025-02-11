@@ -38,7 +38,7 @@ namespace RPG.Control
 
             if (InputReader.MoveInput.magnitude > 0.1f)
             {
-                FaceDirection(CalculateDirection(), rotationSpeed);
+                FaceMovementDirection(CalculateDirection(), rotationSpeed);
             }
 
             //context.AnimationData.JumpParameter = context.Controller.velocity.y / maxVelocityY;

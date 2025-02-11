@@ -108,7 +108,7 @@ namespace RPG.Control
             return dir;
         }
 
-        protected override void FaceDirection(Vector3 movement, float rotationSpeed)
+        protected override void FaceMovementDirection(Vector3 movement, float rotationSpeed)
         {
             context.Transform.rotation = Quaternion.Slerp(context.Transform.rotation,
                                                 Quaternion.LookRotation(movement),

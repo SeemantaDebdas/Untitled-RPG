@@ -39,7 +39,9 @@ namespace RPG.Combat.Rework
         public abstract void Equip();
         public abstract void Unequip();
         public abstract void Attack(bool isHeavy);
-        public abstract void PerformAttackTowardsTarget(Transform closestTarget);
+        public abstract void Attack(CombatHandler target);
+        public abstract void CounterAttack(CombatHandler target);   
+        //public abstract void SnapAttack(Transform target);
         public abstract bool CanCombo();
 
         public bool HasCurrentAttackFinished()

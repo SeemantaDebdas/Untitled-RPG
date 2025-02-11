@@ -175,6 +175,10 @@ namespace RPG.Core
             
         }
 
+        public void OnCounter(InputAction.CallbackContext context)
+        {
+        }
+
         bool IsPlayerActionMapEnabled()
         {
             return inputAsset.FindActionMap(playerActionMapName).enabled;

@@ -77,14 +77,19 @@ namespace RPG.Control
 
         #region ROTATION
 
-        protected override void FaceDirection(Vector3 movement, float rotationSpeed)
+        protected override void FaceMovementDirection(Vector3 movement, float rotationSpeed)
         {
             if(moveInput ==  Vector2.zero)
                 return;
 
+            RotateTowardsDirection(movement, rotationSpeed);
+        }
+
+        protected void RotateTowardsDirection(Vector3 direction, float rotationSpeed)
+        {
             context.Transform.rotation = Quaternion.Slerp(context.Transform.rotation,
-                                                Quaternion.LookRotation(movement),
-                                                rotationSpeed * Time.deltaTime);
+                Quaternion.LookRotation(direction),
+                rotationSpeed * Time.deltaTime);
         }
 
         protected override Vector3 CalculateDirection()

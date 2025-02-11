@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1e1b91824504a04890905a9be7c579d, type: 3}
-  m_Name: IsAttackInputCancelled
+  m_Name: IsCounterInputPerformed
   m_EditorClassIdentifier: 
   invert: 0
   performed: 0
   cancelled: 0
   started: 0
   prematureReset: 1
-  resetTimeWindow: 0.05
-  actionReference: {fileID: 3093145671759447841, guid: 46942bc09dc02594b8a05133a47185b1,
+  resetTimeWindow: 0.1
+  actionReference: {fileID: -3742481995066503409, guid: 46942bc09dc02594b8a05133a47185b1,
     type: 3}
-  inputType: 2
+  inputType: 1

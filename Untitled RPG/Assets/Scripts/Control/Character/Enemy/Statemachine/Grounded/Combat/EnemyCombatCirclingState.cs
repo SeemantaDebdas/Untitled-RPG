@@ -63,7 +63,7 @@ namespace RPG.Control
 
             Move(currentVelocity);
 
-            FaceDirection(CalculateDirection(), rotationSpeed);
+            FaceMovementDirection(CalculateDirection(), rotationSpeed);
 
             HandleAnimation();
         }

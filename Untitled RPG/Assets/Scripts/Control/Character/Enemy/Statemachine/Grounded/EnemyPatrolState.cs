@@ -31,7 +31,7 @@ namespace RPG.Control
             base.Tick();
 
             HandleMovement(speed);
-            FaceDirection(CalculateDirection(), rotationSpeed);
+            FaceMovementDirection(CalculateDirection(), rotationSpeed);
         }
 
         public override void Exit()

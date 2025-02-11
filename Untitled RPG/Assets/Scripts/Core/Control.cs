@@ -181,6 +181,15 @@ namespace RPG.Core
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Counter"",
+                    ""type"": ""Button"",
+                    ""id"": ""92462fb6-219b-491e-abe4-8c1e7f43caa9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -522,6 +531,17 @@ namespace RPG.Core
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse"",
                     ""action"": ""Ability5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87ea9b6f-2866-44aa-874d-0e3a1146e6b3"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Counter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1093,6 +1113,7 @@ namespace RPG.Core
             m_Player_Ability3 = m_Player.FindAction("Ability3", throwIfNotFound: true);
             m_Player_Ability4 = m_Player.FindAction("Ability4", throwIfNotFound: true);
             m_Player_Ability5 = m_Player.FindAction("Ability5", throwIfNotFound: true);
+            m_Player_Counter = m_Player.FindAction("Counter", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1189,6 +1210,7 @@ namespace RPG.Core
         private readonly InputAction m_Player_Ability3;
         private readonly InputAction m_Player_Ability4;
         private readonly InputAction m_Player_Ability5;
+        private readonly InputAction m_Player_Counter;
         public struct PlayerActions
         {
             private @Control m_Wrapper;
@@ -1210,6 +1232,7 @@ namespace RPG.Core
             public InputAction @Ability3 => m_Wrapper.m_Player_Ability3;
             public InputAction @Ability4 => m_Wrapper.m_Player_Ability4;
             public InputAction @Ability5 => m_Wrapper.m_Player_Ability5;
+            public InputAction @Counter => m_Wrapper.m_Player_Counter;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1270,6 +1293,9 @@ namespace RPG.Core
                 @Ability5.started += instance.OnAbility5;
                 @Ability5.performed += instance.OnAbility5;
                 @Ability5.canceled += instance.OnAbility5;
+                @Counter.started += instance.OnCounter;
+                @Counter.performed += instance.OnCounter;
+                @Counter.canceled += instance.OnCounter;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1325,6 +1351,9 @@ namespace RPG.Core
                 @Ability5.started -= instance.OnAbility5;
                 @Ability5.performed -= instance.OnAbility5;
                 @Ability5.canceled -= instance.OnAbility5;
+                @Counter.started -= instance.OnCounter;
+                @Counter.performed -= instance.OnCounter;
+                @Counter.canceled -= instance.OnCounter;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1497,6 +1526,7 @@ namespace RPG.Core
             void OnAbility3(InputAction.CallbackContext context);
             void OnAbility4(InputAction.CallbackContext context);
             void OnAbility5(InputAction.CallbackContext context);
+            void OnCounter(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

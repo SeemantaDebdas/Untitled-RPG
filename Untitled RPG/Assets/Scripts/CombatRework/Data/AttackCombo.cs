@@ -11,7 +11,7 @@ namespace RPG.Combat.Rework
 
         public AttackData GetNextAttack()
         {
-            currentAttackIndex = (currentAttackIndex + 1) == attackList.Count ? 0 : ++currentAttackIndex;
+            currentAttackIndex = (currentAttackIndex + 1) >= attackList.Count ? 0 : ++currentAttackIndex;
             return attackList[currentAttackIndex];
         }
 
@@ -21,6 +21,6 @@ namespace RPG.Combat.Rework
             return attackList[currentAttackIndex];
         }
 
-        public bool HasAttacks() => attackList.Count != 0;
+        public bool HasAttacks() => attackList != null && attackList.Count != 0;
     }
 }
