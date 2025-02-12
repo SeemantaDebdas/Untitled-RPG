@@ -17,6 +17,9 @@ namespace RPG.Control
 
         protected Vector3 moveDirection = Vector3.zero;
 
+        private CharacterHurtState hurtState;
+        private EnemyStunnedState stunnedState;
+
         public override void Initialize(IStatemachine statemachine)
         {
             base.Initialize(statemachine);
@@ -31,13 +34,6 @@ namespace RPG.Control
             avoidanceFOV = context.AvoidanceFOV;
 
             //Debug.Assert(weaponHandler != null, "weaponHandler is null");
-        }
-
-        public override void Enter()
-        {
-            base.Enter();
-
-            //Debug.Log("Enter: " + GetType().Name);
         }
 
         protected override Vector3 CalculateDirection()
@@ -114,5 +110,57 @@ namespace RPG.Control
                                                 Quaternion.LookRotation(movement),
                                                 rotationSpeed * Time.deltaTime);
         }
+
+        protected void SubscribeToHurtEvent()
+        {
+            context.CharacterDamageHandler.OnHurt += CharacterDamageHandler_OnHurt;
+        }
+
+
+        protected void UnsubscribeToHurtEvent()
+        {
+            context.CharacterDamageHandler.OnHurt -= CharacterDamageHandler_OnHurt;
+        }
+
+        protected virtual void CharacterDamageHandler_OnHurt(DamageData damageData)
+        {
+            Debug.Log("Hurt called");
+            
+            if (hurtState == null)
+            {
+                hurtState = context.Transform.GetComponentInChildren<CharacterHurtState>();
+
+                if (hurtState == null)
+                    return;
+            }
+            
+            hurtState.SetDamageData(damageData);
+            SwitchState(hurtState);
+        }
+        
+        protected void SubscribeToStunnedEvent()
+        {
+            context.CharacterDamageHandler.OnStunned += CharacterDamageHandler_OnStunned;
+        }
+        
+        protected void UnsubscribeToStunnedEvent()
+        {
+            context.CharacterDamageHandler.OnStunned -= CharacterDamageHandler_OnStunned;
+        }
+
+        protected virtual void CharacterDamageHandler_OnStunned(DamageData damageData)
+        {
+            if (stunnedState == null)
+            {
+                stunnedState = context.Transform.GetComponentInChildren<EnemyStunnedState>();
+
+                if (stunnedState == null)
+                    return;
+            }
+            
+            stunnedState.SetDamageData(damageData);
+            SwitchState(stunnedState);
+        }
+        
     }
 }

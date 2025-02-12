@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace RPG.Combat.Rework
     public class UnarmedWeapon : Weapon
     {
         [Header("Weapon Settings")]
-        [SerializeField] private int damage = 10;
+        [SerializeField] private int baseDamage = 10;
         [SerializeField] private LayerMask hitLayers;
         [SerializeField] private int animationLayer = 5;
         
@@ -27,6 +28,7 @@ namespace RPG.Combat.Rework
         [SerializeField] private float farAttackThreshold = 2f;
         [SerializeField] private AttackCombo closeAttackCombo;
         [SerializeField] private AttackCombo farAttackCombo;
+        [SerializeField] private AttackCombo knockoutCombo;
         [SerializeField] private UnarmedAttackData counterAttackData;
 
         private List<IDamageable> alreadyDamagedList = new();
@@ -38,7 +40,7 @@ namespace RPG.Combat.Rework
         private bool canCombo = false;
         private bool lastAttackWasCloseAttack = true;
 
-        private Transform attackTarget = null;
+        private CombatHandler attackTarget = null;
         
 
         private void Start()
@@ -87,10 +89,10 @@ namespace RPG.Combat.Rework
 
         public override void Attack(CombatHandler target)
         {
-            attackTarget = target.transform;
+            attackTarget = target;
             
             var currentAttack = GetAttackData();
-            transform.LookAt(attackTarget);
+            transform.LookAt(attackTarget.transform);
             
             ExecuteAttack(currentAttack);
 
@@ -100,8 +102,8 @@ namespace RPG.Combat.Rework
 
         public override void CounterAttack(CombatHandler target)
         {
-            attackTarget = target.transform;
-            transform.LookAt(attackTarget);
+            attackTarget = target;
+            transform.LookAt(attackTarget.transform);
             
             ExecuteAttack(counterAttackData);
 
@@ -121,14 +123,6 @@ namespace RPG.Combat.Rework
             target.NotifyAttack(weaponHolder, currentAttack, timeTillImpact);
         }
 
-        // public override void SnapAttack(Transform closestTarget)
-        // {
-        //     attackTarget = closestTarget;
-        //     transform.LookAt(closestTarget);
-        //     
-        //     ExecuteAttack(GetAttackData());
-        // }
-
         private void ExecuteAttack(UnarmedAttackData attackData)
         {
             canCombo = false;
@@ -144,7 +138,12 @@ namespace RPG.Combat.Rework
             
             if (attackTarget != null)
             {
-                float distance = Vector3.Distance(attackTarget.position, transform.position);
+                if (attackTarget.IsStunned)
+                {
+                    return knockoutCombo.GetRandomAttack() as UnarmedAttackData;
+                }
+                
+                float distance = Vector3.Distance(attackTarget.transform.position, transform.position);
                 if (distance >= farAttackThreshold && farAttackCombo.HasAttacks())
                     attackCombo = farAttackCombo;
             }
@@ -195,6 +194,7 @@ namespace RPG.Combat.Rework
         {
             attackTarget = null;
             animator.applyRootMotion = false;
+            Array.Clear(hitArray, 0, hitArray.Length);
         }
 
         private IEnumerator WaitForImpactStart(UnarmedAttackData attackData)
@@ -211,8 +211,8 @@ namespace RPG.Combat.Rework
             {
                 int hits = Physics.OverlapSphereNonAlloc(
                     attackPoint.position, attackData.attackRadius, hitArray, hitLayers);
-
-                TryDamageColliders(hitArray, hits);
+                
+                TryDamageColliders(hitArray, hits, attackData);
                 yield return null;
             }
 
@@ -243,7 +243,7 @@ namespace RPG.Combat.Rework
             float moveDuration = impactStartTime * animationDuration - 0.1f; // Convert normalized time to seconds
             
             // Calculate the position 1 unit away from the target, facing the enemy
-            Vector3 targetPosition = attackTarget.position + (transform.position - attackTarget.position).normalized * attackData.DistanceFromTarget;
+            Vector3 targetPosition = attackTarget.transform.position + (transform.position - attackTarget.transform.position).normalized * attackData.DistanceFromTarget;
 
             // Stop any existing movement
             moveTween?.Kill();
@@ -253,7 +253,7 @@ namespace RPG.Combat.Rework
                 .SetEase(Ease.OutSine);
         }
 
-        private void TryDamageColliders(Collider[] hits, int hitCount)
+        private void TryDamageColliders(Collider[] hits, int hitCount, UnarmedAttackData attackData)
         {
             for (int i = 0; i < hitCount; i++)
             {
@@ -263,14 +263,19 @@ namespace RPG.Combat.Rework
                     continue;
 
                 if (damageable.transform.root == transform.root || alreadyDamagedList.Contains(damageable))
+                {
+                    Debug.Log("Already damaged: " + hitObject.name);
                     continue;
+                }
+                
+                Debug.Log(hitObject.name);
 
                 alreadyDamagedList.Add(damageable);
 
                 Vector3 hitPoint = hits[i].ClosestPoint(transform.position);
                 Vector3 hitDirection = (hitObject.transform.position - hitPoint).normalized;
     
-                damageable.Damage(new(transform, damage, hitDirection, hitPoint));
+                damageable.Damage(new(transform, attackData.Damage, hitDirection, hitPoint));
             }
         }
     }

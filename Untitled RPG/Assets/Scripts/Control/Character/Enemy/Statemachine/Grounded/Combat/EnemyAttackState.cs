@@ -2,6 +2,7 @@ using RPG.Combat.Rework;
 using RPG.Core;
 using RPG.Data;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace RPG.Control
 {
@@ -12,6 +13,8 @@ namespace RPG.Control
         [SerializeField] float rotationSpeed = 6f;
 
         [SerializeField] ScriptableEnemyList enemiesInAttackList;
+
+        [SerializeField] private UnityEvent onAttack, onExit;
         bool isAttacking = false;
 
         public override void Enter()
@@ -32,6 +35,9 @@ namespace RPG.Control
             //animator.SetFloatValueOverTime(CharacterAnimationData.Instance.Locomotion.MoveX, 0);
 
             isAttacking = false;
+            
+            SubscribeToHurtEvent();
+            SubscribeToStunnedEvent();
 
             //animator.SetLayerWeightOverTime(1, layer: 4);
         }
@@ -47,7 +53,10 @@ namespace RPG.Control
 
             animator.SetLayerWeightOverTime(0, layer: 4);
             
-            //agent.ResetPath();
+            UnsubscribeToHurtEvent();
+            UnsubscribeToStunnedEvent();
+            
+            onExit?.Invoke();
         }
 
         public override void Tick()
@@ -86,6 +95,8 @@ namespace RPG.Control
                 isAttacking = true;
                 agent.ResetPath();
                 combatHandler.PerformAttack(closestTarget.GetComponent<CombatHandler>());
+                
+                onAttack?.Invoke();
                 //closestTarget.GetComponent<RPG.Combat.Rework.CombatHandler>().NotifyAttack();
                 //animator.PlayAnimation(weaponHandler.GetLightAttack().AnimationName, 0.1f, 4);
             }

@@ -16,6 +16,8 @@ namespace RPG.Control
             animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Run);
 
             animator.speed *= speedMultiplier;
+            
+            SubscribeToHurtEvent();
         }
 
         public override void Exit()
@@ -23,6 +25,8 @@ namespace RPG.Control
             base.Exit();
 
             animator.speed = 1f;
+            
+            UnsubscribeToHurtEvent();
         }
 
         public override void Tick()

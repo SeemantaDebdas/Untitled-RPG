@@ -1,3 +1,4 @@
+using System;
 using RPG.Combat.Rework;
 using RPG.Core;
 using RPG.Data;
@@ -9,7 +10,6 @@ namespace RPG.Control
     public class EnemyStatemachine : Statemachine
     {
         [SerializeField] FieldOfView chaseFOV, attackFOV, avoidanceFOV;
-
         EnemyContext enemyContext;
 
         public override Context Context
@@ -32,6 +32,7 @@ namespace RPG.Control
                     WeaponHandler = GetComponent<WeaponHandler>(),
                     CombatHandler = GetComponent<CombatHandler>(),
                     Health = GetComponent<Health>(),
+                    CharacterDamageHandler = GetComponent<CharacterDamageHandler>(),
                     ChaseFOV = chaseFOV,
                     AttackFOV = attackFOV,
                     AvoidanceFOV = avoidanceFOV,
@@ -45,6 +46,7 @@ namespace RPG.Control
         {
             SwitchState(initialState);
         }
+        
 
         public override void SwitchState(State newState)
         {

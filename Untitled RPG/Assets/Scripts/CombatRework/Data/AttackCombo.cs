@@ -15,6 +15,12 @@ namespace RPG.Combat.Rework
             return attackList[currentAttackIndex];
         }
 
+        public AttackData GetRandomAttack()
+        {
+            int randomIndex = Random.Range(0, attackList.Count);
+            return attackList[randomIndex];
+        }
+
         public AttackData ResetCombo()
         {
             currentAttackIndex = 0;

@@ -12,6 +12,15 @@ namespace RPG.Control
             animator.PlayAnimation(CharacterAnimationData.Instance.Locomotion.Idle);
             
             fieldOfView.ResetAngle();
+            
+            SubscribeToHurtEvent();
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            
+            UnsubscribeToHurtEvent();
         }
     }
 }

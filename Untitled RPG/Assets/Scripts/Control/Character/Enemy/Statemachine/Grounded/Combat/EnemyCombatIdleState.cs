@@ -34,6 +34,9 @@ namespace RPG.Control
             fieldOfView.SetAngle(360f);
             
             agent.ResetPath();
+            
+            SubscribeToStunnedEvent();
+            SubscribeToHurtEvent();
         }
 
         public override void Exit()
@@ -41,6 +44,9 @@ namespace RPG.Control
             base.Exit();
             
             enemyGridManager.UnoccupyGridPositionForEnemy(context.Transform, 1);
+            
+            UnsubscribeToStunnedEvent();    
+            UnsubscribeToHurtEvent();
         }
 
         public override void Tick()
@@ -82,26 +88,6 @@ namespace RPG.Control
             direction.Normalize();
 
             return direction;
-        }
-
-        public void RemoveItem()
-        {
-            
-        }
-
-        public void AddItem(CombatHandler item)
-        {
-
-        }
-
-        public void ClearEnumerable()
-        {
-            
-        }
-
-        public void SetValue(CombatHandler value)
-        {
-            
         }
     }
 }

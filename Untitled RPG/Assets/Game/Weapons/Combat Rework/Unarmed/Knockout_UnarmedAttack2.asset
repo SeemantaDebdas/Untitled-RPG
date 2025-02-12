@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44974510795777a418af0b6b7e93e1ba, type: 3}
-  m_Name: Close_UnarmedAttack3
+  m_Name: Knockout_UnarmedAttack2
   m_EditorClassIdentifier: 
-  <AnimationName>k__BackingField: CloseAttack3
-  <ComboTime>k__BackingField: 0.7
-  <Damage>k__BackingField: 25
-  <DistanceFromTarget>k__BackingField: 0.75
+  <AnimationName>k__BackingField: KnockoutAttack2
+  <ComboTime>k__BackingField: 0.9
+  <Damage>k__BackingField: 50
+  <DistanceFromTarget>k__BackingField: 1
   <VFXDataList>k__BackingField: []
-  <ImpactStartTime>k__BackingField: 0.29
-  <ImpactEndTime>k__BackingField: 0.45
-  attackPoint: 4
+  <ImpactStartTime>k__BackingField: 0.36
+  <ImpactEndTime>k__BackingField: 0.5
+  attackPoint: 2
   attackRadius: 0.5

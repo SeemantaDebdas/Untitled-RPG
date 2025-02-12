@@ -10,6 +10,7 @@ namespace RPG.Combat.Rework
         [SerializeField] private WeaponHandler weaponHandler;
         [SerializeField] private UnityEvent onAttack;
 
+        public bool IsStunned { get; private set; }
         public Transform CounterTarget { get; private set; } = null;
         public float TimeTillCounterWindowClose { get; private set; } = -1f;
         public AttackData CounterAttackData{get; private set;}
@@ -67,6 +68,11 @@ namespace RPG.Combat.Rework
             StartCoroutine(counterAttackCoroutine);
             
             //Debug.Log($"Current Time : {Time.time} || Time Till Impact: {timeTillImpact}");
+        }
+
+        public void SetStunned(bool isStunned)
+        {
+            IsStunned = isStunned;
         }
 
         IEnumerator ResetCounterTargetAfterTime(float time)

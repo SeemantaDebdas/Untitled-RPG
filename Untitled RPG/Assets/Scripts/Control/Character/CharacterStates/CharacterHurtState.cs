@@ -24,6 +24,7 @@ namespace RPG.Control
             //animator.SetLayerWeightOverTime(1, layer: 5);
             //animator.PlayAnimation(GetHurtAnimation(), 0.1f, layer: 5);
             animator.PlayAnimation("Hurt", 0.1f, layer: hurtLayer);
+            physicsHandler.AddForce(damageData.AttackDirection * (damageData.Damage * hurtForceDampMultiplier));
             //Debug.Log($"Attack Direction: {damageData.attackDirection} /n Damage Data: {damageData.damage}");
 
             //physicsHandler.AddForce(GetDamageForce());
@@ -31,6 +32,13 @@ namespace RPG.Control
             onEnter?.Invoke();
             onHurt?.Invoke(damageData.Damage);
             //Debug.Break();
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+
+            Move();
         }
     }
 }

@@ -9,6 +9,7 @@ namespace RPG.Data
         public Path Path { get; set; }
         public FieldOfView ChaseFOV { get; set; }
         public FieldOfView AttackFOV { get; set; }  
-        public FieldOfView AvoidanceFOV { get; set; }   
+        public FieldOfView AvoidanceFOV { get; set; }
+        public CharacterDamageHandler CharacterDamageHandler { get; set; }
     }
 }

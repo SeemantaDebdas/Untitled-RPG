@@ -17,25 +17,25 @@ namespace RPG.Control
         {
             base.Enter();
 
-            animator.PlayAnimation(CharacterAnimationData.Instance.Hurt.Death, 0.1f);
+            //animator.PlayAnimation(CharacterAnimationData.Instance.Hurt.Death, 0.1f);
             onEnter?.Invoke();
             
-            physicsHandler.AddForce(GetDamageForce());
+            //physicsHandler.AddForce(GetDamageForce());
         }
 
-        public override void Tick()
-        {
-            base.Tick();
-
-            //condition being. On Death Animation End.
-            if (onDeathAnimationEndCondition.Evaluate(context))
-            {
-                //Debug.Log("On Death Animation End");
-                onDeathAnimationEnd?.Invoke();
-            }
-
-            Move();
-        }
+        // public override void Tick()
+        // {
+        //     base.Tick();
+        //
+        //     //condition being. On Death Animation End.
+        //     if (onDeathAnimationEndCondition.Evaluate(context))
+        //     {
+        //         //Debug.Log("On Death Animation End");
+        //         onDeathAnimationEnd?.Invoke();
+        //     }
+        //
+        //     Move();
+        // }
 
         Vector3 GetDamageForce()
         {
