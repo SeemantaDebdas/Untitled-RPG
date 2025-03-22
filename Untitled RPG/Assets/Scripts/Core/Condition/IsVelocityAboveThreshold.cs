@@ -7,6 +7,8 @@ namespace RPG.Core
     public class IsVelocityAboveThreshold : ConditionSO
     {
         [SerializeField] float threshold = 1.0f;
+        [SerializeField] private ScriptableFloat thresholdFloat;
+        [SerializeField] private float thresholdOffset = 0.1f;
         [SerializeField] bool onlyYVelocity = false;
         public override void Initialize(Context context)
         {
@@ -31,6 +33,9 @@ namespace RPG.Core
                 //return yVelocity > threshold;
             }
 
+            if(thresholdFloat != null)
+                return velocity.magnitude > threshold - thresholdOffset;
+            
             return velocity.magnitude > threshold;
         }
     }

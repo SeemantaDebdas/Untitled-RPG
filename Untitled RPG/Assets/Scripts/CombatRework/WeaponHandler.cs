@@ -1,5 +1,6 @@
 using System;
 using KevinIglesias;
+using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Combat.Rework
@@ -12,6 +13,8 @@ namespace RPG.Combat.Rework
 
         public Weapon CurrentWeapon {get; private set; }
         private Animator animator = null;
+
+        public event Action<IDamageable, AttackData> OnHit;
 
         private void Awake()
         {
@@ -30,9 +33,11 @@ namespace RPG.Combat.Rework
             if (CurrentWeapon != null)
             {
                 CurrentWeapon.Unequip();
+                CurrentWeapon.OnHit -= Weapon_OnHit;
             }
 
             CurrentWeapon = newWeapon;
+            CurrentWeapon.OnHit += Weapon_OnHit;
             CurrentWeapon.Initialize(newWeapon.name, newWeapon.BaseDamage, newWeapon.Range, newWeapon.CanParry, animator);
         }
 
@@ -85,5 +90,7 @@ namespace RPG.Combat.Rework
         {
             CurrentWeapon?.CounterAttack(target);
         }
+
+        void Weapon_OnHit(IDamageable damageable, AttackData attackData) => OnHit?.Invoke(damageable, attackData);
     }
 }

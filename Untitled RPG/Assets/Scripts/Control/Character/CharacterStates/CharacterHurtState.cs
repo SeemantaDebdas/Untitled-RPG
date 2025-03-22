@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using DG.Tweening;
 using RPG.Core;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,6 +12,9 @@ namespace RPG.Control
         [SerializeField] float hurtForceDampMultiplier = 0.5f;
         [SerializeField] UnityEvent onEnter;
         [SerializeField] private UnityEvent<int> onHurt;
+        
+ 
+        
         
         DamageData damageData;
         
@@ -33,6 +38,8 @@ namespace RPG.Control
             onHurt?.Invoke(damageData.Damage);
             //Debug.Break();
         }
+
+
 
         public override void Tick()
         {

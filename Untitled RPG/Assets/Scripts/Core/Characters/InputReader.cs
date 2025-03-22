@@ -21,7 +21,7 @@ namespace RPG.Core
         public event Action OnMovePerformed, OnMoveCancelled;
 
         public event Action OnWalkTogglePerformed;
-        public bool ShouldWalk { get; private set; }
+        public bool ShouldWalk { get; private set; } = true;
 
         public event Action OnSprintPerformed;
 

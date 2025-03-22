@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AnimationName>k__BackingField: FarAttack2
   <ComboTime>k__BackingField: 0.8
-  <Damage>k__BackingField: 20
+  <Damage>k__BackingField: 15
   <DistanceFromTarget>k__BackingField: 0.75
   <VFXDataList>k__BackingField: []
   <ImpactStartTime>k__BackingField: 0.3

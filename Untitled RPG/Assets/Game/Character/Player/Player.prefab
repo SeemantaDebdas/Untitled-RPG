@@ -605,6 +605,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3590283178846167355}
   m_LocalEulerAnglesHint: {x: -12.849, y: -62.274, z: 155.522}
+--- !u!1 &1065835682073768715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3547874333248119405}
+  m_Layer: 0
+  m_Name: Particles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3547874333248119405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065835682073768715}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7642798487807870994}
+  m_Father: {fileID: 2769771741359129722}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1086151693411295847
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,6 +1087,76 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3590476197832730107}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2515062735703337778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8773483139488244706}
+  - component: {fileID: 7822048657572739991}
+  m_Layer: 0
+  m_Name: Run State
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8773483139488244706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2515062735703337778}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8663650150689636559}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7822048657572739991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2515062735703337778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6d49807a3b0d640b681c261be772ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 6102497761764395310}
+  transitionList:
+  - Name: 'Stopping State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 8037c073e8b4572468a6d2f186ee6fdc, type: 2}
+    <ToState>k__BackingField: {fileID: 2133529366538135932}
+  - Name: 'Simple Climb State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 01e291c8f696dd84eb990c59886acbb5, type: 2}
+    <ToState>k__BackingField: {fileID: 3401221039345825821}
+  - Name: 'Roll State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 641c5d561b8c1c941bcc447194903205, type: 2}
+    <ToState>k__BackingField: {fileID: 3832755774957263320}
+  - Name: 'Walk State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: f59cc0357b5bf90499e914109818771b, type: 2}
+    <ToState>k__BackingField: {fileID: 8542774745365486071}
+  - Name: 'Sprint State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: dc247b277ff04684898a545dd7cd0567, type: 2}
+    <ToState>k__BackingField: {fileID: 8752404240767383436}
+  animationName: Run
+  moveFloat: {fileID: 11400000, guid: 4f14c8b704ffa80409dbed89b300c77c, type: 2}
+  speedFloat: {fileID: 11400000, guid: ca25e61f6471d4c4296c9187eb91e17a, type: 2}
+  rotationSpeed: 6
 --- !u!1 &2665581491276619679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,68 +1371,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3590067961042002331}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3173754400280807267
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8694306857140967461}
-  - component: {fileID: 6583075621183944049}
-  m_Layer: 0
-  m_Name: Moving State
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8694306857140967461
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3173754400280807267}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8663650150689636559}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6583075621183944049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3173754400280807267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 551f218cff3d02a49a966bf58faf5314, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  commonTransitions: {fileID: 6102497761764395310}
-  transitionList:
-  - Name: 'Idle State '
-    <ConditionList>k__BackingField:
-    - {fileID: 11400000, guid: 8037c073e8b4572468a6d2f186ee6fdc, type: 2}
-    <ToState>k__BackingField: {fileID: 6305809296959556292}
-  - Name: 'Simple Climb State '
-    <ConditionList>k__BackingField:
-    - {fileID: 11400000, guid: 01e291c8f696dd84eb990c59886acbb5, type: 2}
-    <ToState>k__BackingField: {fileID: 3401221039345825821}
-  - Name: 'Roll State '
-    <ConditionList>k__BackingField:
-    - {fileID: 11400000, guid: 641c5d561b8c1c941bcc447194903205, type: 2}
-    <ToState>k__BackingField: {fileID: 3832755774957263320}
-  walkBaseSpeed: 1.17
-  walkRotationSpeed: 6
-  runFloat: {fileID: 11400000, guid: 4f14c8b704ffa80409dbed89b300c77c, type: 2}
-  runRotationSpeed: 6
 --- !u!1 &3391442895971185531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2789,8 +2829,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 737536608028498795}
-  - {fileID: 8694306857140967461}
   - {fileID: 3871377551608146967}
+  - {fileID: 8773483139488244706}
+  - {fileID: 4523085577801654707}
+  - {fileID: 4481301317107740316}
+  - {fileID: 1157073118958127557}
   m_Father: {fileID: 5643395339329463738}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6102497761764395310
@@ -3367,6 +3410,76 @@ Transform:
   - {fileID: 5869128883290077593}
   m_Father: {fileID: 2769771741359129722}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5713673400603429538
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4523085577801654707}
+  - component: {fileID: 8542774745365486071}
+  m_Layer: 0
+  m_Name: Walk State
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4523085577801654707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5713673400603429538}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8663650150689636559}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8542774745365486071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5713673400603429538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6d49807a3b0d640b681c261be772ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 6102497761764395310}
+  transitionList:
+  - Name: 'Idle State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 8037c073e8b4572468a6d2f186ee6fdc, type: 2}
+    <ToState>k__BackingField: {fileID: 6305809296959556292}
+  - Name: 'Simple Climb State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 01e291c8f696dd84eb990c59886acbb5, type: 2}
+    <ToState>k__BackingField: {fileID: 3401221039345825821}
+  - Name: 'Roll State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 641c5d561b8c1c941bcc447194903205, type: 2}
+    <ToState>k__BackingField: {fileID: 3832755774957263320}
+  - Name: 'Run State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: f59cc0357b5bf90499e914109818771b, type: 2}
+    <ToState>k__BackingField: {fileID: 7822048657572739991}
+  - Name: 'Sprint State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: dc247b277ff04684898a545dd7cd0567, type: 2}
+    <ToState>k__BackingField: {fileID: 8752404240767383436}
+  animationName: Walk
+  moveFloat: {fileID: 11400000, guid: 4f14c8b704ffa80409dbed89b300c77c, type: 2}
+  speedFloat: {fileID: 11400000, guid: fbe90f7f534585d4a83c16bd1384d6bf, type: 2}
+  rotationSpeed: 6
 --- !u!1 &5721118380957856581
 GameObject:
   m_ObjectHideFlags: 0
@@ -3680,6 +3793,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3588364225484506583}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6244189666824991790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4481301317107740316}
+  - component: {fileID: 8752404240767383436}
+  m_Layer: 0
+  m_Name: Sprint State
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4481301317107740316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6244189666824991790}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8663650150689636559}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8752404240767383436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6244189666824991790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb2b7c24b9120949b74ef3905a8fed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 6102497761764395310}
+  transitionList:
+  - Name: 'Stopping State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 8037c073e8b4572468a6d2f186ee6fdc, type: 2}
+    <ToState>k__BackingField: {fileID: 2133529366538135932}
+  - Name: 'Simple Climb State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 01e291c8f696dd84eb990c59886acbb5, type: 2}
+    <ToState>k__BackingField: {fileID: 3401221039345825821}
+  - Name: 'Roll State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 641c5d561b8c1c941bcc447194903205, type: 2}
+    <ToState>k__BackingField: {fileID: 3832755774957263320}
+  - Name: 'Run State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: 54d57a05a4b5e714f934c28f03bd2c16, type: 2}
+    <ToState>k__BackingField: {fileID: 7822048657572739991}
+  animationName: Sprint
+  moveFloat: {fileID: 11400000, guid: 4f14c8b704ffa80409dbed89b300c77c, type: 2}
+  speedFloat: {fileID: 11400000, guid: da2201d596940014ab131f6539e7e504, type: 2}
+  rotationSpeed: 6
 --- !u!1 &6303587825740764290
 GameObject:
   m_ObjectHideFlags: 0
@@ -3883,10 +4062,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonTransitions: {fileID: 6102497761764395310}
   transitionList:
-  - Name: 'Moving State '
+  - Name: 'Walk State '
     <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: d14dd41361990d54bba66630cc8b6973, type: 2}
-    <ToState>k__BackingField: {fileID: 6583075621183944049}
+    - {fileID: 11400000, guid: e1941785cba55c744ace8ce893500187, type: 2}
+    <ToState>k__BackingField: {fileID: 8542774745365486071}
+  - Name: 'Run State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: d14dd41361990d54bba66630cc8b6973, type: 2}
+    - {fileID: 11400000, guid: a4b846f37f5749341b51cf77c317744f, type: 2}
+    <ToState>k__BackingField: {fileID: 7822048657572739991}
   - Name: 'Roll State '
     <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 641c5d561b8c1c941bcc447194903205, type: 2}
@@ -3964,6 +4149,61 @@ Transform:
   - {fileID: 8526052269154901191}
   m_Father: {fileID: 3588484686836895905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6717490774960574961
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1157073118958127557}
+  - component: {fileID: 2133529366538135932}
+  m_Layer: 0
+  m_Name: Stopping State
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1157073118958127557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6717490774960574961}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8663650150689636559}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2133529366538135932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6717490774960574961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3f221028914666458ed0278e394eea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonTransitions: {fileID: 0}
+  transitionList:
+  - Name: 'Idle State '
+    <ConditionList>k__BackingField:
+    - {fileID: 11400000, guid: e0f0aae63eb9daa48ad18a96c7281968, type: 2}
+    <ToState>k__BackingField: {fileID: 6305809296959556292}
+  lightStopAnimation: Light Stop
+  hardStopAnimation: Hard Stop
+  moveFloat: {fileID: 11400000, guid: 4f14c8b704ffa80409dbed89b300c77c, type: 2}
+  runFloat: {fileID: 11400000, guid: ca25e61f6471d4c4296c9187eb91e17a, type: 2}
+  sprintFloat: {fileID: 11400000, guid: da2201d596940014ab131f6539e7e504, type: 2}
 --- !u!1 &6780675054996151909
 GameObject:
   m_ObjectHideFlags: 0
@@ -4192,6 +4432,7 @@ Transform:
   - {fileID: 7842848265068137668}
   - {fileID: 3588484686836895905}
   - {fileID: 6694262120571883230}
+  - {fileID: 3547874333248119405}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &1722519359568858436
@@ -4461,13 +4702,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4cd313f6f11d8941a9e40c2cce40bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footstepAudio:
-    Guid:
-      Data1: -285012644
-      Data2: 1293146291
-      Data3: -961803597
-      Data4: -1380174494
-    Path: event:/Player/Footsteps
+  walkAudio:
+    ID: 1073741837
+    _sourceAsset: {fileID: 11400000, guid: bf9b9f61e3066b747920ee0d9c4545c7, type: 2}
+    <DebugObject>k__BackingField: {fileID: 6972971377313347014}
+  runAudio:
+    ID: 1073741836
+    _sourceAsset: {fileID: 11400000, guid: bf9b9f61e3066b747920ee0d9c4545c7, type: 2}
+    <DebugObject>k__BackingField: {fileID: 6972971377313347014}
+  skipStopAudio:
+    ID: 1073741839
+    _sourceAsset: {fileID: 11400000, guid: bf9b9f61e3066b747920ee0d9c4545c7, type: 2}
+    <DebugObject>k__BackingField: {fileID: 6972971377313347014}
+  runStopAudio:
+    ID: 1073741838
+    _sourceAsset: {fileID: 11400000, guid: bf9b9f61e3066b747920ee0d9c4545c7, type: 2}
+    <DebugObject>k__BackingField: {fileID: 6972971377313347014}
   dustParticle: {fileID: 0}
   leftFootTransform: {fileID: 0}
   rightFootTransform: {fileID: 0}
@@ -4854,6 +5104,10 @@ MonoBehaviour:
   onAttack:
     m_PersistentCalls:
       m_Calls: []
+  onAttackHit:
+    m_PersistentCalls:
+      m_Calls: []
+  attackHitFeedback: {fileID: 1983228057967645640}
 --- !u!114 &8039570906702264589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4891,7 +5145,7 @@ MonoBehaviour:
     attackList:
     - {fileID: 11400000, guid: 6dd781a4e347d7e4588501049e8fd7b2, type: 2}
     - {fileID: 11400000, guid: 74963f969dd248f4ca867814a2a6e7ee, type: 2}
-  counterAttackData: {fileID: 0}
+  counterAttackData: {fileID: 11400000, guid: c9da3c70c44829941ab759c9c2f0771d, type: 2}
 --- !u!114 &8716139117235223576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5183,11 +5437,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3927125837fb9be499377734871bd3f2, type: 2}
     - {fileID: 11400000, guid: 8037c073e8b4572468a6d2f186ee6fdc, type: 2}
     <ToState>k__BackingField: {fileID: 6305809296959556292}
-  - Name: 'Moving State '
+  - Name: No State Set
     <ConditionList>k__BackingField:
     - {fileID: 11400000, guid: 3927125837fb9be499377734871bd3f2, type: 2}
     - {fileID: 11400000, guid: d14dd41361990d54bba66630cc8b6973, type: 2}
-    <ToState>k__BackingField: {fileID: 6583075621183944049}
+    <ToState>k__BackingField: {fileID: 0}
   baseSpeed: 4
 --- !u!1 &7392508914691410421
 GameObject:
@@ -7298,4 +7552,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4275932651300794, guid: 60e8218091f83244c9bf9c8c2569a009,
     type: 3}
   m_PrefabInstance: {fileID: 3592959640458439969}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7642798487807554870
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3547874333248119405}
+    m_Modifications:
+    - target: {fileID: 176918, guid: 7e848074bbc36994d82d2fc75db4f197, type: 3}
+      propertyPath: m_Name
+      value: FX_Dust_Large_Soft
+      objectReference: {fileID: 0}
+    - target: {fileID: 474404, guid: 7e848074bbc36994d82d2fc75db4f197, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474404, guid: 7e848074bbc36994d82d2fc75db4f197, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474404, guid: 7e848074bbc36994d82d2fc75db4f197, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474404, guid: 7e848074bbc36994d82d2fc75db4f197, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 474404, guid: 7e848074bbc36994d82d2fc75db4f197, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474404, guid: 7e848074bbc36994d82d2fc75db4f197, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474404, guid: 7e848074bbc36994d82d2fc75db4f197, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474404, guid: 7e848074bbc36994d82d2fc75db4f197, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474404, guid: 7e848074bbc36994d82d2fc75db4f197, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474404, guid: 7e848074bbc36994d82d2fc75db4f197, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19973336, guid: 7e848074bbc36994d82d2fc75db4f197, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7e848074bbc36994d82d2fc75db4f197, type: 3}
+--- !u!4 &7642798487807870994 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 474404, guid: 7e848074bbc36994d82d2fc75db4f197,
+    type: 3}
+  m_PrefabInstance: {fileID: 7642798487807554870}
   m_PrefabAsset: {fileID: 0}

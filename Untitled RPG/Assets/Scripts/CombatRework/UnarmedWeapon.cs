@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using DG.Tweening;
 using RPG.Core;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace RPG.Combat.Rework
 {
@@ -264,7 +262,7 @@ namespace RPG.Combat.Rework
 
                 if (damageable.transform.root == transform.root || alreadyDamagedList.Contains(damageable))
                 {
-                    Debug.Log("Already damaged: " + hitObject.name);
+                    //Debug.Log("Already damaged: " + hitObject.name);
                     continue;
                 }
                 
@@ -276,6 +274,7 @@ namespace RPG.Combat.Rework
                 Vector3 hitDirection = (hitObject.transform.position - hitPoint).normalized;
     
                 damageable.Damage(new(transform, attackData.Damage, hitDirection, hitPoint));
+                OnHit?.Invoke(damageable, attackData);
             }
         }
     }

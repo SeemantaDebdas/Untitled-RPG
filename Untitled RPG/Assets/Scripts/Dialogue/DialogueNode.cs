@@ -9,12 +9,25 @@ namespace RPG.DialogueSystem
 {
     public class DialogueNode : BaseNode
     {
+        public enum DialogueMood
+        {
+            NEUTRAL = 0,
+            HAPPY = 1,
+            SAD = 2,
+            QUESTION = 3,
+            ANGRY = 4,
+            SURPRISED = 5,
+        }
+        
         [field: SerializeField] public string Text { get; private set; }
         [field: SerializeField] public bool IsPlayerSpeaking { get; private set; }
 
         [Space]
         [SerializeField] private ScriptableEvent onEnterEvent;
         [SerializeField] private ScriptableEvent onExitEvent;
+        
+        [Space]
+        [SerializeField] DialogueMood dialogueMood;
 
         [Space] [SerializeField] private CompoundCondition<DialogueConditionSO> condition;
 

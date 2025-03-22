@@ -15,7 +15,7 @@ MonoBehaviour:
   <AnimationName>k__BackingField: KnockoutAttack2
   <ComboTime>k__BackingField: 0.9
   <Damage>k__BackingField: 50
-  <DistanceFromTarget>k__BackingField: 1
+  <DistanceFromTarget>k__BackingField: 0.75
   <VFXDataList>k__BackingField: []
   <ImpactStartTime>k__BackingField: 0.36
   <ImpactEndTime>k__BackingField: 0.5

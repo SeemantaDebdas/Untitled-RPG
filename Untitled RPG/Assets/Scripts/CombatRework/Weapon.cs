@@ -1,3 +1,4 @@
+using System;
 using RPG.Core;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ namespace RPG.Combat.Rework
         public bool IsSheathed { get; private set; }
 
         protected Animator animator;
+
+        public Action<IDamageable, AttackData> OnHit; 
 
         public virtual void Initialize(string name, float damage, float range, bool canParry, Animator anim)
         {

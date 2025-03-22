@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using MoreMountains.Feedbacks;
 using RPG.Core;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,6 +11,10 @@ namespace RPG.Combat.Rework
     {
         [SerializeField] private WeaponHandler weaponHandler;
         [SerializeField] private UnityEvent onAttack;
+        [SerializeField] private UnityEvent onAttackHit;
+
+        [Header("Polish")] 
+        [SerializeField] private MMF_Player attackHitFeedback;
 
         public bool IsStunned { get; private set; }
         public Transform CounterTarget { get; private set; } = null;
@@ -16,6 +22,28 @@ namespace RPG.Combat.Rework
         public AttackData CounterAttackData{get; private set;}
 
         private IEnumerator counterAttackCoroutine;
+
+        private void OnEnable()
+        {
+            weaponHandler.OnHit += WeaponHandler_OnHit;
+        }
+
+        private void OnDisable()
+        {
+            weaponHandler.OnHit -= WeaponHandler_OnHit;
+        }
+
+        void WeaponHandler_OnHit(IDamageable damageable, AttackData attackData)
+        {
+            onAttackHit?.Invoke();
+
+            if (attackHitFeedback != null)
+            {
+                //Debug.Log(attackData.Damage * 0.001f);
+               attackHitFeedback.GetFeedbackOfType<MMF_FreezeFrame>().FreezeFrameDuration = attackData.Damage * 0.001f;
+               attackHitFeedback.PlayFeedbacks();
+            }
+        }
 
         public void PerformAttack(bool isHeavy)
         {
