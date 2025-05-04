@@ -19,6 +19,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 4
   condition:
     and:
     - or:
@@ -43,6 +44,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 3
   condition:
     and: []
 --- !u!114 &-1539906924726494196
@@ -79,6 +81,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 4
   condition:
     and: []
 --- !u!114 &11400000
@@ -124,6 +127,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 11400000, guid: 12fade91a18b29b49a011d4f7b16c3cd, type: 2}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 5
   condition:
     and: []
 --- !u!114 &3309817074744498162
@@ -145,6 +149,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []
 --- !u!114 &4628260060573560137
@@ -166,6 +171,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []
 --- !u!114 &4966262564055059636
@@ -187,6 +193,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []
 --- !u!114 &6243022383183507189
@@ -208,6 +215,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []
 --- !u!114 &7178128060338119757
@@ -229,6 +237,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []
 --- !u!114 &7350250239788558912
@@ -245,11 +254,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Children>k__BackingField:
   - a3623246-e119-4d50-bd57-40ca892e8fbb
-  <Position>k__BackingField: {x: 395.99997, y: -131.50003}
+  <Position>k__BackingField: {x: 396, y: -138.5}
   <Text>k__BackingField: You don't look like you're from here.
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and:
     - or:
@@ -269,11 +279,12 @@ MonoBehaviour:
   <Children>k__BackingField:
   - 20534ee0-bd05-4566-a18f-4e0401718af1
   - fc29cba7-9964-4b6a-afce-0ef7ca1713e8
-  <Position>k__BackingField: {x: 2005, y: -509.5}
+  <Position>k__BackingField: {x: 2005, y: -511.02087}
   <Text>k__BackingField: If you collect them for me, I'll make it worth your time.
     Are you up for it?
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 3
   condition:
     and: []

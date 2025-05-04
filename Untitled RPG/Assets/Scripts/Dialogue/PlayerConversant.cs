@@ -54,7 +54,12 @@ namespace RPG.DialogueSystem
                 return string.Empty;
 
             return currentDialogueNode.Text;
-        } 
+        }
+
+        public DialogueNode.DialogueMood GetMood()
+        {
+            return currentDialogueNode.Mood;
+        }
 
         public void Next()
         {

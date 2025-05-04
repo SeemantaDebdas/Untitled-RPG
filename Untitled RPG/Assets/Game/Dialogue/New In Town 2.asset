@@ -19,6 +19,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []
 --- !u!114 &-4685828989876145446
@@ -54,6 +55,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 11400000, guid: b511094026776d64cb41b687f165ea6e, type: 2}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []
 --- !u!114 &-545463851542439729
@@ -75,6 +77,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []
 --- !u!114 &11400000
@@ -122,6 +125,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []
 --- !u!114 &731850797210338365
@@ -143,6 +147,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []
 --- !u!114 &947071415923306732
@@ -164,6 +169,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []
 --- !u!114 &2704642646567841770
@@ -186,6 +192,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []
 --- !u!114 &2874001789340378098
@@ -208,6 +215,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []
 --- !u!114 &4543494491817535324
@@ -229,6 +237,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []
 --- !u!114 &6087482905622569838
@@ -250,6 +259,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 11400000, guid: 12fade91a18b29b49a011d4f7b16c3cd, type: 2}
+  <Mood>k__BackingField: 0
   condition:
     and: []
 --- !u!114 &7579985399502709032
@@ -271,5 +281,6 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []

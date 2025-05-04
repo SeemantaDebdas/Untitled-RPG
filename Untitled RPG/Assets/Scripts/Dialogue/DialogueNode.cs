@@ -26,8 +26,8 @@ namespace RPG.DialogueSystem
         [SerializeField] private ScriptableEvent onEnterEvent;
         [SerializeField] private ScriptableEvent onExitEvent;
         
-        [Space]
-        [SerializeField] DialogueMood dialogueMood;
+        [field: Space]
+        [field: SerializeField] public DialogueMood Mood { get; private set; }
 
         [Space] [SerializeField] private CompoundCondition<DialogueConditionSO> condition;
 
@@ -80,7 +80,7 @@ namespace RPG.DialogueSystem
         {
             bool result = condition.Evaluate(context);
             
-            Debug.Log(result + " " + Text);
+            //Debug.Log(result + " " + Text);
             
             return result;
         }
