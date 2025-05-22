@@ -1,4 +1,4 @@
-using System;
+ using System;
 using RPG.Core;
 using RPG.Inventory.Model;
 using UnityEngine;
@@ -8,31 +8,9 @@ namespace RPG.Inventory.Pickup
 {
     public class Pickup : MonoBehaviour
     {
-        [SerializeField] private InventoryItemSO item = null;
-        [SerializeField] private int quantity = 1;
-        [FormerlySerializedAs("playerInventory")] [SerializeField] GridInventorySO playerGridInventory = null;
+        [field: SerializeField] public InventoryItemSO Item { get; private set; } = null;
+        [field: SerializeField] public int Quantity { get; private set; } = 1;
 
-        private Interactable interactable;
-
-        private void Awake()
-        {
-            interactable = GetComponent<Interactable>();
-        }
-
-        private void OnEnable()
-        {
-            interactable.OnInteract += Interactable_OnInteract;
-        }
-
-        private void OnDisable()
-        {
-            interactable.OnInteract -= Interactable_OnInteract;
-        }
-
-        private void Interactable_OnInteract(Interactor interactor)
-        {
-            playerGridInventory.AddItem(item, quantity);
-            Destroy(gameObject);
-        }
+        public string ItemName => Item.DisplayName;
     }
 }

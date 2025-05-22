@@ -21,11 +21,7 @@ namespace RPG.Core
             {
                 this.value = value;
                 OnValueChanged?.Invoke(value);
-                Debug.Log(name + " Setting value: " + value);
-            }
-            else
-            {
-                Debug.LogWarning($"{caller.name} is not authorized to set this value!");
+                //Debug.Log(name + " Setting value: " + value);
             }
         }
     }

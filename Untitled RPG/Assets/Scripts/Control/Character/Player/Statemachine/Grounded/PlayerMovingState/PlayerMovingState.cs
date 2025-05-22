@@ -15,7 +15,7 @@ namespace RPG.Control
             base.Enter();
 
             moveFloat.SetValue(speedFloat.Value, this);
-            Debug.Log("Setting moveFloat: " + speedFloat);
+            //Debug.Log("Setting moveFloat: " + speedFloat);
             moveFloat.SetValue(speedFloat.Value, this);
             animator.PlayAnimation(animationName, 0.1f);
         }

@@ -190,6 +190,15 @@ namespace RPG.Core
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pickup"",
+                    ""type"": ""Button"",
+                    ""id"": ""0a873bc5-80ea-4369-b38f-be5bfa91d527"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -542,6 +551,17 @@ namespace RPG.Core
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse"",
                     ""action"": ""Counter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ecd512ff-d04a-4fb0-95fd-cd57dc28eca2"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Pickup"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1114,6 +1134,7 @@ namespace RPG.Core
             m_Player_Ability4 = m_Player.FindAction("Ability4", throwIfNotFound: true);
             m_Player_Ability5 = m_Player.FindAction("Ability5", throwIfNotFound: true);
             m_Player_Counter = m_Player.FindAction("Counter", throwIfNotFound: true);
+            m_Player_Pickup = m_Player.FindAction("Pickup", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1211,6 +1232,7 @@ namespace RPG.Core
         private readonly InputAction m_Player_Ability4;
         private readonly InputAction m_Player_Ability5;
         private readonly InputAction m_Player_Counter;
+        private readonly InputAction m_Player_Pickup;
         public struct PlayerActions
         {
             private @Control m_Wrapper;
@@ -1233,6 +1255,7 @@ namespace RPG.Core
             public InputAction @Ability4 => m_Wrapper.m_Player_Ability4;
             public InputAction @Ability5 => m_Wrapper.m_Player_Ability5;
             public InputAction @Counter => m_Wrapper.m_Player_Counter;
+            public InputAction @Pickup => m_Wrapper.m_Player_Pickup;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1296,6 +1319,9 @@ namespace RPG.Core
                 @Counter.started += instance.OnCounter;
                 @Counter.performed += instance.OnCounter;
                 @Counter.canceled += instance.OnCounter;
+                @Pickup.started += instance.OnPickup;
+                @Pickup.performed += instance.OnPickup;
+                @Pickup.canceled += instance.OnPickup;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1354,6 +1380,9 @@ namespace RPG.Core
                 @Counter.started -= instance.OnCounter;
                 @Counter.performed -= instance.OnCounter;
                 @Counter.canceled -= instance.OnCounter;
+                @Pickup.started -= instance.OnPickup;
+                @Pickup.performed -= instance.OnPickup;
+                @Pickup.canceled -= instance.OnPickup;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1527,6 +1556,7 @@ namespace RPG.Core
             void OnAbility4(InputAction.CallbackContext context);
             void OnAbility5(InputAction.CallbackContext context);
             void OnCounter(InputAction.CallbackContext context);
+            void OnPickup(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

@@ -13,7 +13,7 @@ namespace RPG.Control
 
             string animationName = "";
             //Debug.Log(moveFloat.Value + " " + sprintFloat.Value);
-            Debug.Log(controller.velocity.magnitude);
+            //Debug.Log(controller.velocity.magnitude);
             
             if (Mathf.Approximately(moveFloat.Value, runFloat.Value))
             {

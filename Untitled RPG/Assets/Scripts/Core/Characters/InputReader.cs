@@ -179,6 +179,11 @@ namespace RPG.Core
         {
         }
 
+        public void OnPickup(InputAction.CallbackContext context)
+        {
+            
+        }
+
         bool IsPlayerActionMapEnabled()
         {
             return inputAsset.FindActionMap(playerActionMapName).enabled;
