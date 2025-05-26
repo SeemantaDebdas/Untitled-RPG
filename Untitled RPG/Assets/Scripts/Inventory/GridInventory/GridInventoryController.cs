@@ -14,7 +14,7 @@ namespace RPG.Inventory
         [SerializeField] List<InventoryItem> initialInventoryItemList = new();
 
         public event Action<InventoryItem> OnItemClicked, OnItemBeginDrag, OnItemDroppedOn, OnItemEndDrag;
-        
+
         private void Start()
         {
             InitializeUI();
@@ -26,14 +26,14 @@ namespace RPG.Inventory
         private void InitializeData()
         {
             gridInventoryData.Initialize();
-            
+
             //Populate Inventory List with initial elements
             foreach (InventoryItem item in initialInventoryItemList)
             {
                 if (item.IsNull)
                     continue;
-                
-                Debug.Log(item.itemData.DisplayName);
+
+                //Debug.Log(item.itemData.DisplayName);
 
                 gridInventoryData.AddItem(item);
             }
@@ -49,13 +49,13 @@ namespace RPG.Inventory
                 gridInventoryUI.UpdateItemData(dictItem.Key, dictItem.Value.itemData.ItemImage, dictItem.Value.quantity);
             }
         }
-        
+
         private void InitializeUI()
         {
             gridInventoryUI.Populate(gridInventoryData.InventorySize);
-           
+
             gridInventoryUI.OnItemSelected += InventoryUI_OnItemSelected;
-            
+
             gridInventoryUI.OnItemBeginDrag += InventoryUI_OnItemBeginDrag;
             gridInventoryUI.OnItemDroppedOn += InventoryUI_OnItemDroppedOn;
             gridInventoryUI.OnItemEndDrag += InventoryUI_OnItemEndDrag;
@@ -64,11 +64,11 @@ namespace RPG.Inventory
         private void OnDestroy()
         {
             gridInventoryUI.OnItemSelected -= InventoryUI_OnItemSelected;
-            
+
             gridInventoryUI.OnItemBeginDrag -= InventoryUI_OnItemBeginDrag;
             gridInventoryUI.OnItemDroppedOn -= InventoryUI_OnItemDroppedOn;
             gridInventoryUI.OnItemEndDrag -= InventoryUI_OnItemEndDrag;
-            
+
             gridInventoryData.OnInventoryUpdated -= GridInventoryData_OnInventoryUpdated;
         }
 
@@ -93,9 +93,9 @@ namespace RPG.Inventory
                 Debug.LogWarning("Inventory Item is Null");
                 return;
             }
-            
+
             OnItemClicked?.Invoke(inventoryItem);
-            
+
             itemUI.Select();
         }
 
@@ -108,33 +108,33 @@ namespace RPG.Inventory
                 Debug.LogWarning("Inventory Item is Null");
                 return;
             }
-            
+
             OnItemBeginDrag?.Invoke(inventoryItem);
         }
 
         InventoryItem GetItemFromItemUI(InventoryItemUI itemUI)
         {
             int inventoryItemIndex = gridInventoryUI.ItemList.IndexOf(itemUI);
-            
-            if(inventoryItemIndex == -1)
+
+            if (inventoryItemIndex == -1)
                 return new InventoryItem();
-                
+
             var inventoryItem = gridInventoryData.GetItemAtIndex(inventoryItemIndex);
-            
+
             return inventoryItem;
         }
-        
+
         void InventoryUI_OnShowRequest()
         {
             UpdateInventoryItems();
         }
-        
+
         void GridInventoryData_OnInventoryUpdated(Dictionary<int, InventoryItem> inventoryState)
         {
             gridInventoryUI.ResetAllItems();
             UpdateInventoryItems();
         }
-        
+
         public void DeselectAllItems()
         {
             gridInventoryUI.DeselectAllItems();

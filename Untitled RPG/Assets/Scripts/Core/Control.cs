@@ -93,7 +93,7 @@ namespace RPG.Core
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ChangeWeapon"",
+                    ""name"": ""Scroll"",
                     ""type"": ""Value"",
                     ""id"": ""3350e8c7-9214-48d1-94e5-d4f83b8aec41"",
                     ""expectedControlType"": """",
@@ -407,7 +407,7 @@ namespace RPG.Core
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ChangeWeapon"",
+                    ""action"": ""Scroll"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -418,7 +418,7 @@ namespace RPG.Core
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""ChangeWeapon"",
+                    ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -429,7 +429,7 @@ namespace RPG.Core
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""ChangeWeapon"",
+                    ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -440,7 +440,7 @@ namespace RPG.Core
                     ""interactions"": """",
                     ""processors"": ""NormalizeVector2"",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""ChangeWeapon"",
+                    ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1123,7 +1123,7 @@ namespace RPG.Core
             m_Player_WalkToggle = m_Player.FindAction("WalkToggle", throwIfNotFound: true);
             m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
             m_Player_Holster = m_Player.FindAction("Holster", throwIfNotFound: true);
-            m_Player_ChangeWeapon = m_Player.FindAction("ChangeWeapon", throwIfNotFound: true);
+            m_Player_Scroll = m_Player.FindAction("Scroll", throwIfNotFound: true);
             m_Player_Roll = m_Player.FindAction("Roll", throwIfNotFound: true);
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
             m_Player_QuestUIToggle = m_Player.FindAction("QuestUIToggle", throwIfNotFound: true);
@@ -1221,7 +1221,7 @@ namespace RPG.Core
         private readonly InputAction m_Player_WalkToggle;
         private readonly InputAction m_Player_Attack;
         private readonly InputAction m_Player_Holster;
-        private readonly InputAction m_Player_ChangeWeapon;
+        private readonly InputAction m_Player_Scroll;
         private readonly InputAction m_Player_Roll;
         private readonly InputAction m_Player_Interact;
         private readonly InputAction m_Player_QuestUIToggle;
@@ -1244,7 +1244,7 @@ namespace RPG.Core
             public InputAction @WalkToggle => m_Wrapper.m_Player_WalkToggle;
             public InputAction @Attack => m_Wrapper.m_Player_Attack;
             public InputAction @Holster => m_Wrapper.m_Player_Holster;
-            public InputAction @ChangeWeapon => m_Wrapper.m_Player_ChangeWeapon;
+            public InputAction @Scroll => m_Wrapper.m_Player_Scroll;
             public InputAction @Roll => m_Wrapper.m_Player_Roll;
             public InputAction @Interact => m_Wrapper.m_Player_Interact;
             public InputAction @QuestUIToggle => m_Wrapper.m_Player_QuestUIToggle;
@@ -1286,9 +1286,9 @@ namespace RPG.Core
                 @Holster.started += instance.OnHolster;
                 @Holster.performed += instance.OnHolster;
                 @Holster.canceled += instance.OnHolster;
-                @ChangeWeapon.started += instance.OnChangeWeapon;
-                @ChangeWeapon.performed += instance.OnChangeWeapon;
-                @ChangeWeapon.canceled += instance.OnChangeWeapon;
+                @Scroll.started += instance.OnScroll;
+                @Scroll.performed += instance.OnScroll;
+                @Scroll.canceled += instance.OnScroll;
                 @Roll.started += instance.OnRoll;
                 @Roll.performed += instance.OnRoll;
                 @Roll.canceled += instance.OnRoll;
@@ -1347,9 +1347,9 @@ namespace RPG.Core
                 @Holster.started -= instance.OnHolster;
                 @Holster.performed -= instance.OnHolster;
                 @Holster.canceled -= instance.OnHolster;
-                @ChangeWeapon.started -= instance.OnChangeWeapon;
-                @ChangeWeapon.performed -= instance.OnChangeWeapon;
-                @ChangeWeapon.canceled -= instance.OnChangeWeapon;
+                @Scroll.started -= instance.OnScroll;
+                @Scroll.performed -= instance.OnScroll;
+                @Scroll.canceled -= instance.OnScroll;
                 @Roll.started -= instance.OnRoll;
                 @Roll.performed -= instance.OnRoll;
                 @Roll.canceled -= instance.OnRoll;
@@ -1545,7 +1545,7 @@ namespace RPG.Core
             void OnWalkToggle(InputAction.CallbackContext context);
             void OnAttack(InputAction.CallbackContext context);
             void OnHolster(InputAction.CallbackContext context);
-            void OnChangeWeapon(InputAction.CallbackContext context);
+            void OnScroll(InputAction.CallbackContext context);
             void OnRoll(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
             void OnQuestUIToggle(InputAction.CallbackContext context);

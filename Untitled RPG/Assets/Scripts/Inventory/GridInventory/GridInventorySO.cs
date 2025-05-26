@@ -11,13 +11,13 @@ namespace RPG.Inventory.Model
     {
         [field: SerializeField] public List<InventoryItem> InventoryItemList { get; private set; } = new();
         [field: SerializeField] public int InventorySize { get; private set; } = 10;
-        
-        public event Action<Dictionary<int, InventoryItem>> OnInventoryUpdated; 
+
+        public event Action<Dictionary<int, InventoryItem>> OnInventoryUpdated;
 
         public void Initialize()
         {
             InventoryItemList = new();
-            
+
             for (int i = 0; i < InventorySize; i++)
             {
                 InventoryItemList.Add(new InventoryItem(i, null, 0));
@@ -34,7 +34,7 @@ namespace RPG.Inventory.Model
         public int AddItem(InventoryItemSO item, int quantity)
         {
             int remainingQuantity = quantity;
-            
+
             if (item.IsStackable)
             {
                 remainingQuantity = AddStackableItem(item, quantity);
@@ -57,7 +57,7 @@ namespace RPG.Inventory.Model
             {
                 if (InventoryItemList[i].IsNull)
                 {
-                    Debug.Log("Adding item to empty slot");
+                    //Debug.Log("Adding item to empty slot");
                     InventoryItemList[i] = new(i, item, itemQuantity);
                     return true;
                 }
@@ -74,7 +74,7 @@ namespace RPG.Inventory.Model
                 if (InventoryItemList[i].IsNull)
                     continue;
 
-                if (InventoryItemList[i].itemData.ItemID != item.ItemID) 
+                if (InventoryItemList[i].itemData.ItemID != item.ItemID)
                     continue;
 
 
@@ -87,7 +87,7 @@ namespace RPG.Inventory.Model
                 {
                     //make the item take full stack size. 
                     InventoryItemList[i].SetQuantity(item.MaxStackSize);
-                        
+
                     quantity -= amountPossibleToTake;
                     break;//may not want to break from here. Get all slots that has this item and fill that. Maybe continue instead of break.
                 }
@@ -102,32 +102,32 @@ namespace RPG.Inventory.Model
             {
                 quantity -= Mathf.Min(quantity, item.MaxStackSize);
             }
-            
+
             InformAboutChange();
             return quantity;
         }
-        
+
 
         #endregion
 
         public int RemoveItem(int itemIndex, int quantityToRemove)
         {
-            if (InventoryItemList.Count <= itemIndex) 
+            if (InventoryItemList.Count <= itemIndex)
                 return quantityToRemove;
-            if(InventoryItemList[itemIndex].IsNull) 
+            if (InventoryItemList[itemIndex].IsNull)
                 return quantityToRemove;
 
             if (InventoryItemList[itemIndex].quantity < quantityToRemove)
             {
                 InventoryItemList[itemIndex] = new InventoryItem();
                 InformAboutChange();
-                
+
                 return quantityToRemove - InventoryItemList[itemIndex].quantity;
             }
-            
+
             int remainingQuantity = InventoryItemList[itemIndex].quantity - quantityToRemove;
             InventoryItemList[itemIndex].SetQuantity(remainingQuantity);
-            
+
             InformAboutChange();
 
             return 0;
@@ -137,21 +137,21 @@ namespace RPG.Inventory.Model
         {
             for (int i = 0; i < InventoryItemList.Count && quantityToRemove > 0; i++)
             {
-                if(InventoryItemList[i].itemData != item)
+                if (InventoryItemList[i].itemData != item)
                     continue;
-                
+
                 quantityToRemove = RemoveItem(i, quantityToRemove);
             }
         }
 
         public void SetItemData(int index, InventoryItem data)
         {
-            if(this is ActionInventorySO)
+            if (this is ActionInventorySO)
                 Debug.Log($"Item Index: {index}/ Data Index: {data.index}");
-            
+
             InventoryItemList[index] = data;
             InventoryItemList[index].index = index;
-            
+
             //InventoryItemList[index].index = data.index;
             InformAboutChange();
         }
@@ -171,10 +171,10 @@ namespace RPG.Inventory.Model
             {
                 if (InventoryItemList[i].IsNull)
                     continue;
-                
+
                 inventoryState[i] = InventoryItemList[i];
             }
-            
+
             return inventoryState;
         }
 
@@ -200,10 +200,10 @@ namespace RPG.Inventory.Model
         public void SwapItems(int index1, int index2)
         {
             (InventoryItemList[index1], InventoryItemList[index2]) = (InventoryItemList[index2], InventoryItemList[index1]);
-            
+
             InventoryItemList[index1].index = index1;
             InventoryItemList[index2].index = index2;
-            
+
             InformAboutChange();
         }
 
@@ -221,9 +221,9 @@ namespace RPG.Inventory.Model
         {
             //InventoryItemList.IndexOf(item) != -1;
             bool hasItem = InventoryItemList.Contains(item);
-            
+
             Debug.Log(hasItem);
-            
+
             return hasItem;
         }
     }

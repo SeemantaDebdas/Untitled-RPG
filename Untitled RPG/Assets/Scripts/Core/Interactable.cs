@@ -13,15 +13,18 @@ namespace RPG.Core
     /// </summary>
     public class Interactable : MonoBehaviour, IInteractable
     {
-        [FormerlySerializedAs("OnFocus")] [SerializeField] private UnityEvent<Interactor> onFocus;
-        [FormerlySerializedAs("OnUnfocus")] [SerializeField] private UnityEvent<Interactor> onUnfocus;
-        [FormerlySerializedAs("OnInRange")] [SerializeField] private UnityEvent<Interactor> onInRange;
-        [FormerlySerializedAs("OnOutOfRange")] [SerializeField] private UnityEvent<Interactor> onOutOfRange;
-        [FormerlySerializedAs("OnInteract")] [SerializeField] private UnityEvent<Interactor> onInteract;
+        [SerializeField] bool destroyOnInteract = false;
+        [FormerlySerializedAs("OnFocus")][SerializeField] private UnityEvent<Interactor> onFocus;
+        [FormerlySerializedAs("OnUnfocus")][SerializeField] private UnityEvent<Interactor> onUnfocus;
+        [FormerlySerializedAs("OnInRange")][SerializeField] private UnityEvent<Interactor> onInRange;
+        [FormerlySerializedAs("OnOutOfRange")][SerializeField] private UnityEvent<Interactor> onOutOfRange;
+        [FormerlySerializedAs("OnInteract")][SerializeField] private UnityEvent<Interactor> onInteract;
 
         public event Action<Interactor> OnInteract, OnFocus, OnUnfocus, OnInRange, OnOutOfRange;
         public event Action OnDestroyed;
-        
+
+        bool disabled = false;
+
         public void Focus(Interactor interactor)
         {
             onFocus?.Invoke(interactor);
@@ -48,8 +51,14 @@ namespace RPG.Core
 
         public void Interact(Interactor interactor)
         {
+            if (disabled)
+                return;
+
             onInteract?.Invoke(interactor);
             OnInteract?.Invoke(interactor);
+
+            if (destroyOnInteract)
+                Destroy(this);
         }
 
         private void OnDestroy()

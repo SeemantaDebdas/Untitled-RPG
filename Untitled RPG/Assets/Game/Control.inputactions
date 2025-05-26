@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ChangeWeapon",
+                    "name": "Scroll",
                     "type": "Value",
                     "id": "3350e8c7-9214-48d1-94e5-d4f83b8aec41",
                     "expectedControlType": "",
@@ -383,7 +383,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ChangeWeapon",
+                    "action": "Scroll",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -394,7 +394,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "ChangeWeapon",
+                    "action": "Scroll",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -405,7 +405,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "ChangeWeapon",
+                    "action": "Scroll",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -416,7 +416,7 @@
                     "interactions": "",
                     "processors": "NormalizeVector2",
                     "groups": "Keyboard & Mouse",
-                    "action": "ChangeWeapon",
+                    "action": "Scroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

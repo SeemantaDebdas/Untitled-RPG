@@ -30,6 +30,7 @@ namespace RPG.Core
         public event Action OnHolsterPerformed;
 
         public event Action<float> OnChangeWeaponPerformed;
+        public event Action<float> OnScrollPerformed;
 
         public Control Control => control;
         Control control;
@@ -110,7 +111,7 @@ namespace RPG.Core
             OnHolsterPerformed?.Invoke();
         }
 
-        public void OnChangeWeapon(InputAction.CallbackContext context)
+        public void OnScroll(InputAction.CallbackContext context)
         {
             if (!IsPlayerActionMapEnabled())
                 return;
@@ -132,6 +133,7 @@ namespace RPG.Core
             //Debug.Log(input);
 
             OnChangeWeaponPerformed?.Invoke(input);
+            OnScrollPerformed?.Invoke(input);
         }
 
         public void OnRoll(InputAction.CallbackContext context)

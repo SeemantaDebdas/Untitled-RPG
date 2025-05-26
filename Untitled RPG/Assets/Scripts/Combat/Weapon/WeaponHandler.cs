@@ -256,7 +256,7 @@ namespace RPG.Combat
             currentWeaponIndex += (int) value;
             currentWeaponIndex = (int) Mathf.Repeat(currentWeaponIndex, weaponList.Count);
 
-            Debug.Log(weaponList[currentWeaponIndex].name);
+            //Debug.Log(weaponList[currentWeaponIndex].name);
 
             WeaponSO weaponSO = weaponList[currentWeaponIndex];
             EquipWeapon(weaponCache[weaponSO]);

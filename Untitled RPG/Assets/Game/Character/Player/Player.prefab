@@ -5198,7 +5198,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52889fe4dec34074b918efd29baea948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupAction: {fileID: 0}
+  pickupAction: {fileID: 2329273742454827654, guid: 46942bc09dc02594b8a05133a47185b1,
+    type: 3}
+  scrollAction: {fileID: 7597909077688735197, guid: 46942bc09dc02594b8a05133a47185b1,
+    type: 3}
+  gridInventory: {fileID: 11400000, guid: 4ff81094455df3742a869f2577ad3dce, type: 2}
   pickupList: []
 --- !u!1 &7009001920839669846
 GameObject:
