@@ -7,7 +7,7 @@ namespace RPG.DialogueSystem
     public class AIConversant : MonoBehaviour
     {
         [SerializeField] Dialogue dialogue;
-        
+
         Animator animator;
 
         Interactable interactable;
@@ -19,7 +19,7 @@ namespace RPG.DialogueSystem
 
         private void OnEnable()
         {
-            if(interactable == null) 
+            if (interactable == null)
                 interactable = GetComponent<Interactable>();
 
             interactable.OnInteract += Interactable_OnInteract;
@@ -32,21 +32,19 @@ namespace RPG.DialogueSystem
 
         private void Interactable_OnInteract(Interactor interactor)
         {
-            if (!interactor.TryGetComponent(out PlayerConversant playerConversant)) 
+            if (!interactor.TryGetComponent(out PlayerConversant playerConversant))
                 return;
-            
-            playerConversant.StartConversation(dialogue);
+
             playerConversant.OnConversationUpdated += () =>
             {
                 PlayerConversant_OnConversationUpdated(playerConversant);
             };
+            playerConversant.StartConversation(dialogue);
         }
-        
+
         void PlayerConversant_OnConversationUpdated(PlayerConversant conversant)
         {
-            if (!conversant.IsActive)
-                return;
-            
+
             Debug.Log(conversant.GetMood());
             switch (conversant.GetMood())
             {

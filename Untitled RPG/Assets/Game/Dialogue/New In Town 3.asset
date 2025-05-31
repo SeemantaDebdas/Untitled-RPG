@@ -127,7 +127,7 @@ MonoBehaviour:
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 11400000, guid: 12fade91a18b29b49a011d4f7b16c3cd, type: 2}
   onExitEvent: {fileID: 0}
-  <Mood>k__BackingField: 5
+  <Mood>k__BackingField: 1
   condition:
     and: []
 --- !u!114 &3309817074744498162
