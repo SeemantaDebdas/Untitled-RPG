@@ -62,7 +62,7 @@ MonoBehaviour:
   <Children>k__BackingField:
   - 74b1a93c-a835-4e22-aec9-eb72611b9b68
   - 767580ea-5944-4c23-ba14-97525d9efe5e
-  <Position>k__BackingField: {x: 1198.0502, y: -311.53613}
+  <Position>k__BackingField: {x: 1181.9089, y: -154.6141}
   <Text>k__BackingField: Have you seen any blue mushrooms on your way here?
   <IsPlayerSpeaking>k__BackingField: 0
   onEnterEvent: {fileID: 0}
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Children>k__BackingField:
   - 67f80a0b-099d-458c-a4cc-882ecd1d112b
-  <Position>k__BackingField: {x: 1605.0502, y: -133.03612}
+  <Position>k__BackingField: {x: 1588.909, y: 23.38591}
   <Text>k__BackingField: No, I have not.
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Children>k__BackingField:
   - 9a085208-2bee-4ab8-9024-7f7d1ad7ab8f
-  <Position>k__BackingField: {x: 1605.0502, y: -524.03613}
+  <Position>k__BackingField: {x: 1588.909, y: -367.61407}
   <Text>k__BackingField: Yes, I have
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
@@ -356,7 +356,7 @@ MonoBehaviour:
   <Children>k__BackingField:
   - 20534ee0-bd05-4566-a18f-4e0401718af1
   - fc29cba7-9964-4b6a-afce-0ef7ca1713e8
-  <Position>k__BackingField: {x: 2005, y: -511.02087}
+  <Position>k__BackingField: {x: 1988.909, y: -354.61407}
   <Text>k__BackingField: If you collect them for me, I'll make it worth your time.
     Are you up for it?
   <IsPlayerSpeaking>k__BackingField: 0

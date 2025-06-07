@@ -44,8 +44,9 @@ namespace RPG.DialogueSystem
 
         void PlayerConversant_OnConversationUpdated(PlayerConversant conversant)
         {
+            if (!conversant.IsActive)
+                return;
 
-            Debug.Log(conversant.GetMood());
             switch (conversant.GetMood())
             {
                 default:
