@@ -5,6 +5,7 @@ using UnityEngine;
 using RPG.Combat.Rework;
 using RPG.DialogueSystem;
 using RPG.Quest;
+using RPG.Inventory;
 
 namespace RPG.Control
 {
@@ -18,7 +19,7 @@ namespace RPG.Control
             {
                 if (playerContext != null)
                     return playerContext;
-                
+
                 playerContext = new PlayerContext
                 {
                     Transform = transform,
@@ -36,6 +37,7 @@ namespace RPG.Control
                     QuestList = GetComponent<QuestList>(),
                     Health = GetComponent<Health>(),
                     TargetHandler = GetComponent<TargetHandler>(),
+                    Inventory = GetComponent<GridInventoryController>(),
                 };
 
                 return playerContext;

@@ -24,6 +24,29 @@ MonoBehaviour:
     and:
     - or:
       - {fileID: 11400000, guid: 6ab89587004eead4dac5a9e523be32e0, type: 2}
+    - or:
+      - {fileID: 11400000, guid: 7d67d81d211efe0499f8915bebbd8284, type: 2}
+--- !u!114 &-7869853122070936764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
+  m_Name: 6229ea20-1ae7-459e-8750-b48e5da73e0e
+  m_EditorClassIdentifier: 
+  <Children>k__BackingField: []
+  <Position>k__BackingField: {x: 1412.9111, y: 495.99982}
+  <Text>k__BackingField: Thank you traveller!
+  <IsPlayerSpeaking>k__BackingField: 0
+  onEnterEvent: {fileID: 0}
+  onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 1
+  condition:
+    and: []
 --- !u!114 &-4017237787175268468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,6 +70,33 @@ MonoBehaviour:
   <Mood>k__BackingField: 3
   condition:
     and: []
+--- !u!114 &-3786901561767075331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
+  m_Name: 0de5e0d6-417e-4dbc-afef-f0b510aa575e
+  m_EditorClassIdentifier: 
+  <Children>k__BackingField:
+  - 2d1a4696-f1c1-47de-ade0-81a8580ceb15
+  - ed7ff8ed-513e-4a3b-9362-9702e3584d76
+  <Position>k__BackingField: {x: 396, y: 495.99997}
+  <Text>k__BackingField: So? Did you get them?
+  <IsPlayerSpeaking>k__BackingField: 0
+  onEnterEvent: {fileID: 0}
+  onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 3
+  condition:
+    and:
+    - or:
+      - {fileID: 11400000, guid: 6ab89587004eead4dac5a9e523be32e0, type: 2}
+    - or:
+      - {fileID: 11400000, guid: c7d297951b5543e4dae56bb316f9d974, type: 2}
 --- !u!114 &-1539906924726494196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +112,7 @@ MonoBehaviour:
   <Children>k__BackingField:
   - f3b46183-174f-49e6-9c2e-361350d28f5b
   - c1489437-c380-4144-87fb-3d63058a0149
+  - 0de5e0d6-417e-4dbc-afef-f0b510aa575e
   <Position>k__BackingField: {x: 0, y: 0}
 --- !u!114 &-547399548368764334
 MonoBehaviour:
@@ -109,6 +160,10 @@ MonoBehaviour:
   - {fileID: 4966262564055059636}
   - {fileID: 3309817074744498162}
   - {fileID: 1282737815826929639}
+  - {fileID: -3786901561767075331}
+  - {fileID: 8317331337895794615}
+  - {fileID: -7869853122070936764}
+  - {fileID: 5067351538943957150}
 --- !u!114 &1282737815826929639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +245,28 @@ MonoBehaviour:
   - 110e1b31-1211-4821-8b4f-be97c73215a4
   <Position>k__BackingField: {x: 2370, y: -730}
   <Text>k__BackingField: Sure, why not?
+  <IsPlayerSpeaking>k__BackingField: 1
+  onEnterEvent: {fileID: 0}
+  onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
+  condition:
+    and: []
+--- !u!114 &5067351538943957150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
+  m_Name: ed7ff8ed-513e-4a3b-9362-9702e3584d76
+  m_EditorClassIdentifier: 
+  <Children>k__BackingField:
+  - 67f80a0b-099d-458c-a4cc-882ecd1d112b
+  <Position>k__BackingField: {x: 869.7608, y: 290.49997}
+  <Text>k__BackingField: 'No, not yet '
   <IsPlayerSpeaking>k__BackingField: 1
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
@@ -286,5 +363,27 @@ MonoBehaviour:
   onEnterEvent: {fileID: 0}
   onExitEvent: {fileID: 0}
   <Mood>k__BackingField: 3
+  condition:
+    and: []
+--- !u!114 &8317331337895794615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ee8d77171a4d94d8da49cb189ef09f, type: 3}
+  m_Name: 2d1a4696-f1c1-47de-ade0-81a8580ceb15
+  m_EditorClassIdentifier: 
+  <Children>k__BackingField:
+  - 6229ea20-1ae7-459e-8750-b48e5da73e0e
+  <Position>k__BackingField: {x: 909.9004, y: 607}
+  <Text>k__BackingField: Yes! Right here
+  <IsPlayerSpeaking>k__BackingField: 1
+  onEnterEvent: {fileID: 0}
+  onExitEvent: {fileID: 0}
+  <Mood>k__BackingField: 0
   condition:
     and: []

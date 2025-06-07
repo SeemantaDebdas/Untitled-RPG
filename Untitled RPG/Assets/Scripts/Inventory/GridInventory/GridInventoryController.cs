@@ -145,6 +145,11 @@ namespace RPG.Inventory
             return gridInventoryData.HasItem(item);
         }
 
+        public bool HasItem(InventoryItemSO item, int quantity)
+        {
+            return gridInventoryData.HasItem(item, quantity);
+        }
+
         public void SwapItems(InventoryItem item1, InventoryItem item2)
         {
             gridInventoryData.SwapItems(item1, item2);

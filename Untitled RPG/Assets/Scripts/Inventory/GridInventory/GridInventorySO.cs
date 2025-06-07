@@ -226,5 +226,20 @@ namespace RPG.Inventory.Model
 
             return hasItem;
         }
+
+        public bool HasItem(InventoryItemSO item, int quantity)
+        {
+            for (int i = 0; i < InventoryItemList.Count; i++)
+            {
+                InventoryItem inventoryItem = InventoryItemList[i];
+                if (inventoryItem.itemData == item)
+                {
+                    if (inventoryItem.quantity >= quantity)
+                        return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
